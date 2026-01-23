@@ -1,0 +1,39 @@
+package com.banking.controller.dto;
+
+import java.util.List;
+
+public class ValidationErrorResponse {
+    private String error;
+    private List<FieldError> details;
+
+    public ValidationErrorResponse(String error, List<FieldError> details) {
+        this.error = error;
+        this.details = details;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public List<FieldError> getDetails() {
+        return details;
+    }
+
+    public static class FieldError {
+        private String field;
+        private String message;
+
+        public FieldError(String field, String message) {
+            this.field = field;
+            this.message = message;
+        }
+
+        public String getField() {
+            return field;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+    }
+}
