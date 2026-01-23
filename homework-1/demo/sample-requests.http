@@ -1,0 +1,224 @@
+### Banking Transactions API - Sample Requests
+### Use with VS Code REST Client extension
+
+@baseUrl = http://localhost:3000
+
+###############################################################################
+### HEALTH CHECK
+###############################################################################
+
+### Get API health status
+GET {{baseUrl}}/
+Accept: application/json
+
+###############################################################################
+### CREATE TRANSACTIONS (POST)
+###############################################################################
+
+### Create a transfer transaction (valid)
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.50,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### Create a deposit transaction
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-00000",
+  "toAccount": "ACC-12345",
+  "amount": 500.00,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+### Create a withdrawal transaction
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-00000",
+  "amount": 50.25,
+  "currency": "USD",
+  "type": "withdrawal"
+}
+
+### Create a transaction with EUR currency
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-11111",
+  "toAccount": "ACC-22222",
+  "amount": 250.75,
+  "currency": "EUR",
+  "type": "transfer"
+}
+
+###############################################################################
+### VALIDATION TESTS (Should return 400 errors)
+###############################################################################
+
+### Test: Invalid amount (negative)
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": -50,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### Test: Invalid amount (too many decimals)
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 10.999,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### Test: Invalid account format
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "INVALID",
+  "toAccount": "ACC-67890",
+  "amount": 100,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### Test: Invalid currency code
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100,
+  "currency": "XXX",
+  "type": "transfer"
+}
+
+### Test: Invalid transaction type
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100,
+  "currency": "USD",
+  "type": "invalid"
+}
+
+### Test: Multiple validation errors
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "INVALID",
+  "toAccount": "WRONG",
+  "amount": -999.999,
+  "currency": "XXX",
+  "type": "bad"
+}
+
+###############################################################################
+### GET TRANSACTIONS
+###############################################################################
+
+### Get all transactions
+GET {{baseUrl}}/transactions
+Accept: application/json
+
+### Get specific transaction by ID
+# Replace with actual transaction ID from previous POST response
+GET {{baseUrl}}/transactions/REPLACE-WITH-ACTUAL-ID
+Accept: application/json
+
+### Test: Get non-existent transaction (should return 404)
+GET {{baseUrl}}/transactions/nonexistent-id
+Accept: application/json
+
+###############################################################################
+### TRANSACTION FILTERING
+###############################################################################
+
+### Filter by account ID
+GET {{baseUrl}}/transactions?accountId=ACC-12345
+Accept: application/json
+
+### Filter by transaction type
+GET {{baseUrl}}/transactions?type=deposit
+Accept: application/json
+
+### Filter by transaction type (transfer)
+GET {{baseUrl}}/transactions?type=transfer
+Accept: application/json
+
+### Filter by date range
+GET {{baseUrl}}/transactions?from=2024-01-01&to=2024-12-31
+Accept: application/json
+
+### Combined filters: account + type
+GET {{baseUrl}}/transactions?accountId=ACC-12345&type=transfer
+Accept: application/json
+
+### Combined filters: account + date range
+GET {{baseUrl}}/transactions?accountId=ACC-12345&from=2024-01-01&to=2024-12-31
+Accept: application/json
+
+###############################################################################
+### ACCOUNT BALANCE
+###############################################################################
+
+### Get balance for ACC-12345
+GET {{baseUrl}}/accounts/ACC-12345/balance
+Accept: application/json
+
+### Get balance for ACC-67890
+GET {{baseUrl}}/accounts/ACC-67890/balance
+Accept: application/json
+
+### Get balance for account with no transactions
+GET {{baseUrl}}/accounts/ACC-99999/balance
+Accept: application/json
+
+###############################################################################
+### ACCOUNT SUMMARY (Bonus endpoint)
+###############################################################################
+
+### Get transaction summary for ACC-12345
+GET {{baseUrl}}/accounts/ACC-12345/summary
+Accept: application/json
+
+### Test: Get summary for account with no transactions (should return 404)
+GET {{baseUrl}}/accounts/ACC-99999/summary
+Accept: application/json
+
+###############################################################################
+### RATE LIMITING TEST
+###############################################################################
+
+### Check rate limit headers (look for X-RateLimit-* headers in response)
+GET {{baseUrl}}/
+Accept: application/json
+
+### Note: To test 429 response, you would need to make 100+ requests rapidly
+### This is better done with the sample-requests.sh script
