@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banking Transaction API</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      color: white;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .card h2 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+      font-weight: 500;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1em;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #764ba2;
+    }
+
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .accounts-list, .transactions-list {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .account-item {
+      background: #f5f5f5;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border-left: 4px solid #667eea;
+    }
+
+    .account-item h3 {
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .account-item p {
+      color: #666;
+      font-size: 0.9em;
+      margin: 3px 0;
+    }
+
+    .balance {
+      font-weight: bold;
+      color: #667eea;
+      font-size: 1.1em;
+    }
+
+    .transaction-item {
+      background: #f5f5f5;
+      padding: 12px;
+      margin-bottom: 8px;
+      border-radius: 5px;
+      border-left: 4px solid #764ba2;
+      font-size: 0.9em;
+    }
+
+    .transaction-item .type {
+      font-weight: bold;
+      color: #667eea;
+    }
+
+    .transaction-item .deposit {
+      color: #28a745;
+    }
+
+    .transaction-item .withdrawal {
+      color: #dc3545;
+    }
+
+    .message {
+      padding: 12px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      display: none;
+    }
+
+    .success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      display: block;
+    }
+
+    .error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+      display: block;
+    }
+
+    .loading {
+      text-align: center;
+      color: #667eea;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 1.8em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🏦 Banking Transaction API</h1>
+      <p>Manage transactions and check account balances</p>
+    </header>
+
+    <div class="main-grid">
+      <!-- Create Transaction -->
+      <div class="card">
+        <h2>Create Transaction</h2>
+        <div id="createMessage" class="message"></div>
+        <form id="transactionForm">
+          <div class="form-group">
+            <label for="type">Type:</label>
+            <select id="type" required>
+              <option value="">Select Type First</option>
+              <option value="deposit">Deposit</option>
+              <option value="withdrawal">Withdrawal</option>
+              <option value="transfer">Transfer</option>
+            </select>
+            <small style="color: #666; font-size: 0.85em; display: block; margin-top: 3px;">
+              Deposit: to account only | Withdrawal: from account only | Transfer: both accounts
+            </small>
+          </div>
+          <div class="form-group" id="fromAccountGroup" style="display: none;">
+            <label for="fromAccount">From Account:</label>
+            <input type="text" id="fromAccount" placeholder="e.g., ACC-12345">
+          </div>
+          <div class="form-group" id="toAccountGroup" style="display: none;">
+            <label for="toAccount">To Account:</label>
+            <input type="text" id="toAccount" placeholder="e.g., ACC-12345">
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" placeholder="0.00" min="0.01" step="0.01" required>
+          </div>
+          <div class="form-group">
+            <label for="currency">Currency:</label>
+            <select id="currency" required>
+              <option value="">Select Currency</option>
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="GBP">GBP</option>
+              <option value="JPY">JPY</option>
+              <option value="AUD">AUD</option>
+              <option value="CAD">CAD</option>
+              <option value="CHF">CHF</option>
+            </select>
+          </div>
+          <button type="submit">Create Transaction</button>
+        </form>
+      </div>
+
+      <!-- Account Balance -->
+      <div class="card">
+        <h2>Check Balance</h2>
+        <div id="balanceMessage" class="message"></div>
+        <div class="form-group">
+          <label for="balanceAccount">Account ID:</label>
+          <input type="text" id="balanceAccount" placeholder="e.g., ACC-12345">
+        </div>
+        <button onclick="getBalance()">Get Balance</button>
+        <div id="balanceResult" style="margin-top: 20px; display: none;">
+          <div class="account-item">
+            <h3 id="resultAccountId"></h3>
+            <p class="balance" id="resultBalance"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transaction Summary -->
+      <div class="card">
+        <h2>Transaction Summary</h2>
+        <div id="summaryMessage" class="message"></div>
+        <div class="form-group">
+          <label for="summaryAccount">Account ID (Optional):</label>
+          <input type="text" id="summaryAccount" placeholder="Leave empty for all accounts">
+        </div>
+        <button onclick="getSummary()">Get Summary</button>
+        <div id="summaryResult" style="margin-top: 20px; display: none;">
+          <div class="account-item">
+            <p><strong>Transaction Count:</strong> <span id="transactionCount">0</span></p>
+            <div id="currencyBreakdown"></div>
+            <p style="margin-top: 10px;"><strong>Most Recent:</strong> <span id="mostRecent">N/A</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transactions List -->
+      <div class="card full-width">
+        <h2>All Transactions</h2>
+        <div id="transactionsMessage" class="message"></div>
+        <div style="margin-bottom: 15px;">
+          <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 10px;">
+            <input type="text" id="filterAccount" placeholder="Filter by account (optional)">
+            <select id="filterType" style="width: 100%;">
+              <option value="">All Types</option>
+              <option value="deposit">Deposit</option>
+              <option value="withdrawal">Withdrawal</option>
+              <option value="transfer">Transfer</option>
+            </select>
+            <button onclick="loadTransactions()">Load Transactions</button>
+          </div>
+        </div>
+        <div id="transactionsList" class="transactions-list">
+          <div class="loading">Loading transactions...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = 'http://localhost:3000';
+
+    // Load transactions on page load
+    window.addEventListener('load', () => {
+      loadTransactions();
+    });
+
+    // Handle transaction type change to show/hide account fields
+    document.getElementById('type').addEventListener('change', (e) => {
+      const type = e.target.value;
+      const fromGroup = document.getElementById('fromAccountGroup');
+      const toGroup = document.getElementById('toAccountGroup');
+      const fromInput = document.getElementById('fromAccount');
+      const toInput = document.getElementById('toAccount');
+
+      // Reset fields
+      fromInput.value = '';
+      toInput.value = '';
+      fromInput.removeAttribute('required');
+      toInput.removeAttribute('required');
+      fromGroup.style.display = 'none';
+      toGroup.style.display = 'none';
+
+      if (type === 'deposit') {
+        // Deposit: only toAccount
+        toGroup.style.display = 'block';
+        toInput.setAttribute('required', 'required');
+      } else if (type === 'withdrawal') {
+        // Withdrawal: only fromAccount
+        fromGroup.style.display = 'block';
+        fromInput.setAttribute('required', 'required');
+      } else if (type === 'transfer') {
+        // Transfer: both accounts
+        fromGroup.style.display = 'block';
+        toGroup.style.display = 'block';
+        fromInput.setAttribute('required', 'required');
+        toInput.setAttribute('required', 'required');
+      }
+    });
+
+    // Create Transaction Form
+    document.getElementById('transactionForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const type = document.getElementById('type').value;
+      const amount = parseFloat(document.getElementById('amount').value);
+      const currency = document.getElementById('currency').value;
+      
+      // Build request body based on type
+      const body = { amount, currency, type };
+      
+      if (type === 'deposit' || type === 'transfer') {
+        body.toAccount = document.getElementById('toAccount').value;
+      }
+      if (type === 'withdrawal' || type === 'transfer') {
+        body.fromAccount = document.getElementById('fromAccount').value;
+      }
+
+      try {
+        const response = await fetch(`${API_URL}/transactions`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+
+        const data = await response.json();
+        const msg = document.getElementById('createMessage');
+
+        if (response.ok) {
+          msg.textContent = `✓ Transaction created! ID: ${data.data.id}`;
+          msg.className = 'message success';
+          document.getElementById('transactionForm').reset();
+          document.getElementById('fromAccountGroup').style.display = 'none';
+          document.getElementById('toAccountGroup').style.display = 'none';
+          loadTransactions();
+        } else {
+          const errors = data.error.details || data.error.message;
+          const errorText = typeof errors === 'object' 
+            ? Object.entries(errors).map(([k, v]) => `${k}: ${v}`).join(', ')
+            : errors;
+          msg.textContent = `✗ Error: ${errorText}`;
+          msg.className = 'message error';
+        }
+      } catch (error) {
+        showError('createMessage', error.message);
+      }
+    });
+
+    // Get Account Balance
+    async function getBalance() {
+      const accountId = document.getElementById('balanceAccount').value.trim();
+      if (!accountId) {
+        showError('balanceMessage', 'Please enter an account ID');
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_URL}/accounts/${accountId}/balance`);
+        const data = await response.json();
+        const msg = document.getElementById('balanceMessage');
+
+        if (response.ok) {
+          document.getElementById('resultAccountId').textContent = data.data.accountId;
+          document.getElementById('resultBalance').textContent = `Balance: $${data.data.balance.toFixed(2)}`;
+          document.getElementById('balanceResult').style.display = 'block';
+          msg.className = 'message';
+        } else {
+          msg.textContent = `✗ Error: ${data.error.message}`;
+          msg.className = 'message error';
+          document.getElementById('balanceResult').style.display = 'none';
+        }
+      } catch (error) {
+        showError('balanceMessage', error.message);
+      }
+    }
+
+    // Get Transaction Summary
+    async function getSummary() {
+      const accountId = document.getElementById('summaryAccount').value.trim();
+      const url = accountId 
+        ? `${API_URL}/summary?accountId=${accountId}`
+        : `${API_URL}/summary`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const msg = document.getElementById('summaryMessage');
+
+        if (response.ok) {
+          const stats = data.data.statistics;
+          document.getElementById('transactionCount').textContent = stats.transactionCount;
+          
+          // Display currency breakdown
+          const breakdownDiv = document.getElementById('currencyBreakdown');
+          if (stats.byCurrency && Object.keys(stats.byCurrency).length > 0) {
+            let html = '<div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd;">';
+            html += '<p><strong>By Currency:</strong></p>';
+            
+            Object.entries(stats.byCurrency).forEach(([currency, currStats]) => {
+              html += `<div style="margin: 8px 0; padding: 8px; background: #fff; border-left: 3px solid #667eea;">`;
+              html += `<p style="margin: 3px 0;"><strong>${currency}:</strong></p>`;
+              html += `<p style="margin: 3px 0; font-size: 0.9em;">Deposits: ${currStats.totalDeposits.toFixed(2)}</p>`;
+              html += `<p style="margin: 3px 0; font-size: 0.9em;">Withdrawals: ${currStats.totalWithdrawals.toFixed(2)}</p>`;
+              html += `<p style="margin: 3px 0; font-size: 0.9em;">Transfers: ${currStats.totalTransfers.toFixed(2)}</p>`;
+              html += `<p style="margin: 3px 0; font-size: 0.9em;">Count: ${currStats.count}</p>`;
+              html += `</div>`;
+            });
+            html += '</div>';
+            breakdownDiv.innerHTML = html;
+          } else {
+            breakdownDiv.innerHTML = '<p style="margin-top: 10px;">No transactions yet</p>';
+          }
+          
+          if (data.data.mostRecentTransaction) {
+            const date = new Date(data.data.mostRecentTransaction.timestamp).toLocaleDateString();
+            document.getElementById('mostRecent').textContent = date;
+          } else {
+            document.getElementById('mostRecent').textContent = 'N/A';
+          }
+          
+          document.getElementById('summaryResult').style.display = 'block';
+          msg.className = 'message';
+        } else {
+          msg.textContent = `✗ Error: ${data.error.message}`;
+          msg.className = 'message error';
+          document.getElementById('summaryResult').style.display = 'none';
+        }
+      } catch (error) {
+        showError('summaryMessage', error.message);
+      }
+    }
+
+    // Load Transactions
+    async function loadTransactions() {
+      const accountId = document.getElementById('filterAccount').value.trim();
+      const type = document.getElementById('filterType').value;
+      
+      let url = `${API_URL}/transactions`;
+      const params = new URLSearchParams();
+      if (accountId) params.append('accountId', accountId);
+      if (type) params.append('type', type);
+      if (params.toString()) url += '?' + params.toString();
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const list = document.getElementById('transactionsList');
+
+        if (data.data.transactions.length === 0) {
+          list.innerHTML = '<p>No transactions found</p>';
+          return;
+        }
+
+        list.innerHTML = data.data.transactions.map(tx => `
+          <div class="transaction-item">
+            <p><span class="type ${tx.type.toLowerCase()}">${tx.type.toUpperCase()}</span> - ID: <strong>${tx.id}</strong></p>
+            <p>From: <strong>${tx.fromAccount}</strong> → To: <strong>${tx.toAccount}</strong></p>
+            <p>Amount: <strong>${tx.currency} ${tx.amount.toFixed(2)}</strong> | Status: ${tx.status}</p>
+            <p>Date: ${new Date(tx.timestamp).toLocaleString()}</p>
+          </div>
+        `).join('');
+      } catch (error) {
+        document.getElementById('transactionsList').innerHTML = `<p style="color: red;">Error loading transactions: ${error.message}</p>`;
+      }
+    }
+
+    // Helper function
+    function showError(elementId, message) {
+      const msg = document.getElementById(elementId);
+      msg.textContent = `✗ Error: ${message}`;
+      msg.className = 'message error';
+    }
+  </script>
+</body>
+</html>
