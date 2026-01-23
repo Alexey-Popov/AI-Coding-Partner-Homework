@@ -48,7 +48,10 @@ function validateAmount(amount) {
   }
 
   // Check maximum 2 decimal places
-  const decimalPlaces = (numAmount.toString().split('.')[1] || '').length;
+  // Handle both regular notation and potential scientific notation
+  const decimalPlaces = numAmount === Math.floor(numAmount) 
+    ? 0 
+    : numAmount.toFixed(20).split('.')[1].replace(/0+$/, '').length;
   if (decimalPlaces > 2) {
     return {
       field: 'amount',

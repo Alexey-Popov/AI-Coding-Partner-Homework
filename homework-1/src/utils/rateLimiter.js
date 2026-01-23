@@ -34,12 +34,9 @@ setInterval(cleanupExpiredEntries, 30000);
  * @param {function} next - Express next function
  */
 function rateLimiter(req, res, next) {
-  // Get client IP address
-  // Try different headers for IP (in case behind proxy)
-  const ip = req.headers['x-forwarded-for'] ||
-             req.headers['x-real-ip'] ||
-             req.connection.remoteAddress ||
-             req.socket.remoteAddress;
+  // Get client IP address using Express's built-in IP detection
+  // Note: Requires app.set('trust proxy', true) in main server file
+  const ip = req.ip || req.connection.remoteAddress || 'unknown';
 
   const now = Date.now();
 

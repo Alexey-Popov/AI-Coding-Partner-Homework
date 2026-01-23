@@ -8,11 +8,14 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Trust proxy for proper IP detection (important for rate limiting)
+app.set('trust proxy', true);
+
 // Import rate limiter
 const { rateLimiter } = require('./utils/rateLimiter');
 
-// Middleware to parse JSON request bodies
-app.use(express.json());
+// Middleware to parse JSON request bodies with size limit
+app.use(express.json({ limit: '10mb' }));
 
 // Apply rate limiting to all routes
 app.use(rateLimiter);

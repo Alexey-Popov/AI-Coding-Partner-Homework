@@ -64,22 +64,65 @@ router.get('/', (req, res) => {
     // Apply filters if provided
     const { accountId, type, from, to } = req.query;
 
-    // Filter by account
+    // Validate and filter by account
     if (accountId) {
+      // Validate account format
+      const accountError = validator.validateAccountFormat(accountId, 'accountId');
+      if (accountError) {
+        return res.status(400).json({
+          error: 'Invalid query parameter',
+          details: [accountError]
+        });
+      }
       transactions = transactions.filter(t =>
         t.fromAccount === accountId || t.toAccount === accountId
       );
     }
 
-    // Filter by type
+    // Validate and filter by type
     if (type) {
+      const typeError = validator.validateTransactionType(type);
+      if (typeError) {
+        return res.status(400).json({
+          error: 'Invalid query parameter',
+          details: [typeError]
+        });
+      }
       transactions = transactions.filter(t =>
         t.type.toLowerCase() === type.toLowerCase()
       );
     }
 
-    // Filter by date range
+    // Validate and filter by date range
     if (from || to) {
+      // Validate from date
+      if (from) {
+        const fromDate = new Date(from);
+        if (isNaN(fromDate.getTime())) {
+          return res.status(400).json({
+            error: 'Invalid query parameter',
+            details: [{
+              field: 'from',
+              message: 'Invalid date format. Use ISO 8601 format (e.g., 2024-01-01)'
+            }]
+          });
+        }
+      }
+
+      // Validate to date
+      if (to) {
+        const toDate = new Date(to);
+        if (isNaN(toDate.getTime())) {
+          return res.status(400).json({
+            error: 'Invalid query parameter',
+            details: [{
+              field: 'to',
+              message: 'Invalid date format. Use ISO 8601 format (e.g., 2024-01-31)'
+            }]
+          });
+        }
+      }
+
       transactions = transactions.filter(t => {
         const transactionDate = new Date(t.timestamp);
         const startDate = from ? new Date(from) : new Date(0);
