@@ -1,0 +1,33 @@
+{
+  "name": "banking-transactions-api",
+  "version": "1.0.0",
+  "description": "A minimal REST API for banking transactions built with Node.js, Express.js, and TypeScript",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "banking",
+    "transactions",
+    "api",
+    "rest",
+    "express",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "currency-codes": "^2.2.0",
+    "express": "^5.0.1",
+    "express-rate-limit": "^8.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}

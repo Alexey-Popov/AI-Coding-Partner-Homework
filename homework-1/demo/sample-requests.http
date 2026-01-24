@@ -1,0 +1,551 @@
+### Banking Transactions API - Sample Requests
+### Base URL: http://localhost:3000
+
+### ================================================
+### 1. Get API Documentation (Root)
+### ================================================
+GET http://localhost:3000/
+
+
+### ================================================
+### 2. Create a Deposit Transaction
+### ================================================
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-12345",
+  "amount": 1000.00,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+
+### ================================================
+### 3. Create a Withdrawal Transaction
+### ================================================
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "amount": 150.50,
+  "currency": "USD",
+  "type": "withdrawal"
+}
+
+
+### ================================================
+### 4. Create a Transfer Transaction
+### ================================================
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 250.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+
+### ================================================
+### 5. Create Another Deposit (Different Account)
+### ================================================
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-67890",
+  "amount": 500.00,
+  "currency": "EUR",
+  "type": "deposit"
+}
+
+
+### ================================================
+### 6. Get All Transactions
+### ================================================
+GET http://localhost:3000/transactions
+
+
+### ================================================
+### 7. Get Transaction by ID
+### Replace {id} with actual transaction ID from previous responses
+### ================================================
+GET http://localhost:3000/transactions/{id}
+
+
+### ================================================
+### 8. Get Account Balance for ACC-12345
+### ================================================
+GET http://localhost:3000/accounts/ACC-12345/balance
+
+
+### ================================================
+### 9. Get Account Balance for ACC-67890
+### ================================================
+GET http://localhost:3000/accounts/ACC-67890/balance
+
+
+### ================================================
+### ERROR CASES - Test Validation
+### ================================================
+
+### 10. Invalid: Negative Amount
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-12345",
+  "amount": -100,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+
+### 11. Invalid: Unsupported Currency
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-12345",
+  "amount": 100,
+  "currency": "XYZ",
+  "type": "deposit"
+}
+
+
+### 12. Invalid: Deposit with fromAccount
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-99999",
+  "toAccount": "ACC-12345",
+  "amount": 100,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+
+### 13. Invalid: Withdrawal with toAccount
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-99999",
+  "amount": 100,
+  "currency": "USD",
+  "type": "withdrawal"
+}
+
+
+### 14. Invalid: Transfer missing toAccount
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "amount": 100,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+
+### 15. Get Non-existent Transaction
+GET http://localhost:3000/transactions/invalid-id-12345
+
+
+### 16. Get Balance for Account with No Transactions
+GET http://localhost:3000/accounts/ACC-99999/balance
+
+
+### ================================================
+### TRANSACTION HISTORY FILTERING (Task 3)
+### ================================================
+
+### 17. Filter by Account ID
+GET http://localhost:3000/transactions?accountId=ACC-12345
+
+
+### 18. Filter by Transaction Type (lowercase)
+GET http://localhost:3000/transactions?type=deposit
+
+
+### 19. Filter by Transaction Type (case-insensitive - uppercase)
+GET http://localhost:3000/transactions?type=TRANSFER
+
+
+### 20. Filter by Transaction Type (case-insensitive - mixed case)
+GET http://localhost:3000/transactions?type=Withdrawal
+
+
+### 21. Filter by Date Range - Date Only Format (inclusive)
+GET http://localhost:3000/transactions?from=2026-01-01&to=2026-01-31
+
+
+### 22. Filter by Date Range - ISO Datetime Format
+GET http://localhost:3000/transactions?from=2026-01-24T00:00:00Z&to=2026-01-24T23:59:59Z
+
+
+### 23. Filter by Start Date Only (open-ended)
+GET http://localhost:3000/transactions?from=2026-01-24
+
+
+### 24. Filter by End Date Only (open-ended)
+GET http://localhost:3000/transactions?to=2026-01-25
+
+
+### 25. Combine Multiple Filters: Account + Type
+GET http://localhost:3000/transactions?accountId=ACC-12345&type=transfer
+
+
+### 26. Combine Multiple Filters: Account + Date Range
+GET http://localhost:3000/transactions?accountId=ACC-67890&from=2026-01-01&to=2026-12-31
+
+
+### 27. Combine Multiple Filters: Type + Date Range
+GET http://localhost:3000/transactions?type=deposit&from=2026-01-01&to=2026-01-31
+
+
+### 28. Combine All Filters
+GET http://localhost:3000/transactions?accountId=ACC-12345&type=withdrawal&from=2026-01-01&to=2026-12-31
+
+
+### ================================================
+### ERROR CASES - Filter Validation
+### ================================================
+
+### 29. Invalid Date Format
+GET http://localhost:3000/transactions?from=invalid-date
+
+
+### 30. Invalid Date Format in To Parameter
+GET http://localhost:3000/transactions?to=2026-13-45
+
+
+### 31. Invalid Transaction Type
+GET http://localhost:3000/transactions?type=invalid-type
+
+
+### 32. Multiple Invalid Parameters
+GET http://localhost:3000/transactions?type=wrong&from=bad-date&to=also-bad
+
+
+### ================================================
+### EDGE CASES - Empty Filters
+### ================================================
+
+### 33. Empty Type Parameter (should be ignored)
+GET http://localhost:3000/transactions?type=
+
+
+### 34. Empty Account Parameter (should be ignored)
+GET http://localhost:3000/transactions?accountId=
+
+
+### 35. No Query Parameters (return all)
+GET http://localhost:3000/transactions
+
+
+### ================================================
+### TASK 4: ADDITIONAL FEATURES
+### ================================================
+
+### ================================================
+### Account Summary (Option A)
+### ================================================
+
+### 36. Get Account Summary for ACC-12345
+GET http://localhost:3000/accounts/ACC-12345/summary
+
+
+### 37. Get Account Summary for ACC-67890
+GET http://localhost:3000/accounts/ACC-67890/summary
+
+
+### 38. Get Summary for Account with No Transactions
+GET http://localhost:3000/accounts/ACC-EMPTY/summary
+
+
+### ================================================
+### Transaction Export to CSV (Option C)
+### ================================================
+
+### 39. Export All Transactions to CSV
+GET http://localhost:3000/transactions/export?format=csv
+
+
+### 40. Export Transactions for Specific Account to CSV
+GET http://localhost:3000/transactions/export?format=csv&accountId=ACC-12345
+
+
+### 41. Export Only Deposits to CSV
+GET http://localhost:3000/transactions/export?format=csv&type=deposit
+
+
+### 42. Export Transactions in Date Range to CSV
+GET http://localhost:3000/transactions/export?format=csv&from=2026-01-01&to=2026-01-31
+
+
+### 43. Export with Multiple Filters (Account + Type + Date)
+GET http://localhost:3000/transactions/export?format=csv&accountId=ACC-12345&type=withdrawal&from=2026-01-01&to=2026-12-31
+
+
+### ================================================
+### ADDITIONAL VALIDATION TESTS
+### ================================================
+
+### 44. Invalid: Amount with More Than 2 Decimal Places
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-12345",
+  "amount": 100.123,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+
+### 45. Invalid: Zero Amount
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-12345",
+  "amount": 0,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+
+### 46. Invalid: Account Format - Missing ACC Prefix
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "12345",
+  "amount": 100,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+
+### 47. Invalid: Account Format - Wrong Length
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-123",
+  "amount": 100,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+
+### 48. Invalid: Account Format - Special Characters
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-12@45",
+  "amount": 100,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+
+### ================================================
+### MULTI-CURRENCY TRANSACTIONS
+### ================================================
+
+### 49. Create Deposit in EUR
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-EUR01",
+  "amount": 850.00,
+  "currency": "EUR",
+  "type": "deposit"
+}
+
+
+### 50. Create Deposit in GBP
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-GBP01",
+  "amount": 750.00,
+  "currency": "GBP",
+  "type": "deposit"
+}
+
+
+### 51. Create Deposit in JPY (No Decimals)
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-JPY01",
+  "amount": 100000,
+  "currency": "JPY",
+  "type": "deposit"
+}
+
+
+### 52. Create Deposit in CHF (Swiss Franc)
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-CHF01",
+  "amount": 925.50,
+  "currency": "CHF",
+  "type": "deposit"
+}
+
+
+### 53. Create Deposit in CAD (Canadian Dollar)
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-CAD01",
+  "amount": 1200.00,
+  "currency": "CAD",
+  "type": "deposit"
+}
+
+
+### 54. Create Deposit in AUD (Australian Dollar)
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-AUD01",
+  "amount": 1500.00,
+  "currency": "AUD",
+  "type": "deposit"
+}
+
+
+### ================================================
+### DECIMAL PRECISION TESTS
+### ================================================
+
+### 55. Valid: Amount with 1 Decimal Place
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-TEST1",
+  "amount": 99.5,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+
+### 56. Valid: Amount with 2 Decimal Places
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-TEST2",
+  "amount": 99.99,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+
+### 57. Valid: Whole Number Amount
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-TEST3",
+  "amount": 100,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+
+### ================================================
+### COMPLEX TRANSACTION SCENARIOS
+### ================================================
+
+### 58. Scenario: Deposit, Withdraw, Check Balance
+# Step 1: Deposit $1000
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-SCEN1",
+  "amount": 1000,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+###
+# Step 2: Withdraw $300
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-SCEN1",
+  "amount": 300,
+  "currency": "USD",
+  "type": "withdrawal"
+}
+
+###
+# Step 3: Check Balance (should be $700)
+GET http://localhost:3000/accounts/ACC-SCEN1/balance
+
+
+### 59. Scenario: Transfer Between Accounts
+# Step 1: Deposit to sender account
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-SEND1",
+  "amount": 500,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+###
+# Step 2: Transfer to receiver
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-SEND1",
+  "toAccount": "ACC-RECV1",
+  "amount": 200,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+# Step 3: Check sender balance (should be $300)
+GET http://localhost:3000/accounts/ACC-SEND1/balance
+
+###
+# Step 4: Check receiver balance (should be $200)
+GET http://localhost:3000/accounts/ACC-RECV1/balance
+
+
+### ================================================
+### RATE LIMITING TEST (Option D)
+### ================================================
+### NOTE: To test rate limiting, you would need to send 100+ requests
+### within a minute. This is better done with a script or automated tool.
+### The rate limit is 100 requests per minute per IP address.
+### ================================================
