@@ -1,0 +1,13 @@
+{
+  "name": "simple-banking-api",
+  "version": "1.0.0",
+  "description": "Simple Banking Transactions API (in-memory)",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

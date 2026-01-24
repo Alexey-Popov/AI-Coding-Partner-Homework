@@ -1,0 +1,32 @@
+[
+  {
+    "id": "tx-1",
+    "fromAccount": "ACC-000002",
+    "toAccount": "ACC-00001",
+    "amount": 100.5,
+    "currency": "USD",
+    "type": "deposit",
+    "timestamp": "2026-01-24T10:00:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "tx-2",
+    "fromAccount": "ACC-00001",
+    "toAccount": "ACC-000002",
+    "amount": 20,
+    "currency": "USD",
+    "type": "withdrawal",
+    "timestamp": "2026-01-24T11:00:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "tx-3",
+    "fromAccount": "ACC-00001",
+    "toAccount": "ACC-00002",
+    "amount": 30,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2026-01-24T12:00:00.000Z",
+    "status": "completed"
+  }
+]
