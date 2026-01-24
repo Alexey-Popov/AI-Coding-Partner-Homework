@@ -1,0 +1,276 @@
+{
+  "description": "Sample transaction data for the Banking Transactions API",
+  "version": "1.0.0",
+  "generatedDate": "2026-01-24",
+  
+  "sampleTransactions": [
+    {
+      "description": "Initial deposit to checking account",
+      "request": {
+        "toAccount": "ACC-12345",
+        "amount": 1000.00,
+        "currency": "USD",
+        "type": "deposit"
+      },
+      "expectedBalance": {
+        "ACC-12345": 1000.00
+      }
+    },
+    {
+      "description": "Withdrawal for ATM cash",
+      "request": {
+        "fromAccount": "ACC-12345",
+        "amount": 150.50,
+        "currency": "USD",
+        "type": "withdrawal"
+      },
+      "expectedBalance": {
+        "ACC-12345": 849.50
+      }
+    },
+    {
+      "description": "Transfer to savings account",
+      "request": {
+        "fromAccount": "ACC-12345",
+        "toAccount": "ACC-67890",
+        "amount": 250.00,
+        "currency": "USD",
+        "type": "transfer"
+      },
+      "expectedBalance": {
+        "ACC-12345": 599.50,
+        "ACC-67890": 250.00
+      }
+    },
+    {
+      "description": "Deposit to savings in EUR",
+      "request": {
+        "toAccount": "ACC-67890",
+        "amount": 500.00,
+        "currency": "EUR",
+        "type": "deposit"
+      },
+      "expectedBalance": {
+        "ACC-67890": 750.00
+      }
+    },
+    {
+      "description": "Transfer back to checking",
+      "request": {
+        "fromAccount": "ACC-67890",
+        "toAccount": "ACC-12345",
+        "amount": 200.00,
+        "currency": "USD",
+        "type": "transfer"
+      },
+      "expectedBalance": {
+        "ACC-12345": 799.50,
+        "ACC-67890": 550.00
+      }
+    },
+    {
+      "description": "Business account deposit in GBP",
+      "request": {
+        "toAccount": "ACC-BIZ01",
+        "amount": 5000.00,
+        "currency": "GBP",
+        "type": "deposit"
+      },
+      "expectedBalance": {
+        "ACC-BIZ01": 5000.00
+      }
+    },
+    {
+      "description": "Small cash withdrawal",
+      "request": {
+        "fromAccount": "ACC-12345",
+        "amount": 50.00,
+        "currency": "USD",
+        "type": "withdrawal"
+      },
+      "expectedBalance": {
+        "ACC-12345": 749.50
+      }
+    },
+    {
+      "description": "International transfer in JPY",
+      "request": {
+        "fromAccount": "ACC-BIZ01",
+        "toAccount": "ACC-JPY99",
+        "amount": 100000,
+        "currency": "JPY",
+        "type": "transfer"
+      },
+      "expectedBalance": {
+        "ACC-JPY99": 100000
+      }
+    }
+  ],
+
+  "validCurrencies": [
+    "USD", "EUR", "GBP", "JPY", "CHF", "CAD", "AUD", "CNY", 
+    "SEK", "NOK", "DKK", "NZD", "HKD", "SGD", "KRW", "INR"
+  ],
+  
+  "validTransactionTypes": ["deposit", "withdrawal", "transfer"],
+  
+  "accountFormatPattern": "ACC-XXXXX",
+  "accountFormatDescription": "ACC- prefix followed by 5 alphanumeric characters",
+  
+  "validationRules": {
+    "amount": {
+      "min": 0.01,
+      "maxDecimals": 2,
+      "description": "Must be positive with max 2 decimal places"
+    },
+    "accountFormat": {
+      "pattern": "^ACC-[A-Z0-9]{5}$",
+      "examples": ["ACC-12345", "ACC-ABC01", "ACC-9XY2Z"]
+    },
+    "deposit": {
+      "requiredFields": ["toAccount", "amount", "currency", "type"],
+      "prohibitedFields": ["fromAccount"],
+      "description": "Adds money to an account"
+    },
+    "withdrawal": {
+      "requiredFields": ["fromAccount", "amount", "currency", "type"],
+      "prohibitedFields": ["toAccount"],
+      "description": "Removes money from an account"
+    },
+    "transfer": {
+      "requiredFields": ["fromAccount", "toAccount", "amount", "currency", "type"],
+      "prohibitedFields": [],
+      "description": "Moves money between two accounts"
+    }
+  },
+
+  "sampleAccounts": [
+    {
+      "id": "ACC-12345",
+      "name": "Primary Checking Account",
+      "currency": "USD",
+      "type": "checking"
+    },
+    {
+      "id": "ACC-67890",
+      "name": "Savings Account",
+      "currency": "USD",
+      "type": "savings"
+    },
+    {
+      "id": "ACC-BIZ01",
+      "name": "Business Account",
+      "currency": "GBP",
+      "type": "business"
+    },
+    {
+      "id": "ACC-EUR01",
+      "name": "Euro Account",
+      "currency": "EUR",
+      "type": "checking"
+    },
+    {
+      "id": "ACC-JPY99",
+      "name": "Yen Account",
+      "currency": "JPY",
+      "type": "checking"
+    }
+  ],
+
+  "filterExamples": {
+    "byAccount": "?accountId=ACC-12345",
+    "byType": "?type=deposit",
+    "byDateRange": "?from=2026-01-01&to=2026-01-31",
+    "combined": "?accountId=ACC-12345&type=transfer&from=2026-01-01&to=2026-01-31"
+  },
+
+  "apiFeatures": {
+    "rateLimit": {
+      "requestsPerMinute": 100,
+      "perIP": true
+    },
+    "csvExport": {
+      "endpoint": "/transactions/export?format=csv",
+      "supportsFilters": true
+    },
+    "accountSummary": {
+      "endpoint": "/accounts/:accountId/summary",
+      "includes": ["balance", "transactionCounts", "totals", "lastTransaction"]
+    }
+  },
+
+  "errorExamples": [
+    {
+      "case": "Negative amount",
+      "request": {
+        "toAccount": "ACC-12345",
+        "amount": -100,
+        "currency": "USD",
+        "type": "deposit"
+      },
+      "expectedError": "Amount must be a positive number"
+    },
+    {
+      "case": "Invalid currency",
+      "request": {
+        "toAccount": "ACC-12345",
+        "amount": 100,
+        "currency": "XYZ",
+        "type": "deposit"
+      },
+      "expectedError": "Invalid currency code"
+    },
+    {
+      "case": "Invalid account format",
+      "request": {
+        "toAccount": "INVALID",
+        "amount": 100,
+        "currency": "USD",
+        "type": "deposit"
+      },
+      "expectedError": "Invalid account format. Must be ACC-XXXXX"
+    },
+    {
+      "case": "Too many decimals",
+      "request": {
+        "toAccount": "ACC-12345",
+        "amount": 100.123,
+        "currency": "USD",
+        "type": "deposit"
+      },
+      "expectedError": "Amount can have at most 2 decimal places"
+    },
+    {
+      "case": "Deposit with fromAccount",
+      "request": {
+        "fromAccount": "ACC-12345",
+        "toAccount": "ACC-67890",
+        "amount": 100,
+        "currency": "USD",
+        "type": "deposit"
+      },
+      "expectedError": "Deposit transactions must not have fromAccount"
+    },
+    {
+      "case": "Withdrawal with toAccount",
+      "request": {
+        "fromAccount": "ACC-12345",
+        "toAccount": "ACC-67890",
+        "amount": 100,
+        "currency": "USD",
+        "type": "withdrawal"
+      },
+      "expectedError": "Withdrawal transactions must not have toAccount"
+    },
+    {
+      "case": "Transfer missing fromAccount",
+      "request": {
+        "toAccount": "ACC-67890",
+        "amount": 100,
+        "currency": "USD",
+        "type": "transfer"
+      },
+      "expectedError": "Transfer transactions must have fromAccount"
+    }
+  ]
+}
