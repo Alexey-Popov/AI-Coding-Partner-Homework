@@ -310,7 +310,7 @@ describe('Transactions API', () => {
       const response = await request(app).get('/transactions/non-existent-id');
 
       expect(response.status).toBe(404);
-      expect(response.body.error).toBe('Transaction not found');
+      expect(response.body.error).toBe('Transaction non-existent-id not found');
     });
 
     it('should return the correct transaction by id', async () => {

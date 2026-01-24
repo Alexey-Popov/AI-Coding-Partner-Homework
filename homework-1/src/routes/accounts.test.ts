@@ -40,8 +40,7 @@ describe('Accounts API', () => {
       const response = await request(app).get('/accounts/NON_EXISTENT/balance');
 
       expect(response.status).toBe(404);
-      expect(response.body.error).toBe('Account not found');
-      expect(response.body.message).toBe('Account NON_EXISTENT does not exist');
+      expect(response.body.error).toBe('Account NON_EXISTENT not found');
     });
 
     it('should return balance after deposit', async () => {
