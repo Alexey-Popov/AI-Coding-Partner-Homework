@@ -1,0 +1,91 @@
+### Create a new transaction (Transfer)
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.50,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### Get all transactions
+GET http://localhost:3000/transactions
+
+###
+
+### Filter transactions by accountId
+GET http://localhost:3000/transactions?accountId=ACC-12345
+
+###
+
+### Filter transactions by type
+GET http://localhost:3000/transactions?type=transfer
+
+###
+
+### Filter transactions by date range
+GET http://localhost:3000/transactions?from=2026-01-01&to=2026-01-31
+
+###
+
+### Combine multiple filters (accountId + type)
+GET http://localhost:3000/transactions?accountId=ACC-12345&type=deposit
+
+###
+
+### Combine multiple filters (accountId + date range)
+GET http://localhost:3000/transactions?accountId=ACC-12345&from=2026-01-24
+
+###
+
+### Get a specific transaction by ID
+GET http://localhost:3000/transactions/{{transactionId}}
+
+###
+
+### Create a deposit transaction
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-11111",
+  "toAccount": "ACC-11111",
+  "amount": 500.00,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+###
+
+### Create a withdrawal transaction
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-22222",
+  "toAccount": "ACC-22222",
+  "amount": 50.75,
+  "currency": "EUR",
+  "type": "withdrawal"
+}
+
+###
+
+### Get account balance
+GET http://localhost:3000/accounts/ACC-12345/balance
+
+###
+
+### Get another account balance
+GET http://localhost:3000/accounts/ACC-67890/balance
+
+###
+
+### Get account summary (Total deposits, withdrawals, transaction count, most recent date)
+GET http://localhost:3000/accounts/ACC-12345/summary
+
+###
