@@ -1,0 +1,86 @@
+{
+  "transactions": [
+    {
+      "id": "txn-001",
+      "fromAccount": "ACC-12345",
+      "toAccount": "ACC-67890",
+      "amount": 100.50,
+      "currency": "USD",
+      "type": "transfer",
+      "timestamp": "2024-01-15T10:30:00Z",
+      "status": "completed"
+    },
+    {
+      "id": "txn-002",
+      "fromAccount": "ACC-00000",
+      "toAccount": "ACC-12345",
+      "amount": 500.00,
+      "currency": "USD",
+      "type": "deposit",
+      "timestamp": "2024-01-15T11:00:00Z",
+      "status": "completed"
+    },
+    {
+      "id": "txn-003",
+      "fromAccount": "ACC-67890",
+      "toAccount": "ACC-00000",
+      "amount": 50.25,
+      "currency": "USD",
+      "type": "withdrawal",
+      "timestamp": "2024-01-15T11:30:00Z",
+      "status": "completed"
+    },
+    {
+      "id": "txn-004",
+      "fromAccount": "ACC-11111",
+      "toAccount": "ACC-22222",
+      "amount": 250.75,
+      "currency": "EUR",
+      "type": "transfer",
+      "timestamp": "2024-01-15T12:00:00Z",
+      "status": "completed"
+    },
+    {
+      "id": "txn-005",
+      "fromAccount": "ACC-33333",
+      "toAccount": "ACC-44444",
+      "amount": 150.00,
+      "currency": "GBP",
+      "type": "transfer",
+      "timestamp": "2024-01-15T12:30:00Z",
+      "status": "pending"
+    }
+  ],
+  "accounts": [
+    {
+      "accountId": "ACC-12345",
+      "balance": 399.50,
+      "currency": "USD"
+    },
+    {
+      "accountId": "ACC-67890",
+      "balance": 50.25,
+      "currency": "USD"
+    },
+    {
+      "accountId": "ACC-11111",
+      "balance": 749.25,
+      "currency": "EUR"
+    },
+    {
+      "accountId": "ACC-22222",
+      "balance": 250.75,
+      "currency": "EUR"
+    },
+    {
+      "accountId": "ACC-33333",
+      "balance": 850.00,
+      "currency": "GBP"
+    },
+    {
+      "accountId": "ACC-44444",
+      "balance": 150.00,
+      "currency": "GBP"
+    }
+  ]
+}
