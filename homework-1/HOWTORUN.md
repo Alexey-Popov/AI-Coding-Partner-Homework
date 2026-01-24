@@ -5,8 +5,6 @@
 Before running the application, ensure you have the following installed:
 
 - **Node.js** (v14 or higher) and npm - [Download here](https://nodejs.org/)
-  - OR **Python** (v3.8 or higher) - [Download here](https://www.python.org/)
-  - OR **Java** (JDK 11 or higher) - [Download here](https://www.oracle.com/java/technologies/downloads/)
 - **curl** or **Postman** (for testing API endpoints)
 - **Git** (for cloning the repository)
 
@@ -23,23 +21,8 @@ cd AI-Coding-Partner-Homework/homework-1
 
 ### Step 2: Install Dependencies
 
-**For Node.js/Express:**
 ```bash
 npm install
-```
-
-**For Python/Flask or FastAPI:**
-```bash
-pip install -r requirements.txt
-# or
-pip3 install -r requirements.txt
-```
-
-**For Java/Spring Boot:**
-```bash
-mvn clean install
-# or
-gradle build
 ```
 
 ---
@@ -48,32 +31,10 @@ gradle build
 
 ### Start the Server
 
-**For Node.js/Express:**
 ```bash
 npm start
 # or for development with auto-reload
 npm run dev
-```
-
-**For Python/Flask:**
-```bash
-python src/app.py
-# or
-flask run
-```
-
-**For Python/FastAPI:**
-```bash
-uvicorn src.main:app --reload
-# or
-python src/main.py
-```
-
-**For Java/Spring Boot:**
-```bash
-mvn spring-boot:run
-# or
-java -jar target/banking-api-1.0.0.jar
 ```
 
 ### Using the Demo Script
@@ -234,13 +195,11 @@ Or change the port in the configuration file/environment variables.
 
 ### Dependencies Not Installing
 - Ensure you're in the correct directory (`homework-1/`)
-- Check your Node.js/Python/Java version
-- Try deleting `node_modules/` (for Node.js) and reinstalling
-- For Python, use a virtual environment:
+- Check your Node.js version: `node --version`
+- Try deleting `node_modules/` and reinstalling:
   ```bash
-  python -m venv venv
-  source venv/bin/activate  # On Windows: venv\Scripts\activate
-  pip install -r requirements.txt
+  rm -rf node_modules package-lock.json
+  npm install
   ```
 
 ### API Not Responding
