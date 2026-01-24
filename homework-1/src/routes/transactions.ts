@@ -85,13 +85,7 @@ router.get('/', (_req: Request, res: Response): void => {
  */
 router.get('/:id', (req: Request, res: Response): void => {
   try {
-    const { id } = req.params;
-    
-    if (!id || typeof id !== 'string') {
-      res.status(400).json({ error: 'Invalid transaction ID' });
-      return;
-    }
-    
+    const id = req.params.id as string;
     const transaction = storage.getTransactionById(id);
     
     if (!transaction) {

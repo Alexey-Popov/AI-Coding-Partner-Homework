@@ -56,18 +56,18 @@ function updateAccountBalances(transaction: Transaction): void {
   switch (type) {
     case 'deposit':
       if (toAccount) {
-        accounts.set(toAccount, (accounts.get(toAccount) ?? 0) + amount);
+        accounts.set(toAccount, accounts.get(toAccount)! + amount);
       }
       break;
     case 'withdrawal':
       if (fromAccount) {
-        accounts.set(fromAccount, (accounts.get(fromAccount) ?? 0) - amount);
+        accounts.set(fromAccount, accounts.get(fromAccount)! - amount);
       }
       break;
     case 'transfer':
       if (fromAccount && toAccount) {
-        accounts.set(fromAccount, (accounts.get(fromAccount) ?? 0) - amount);
-        accounts.set(toAccount, (accounts.get(toAccount) ?? 0) + amount);
+        accounts.set(fromAccount, accounts.get(fromAccount)! - amount);
+        accounts.set(toAccount, accounts.get(toAccount)! + amount);
       }
       break;
   }
@@ -78,4 +78,12 @@ function updateAccountBalances(transaction: Transaction): void {
  */
 export function getAccountBalance(accountId: string): number | null {
   return accounts.has(accountId) ? accounts.get(accountId)! : null;
+}
+
+/**
+ * Clear all storage (for testing purposes)
+ */
+export function clearStorage(): void {
+  transactions.length = 0;
+  accounts.clear();
 }

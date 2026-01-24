@@ -9,16 +9,7 @@ const router = Router();
  */
 router.get('/:accountId/balance', (req: Request, res: Response): void => {
   try {
-    const { accountId } = req.params;
-    
-    if (!accountId || typeof accountId !== 'string') {
-      res.status(400).json({ 
-        error: 'Invalid account ID',
-        message: 'Account ID must be a non-empty string'
-      });
-      return;
-    }
-    
+    const accountId = req.params.accountId as string;
     const balance = storage.getAccountBalance(accountId);
     
     if (balance === null) {
