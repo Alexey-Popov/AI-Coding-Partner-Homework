@@ -21,20 +21,3 @@ export interface CreateTransactionInput {
   type: TransactionType;
   description?: string;
 }
-
-export interface AccountBalance {
-  accountId: string;
-  balance: number;
-  currency: string;
-}
-
-export interface ValidationError {
-  field: string;
-  message: string;
-}
-
-export interface ErrorResponse {
-  error: string;
-  details?: ValidationError[];
-  message?: string;
-}

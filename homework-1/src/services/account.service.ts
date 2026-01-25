@@ -1,4 +1,4 @@
-import { AccountBalance } from '../types';
+import { AccountBalance } from '../models';
 import { NotFoundException } from '../errors';
 import * as storage from '../utils/storage';
 

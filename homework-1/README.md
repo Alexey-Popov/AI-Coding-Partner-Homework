@@ -29,8 +29,11 @@ homework-1/
 ├── src/
 │   ├── index.ts              # Entry point
 │   ├── app.ts                # Express app configuration
-│   ├── types/
-│   │   └── index.ts          # TypeScript interfaces
+│   ├── models/
+│   │   ├── transaction.ts    # Transaction types
+│   │   ├── account.ts        # Account types
+│   │   ├── error.ts          # Error types
+│   │   └── index.ts          # Re-exports
 │   ├── routes/
 │   │   ├── transactions.ts   # Transaction endpoints
 │   │   └── accounts.ts       # Account endpoints

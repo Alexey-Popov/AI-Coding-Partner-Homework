@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Transaction, CreateTransactionInput } from '../types';
+import { Transaction, CreateTransactionInput } from '../models';
 
 // In-memory storage with proper types
 const transactions: Transaction[] = [];

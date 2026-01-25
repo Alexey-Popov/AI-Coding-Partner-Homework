@@ -5,7 +5,7 @@ import {
   getAccountBalance,
   clearStorage
 } from './storage';
-import { CreateTransactionInput } from '../types';
+import { CreateTransactionInput } from '../models';
 
 describe('Storage - Business Logic', () => {
   beforeEach(() => {

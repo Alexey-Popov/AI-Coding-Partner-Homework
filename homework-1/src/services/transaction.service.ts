@@ -1,4 +1,4 @@
-import { Transaction, CreateTransactionInput } from '../types';
+import { Transaction, CreateTransactionInput } from '../models';
 import { NotFoundException } from '../errors';
 import * as storage from '../utils/storage';
 

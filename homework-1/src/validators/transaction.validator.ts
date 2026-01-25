@@ -1,4 +1,4 @@
-import { ValidationError, TransactionType, CreateTransactionInput } from '../types';
+import { ValidationError, TransactionType, CreateTransactionInput } from '../models';
 import { ValidationException } from '../errors';
 
 const VALID_TRANSACTION_TYPES: TransactionType[] = ['deposit', 'withdrawal', 'transfer'];

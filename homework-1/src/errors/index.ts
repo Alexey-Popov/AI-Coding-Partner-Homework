@@ -1,4 +1,4 @@
-import { ValidationError } from '../types';
+import { ValidationError } from '../models';
 
 export class AppError extends Error {
   constructor(
