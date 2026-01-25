@@ -24,6 +24,10 @@ DO NOT implement anyhting without validation and confirmation of the plan.
 ASK additional questions to clarify details.
 ```
 
+```
+See the Task 4 Option A summary endpoint, validate the execution before the implementation
+```
+
 ## How to Test the API
 
 ### Using cURL
