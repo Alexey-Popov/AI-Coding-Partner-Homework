@@ -1,6 +1,6 @@
 # Banking Transactions API
 
-> **AI Tools Used**: Claude Code (Claude Opus 4.5)
+> **AI Tools Used**: Claude Code (Claude Opus 4.5), GitHub Copilot (Copilot)
 
 ---
 
@@ -114,6 +114,12 @@ npm start
 
 # Or use the demo script
 ./demo/run.sh
+
+# Run tests via demo script
+./demo/test.sh
+
+# Run sample curl requests (requires server running)
+./demo/run-requests.sh
 ```
 
 The API will be available at `http://localhost:3000`
@@ -147,7 +153,7 @@ curl http://localhost:3000/transactions/export?format=csv
 
 ## AI Contribution
 
-This project was developed with assistance from Claude Code (Claude Opus 4.5). See [AI-CONTRIBUTIONS.md](./AI-CONTRIBUTIONS.md) for detailed documentation of how AI tools contributed to the development process.
+This project was developed with assistance from Claude Code (Claude Opus 4.5) and GitHub Copilot (Copilot). See [AI-CONTRIBUTIONS.md](./AI-CONTRIBUTIONS.md) for detailed documentation of how AI tools contributed to the development process.
 
 ---
 

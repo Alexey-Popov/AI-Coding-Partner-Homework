@@ -95,6 +95,19 @@ curl http://localhost:3000/accounts/ACC-12345/balance
 
 Open `demo/sample-requests.http` in VS Code with the REST Client extension installed. Click "Send Request" on any request to execute it.
 
+### Using demo scripts
+
+There are helper scripts in the `demo/` folder to simplify testing:
+
+- `demo/test.sh` — Installs dependencies if needed and runs the full test suite (`npm test`). Make executable if necessary: `chmod +x demo/test.sh`.
+- `demo/run-requests.sh` — Executes a set of sample `curl` requests against `http://localhost:3000`. Make executable if necessary: `chmod +x demo/run-requests.sh`.
+
+Run them from the `homework-1` directory. Example:
+```bash
+./demo/test.sh
+./demo/run-requests.sh
+```
+
 ### Using Postman
 
 Import the requests from `demo/sample-requests.http` or create requests manually using the endpoints documented in [README.md](./README.md).
