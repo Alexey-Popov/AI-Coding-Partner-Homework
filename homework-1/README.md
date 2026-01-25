@@ -21,11 +21,11 @@ A REST API for managing banking transactions built with **FastAPI** and **Python
 - [x] Proper HTTP status codes (201, 200, 404, 400)
 - [x] Basic error handling with meaningful error messages
 
-#### ⏳ **Task 2: Transaction Validation** (IN PROGRESS)
-- [ ] Amount validation (positive, max 2 decimal places)
-- [ ] Account format validation (`ACC-XXXXX`)
-- [ ] Currency validation (ISO 4217 codes)
-- [ ] Detailed error response with field-level messages
+#### ✅ **Task 2: Transaction Validation** (COMPLETE)
+- [x] Amount validation (positive, max 2 decimal places)
+- [x] Account format validation (`ACC-XXXXX`)
+- [x] Currency validation (ISO 4217 codes)
+- [x] Detailed error response with field-level messages
 
 #### ⏳ **Task 3: Transaction Filtering** (PLANNED)
 - [ ] Filter by account ID
@@ -54,8 +54,10 @@ homework-1/
 │   │   └── transactions.py     # API endpoints
 │   ├── storage/
 │   │   └── store.py            # In-memory transaction store
+│   ├── validators/
+│   │   └── transaction_validator.py  # Transaction validation logic
 │   └── utils/
-│       └── exceptions.py       # Custom exceptions
+│       └── exceptions.py       # Custom exceptions & error handlers
 ├── demo/
 │   ├── run.sh                  # Script to start API
 │   ├── sample-requests.http    # Sample API calls
@@ -99,6 +101,34 @@ homework-1/
 - `GET /transactions` - List all (200)
 - `GET /transactions/{id}` - Get one (200/404)
 - `GET /accounts/{accountId}/balance` - Get balance (200/404)
+
+#### Validators (`src/validators/transaction_validator.py`)
+- `validate_amount()` - Ensures positive amount with max 2 decimal places
+- `validate_account_format()` - Validates ACC-XXXXX format
+- `validate_currency_code()` - Validates against ISO 4217 currency codes
+
+---
+
+## ✅ Validation Rules (Task 2)
+
+| Field | Rule | Example Valid | Example Invalid |
+|-------|------|---------------|-----------------|
+| `amount` | Positive, max 2 decimal places | `100.50`, `25` | `-10`, `100.555` |
+| `fromAccount` | Format: `ACC-XXXXX` | `ACC-12345`, `ACC-AB1c2` | `12345`, `ACC-1234` |
+| `toAccount` | Format: `ACC-XXXXX` | `ACC-67890`, `ACC-XyZ99` | `ACC12345`, `ACC-` |
+| `currency` | Valid ISO 4217 code | `USD`, `EUR`, `GBP` | `ABC`, `DOLLAR` |
+
+### Validation Error Response Format
+```json
+{
+  "error": "Validation failed",
+  "details": [
+    {"field": "amount", "message": "Amount must have maximum 2 decimal places"},
+    {"field": "fromAccount", "message": "Account must follow format ACC-XXXXX (where X is alphanumeric)"},
+    {"field": "currency", "message": "Invalid currency code. Must be a valid ISO 4217 code (e.g., USD, EUR, GBP)"}
+  ]
+}
+```
 
 ---
 
@@ -252,7 +282,7 @@ print(response.json())
 
 ## 🚀 Future Enhancements
 
-- [ ] **Task 2**: Enhanced validation with detailed error messages
+- [x] **Task 2**: Enhanced validation with detailed error messages
 - [ ] **Task 3**: Transaction filtering and search
 - [ ] **Task 4**: Rate limiting (100 req/min per IP)
 - [ ] Database persistence (PostgreSQL/SQLite)

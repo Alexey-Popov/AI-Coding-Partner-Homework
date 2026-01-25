@@ -1,11 +1,15 @@
 """Main FastAPI application for Banking Transactions API"""
 from fastapi import FastAPI, status
 from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
 from datetime import datetime
 
 # Import routes
 from src.routes import transactions as transactions_routes
 from src.routes import accounts as accounts_routes
+
+# Import custom exception handler
+from src.utils.exceptions import validation_exception_handler
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -13,6 +17,9 @@ app = FastAPI(
     description="A simple REST API for banking transactions",
     version="1.0.0",
 )
+
+# Register custom validation exception handler (Task 2)
+app.add_exception_handler(RequestValidationError, validation_exception_handler)
 
 # Include routers
 app.include_router(transactions_routes.router)
