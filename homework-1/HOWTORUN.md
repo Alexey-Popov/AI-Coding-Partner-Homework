@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- **Node.js** version 18.x or higher
+- **Node.js** version 20.x or higher
 - **npm** (comes with Node.js)
 
 To check your versions:
@@ -155,7 +155,7 @@ chmod +x demo/run.sh
 
 ## Development Mode
 
-For auto-restart on file changes (requires Node.js 18+):
+For auto-restart on file changes (requires Node.js 20+):
 
 ```bash
 npm run dev
