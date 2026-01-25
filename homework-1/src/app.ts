@@ -1,12 +1,14 @@
 import express, { Express, Request, Response, NextFunction } from 'express';
 import transactionsRouter from './routes/transactions';
 import accountsRouter from './routes/accounts';
+import { rateLimiter } from './middleware/rateLimiter';
 
 const app: Express = express();
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(rateLimiter);
 
 // Routes
 app.use('/transactions', transactionsRouter);
