@@ -1,0 +1,23 @@
+{
+  "name": "banking-transactions-api",
+  "version": "1.0.0",
+  "description": "A minimal REST API for banking transactions - AI-Assisted Development Homework 1",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "keywords": [
+    "banking",
+    "api",
+    "rest",
+    "express",
+    "ai-assisted"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "uuid": "^9.0.0"
+  }
+}

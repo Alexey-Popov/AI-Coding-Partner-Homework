@@ -1,0 +1,161 @@
+### Banking Transactions API - Sample Requests
+### Use with VS Code REST Client extension or similar tools
+
+### ===== Health Check =====
+
+### Health check
+GET http://localhost:3000/health
+
+### API info
+GET http://localhost:3000/
+
+### ===== Create Transactions =====
+
+### Create a deposit transaction
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-12345",
+  "amount": 1000.00,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+### Create another deposit to a different account
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-67890",
+  "amount": 500.50,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+### Create a transfer transaction
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.50,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### Create a withdrawal transaction
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "amount": 50.00,
+  "currency": "EUR",
+  "type": "withdrawal"
+}
+
+### Create a transaction with EUR currency
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-ABCDE",
+  "amount": 250.00,
+  "currency": "EUR",
+  "type": "transfer"
+}
+
+### ===== Validation Error Examples =====
+
+### Invalid amount (negative)
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": -100,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### Invalid account format
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "INVALID",
+  "toAccount": "ACC-67890",
+  "amount": 100,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### Invalid currency
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100,
+  "currency": "INVALID",
+  "type": "transfer"
+}
+
+### Too many decimal places
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.123,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### ===== Get Transactions =====
+
+### Get all transactions
+GET http://localhost:3000/transactions
+
+### Get transactions filtered by account
+GET http://localhost:3000/transactions?accountId=ACC-12345
+
+### Get transactions filtered by type
+GET http://localhost:3000/transactions?type=transfer
+
+### Get transactions filtered by date range
+GET http://localhost:3000/transactions?from=2024-01-01&to=2026-12-31
+
+### Combined filters
+GET http://localhost:3000/transactions?accountId=ACC-12345&type=transfer
+
+### Get a specific transaction (replace with actual ID)
+GET http://localhost:3000/transactions/YOUR-TRANSACTION-ID-HERE
+
+### ===== Account Balance =====
+
+### Get balance for account ACC-12345
+GET http://localhost:3000/accounts/ACC-12345/balance
+
+### Get balance for account ACC-67890
+GET http://localhost:3000/accounts/ACC-67890/balance
+
+### Invalid account format
+GET http://localhost:3000/accounts/INVALID/balance
+
+### ===== Export Transactions =====
+
+### Export all transactions as CSV
+GET http://localhost:3000/transactions/export?format=csv
+
+### Export filtered transactions as CSV
+GET http://localhost:3000/transactions/export?format=csv&accountId=ACC-12345
+
+### Invalid export format
+GET http://localhost:3000/transactions/export?format=json
