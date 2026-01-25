@@ -121,7 +121,7 @@ npm start
 ./demo/test.sh
 
 # Run sample curl requests (requires server running)
-./demo/run-requests.sh
+./demo/requests.sh
 ```
 
 The API will be available at `http://localhost:3000`

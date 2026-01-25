@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- **Node.js** version 18.x or higher
+- **Node.js** version 20.x or higher
 - **npm** (comes with Node.js)
 
 To check your versions:
@@ -100,12 +100,12 @@ Open `demo/sample-requests.http` in VS Code with the REST Client extension insta
 There are helper scripts in the `demo/` folder to simplify testing:
 
 - `demo/test.sh` — Installs dependencies if needed and runs the full test suite (`npm test`). Make executable if necessary: `chmod +x demo/test.sh`.
-- `demo/run-requests.sh` — Executes a set of sample `curl` requests against `http://localhost:3000`. Make executable if necessary: `chmod +x demo/run-requests.sh`.
+- `demo/requests.sh` — Executes a set of sample `curl` requests against `http://localhost:3000`. Make executable if necessary: `chmod +x demo/requests.sh`.
 
 Run them from the `homework-1` directory. Example:
 ```bash
 ./demo/test.sh
-./demo/run-requests.sh
+./demo/requests.sh
 ```
 
 ### Using Postman
@@ -155,7 +155,7 @@ chmod +x demo/run.sh
 
 ## Development Mode
 
-For auto-restart on file changes (requires Node.js 18+):
+For auto-restart on file changes (requires Node.js 20+):
 
 ```bash
 npm run dev
