@@ -126,18 +126,18 @@ This document details how AI tools contributed to the development of the Banking
 
 ### 7. Demo Files
 
-**Files**: `demo/run.sh`, `demo/sample-requests.http`, `demo/sample-data.json`, `demo/test.sh`, `demo/run-requests.sh`
+**Files**: `demo/run.sh`, `demo/sample-requests.http`, `demo/sample-data.json`, `demo/test.sh`, `demo/requests.sh`
 
 **AI Contribution**:
 - Created bash script for easy startup (`demo/run.sh`)
 - Generated comprehensive HTTP request examples (`demo/sample-requests.http`)
 - Included validation error examples
 - Provided sample test data
-- Assisted in creating convenience scripts for running tests (`demo/test.sh`) and executing sample curl requests (`demo/run-requests.sh`)
+- Assisted in creating convenience scripts for running tests (`demo/test.sh`) and executing sample curl requests (`demo/requests.sh`)
 
 **User / Editor Contributions (current session)**:
 - The user created and executed `demo/test.sh` to run the full test suite and verified all tests passed (132 passing).
-- The user executed `demo/run-requests.sh` (also referenced as `demo/requests.sh` in session logs) to run sample curl requests against the running server and confirmed API responses and CSV export.
+- The user executed `demo/requests.sh` to run sample curl requests against the running server and confirmed API responses and CSV export.
 
 ---
 
@@ -252,7 +252,7 @@ Screenshots demonstrating the AI-assisted development process are located in `do
 
 During the current development session, the user leveraged GitHub Copilot in their editor to speed up routine edits and script creation. Specific user actions assisted by Copilot include:
 
-- Accepting inline Copilot suggestions to scaffold bash scripts (`demo/test.sh`, `demo/run-requests.sh`).
+- Accepting inline Copilot suggestions to scaffold bash scripts (`demo/test.sh`, `demo/requests.sh`).
 - Using Copilot completions to update documentation files (`README.md`, `HOWTORUN.md`, `docs/screenshots/README.md`) to reflect new helper scripts and testing instructions.
 - Reviewing and refining Copilot-generated snippets before committing them to the repository.
 
