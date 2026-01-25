@@ -1,0 +1,61 @@
+### Banking Transactions API - Sample Requests
+### Use with VS Code REST Client extension or paste into curl
+
+@host = http://localhost:8000
+
+### Health Check
+GET {{host}}/health
+
+### Create a Transfer Transaction
+POST {{host}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.50,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### Create a Deposit Transaction
+POST {{host}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-00000",
+  "toAccount": "ACC-12345",
+  "amount": 500.00,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+### Create a Withdrawal Transaction
+POST {{host}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-00000",
+  "amount": 50.25,
+  "currency": "USD",
+  "type": "withdrawal"
+}
+
+### List All Transactions
+GET {{host}}/transactions
+
+### Get Specific Transaction (replace {id} with actual transaction ID)
+GET {{host}}/transactions/{{transactionId}}
+
+### Get Account Balance
+GET {{host}}/accounts/ACC-12345/balance
+
+### Get Another Account Balance
+GET {{host}}/accounts/ACC-67890/balance
+
+### Get Balance for Non-existent Account (should return 404)
+GET {{host}}/accounts/ACC-99999/balance
+
+### Get Non-existent Transaction (should return 404)
+GET {{host}}/transactions/non-existent-id
