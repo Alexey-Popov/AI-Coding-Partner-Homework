@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Transaction, CreateTransactionInput } from '../models';
+import { Transaction, CreateTransactionInput, TransactionFilter } from '../models';
 
 // In-memory storage with proper types
 const transactions: Transaction[] = [];
@@ -25,10 +25,35 @@ export function createTransaction(transactionData: CreateTransactionInput): Tran
 }
 
 /**
- * Get all transactions
+ * Get all transactions with optional filtering
  */
-export function getAllTransactions(): Transaction[] {
-  return [...transactions]; // Return a copy to prevent external modifications
+export function getAllTransactions(filter?: TransactionFilter): Transaction[] {
+  let result = [...transactions];
+
+  if (filter) {
+    if (filter.accountId) {
+      result = result.filter(t =>
+        t.fromAccount === filter.accountId || t.toAccount === filter.accountId
+      );
+    }
+
+    if (filter.type) {
+      result = result.filter(t => t.type === filter.type);
+    }
+
+    if (filter.from) {
+      const fromDate = new Date(filter.from);
+      result = result.filter(t => new Date(t.timestamp) >= fromDate);
+    }
+
+    if (filter.to) {
+      const toDate = new Date(filter.to);
+      toDate.setHours(23, 59, 59, 999);
+      result = result.filter(t => new Date(t.timestamp) <= toDate);
+    }
+  }
+
+  return result;
 }
 
 /**

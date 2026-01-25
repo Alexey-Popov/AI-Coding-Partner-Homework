@@ -96,6 +96,26 @@ curl http://localhost:3000/transactions/<transaction-id>
 curl http://localhost:3000/accounts/ACC-12345/balance
 ```
 
+**Filter transactions by account:**
+```bash
+curl "http://localhost:3000/transactions?accountId=ACC-12345"
+```
+
+**Filter transactions by type:**
+```bash
+curl "http://localhost:3000/transactions?type=transfer"
+```
+
+**Filter transactions by date range:**
+```bash
+curl "http://localhost:3000/transactions?from=2026-01-01&to=2026-12-31"
+```
+
+**Combine multiple filters:**
+```bash
+curl "http://localhost:3000/transactions?accountId=ACC-12345&type=deposit"
+```
+
 ### Option 2: Using the Sample Requests File
 
 Run the provided sample requests:
@@ -212,6 +232,7 @@ After starting the application, verify:
 - [ ] Can create a new transaction via POST
 - [ ] Can retrieve all transactions via GET
 - [ ] Can retrieve a specific transaction by ID
+- [ ] Can filter transactions by account, type, and date range
 - [ ] Can get account balance
 - [ ] Validation errors are returned for invalid data
 - [ ] API returns appropriate HTTP status codes

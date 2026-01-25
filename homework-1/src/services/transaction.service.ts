@@ -1,4 +1,4 @@
-import { Transaction, CreateTransactionInput } from '../models';
+import { Transaction, CreateTransactionInput, TransactionFilter } from '../models';
 import { NotFoundException } from '../errors';
 import * as storage from '../utils/storage';
 
@@ -6,8 +6,8 @@ export function createTransaction(input: CreateTransactionInput): Transaction {
   return storage.createTransaction(input);
 }
 
-export function getAllTransactions(): Transaction[] {
-  return storage.getAllTransactions();
+export function getAllTransactions(filter?: TransactionFilter): Transaction[] {
+  return storage.getAllTransactions(filter);
 }
 
 export function getTransactionById(id: string): Transaction {

@@ -115,8 +115,8 @@ pause
 
 # 8. Filter by Date Range
 print_section "8. Filtering Transactions by Date Range"
-print_test "GET /transactions?from=2024-01-01&to=2024-12-31"
-curl -X GET "$BASE_URL/transactions?from=2024-01-01&to=2024-12-31" | jq .
+print_test "GET /transactions?from=2026-01-01&to=2026-12-31"
+curl -X GET "$BASE_URL/transactions?from=2026-01-01&to=2026-12-31" | jq .
 pause
 
 # 9. Test Validation - Invalid Amount

@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express';
 import * as transactionService from '../services/transaction.service';
 import { validateTransactionInput } from '../validators/transaction.validator';
 import { formatErrorResponse } from '../errors';
+import { TransactionFilter, TransactionType } from '../models';
 
 const router = Router();
 
@@ -16,9 +17,26 @@ router.post('/', (req: Request, res: Response): void => {
   }
 });
 
-router.get('/', (_req: Request, res: Response): void => {
+router.get('/', (req: Request, res: Response): void => {
   try {
-    const transactions = transactionService.getAllTransactions();
+    const filter: TransactionFilter = {};
+
+    if (req.query.accountId) {
+      filter.accountId = req.query.accountId as string;
+    }
+    if (req.query.type) {
+      filter.type = req.query.type as TransactionType;
+    }
+    if (req.query.from) {
+      filter.from = req.query.from as string;
+    }
+    if (req.query.to) {
+      filter.to = req.query.to as string;
+    }
+
+    const transactions = transactionService.getAllTransactions(
+      Object.keys(filter).length > 0 ? filter : undefined
+    );
     res.status(200).json(transactions);
   } catch (error) {
     const { statusCode, body } = formatErrorResponse(error);

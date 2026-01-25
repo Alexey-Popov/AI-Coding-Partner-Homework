@@ -303,6 +303,128 @@ describe('Transactions API', () => {
       expect(response.status).toBe(200);
       expect(response.body).toHaveLength(2);
     });
+
+    describe('Filtering', () => {
+      beforeEach(async () => {
+        await request(app).post('/transactions').send({
+          toAccount: 'ACC001',
+          amount: 100,
+          currency: 'USD',
+          type: 'deposit'
+        });
+        await request(app).post('/transactions').send({
+          fromAccount: 'ACC001',
+          amount: 50,
+          currency: 'USD',
+          type: 'withdrawal'
+        });
+        await request(app).post('/transactions').send({
+          fromAccount: 'ACC002',
+          toAccount: 'ACC003',
+          amount: 200,
+          currency: 'EUR',
+          type: 'transfer'
+        });
+      });
+
+      it('should filter by accountId (toAccount match)', async () => {
+        const response = await request(app).get('/transactions?accountId=ACC001');
+
+        expect(response.status).toBe(200);
+        expect(response.body).toHaveLength(2);
+        response.body.forEach((tx: any) => {
+          expect(tx.toAccount === 'ACC001' || tx.fromAccount === 'ACC001').toBe(true);
+        });
+      });
+
+      it('should filter by accountId (fromAccount match)', async () => {
+        const response = await request(app).get('/transactions?accountId=ACC002');
+
+        expect(response.status).toBe(200);
+        expect(response.body).toHaveLength(1);
+        expect(response.body[0].fromAccount).toBe('ACC002');
+      });
+
+      it('should filter by type', async () => {
+        const response = await request(app).get('/transactions?type=deposit');
+
+        expect(response.status).toBe(200);
+        expect(response.body).toHaveLength(1);
+        expect(response.body[0].type).toBe('deposit');
+      });
+
+      it('should filter by type transfer', async () => {
+        const response = await request(app).get('/transactions?type=transfer');
+
+        expect(response.status).toBe(200);
+        expect(response.body).toHaveLength(1);
+        expect(response.body[0].type).toBe('transfer');
+      });
+
+      it('should combine accountId and type filters', async () => {
+        const response = await request(app).get('/transactions?accountId=ACC001&type=deposit');
+
+        expect(response.status).toBe(200);
+        expect(response.body).toHaveLength(1);
+        expect(response.body[0].type).toBe('deposit');
+        expect(response.body[0].toAccount).toBe('ACC001');
+      });
+
+      it('should return empty array when no matches', async () => {
+        const response = await request(app).get('/transactions?accountId=NONEXISTENT');
+
+        expect(response.status).toBe(200);
+        expect(response.body).toEqual([]);
+      });
+
+      it('should filter by date range (from)', async () => {
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        const fromDate = yesterday.toISOString().split('T')[0];
+
+        const response = await request(app).get(`/transactions?from=${fromDate}`);
+
+        expect(response.status).toBe(200);
+        expect(response.body).toHaveLength(3);
+      });
+
+      it('should filter by date range (to)', async () => {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const toDate = tomorrow.toISOString().split('T')[0];
+
+        const response = await request(app).get(`/transactions?to=${toDate}`);
+
+        expect(response.status).toBe(200);
+        expect(response.body).toHaveLength(3);
+      });
+
+      it('should filter by date range excluding future transactions', async () => {
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        const toDate = yesterday.toISOString().split('T')[0];
+
+        const response = await request(app).get(`/transactions?to=${toDate}`);
+
+        expect(response.status).toBe(200);
+        expect(response.body).toHaveLength(0);
+      });
+
+      it('should combine all filters', async () => {
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+
+        const response = await request(app).get(
+          `/transactions?accountId=ACC001&type=deposit&from=${yesterday.toISOString().split('T')[0]}&to=${tomorrow.toISOString().split('T')[0]}`
+        );
+
+        expect(response.status).toBe(200);
+        expect(response.body).toHaveLength(1);
+        expect(response.body[0].type).toBe('deposit');
+      });
+    });
   });
 
   describe('GET /transactions/:id', () => {

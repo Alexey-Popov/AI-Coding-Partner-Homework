@@ -21,3 +21,10 @@ export interface CreateTransactionInput {
   type: TransactionType;
   description?: string;
 }
+
+export interface TransactionFilter {
+  accountId?: string;
+  type?: TransactionType;
+  from?: string;
+  to?: string;
+}
