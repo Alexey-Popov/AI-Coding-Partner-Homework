@@ -10,8 +10,8 @@ POST {{baseUrl}}/transactions
 Content-Type: application/json
 
 {
-  "fromAccount": "ACC-12345",
-  "toAccount": "ACC-67890",
+  "fromAccount": "ACC-00001",
+  "toAccount": "ACC-00002",
   "amount": 100.50,
   "currency": "USD",
   "type": "transfer"
@@ -22,8 +22,8 @@ POST {{baseUrl}}/transactions
 Content-Type: application/json
 
 {
-  "fromAccount": "ACC-00000",
-  "toAccount": "ACC-12345",
+  "fromAccount": "ACC-00003",
+  "toAccount": "ACC-00001",
   "amount": 500.00,
   "currency": "USD",
   "type": "deposit"
@@ -34,8 +34,8 @@ POST {{baseUrl}}/transactions
 Content-Type: application/json
 
 {
-  "fromAccount": "ACC-67890",
-  "toAccount": "ACC-00000",
+  "fromAccount": "ACC-00002",
+  "toAccount": "ACC-00003",
   "amount": 50.25,
   "currency": "USD",
   "type": "withdrawal"
@@ -48,13 +48,13 @@ GET {{baseUrl}}/transactions
 GET {{baseUrl}}/transactions/txn-123456
 
 ### 6. Get Account Balance
-GET {{baseUrl}}/accounts/ACC-12345/balance
+GET {{baseUrl}}/accounts/ACC-00001/balance
 
 ### 7. Get Account Balance (another account)
-GET {{baseUrl}}/accounts/ACC-67890/balance
+GET {{baseUrl}}/accounts/ACC-00002/balance
 
 ### 8. Filter Transactions by Account
-GET {{baseUrl}}/transactions?accountId=ACC-12345
+GET {{baseUrl}}/transactions?accountId=ACC-00001
 
 ### 9. Filter Transactions by Type
 GET {{baseUrl}}/transactions?type=transfer
@@ -63,15 +63,15 @@ GET {{baseUrl}}/transactions?type=transfer
 GET {{baseUrl}}/transactions?from=2026-01-01&to=2026-12-31
 
 ### 11. Multiple Filters (Account + Type)
-GET {{baseUrl}}/transactions?accountId=ACC-12345&type=deposit
+GET {{baseUrl}}/transactions?accountId=ACC-00001&type=deposit
 
 ### 12. Test Validation Error - Invalid Amount
 POST {{baseUrl}}/transactions
 Content-Type: application/json
 
 {
-  "fromAccount": "ACC-12345",
-  "toAccount": "ACC-67890",
+  "fromAccount": "ACC-00001",
+  "toAccount": "ACC-00002",
   "amount": -50.00,
   "currency": "USD",
   "type": "transfer"
@@ -82,8 +82,8 @@ POST {{baseUrl}}/transactions
 Content-Type: application/json
 
 {
-  "fromAccount": "ACC-12345",
-  "toAccount": "ACC-67890",
+  "fromAccount": "ACC-00001",
+  "toAccount": "ACC-00002",
   "amount": 100.00,
   "currency": "INVALID",
   "type": "transfer"
@@ -95,7 +95,7 @@ Content-Type: application/json
 
 {
   "fromAccount": "INVALID",
-  "toAccount": "ACC-67890",
+  "toAccount": "ACC-00002",
   "amount": 100.00,
   "currency": "USD",
   "type": "transfer"
@@ -106,8 +106,8 @@ POST {{baseUrl}}/transactions
 Content-Type: application/json
 
 {
-  "fromAccount": "ACC-11111",
-  "toAccount": "ACC-22222",
+  "fromAccount": "ACC-00004",
+  "toAccount": "ACC-00005",
   "amount": 250.75,
   "currency": "EUR",
   "type": "transfer"
@@ -118,8 +118,8 @@ POST {{baseUrl}}/transactions
 Content-Type: application/json
 
 {
-  "fromAccount": "ACC-33333",
-  "toAccount": "ACC-44444",
+  "fromAccount": "ACC-00006",
+  "toAccount": "ACC-00007",
   "amount": 150.00,
   "currency": "GBP",
   "type": "transfer"

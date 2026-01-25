@@ -16,7 +16,7 @@ describe('Accounts API', () => {
           throw mockError;
         });
 
-        const response = await request(app).get('/accounts/ACC001/balance');
+        const response = await request(app).get('/accounts/ACC-00001/balance');
 
         expect(response.status).toBe(500);
         expect(response.body.error).toBe('Internal server error');
@@ -28,7 +28,7 @@ describe('Accounts API', () => {
           throw 'String error';
         });
 
-        const response = await request(app).get('/accounts/ACC001/balance');
+        const response = await request(app).get('/accounts/ACC-00001/balance');
 
         expect(response.status).toBe(500);
         expect(response.body.error).toBe('Internal server error');
@@ -47,16 +47,16 @@ describe('Accounts API', () => {
       await request(app)
         .post('/transactions')
         .send({
-          toAccount: 'ACC001',
+          toAccount: 'ACC-00001',
           amount: 100,
           currency: 'USD',
           type: 'deposit'
         });
 
-      const response = await request(app).get('/accounts/ACC001/balance');
+      const response = await request(app).get('/accounts/ACC-00001/balance');
 
       expect(response.status).toBe(200);
-      expect(response.body.accountId).toBe('ACC001');
+      expect(response.body.accountId).toBe('ACC-00001');
       expect(response.body.balance).toBe(100);
       expect(response.body.currency).toBe('USD');
     });
@@ -65,7 +65,7 @@ describe('Accounts API', () => {
       await request(app)
         .post('/transactions')
         .send({
-          toAccount: 'ACC001',
+          toAccount: 'ACC-00001',
           amount: 100,
           currency: 'USD',
           type: 'deposit'
@@ -74,13 +74,13 @@ describe('Accounts API', () => {
       await request(app)
         .post('/transactions')
         .send({
-          fromAccount: 'ACC001',
+          fromAccount: 'ACC-00001',
           amount: 30,
           currency: 'USD',
           type: 'withdrawal'
         });
 
-      const response = await request(app).get('/accounts/ACC001/balance');
+      const response = await request(app).get('/accounts/ACC-00001/balance');
 
       expect(response.status).toBe(200);
       expect(response.body.balance).toBe(70);
@@ -90,7 +90,7 @@ describe('Accounts API', () => {
       await request(app)
         .post('/transactions')
         .send({
-          toAccount: 'ACC001',
+          toAccount: 'ACC-00001',
           amount: 200,
           currency: 'USD',
           type: 'deposit'
@@ -99,15 +99,15 @@ describe('Accounts API', () => {
       await request(app)
         .post('/transactions')
         .send({
-          fromAccount: 'ACC001',
-          toAccount: 'ACC002',
+          fromAccount: 'ACC-00001',
+          toAccount: 'ACC-00002',
           amount: 75,
           currency: 'USD',
           type: 'transfer'
         });
 
-      const response1 = await request(app).get('/accounts/ACC001/balance');
-      const response2 = await request(app).get('/accounts/ACC002/balance');
+      const response1 = await request(app).get('/accounts/ACC-00001/balance');
+      const response2 = await request(app).get('/accounts/ACC-00002/balance');
 
       expect(response1.body.balance).toBe(125);
       expect(response2.body.balance).toBe(75);
@@ -117,13 +117,13 @@ describe('Accounts API', () => {
       await request(app)
         .post('/transactions')
         .send({
-          fromAccount: 'ACC001',
+          fromAccount: 'ACC-00001',
           amount: 50,
           currency: 'USD',
           type: 'withdrawal'
         });
 
-      const response = await request(app).get('/accounts/ACC001/balance');
+      const response = await request(app).get('/accounts/ACC-00001/balance');
 
       expect(response.status).toBe(200);
       expect(response.body.balance).toBe(-50);
@@ -133,7 +133,7 @@ describe('Accounts API', () => {
       await request(app)
         .post('/transactions')
         .send({
-          toAccount: 'ACC001',
+          toAccount: 'ACC-00001',
           amount: 100,
           currency: 'USD',
           type: 'deposit'
@@ -142,13 +142,13 @@ describe('Accounts API', () => {
       await request(app)
         .post('/transactions')
         .send({
-          fromAccount: 'ACC001',
+          fromAccount: 'ACC-00001',
           amount: 100,
           currency: 'USD',
           type: 'withdrawal'
         });
 
-      const response = await request(app).get('/accounts/ACC001/balance');
+      const response = await request(app).get('/accounts/ACC-00001/balance');
 
       expect(response.status).toBe(200);
       expect(response.body.balance).toBe(0);

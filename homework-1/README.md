@@ -68,8 +68,8 @@ homework-1/
 curl -X POST http://localhost:3000/transactions \
   -H "Content-Type: application/json" \
   -d '{
-    "fromAccount": "ACC-12345",
-    "toAccount": "ACC-67890",
+    "fromAccount": "ACC-00001",
+    "toAccount": "ACC-00002",
     "amount": 100.50,
     "currency": "USD",
     "type": "transfer"
@@ -85,7 +85,7 @@ curl http://localhost:3000/transactions
 ### Get Account Balance
 
 ```bash
-curl http://localhost:3000/accounts/ACC-12345/balance
+curl http://localhost:3000/accounts/ACC-00001/balance
 ```
 
 ---

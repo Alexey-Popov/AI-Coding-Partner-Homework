@@ -14,7 +14,7 @@ describe('Transactions API', () => {
         const response = await request(app)
           .post('/transactions')
           .send({
-            toAccount: 'ACC001',
+            toAccount: 'ACC-00001',
             currency: 'USD',
             type: 'deposit'
           });
@@ -31,7 +31,7 @@ describe('Transactions API', () => {
         const response = await request(app)
           .post('/transactions')
           .send({
-            toAccount: 'ACC001',
+            toAccount: 'ACC-00001',
             amount: 0,
             currency: 'USD',
             type: 'deposit'
@@ -48,7 +48,7 @@ describe('Transactions API', () => {
         const response = await request(app)
           .post('/transactions')
           .send({
-            toAccount: 'ACC001',
+            toAccount: 'ACC-00001',
             amount: -100,
             currency: 'USD',
             type: 'deposit'
@@ -65,7 +65,7 @@ describe('Transactions API', () => {
         const response = await request(app)
           .post('/transactions')
           .send({
-            toAccount: 'ACC001',
+            toAccount: 'ACC-00001',
             amount: 'one hundred',
             currency: 'USD',
             type: 'deposit'
@@ -82,7 +82,7 @@ describe('Transactions API', () => {
         const response = await request(app)
           .post('/transactions')
           .send({
-            toAccount: 'ACC001',
+            toAccount: 'ACC-00001',
             amount: 100,
             type: 'deposit'
           });
@@ -98,7 +98,7 @@ describe('Transactions API', () => {
         const response = await request(app)
           .post('/transactions')
           .send({
-            toAccount: 'ACC001',
+            toAccount: 'ACC-00001',
             amount: 100,
             currency: 'USD'
           });
@@ -114,7 +114,7 @@ describe('Transactions API', () => {
         const response = await request(app)
           .post('/transactions')
           .send({
-            toAccount: 'ACC001',
+            toAccount: 'ACC-00001',
             amount: 100,
             currency: 'USD',
             type: 'invalid'
@@ -163,7 +163,7 @@ describe('Transactions API', () => {
         const response = await request(app)
           .post('/transactions')
           .send({
-            toAccount: 'ACC002',
+            toAccount: 'ACC-00002',
             amount: 100,
             currency: 'USD',
             type: 'transfer'
@@ -180,7 +180,7 @@ describe('Transactions API', () => {
         const response = await request(app)
           .post('/transactions')
           .send({
-            fromAccount: 'ACC001',
+            fromAccount: 'ACC-00001',
             amount: 100,
             currency: 'USD',
             type: 'transfer'
@@ -208,7 +208,7 @@ describe('Transactions API', () => {
         const response = await request(app)
           .post('/transactions')
           .send({
-            toAccount: 'ACC001',
+            toAccount: 'ACC-00001',
             amount: 100,
             currency: 'USD',
             type: 'deposit'
@@ -226,7 +226,7 @@ describe('Transactions API', () => {
         const response = await request(app)
           .post('/transactions')
           .send({
-            fromAccount: 'ACC001',
+            fromAccount: 'ACC-00001',
             amount: 50,
             currency: 'EUR',
             type: 'withdrawal'
@@ -234,15 +234,15 @@ describe('Transactions API', () => {
 
         expect(response.status).toBe(201);
         expect(response.body.type).toBe('withdrawal');
-        expect(response.body.fromAccount).toBe('ACC001');
+        expect(response.body.fromAccount).toBe('ACC-00001');
       });
 
       it('should create a transfer transaction', async () => {
         const response = await request(app)
           .post('/transactions')
           .send({
-            fromAccount: 'ACC001',
-            toAccount: 'ACC002',
+            fromAccount: 'ACC-00001',
+            toAccount: 'ACC-00002',
             amount: 200,
             currency: 'USD',
             type: 'transfer'
@@ -250,15 +250,15 @@ describe('Transactions API', () => {
 
         expect(response.status).toBe(201);
         expect(response.body.type).toBe('transfer');
-        expect(response.body.fromAccount).toBe('ACC001');
-        expect(response.body.toAccount).toBe('ACC002');
+        expect(response.body.fromAccount).toBe('ACC-00001');
+        expect(response.body.toAccount).toBe('ACC-00002');
       });
 
       it('should include description when provided', async () => {
         const response = await request(app)
           .post('/transactions')
           .send({
-            toAccount: 'ACC001',
+            toAccount: 'ACC-00001',
             amount: 100,
             currency: 'USD',
             type: 'deposit',
@@ -283,7 +283,7 @@ describe('Transactions API', () => {
       await request(app)
         .post('/transactions')
         .send({
-          toAccount: 'ACC001',
+          toAccount: 'ACC-00001',
           amount: 100,
           currency: 'USD',
           type: 'deposit'
@@ -292,7 +292,7 @@ describe('Transactions API', () => {
       await request(app)
         .post('/transactions')
         .send({
-          fromAccount: 'ACC002',
+          fromAccount: 'ACC-00002',
           amount: 50,
           currency: 'EUR',
           type: 'withdrawal'
@@ -307,20 +307,20 @@ describe('Transactions API', () => {
     describe('Filtering', () => {
       beforeEach(async () => {
         await request(app).post('/transactions').send({
-          toAccount: 'ACC001',
+          toAccount: 'ACC-00001',
           amount: 100,
           currency: 'USD',
           type: 'deposit'
         });
         await request(app).post('/transactions').send({
-          fromAccount: 'ACC001',
+          fromAccount: 'ACC-00001',
           amount: 50,
           currency: 'USD',
           type: 'withdrawal'
         });
         await request(app).post('/transactions').send({
-          fromAccount: 'ACC002',
-          toAccount: 'ACC003',
+          fromAccount: 'ACC-00002',
+          toAccount: 'ACC-00003',
           amount: 200,
           currency: 'EUR',
           type: 'transfer'
@@ -328,21 +328,21 @@ describe('Transactions API', () => {
       });
 
       it('should filter by accountId (toAccount match)', async () => {
-        const response = await request(app).get('/transactions?accountId=ACC001');
+        const response = await request(app).get('/transactions?accountId=ACC-00001');
 
         expect(response.status).toBe(200);
         expect(response.body).toHaveLength(2);
         response.body.forEach((tx: any) => {
-          expect(tx.toAccount === 'ACC001' || tx.fromAccount === 'ACC001').toBe(true);
+          expect(tx.toAccount === 'ACC-00001' || tx.fromAccount === 'ACC-00001').toBe(true);
         });
       });
 
       it('should filter by accountId (fromAccount match)', async () => {
-        const response = await request(app).get('/transactions?accountId=ACC002');
+        const response = await request(app).get('/transactions?accountId=ACC-00002');
 
         expect(response.status).toBe(200);
         expect(response.body).toHaveLength(1);
-        expect(response.body[0].fromAccount).toBe('ACC002');
+        expect(response.body[0].fromAccount).toBe('ACC-00002');
       });
 
       it('should filter by type', async () => {
@@ -362,12 +362,12 @@ describe('Transactions API', () => {
       });
 
       it('should combine accountId and type filters', async () => {
-        const response = await request(app).get('/transactions?accountId=ACC001&type=deposit');
+        const response = await request(app).get('/transactions?accountId=ACC-00001&type=deposit');
 
         expect(response.status).toBe(200);
         expect(response.body).toHaveLength(1);
         expect(response.body[0].type).toBe('deposit');
-        expect(response.body[0].toAccount).toBe('ACC001');
+        expect(response.body[0].toAccount).toBe('ACC-00001');
       });
 
       it('should return empty array when no matches', async () => {
@@ -417,7 +417,7 @@ describe('Transactions API', () => {
         tomorrow.setDate(tomorrow.getDate() + 1);
 
         const response = await request(app).get(
-          `/transactions?accountId=ACC001&type=deposit&from=${yesterday.toISOString().split('T')[0]}&to=${tomorrow.toISOString().split('T')[0]}`
+          `/transactions?accountId=ACC-00001&type=deposit&from=${yesterday.toISOString().split('T')[0]}&to=${tomorrow.toISOString().split('T')[0]}`
         );
 
         expect(response.status).toBe(200);
@@ -439,7 +439,7 @@ describe('Transactions API', () => {
       const createResponse = await request(app)
         .post('/transactions')
         .send({
-          toAccount: 'ACC001',
+          toAccount: 'ACC-00001',
           amount: 100,
           currency: 'USD',
           type: 'deposit'
@@ -465,7 +465,7 @@ describe('Transactions API', () => {
         const response = await request(app)
           .post('/transactions')
           .send({
-            toAccount: 'ACC001',
+            toAccount: 'ACC-00001',
             amount: 100,
             currency: 'USD',
             type: 'deposit'
@@ -484,7 +484,7 @@ describe('Transactions API', () => {
         const response = await request(app)
           .post('/transactions')
           .send({
-            toAccount: 'ACC001',
+            toAccount: 'ACC-00001',
             amount: 100,
             currency: 'USD',
             type: 'deposit'
