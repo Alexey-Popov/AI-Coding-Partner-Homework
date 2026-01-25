@@ -1,6 +1,6 @@
-const { describe, it, beforeEach } = require('node:test');
-const assert = require('node:assert');
-const {
+import { describe, it, beforeEach } from 'node:test';
+import assert from 'node:assert';
+import {
   createTransaction,
   getTransactions,
   getTransactionById,
@@ -10,7 +10,7 @@ const {
   VALID_CURRENCIES,
   VALID_TYPES,
   VALID_STATUSES
-} = require('../../src/models/transaction');
+} from '../../src/models/transaction.js';
 
 describe('Transaction Model', () => {
   // Clear transactions before each test to ensure isolation
@@ -29,12 +29,12 @@ describe('Transaction Model', () => {
 
     it('should export valid transaction types', () => {
       assert.ok(Array.isArray(VALID_TYPES));
-      assert.deepStrictEqual(VALID_TYPES, ['deposit', 'withdrawal', 'transfer']);
+      assert.deepStrictEqual([...VALID_TYPES], ['deposit', 'withdrawal', 'transfer']);
     });
 
     it('should export valid statuses', () => {
       assert.ok(Array.isArray(VALID_STATUSES));
-      assert.deepStrictEqual(VALID_STATUSES, ['pending', 'completed', 'failed']);
+      assert.deepStrictEqual([...VALID_STATUSES], ['pending', 'completed', 'failed']);
     });
   });
 
@@ -127,7 +127,7 @@ describe('Transaction Model', () => {
       });
 
       const parsedDate = new Date(transaction.timestamp);
-      assert.ok(!isNaN(parsedDate.getTime()));
+      assert.ok(!Number.isNaN(parsedDate.getTime()));
     });
   });
 

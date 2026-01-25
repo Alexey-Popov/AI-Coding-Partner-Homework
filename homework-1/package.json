@@ -2,6 +2,7 @@
   "name": "banking-transactions-api",
   "version": "1.0.0",
   "description": "A minimal REST API for banking transactions - AI-Assisted Development Homework 1",
+  "type": "module",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",

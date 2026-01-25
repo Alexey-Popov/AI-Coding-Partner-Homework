@@ -1,144 +1,127 @@
-const { v4: uuidv4 } = require('uuid');
+import { v4 as uuidv4 } from 'uuid';
 
 // In-memory storage for transactions
 const transactions = [];
 
 // Valid ISO 4217 currency codes (subset of commonly used ones)
-const VALID_CURRENCIES = ['USD', 'EUR', 'GBP', 'JPY', 'CHF', 'CAD', 'AUD', 'CNY', 'INR', 'PLN'];
+export const VALID_CURRENCIES = Object.freeze(['USD', 'EUR', 'GBP', 'JPY', 'CHF', 'CAD', 'AUD', 'CNY', 'INR', 'PLN']);
 
 // Valid transaction types
-const VALID_TYPES = ['deposit', 'withdrawal', 'transfer'];
+export const VALID_TYPES = Object.freeze(['deposit', 'withdrawal', 'transfer']);
 
 // Valid transaction statuses
-const VALID_STATUSES = ['pending', 'completed', 'failed'];
+export const VALID_STATUSES = Object.freeze(['pending', 'completed', 'failed']);
 
 /**
  * Create a new transaction
  * @param {Object} data - Transaction data
  * @returns {Object} Created transaction
  */
-function createTransaction(data) {
+export const createTransaction = ({ fromAccount, toAccount, amount, currency, type, status = 'completed' }) => {
   const transaction = {
     id: uuidv4(),
-    fromAccount: data.fromAccount,
-    toAccount: data.toAccount,
-    amount: data.amount,
-    currency: data.currency,
-    type: data.type,
+    fromAccount,
+    toAccount,
+    amount,
+    currency,
+    type,
     timestamp: new Date().toISOString(),
-    status: data.status || 'completed'
+    status
   };
 
   transactions.push(transaction);
   return transaction;
-}
+};
 
 /**
  * Get all transactions with optional filtering
  * @param {Object} filters - Filter criteria
  * @returns {Array} Filtered transactions
  */
-function getTransactions(filters = {}) {
+export const getTransactions = ({ accountId, type, from, to } = {}) => {
   let result = [...transactions];
 
   // Filter by accountId (matches either fromAccount or toAccount)
-  if (filters.accountId) {
+  if (accountId) {
     result = result.filter(
-      t => t.fromAccount === filters.accountId || t.toAccount === filters.accountId
+      (t) => t.fromAccount === accountId || t.toAccount === accountId
     );
   }
 
   // Filter by transaction type
-  if (filters.type) {
-    result = result.filter(t => t.type === filters.type);
+  if (type) {
+    result = result.filter((t) => t.type === type);
   }
 
   // Filter by date range (from)
-  if (filters.from) {
-    const fromDate = new Date(filters.from);
-    result = result.filter(t => new Date(t.timestamp) >= fromDate);
+  if (from) {
+    const fromDate = new Date(from);
+    result = result.filter((t) => new Date(t.timestamp) >= fromDate);
   }
 
   // Filter by date range (to)
-  if (filters.to) {
-    const toDate = new Date(filters.to);
+  if (to) {
+    const toDate = new Date(to);
     // Set to end of day for inclusive filtering
     toDate.setHours(23, 59, 59, 999);
-    result = result.filter(t => new Date(t.timestamp) <= toDate);
+    result = result.filter((t) => new Date(t.timestamp) <= toDate);
   }
 
   return result;
-}
+};
 
 /**
  * Get a transaction by ID
  * @param {string} id - Transaction ID
  * @returns {Object|null} Transaction or null if not found
  */
-function getTransactionById(id) {
-  return transactions.find(t => t.id === id) || null;
-}
+export const getTransactionById = (id) => transactions.find((t) => t.id === id) ?? null;
 
 /**
  * Calculate account balance based on transactions
  * @param {string} accountId - Account ID
  * @returns {Object} Balance information
  */
-function getAccountBalance(accountId) {
+export const getAccountBalance = (accountId) => {
   const accountTransactions = transactions.filter(
-    t => (t.fromAccount === accountId || t.toAccount === accountId) && t.status === 'completed'
+    (t) => (t.fromAccount === accountId || t.toAccount === accountId) && t.status === 'completed'
   );
 
-  let balance = 0;
-
-  for (const t of accountTransactions) {
+  const balance = accountTransactions.reduce((acc, t) => {
     if (t.type === 'deposit' && t.toAccount === accountId) {
-      balance += t.amount;
-    } else if (t.type === 'withdrawal' && t.fromAccount === accountId) {
-      balance -= t.amount;
-    } else if (t.type === 'transfer') {
-      if (t.fromAccount === accountId) {
-        balance -= t.amount;
-      }
-      if (t.toAccount === accountId) {
-        balance += t.amount;
-      }
+      return acc + t.amount;
     }
-  }
+    if (t.type === 'withdrawal' && t.fromAccount === accountId) {
+      return acc - t.amount;
+    }
+    if (t.type === 'transfer') {
+      let delta = 0;
+      if (t.fromAccount === accountId) delta -= t.amount;
+      if (t.toAccount === accountId) delta += t.amount;
+      return acc + delta;
+    }
+    return acc;
+  }, 0);
 
   // Round to 2 decimal places to avoid floating point issues
-  balance = Math.round(balance * 100) / 100;
+  const roundedBalance = Math.round(balance * 100) / 100;
 
   return {
     accountId,
-    balance,
-    currency: accountTransactions.length > 0 ? accountTransactions[0].currency : 'USD',
+    balance: roundedBalance,
+    currency: accountTransactions[0]?.currency ?? 'USD',
     transactionCount: accountTransactions.length
   };
-}
+};
 
 /**
  * Clear all transactions (useful for testing)
  */
-function clearTransactions() {
+export const clearTransactions = () => {
   transactions.length = 0;
-}
+};
 
 /**
  * Get all transactions (raw, for export)
  */
-function getAllTransactionsRaw() {
-  return transactions;
-}
-
-module.exports = {
-  createTransaction,
-  getTransactions,
-  getTransactionById,
-  getAccountBalance,
-  clearTransactions,
-  getAllTransactionsRaw,
-  VALID_CURRENCIES,
-  VALID_TYPES,
-  VALID_STATUSES
-};
+export const getAllTransactionsRaw = () => transactions;

@@ -1,8 +1,8 @@
-const { describe, it, beforeEach, after } = require('node:test');
-const assert = require('node:assert');
-const request = require('supertest');
-const app = require('../../src/index');
-const { clearTransactions } = require('../../src/models/transaction');
+import { describe, it, beforeEach } from 'node:test';
+import assert from 'node:assert';
+import request from 'supertest';
+import app from '../../src/index.js';
+import { clearTransactions } from '../../src/models/transaction.js';
 
 describe('Transactions API Integration Tests', () => {
   beforeEach(() => {
@@ -101,7 +101,7 @@ describe('Transactions API Integration Tests', () => {
         })
         .expect(400);
 
-      assert.ok(response.body.details.some(e => e.field === 'amount'));
+      assert.ok(response.body.details.some((e) => e.field === 'amount'));
     });
 
     it('should return 400 for invalid currency', async () => {
@@ -115,7 +115,7 @@ describe('Transactions API Integration Tests', () => {
         })
         .expect(400);
 
-      assert.ok(response.body.details.some(e => e.field === 'currency'));
+      assert.ok(response.body.details.some((e) => e.field === 'currency'));
     });
 
     it('should return 400 for invalid account format', async () => {
@@ -129,7 +129,7 @@ describe('Transactions API Integration Tests', () => {
         })
         .expect(400);
 
-      assert.ok(response.body.details.some(e => e.field === 'toAccount'));
+      assert.ok(response.body.details.some((e) => e.field === 'toAccount'));
     });
 
     it('should return 400 for same fromAccount and toAccount in transfer', async () => {
@@ -144,7 +144,7 @@ describe('Transactions API Integration Tests', () => {
         })
         .expect(400);
 
-      assert.ok(response.body.details.some(e => e.message.includes('must be different')));
+      assert.ok(response.body.details.some((e) => e.message.includes('must be different')));
     });
 
     it('should return 400 for amount with more than 2 decimal places', async () => {
@@ -158,7 +158,7 @@ describe('Transactions API Integration Tests', () => {
         })
         .expect(400);
 
-      assert.ok(response.body.details.some(e => e.field === 'amount'));
+      assert.ok(response.body.details.some((e) => e.field === 'amount'));
     });
   });
 
@@ -256,7 +256,7 @@ describe('Transactions API Integration Tests', () => {
           type: 'deposit'
         });
 
-      const id = createResponse.body.data.id;
+      const { id } = createResponse.body.data;
 
       const response = await request(app)
         .get(`/transactions/${id}`)

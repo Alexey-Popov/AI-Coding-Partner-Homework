@@ -1,6 +1,7 @@
-const express = require('express');
-const transactionsRouter = require('./routes/transactions');
-const accountsRouter = require('./routes/accounts');
+import express from 'express';
+import { fileURLToPath } from 'url';
+import transactionsRouter from './routes/transactions.js';
+import accountsRouter from './routes/accounts.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -56,8 +57,10 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
-// Start server only when run directly (not when required for testing)
-if (require.main === module) {
+// Start server only when run directly (not when imported for testing)
+const isMainModule = process.argv[1] === fileURLToPath(import.meta.url);
+
+if (isMainModule) {
   app.listen(PORT, () => {
     console.log(`Banking Transactions API running on http://localhost:${PORT}`);
     console.log('Available endpoints:');
@@ -70,4 +73,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = app;
+export default app;

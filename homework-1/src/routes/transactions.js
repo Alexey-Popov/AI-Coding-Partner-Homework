@@ -1,19 +1,17 @@
-const express = require('express');
-const router = express.Router();
-const {
-  createTransaction,
-  getTransactions,
-  getTransactionById
-} = require('../models/transaction');
-const { validateTransaction } = require('../validators/transactionValidator');
-const { toCSV, formatError, formatSuccess } = require('../utils/helpers');
+import { Router } from 'express';
+import { createTransaction, getTransactions, getTransactionById } from '../models/transaction.js';
+import { validateTransaction } from '../validators/transactionValidator.js';
+import { toCSV, formatError, formatSuccess } from '../utils/helpers.js';
+
+const router = Router();
 
 /**
  * POST /transactions
  * Create a new transaction
  */
 router.post('/', (req, res) => {
-  const validation = validateTransaction(req.body);
+  const { body } = req;
+  const validation = validateTransaction(body);
 
   if (!validation.isValid) {
     return res.status(400).json({
@@ -23,15 +21,15 @@ router.post('/', (req, res) => {
   }
 
   const transaction = createTransaction({
-    fromAccount: req.body.fromAccount || null,
-    toAccount: req.body.toAccount || null,
-    amount: req.body.amount,
-    currency: req.body.currency.toUpperCase(),
-    type: req.body.type,
-    status: req.body.status || 'completed'
+    fromAccount: body.fromAccount ?? null,
+    toAccount: body.toAccount ?? null,
+    amount: body.amount,
+    currency: body.currency.toUpperCase(),
+    type: body.type,
+    status: body.status ?? 'completed'
   });
 
-  res.status(201).json(formatSuccess(transaction, 'Transaction created successfully'));
+  return res.status(201).json(formatSuccess(transaction, 'Transaction created successfully'));
 });
 
 /**
@@ -40,15 +38,9 @@ router.post('/', (req, res) => {
  * Query params: accountId, type, from, to
  */
 router.get('/', (req, res) => {
-  const filters = {
-    accountId: req.query.accountId,
-    type: req.query.type,
-    from: req.query.from,
-    to: req.query.to
-  };
-
-  const transactions = getTransactions(filters);
-  res.json(formatSuccess(transactions));
+  const { accountId, type, from, to } = req.query;
+  const transactions = getTransactions({ accountId, type, from, to });
+  return res.json(formatSuccess(transactions));
 });
 
 /**
@@ -57,20 +49,13 @@ router.get('/', (req, res) => {
  * Query params: format (csv), accountId, type, from, to
  */
 router.get('/export', (req, res) => {
-  const format = req.query.format?.toLowerCase();
+  const { format, accountId, type, from, to } = req.query;
 
-  if (format !== 'csv') {
+  if (format?.toLowerCase() !== 'csv') {
     return res.status(400).json(formatError('Invalid format. Supported formats: csv'));
   }
 
-  const filters = {
-    accountId: req.query.accountId,
-    type: req.query.type,
-    from: req.query.from,
-    to: req.query.to
-  };
-
-  const transactions = getTransactions(filters);
+  const transactions = getTransactions({ accountId, type, from, to });
 
   if (transactions.length === 0) {
     return res.status(200).send('');
@@ -80,7 +65,7 @@ router.get('/export', (req, res) => {
 
   res.setHeader('Content-Type', 'text/csv');
   res.setHeader('Content-Disposition', 'attachment; filename="transactions.csv"');
-  res.send(csv);
+  return res.send(csv);
 });
 
 /**
@@ -94,7 +79,7 @@ router.get('/:id', (req, res) => {
     return res.status(404).json(formatError('Transaction not found'));
   }
 
-  res.json(formatSuccess(transaction));
+  return res.json(formatSuccess(transaction));
 });
 
-module.exports = router;
+export default router;

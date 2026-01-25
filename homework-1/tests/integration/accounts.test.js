@@ -1,8 +1,8 @@
-const { describe, it, beforeEach } = require('node:test');
-const assert = require('node:assert');
-const request = require('supertest');
-const app = require('../../src/index');
-const { clearTransactions, createTransaction } = require('../../src/models/transaction');
+import { describe, it, beforeEach } from 'node:test';
+import assert from 'node:assert';
+import request from 'supertest';
+import app from '../../src/index.js';
+import { clearTransactions, createTransaction } from '../../src/models/transaction.js';
 
 describe('Accounts API Integration Tests', () => {
   beforeEach(() => {

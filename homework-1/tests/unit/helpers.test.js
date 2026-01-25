@@ -1,6 +1,6 @@
-const { describe, it } = require('node:test');
-const assert = require('node:assert');
-const { toCSV, parseDate, formatError, formatSuccess } = require('../../src/utils/helpers');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import { toCSV, parseDate, formatError, formatSuccess } from '../../src/utils/helpers.js';
 
 describe('Helper Functions', () => {
   describe('toCSV', () => {

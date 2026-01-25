@@ -3,20 +3,16 @@
  * @param {Array} data - Array of objects to convert
  * @returns {string} CSV string
  */
-function toCSV(data) {
-  if (!data || data.length === 0) {
+export const toCSV = (data) => {
+  if (!data?.length) {
     return '';
   }
 
-  // Get headers from the first object
   const headers = Object.keys(data[0]);
-
-  // Create CSV header row
   const csvRows = [headers.join(',')];
 
-  // Add data rows
   for (const row of data) {
-    const values = headers.map(header => {
+    const values = headers.map((header) => {
       const value = row[header];
       // Escape values that contain commas, quotes, or newlines
       if (typeof value === 'string' && (value.includes(',') || value.includes('"') || value.includes('\n'))) {
@@ -28,18 +24,18 @@ function toCSV(data) {
   }
 
   return csvRows.join('\n');
-}
+};
 
 /**
  * Parse date string to Date object, returns null if invalid
  * @param {string} dateStr - Date string to parse
  * @returns {Date|null} Parsed date or null
  */
-function parseDate(dateStr) {
+export const parseDate = (dateStr) => {
   if (!dateStr) return null;
   const date = new Date(dateStr);
-  return isNaN(date.getTime()) ? null : date;
-}
+  return Number.isNaN(date.getTime()) ? null : date;
+};
 
 /**
  * Format error response
@@ -47,13 +43,10 @@ function parseDate(dateStr) {
  * @param {Array} details - Optional array of detail objects
  * @returns {Object} Formatted error object
  */
-function formatError(message, details = null) {
-  const error = { error: message };
-  if (details) {
-    error.details = details;
-  }
-  return error;
-}
+export const formatError = (message, details = null) => ({
+  error: message,
+  ...(details && { details })
+});
 
 /**
  * Format success response
@@ -61,17 +54,7 @@ function formatError(message, details = null) {
  * @param {string} message - Optional message
  * @returns {Object} Formatted response object
  */
-function formatSuccess(data, message = null) {
-  const response = { data };
-  if (message) {
-    response.message = message;
-  }
-  return response;
-}
-
-module.exports = {
-  toCSV,
-  parseDate,
-  formatError,
-  formatSuccess
-};
+export const formatSuccess = (data, message = null) => ({
+  data,
+  ...(message && { message })
+});

@@ -1,8 +1,9 @@
-const express = require('express');
-const router = express.Router();
-const { getAccountBalance } = require('../models/transaction');
-const { isValidAccountId } = require('../validators/transactionValidator');
-const { formatError, formatSuccess } = require('../utils/helpers');
+import { Router } from 'express';
+import { getAccountBalance } from '../models/transaction.js';
+import { isValidAccountId } from '../validators/transactionValidator.js';
+import { formatError, formatSuccess } from '../utils/helpers.js';
+
+const router = Router();
 
 /**
  * GET /accounts/:accountId/balance
@@ -18,7 +19,7 @@ router.get('/:accountId/balance', (req, res) => {
   }
 
   const balanceInfo = getAccountBalance(accountId);
-  res.json(formatSuccess(balanceInfo));
+  return res.json(formatSuccess(balanceInfo));
 });
 
-module.exports = router;
+export default router;

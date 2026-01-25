@@ -1,6 +1,6 @@
-const { describe, it, beforeEach } = require('node:test');
-const assert = require('node:assert');
-const { validateTransaction, isValidAccountId, ACCOUNT_REGEX } = require('../../src/validators/transactionValidator');
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+import { validateTransaction, isValidAccountId, ACCOUNT_REGEX } from '../../src/validators/transactionValidator.js';
 
 describe('Transaction Validator', () => {
   describe('validateTransaction', () => {
@@ -12,7 +12,7 @@ describe('Transaction Validator', () => {
           toAccount: 'ACC-12345'
         });
         assert.strictEqual(result.isValid, false);
-        assert.ok(result.errors.some(e => e.field === 'amount' && e.message === 'Amount is required'));
+        assert.ok(result.errors.some((e) => e.field === 'amount' && e.message === 'Amount is required'));
       });
 
       it('should fail when amount is null', () => {
@@ -23,7 +23,7 @@ describe('Transaction Validator', () => {
           toAccount: 'ACC-12345'
         });
         assert.strictEqual(result.isValid, false);
-        assert.ok(result.errors.some(e => e.field === 'amount' && e.message === 'Amount is required'));
+        assert.ok(result.errors.some((e) => e.field === 'amount' && e.message === 'Amount is required'));
       });
 
       it('should fail when amount is not a number', () => {
@@ -34,7 +34,7 @@ describe('Transaction Validator', () => {
           toAccount: 'ACC-12345'
         });
         assert.strictEqual(result.isValid, false);
-        assert.ok(result.errors.some(e => e.field === 'amount' && e.message === 'Amount must be a number'));
+        assert.ok(result.errors.some((e) => e.field === 'amount' && e.message === 'Amount must be a number'));
       });
 
       it('should fail when amount is NaN', () => {
@@ -45,7 +45,7 @@ describe('Transaction Validator', () => {
           toAccount: 'ACC-12345'
         });
         assert.strictEqual(result.isValid, false);
-        assert.ok(result.errors.some(e => e.field === 'amount' && e.message === 'Amount must be a number'));
+        assert.ok(result.errors.some((e) => e.field === 'amount' && e.message === 'Amount must be a number'));
       });
 
       it('should fail when amount is zero', () => {
@@ -56,7 +56,7 @@ describe('Transaction Validator', () => {
           toAccount: 'ACC-12345'
         });
         assert.strictEqual(result.isValid, false);
-        assert.ok(result.errors.some(e => e.field === 'amount' && e.message === 'Amount must be a positive number'));
+        assert.ok(result.errors.some((e) => e.field === 'amount' && e.message === 'Amount must be a positive number'));
       });
 
       it('should fail when amount is negative', () => {
@@ -67,7 +67,7 @@ describe('Transaction Validator', () => {
           toAccount: 'ACC-12345'
         });
         assert.strictEqual(result.isValid, false);
-        assert.ok(result.errors.some(e => e.field === 'amount' && e.message === 'Amount must be a positive number'));
+        assert.ok(result.errors.some((e) => e.field === 'amount' && e.message === 'Amount must be a positive number'));
       });
 
       it('should fail when amount has more than 2 decimal places', () => {
@@ -78,7 +78,7 @@ describe('Transaction Validator', () => {
           toAccount: 'ACC-12345'
         });
         assert.strictEqual(result.isValid, false);
-        assert.ok(result.errors.some(e => e.field === 'amount' && e.message === 'Amount must have maximum 2 decimal places'));
+        assert.ok(result.errors.some((e) => e.field === 'amount' && e.message === 'Amount must have maximum 2 decimal places'));
       });
 
       it('should pass when amount has exactly 2 decimal places', () => {
@@ -120,7 +120,7 @@ describe('Transaction Validator', () => {
           toAccount: 'ACC-12345'
         });
         assert.strictEqual(result.isValid, false);
-        assert.ok(result.errors.some(e => e.field === 'currency' && e.message === 'Currency is required'));
+        assert.ok(result.errors.some((e) => e.field === 'currency' && e.message === 'Currency is required'));
       });
 
       it('should fail when currency is invalid', () => {
@@ -131,7 +131,7 @@ describe('Transaction Validator', () => {
           toAccount: 'ACC-12345'
         });
         assert.strictEqual(result.isValid, false);
-        assert.ok(result.errors.some(e => e.field === 'currency' && e.message.includes('Invalid currency code')));
+        assert.ok(result.errors.some((e) => e.field === 'currency' && e.message.includes('Invalid currency code')));
       });
 
       it('should pass with valid currency codes', () => {
@@ -166,7 +166,7 @@ describe('Transaction Validator', () => {
           toAccount: 'ACC-12345'
         });
         assert.strictEqual(result.isValid, false);
-        assert.ok(result.errors.some(e => e.field === 'type' && e.message === 'Transaction type is required'));
+        assert.ok(result.errors.some((e) => e.field === 'type' && e.message === 'Transaction type is required'));
       });
 
       it('should fail when type is invalid', () => {
@@ -177,7 +177,7 @@ describe('Transaction Validator', () => {
           toAccount: 'ACC-12345'
         });
         assert.strictEqual(result.isValid, false);
-        assert.ok(result.errors.some(e => e.field === 'type' && e.message.includes('Invalid transaction type')));
+        assert.ok(result.errors.some((e) => e.field === 'type' && e.message.includes('Invalid transaction type')));
       });
 
       it('should pass with valid types', () => {
@@ -210,7 +210,7 @@ describe('Transaction Validator', () => {
           type: 'deposit'
         });
         assert.strictEqual(result.isValid, false);
-        assert.ok(result.errors.some(e => e.field === 'toAccount' && e.message === 'toAccount is required for deposits'));
+        assert.ok(result.errors.some((e) => e.field === 'toAccount' && e.message === 'toAccount is required for deposits'));
       });
 
       it('should validate toAccount format for deposits', () => {
@@ -221,7 +221,7 @@ describe('Transaction Validator', () => {
           toAccount: 'invalid'
         });
         assert.strictEqual(result.isValid, false);
-        assert.ok(result.errors.some(e => e.field === 'toAccount' && e.message.includes('must follow format')));
+        assert.ok(result.errors.some((e) => e.field === 'toAccount' && e.message.includes('must follow format')));
       });
 
       it('should pass valid deposit', () => {
@@ -243,7 +243,7 @@ describe('Transaction Validator', () => {
           type: 'withdrawal'
         });
         assert.strictEqual(result.isValid, false);
-        assert.ok(result.errors.some(e => e.field === 'fromAccount' && e.message === 'fromAccount is required for withdrawals'));
+        assert.ok(result.errors.some((e) => e.field === 'fromAccount' && e.message === 'fromAccount is required for withdrawals'));
       });
 
       it('should validate fromAccount format for withdrawals', () => {
@@ -254,7 +254,7 @@ describe('Transaction Validator', () => {
           fromAccount: 'invalid'
         });
         assert.strictEqual(result.isValid, false);
-        assert.ok(result.errors.some(e => e.field === 'fromAccount' && e.message.includes('must follow format')));
+        assert.ok(result.errors.some((e) => e.field === 'fromAccount' && e.message.includes('must follow format')));
       });
 
       it('should pass valid withdrawal', () => {
@@ -276,8 +276,8 @@ describe('Transaction Validator', () => {
           type: 'transfer'
         });
         assert.strictEqual(result.isValid, false);
-        assert.ok(result.errors.some(e => e.field === 'fromAccount' && e.message === 'fromAccount is required for transfers'));
-        assert.ok(result.errors.some(e => e.field === 'toAccount' && e.message === 'toAccount is required for transfers'));
+        assert.ok(result.errors.some((e) => e.field === 'fromAccount' && e.message === 'fromAccount is required for transfers'));
+        assert.ok(result.errors.some((e) => e.field === 'toAccount' && e.message === 'toAccount is required for transfers'));
       });
 
       it('should validate fromAccount format for transfers', () => {
@@ -289,7 +289,7 @@ describe('Transaction Validator', () => {
           toAccount: 'ACC-12345'
         });
         assert.strictEqual(result.isValid, false);
-        assert.ok(result.errors.some(e => e.field === 'fromAccount' && e.message.includes('must follow format')));
+        assert.ok(result.errors.some((e) => e.field === 'fromAccount' && e.message.includes('must follow format')));
       });
 
       it('should validate toAccount format for transfers', () => {
@@ -301,7 +301,7 @@ describe('Transaction Validator', () => {
           toAccount: 'invalid'
         });
         assert.strictEqual(result.isValid, false);
-        assert.ok(result.errors.some(e => e.field === 'toAccount' && e.message.includes('must follow format')));
+        assert.ok(result.errors.some((e) => e.field === 'toAccount' && e.message.includes('must follow format')));
       });
 
       it('should fail when fromAccount and toAccount are the same', () => {
@@ -313,7 +313,7 @@ describe('Transaction Validator', () => {
           toAccount: 'ACC-12345'
         });
         assert.strictEqual(result.isValid, false);
-        assert.ok(result.errors.some(e => e.field === 'toAccount' && e.message === 'fromAccount and toAccount must be different'));
+        assert.ok(result.errors.some((e) => e.field === 'toAccount' && e.message === 'fromAccount and toAccount must be different'));
       });
 
       it('should pass valid transfer', () => {
