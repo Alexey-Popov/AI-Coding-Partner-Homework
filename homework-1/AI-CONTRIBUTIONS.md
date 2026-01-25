@@ -182,6 +182,25 @@ This document details how AI tools contributed to the development of the Banking
 
 ---
 
+## Screenshots of AI Tool Usage
+
+Screenshots demonstrating the AI-assisted development process are located in `docs/screenshots/`:
+
+| Screenshot | Description |
+|------------|-------------|
+| `claude-code-session-1.png` | Claude Code session showing initial project setup, reading requirements, and planning implementation |
+| `claude-code-session-2.png` | Claude Code session showing CSV test implementation and test results (132 tests passing) |
+
+### What the Screenshots Demonstrate
+
+1. **Session Overview**: The Claude Code CLI interface in use with the project
+2. **AI Reading Requirements**: Claude analyzing README.md and TASKS.md files
+3. **Code Generation**: AI generating code and running bash commands
+4. **Test Results**: Successful test execution with 132 tests passing
+5. **Diff View**: Changes made to the codebase (+4175 lines added, -16 lines removed)
+
+---
+
 ## Summary of AI vs Human Contributions
 
 | Aspect | AI Contribution | Human Input |
@@ -190,8 +209,8 @@ This document details how AI tools contributed to the development of the Banking
 | Code | Generated all source files | Reviewed and approved |
 | Validation Rules | Implemented as specified | Requirements from TASKS.md |
 | Feature Selection | Asked for preference | Chose CSV export |
-| Documentation | Generated all docs | Will add screenshots |
-| Testing | Created 129 automated tests (99%+ coverage) | Chose Node.js native runner |
+| Documentation | Generated all docs | Provided screenshots |
+| Testing | Created 132 automated tests (99%+ coverage) | Chose Node.js native runner |
 
 ---
 
