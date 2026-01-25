@@ -1,0 +1,39 @@
+{
+  "transactions": [
+    {
+      "fromAccount": "ACC-BANK",
+      "toAccount": "ACC-11111",
+      "amount": 1000.00,
+      "currency": "USD",
+      "type": "deposit"
+    },
+    {
+      "fromAccount": "ACC-BANK",
+      "toAccount": "ACC-22222",
+      "amount": 2500.50,
+      "currency": "EUR",
+      "type": "deposit"
+    },
+    {
+      "fromAccount": "ACC-11111",
+      "toAccount": "ACC-22222",
+      "amount": 250.75,
+      "currency": "USD",
+      "type": "transfer"
+    },
+    {
+      "fromAccount": "ACC-22222",
+      "toAccount": "ACC-BANK",
+      "amount": 100.00,
+      "currency": "EUR",
+      "type": "withdrawal"
+    },
+    {
+      "fromAccount": "ACC-11111",
+      "toAccount": "ACC-33333",
+      "amount": 500.00,
+      "currency": "GBP",
+      "type": "transfer"
+    }
+  ]
+}

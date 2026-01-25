@@ -1,0 +1,26 @@
+{
+  "name": "banking-transactions-api",
+  "version": "1.0.0",
+  "description": "A simple REST API for banking transactions",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node src/index.js",
+    "test": "jest --coverage"
+  },
+  "keywords": [
+    "banking",
+    "api",
+    "transactions"
+  ],
+  "author": "Sviatoslav Glushchenko",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3"
+  }
+}

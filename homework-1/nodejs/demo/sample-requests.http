@@ -1,0 +1,98 @@
+### Create a transfer transaction
+POST http://localhost:3000/transactions HTTP/1.1
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 150.50,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### Create a deposit transaction
+POST http://localhost:3000/transactions HTTP/1.1
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-BANK",
+  "toAccount": "ACC-12345",
+  "amount": 500.00,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+### Create a withdrawal transaction
+POST http://localhost:3000/transactions HTTP/1.1
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-BANK",
+  "amount": 50.75,
+  "currency": "USD",
+  "type": "withdrawal"
+}
+
+### Get all transactions
+GET v HTTP/1.1
+
+### Get transactions for specific account
+GET http://localhost:3000/transactions?accountId=ACC-12345 HTTP/1.1
+
+### Get transactions by type
+GET http://localhost:3000/transactions?type=transfer HTTP/1.1
+
+### Get transactions with date range
+GET http://localhost:3000/transactions?from=2024-01-01&to=2026-12-31 HTTP/1.1
+
+### Get specific transaction by ID
+GET http://localhost:3000/transactions/{transaction-id} HTTP/1.1
+
+### Get account balance
+GET http://localhost:3000/accounts/ACC-12345/balance HTTP/1.1
+
+### Get account summary
+GET http://localhost:3000/accounts/ACC-12345/summary HTTP/1.1
+
+### Export transactions as CSV
+GET http://localhost:3000/transactions/export?format=csv HTTP/1.1
+
+### Health check
+GET http://localhost:3000/health HTTP/1.1
+
+### Validation error - negative amount
+POST http://localhost:3000/transactions HTTP/1.1
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": -100,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### Validation error - invalid account format
+POST http://localhost:3000/transactions HTTP/1.1
+Content-Type: application/json
+
+{
+  "fromAccount": "INVALID",
+  "toAccount": "ACC-67890",
+  "amount": 100,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### Validation error - invalid currency
+POST http://localhost:3000/transactions HTTP/1.1
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100,
+  "currency": "XYZ",
+  "type": "transfer"
+}
