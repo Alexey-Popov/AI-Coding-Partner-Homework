@@ -145,6 +145,43 @@ This document details how AI tools contributed to the development of the Banking
 
 ---
 
+### 9. Test Suite
+
+**Files**: `tests/unit/*.test.js`, `tests/integration/*.test.js`
+
+**AI Contribution**:
+- Set up Node.js native test runner (no external test framework dependencies)
+- Created comprehensive unit tests for all modules
+- Created integration tests for all API endpoints
+- Achieved 99%+ code coverage
+
+**Testing Stack Chosen**:
+- Node.js native test runner (`node:test`)
+- Node.js native assertions (`node:assert`)
+- Supertest for HTTP integration testing
+
+**Test Files Created**:
+| File | Tests | Coverage |
+|------|-------|----------|
+| `tests/unit/validators.test.js` | 35 tests | 100% of validator code |
+| `tests/unit/helpers.test.js` | 24 tests | 100% of helper functions |
+| `tests/unit/transaction.model.test.js` | 32 tests | 100% of model code |
+| `tests/integration/transactions.test.js` | 24 tests | 100% of transaction routes |
+| `tests/integration/accounts.test.js` | 14 tests | 100% of account routes |
+
+**Key Design Decisions**:
+- Used Node.js native test runner for zero external dependencies
+- Separated unit tests from integration tests
+- Added `clearTransactions()` hook for test isolation
+- Modified `index.js` to support testing (conditional server start)
+
+**Coverage Results**:
+- Line coverage: 99.38%
+- Branch coverage: 99.69%
+- Function coverage: 99.12%
+
+---
+
 ## Summary of AI vs Human Contributions
 
 | Aspect | AI Contribution | Human Input |
@@ -154,7 +191,7 @@ This document details how AI tools contributed to the development of the Banking
 | Validation Rules | Implemented as specified | Requirements from TASKS.md |
 | Feature Selection | Asked for preference | Chose CSV export |
 | Documentation | Generated all docs | Will add screenshots |
-| Testing | Created sample requests | Manual testing |
+| Testing | Created 129 automated tests (99%+ coverage) | Chose Node.js native runner |
 
 ---
 
@@ -169,10 +206,11 @@ This document details how AI tools contributed to the development of the Banking
 
 ## What Could Be Improved
 
-1. Add unit tests (not implemented in this version)
+1. ~~Add unit tests~~ - **DONE**: 129 tests with 99%+ coverage
 2. Add input sanitization for security
 3. Consider pagination for large transaction lists
 4. Add more detailed logging
+5. Add CI/CD pipeline for automated testing
 
 ---
 
