@@ -1,0 +1,537 @@
+
+
+❯ now plan task 3
+
+⏺ Let me review the current transactions route to plan Task 3.
+
+⏺ Read(src/routes/transactions.py)
+  ⎿  Read 69 lines
+
+⏺ Read(src/storage/store.py)
+  ⎿  Read 67 lines
+
+⏺ Read(src/models/transaction.py)
+  ⎿  Read 56 lines
+
+⏺ Task 3: Transaction Filtering — Detailed Plan
+
+  Requirements from TASKS.md
+  ┌───────────────┬────────────────────────────────────────────────────┬─────────────────────────────────────┐
+  │    Filter     │                  Query Parameter                   │               Example               │
+  ├───────────────┼────────────────────────────────────────────────────┼─────────────────────────────────────┤
+  │ By account    │ ?accountId=ACC-12345                               │ Transactions involving this account │
+  ├───────────────┼────────────────────────────────────────────────────┼─────────────────────────────────────┤
+  │ By type       │ ?type=transfer                                     │ Filter by transaction type          │
+  ├───────────────┼────────────────────────────────────────────────────┼─────────────────────────────────────┤
+  │ By date range │ ?from=2024-01-01&to=2024-01-31                     │ Transactions within date range      │
+  ├───────────────┼────────────────────────────────────────────────────┼─────────────────────────────────────┤
+  │ Combined      │ ?accountId=ACC-12345&type=transfer&from=2024-01-01 │ All filters together                │
+  └───────────────┴────────────────────────────────────────────────────┴─────────────────────────────────────┘
+  ---
+  Current State
+
+  - GET /transactions endpoint returns all transactions (no filtering)
+  - TransactionStore.find_by_account() exists but unused in routes
+  - Transaction model stores timestamp as datetime object
+
+  ---
+  Implementation Plan
+
+  1. Update the list_transactions Endpoint
+
+  File: src/routes/transactions.py
+
+  Add optional query parameters:
+  @router.get("")
+  def list_transactions(
+      accountId: Optional[str] = None,
+      type: Optional[str] = None,
+      from_date: Optional[str] = Query(None, alias="from"),
+      to_date: Optional[str] = Query(None, alias="to")
+  )
+
+  Note: Using alias="from" because from is a Python reserved keyword.
+
+  2. Add Filter Method to TransactionStore
+
+  File: src/storage/store.py
+
+  Create a new method:
+  def filter_transactions(
+      self,
+      account_id: Optional[str] = None,
+      transaction_type: Optional[str] = None,
+      from_date: Optional[datetime] = None,
+      to_date: Optional[datetime] = None
+  ) -> List[Transaction]
+
+  Filter logic:
+  - accountId: Match if fromAccount OR toAccount equals the value
+  - type: Exact match on transaction type
+  - from/to: Compare transaction timestamp (inclusive range)
+
+  3. Add Date Parsing Utility
+
+  File: src/utils/date_utils.py (new file)
+
+  - Parse ISO date strings (2024-01-01) to datetime objects
+  - Handle invalid date formats gracefully
+  - Return validation error if date format is invalid
+
+  4. Validate Query Parameters
+
+  File: src/schemas/transaction.py (optional)
+
+  - Validate type parameter is one of: deposit, withdrawal, transfer
+  - Validate date format is valid ISO 8601
+  - Return 400 Bad Request for invalid filter values
+
+  ---
+  Files to Create/Modify
+  ┌────────────────────────────┬────────┬───────────────────────────────────────┐
+  │            File            │ Action │                Changes                │
+  ├────────────────────────────┼────────┼───────────────────────────────────────┤
+  │ src/routes/transactions.py │ Modify │ Add query parameters, filtering logic │
+  ├────────────────────────────┼────────┼───────────────────────────────────────┤
+  │ src/storage/store.py       │ Modify │ Add filter_transactions() method      │
+  ├────────────────────────────┼────────┼───────────────────────────────────────┤
+  │ src/utils/date_utils.py    │ Create │ Date parsing utilities                │
+  ├────────────────────────────┼────────┼───────────────────────────────────────┤
+  │ README.md                  │ Modify │ Document filtering feature            │
+  └────────────────────────────┴────────┴───────────────────────────────────────┘
+  ---
+  Filter Behavior
+  ┌────────────────────────────────┬─────────────────────────────────────────────────────┐
+  │            Scenario            │                   Expected Result                   │
+  ├────────────────────────────────┼─────────────────────────────────────────────────────┤
+  │ No filters                     │ Return all transactions                             │
+  ├────────────────────────────────┼─────────────────────────────────────────────────────┤
+  │ ?accountId=ACC-12345           │ Transactions where account is source OR destination │
+  ├────────────────────────────────┼─────────────────────────────────────────────────────┤
+  │ ?type=transfer                 │ Only transfer transactions                          │
+  ├────────────────────────────────┼─────────────────────────────────────────────────────┤
+  │ ?from=2024-01-01               │ Transactions on or after Jan 1, 2024                │
+  ├────────────────────────────────┼─────────────────────────────────────────────────────┤
+  │ ?to=2024-01-31                 │ Transactions on or before Jan 31, 2024              │
+  ├────────────────────────────────┼─────────────────────────────────────────────────────┤
+  │ ?from=2024-01-01&to=2024-01-31 │ Transactions within date range                      │
+  ├────────────────────────────────┼─────────────────────────────────────────────────────┤
+  │ All filters combined           │ Intersection of all filter criteria                 │
+  └────────────────────────────────┴─────────────────────────────────────────────────────┘
+  ---
+  Example API Calls
+
+  # Filter by account
+  GET /transactions?accountId=ACC-12345
+
+  # Filter by type
+  GET /transactions?type=transfer
+
+  # Filter by date range
+  GET /transactions?from=2024-01-01&to=2024-01-31
+
+  # Combined filters
+  GET /transactions?accountId=ACC-12345&type=transfer&from=2024-01-01
+
+  ---
+  Edge Cases to Handle
+
+  1. Invalid date format → Return 400 with error message
+  2. Invalid type value → Return 400 with error message
+  3. from date after to date → Return 400 or empty results
+  4. No matching transactions → Return empty array [] (not 404)
+
+  ---
+  Ready to proceed with implementation?
+
+❯ yes proceed
+
+⏺ Write(src/utils/date_utils.py)
+  ⎿  Wrote 59 lines to src/utils/date_utils.py
+     """Date parsing utilities for transaction filtering"""
+     from datetime import datetime, time
+     from typing import Optional, Tuple
+     def parse_date(date_string: str) -> Tuple[bool, Optional[datetime], str]:
+         """
+         Parse a date string in ISO format (YYYY-MM-DD).
+         Args:
+     … +49 lines (ctrl+o to expand)
+
+⏺ Update(src/storage/store.py)
+  ⎿  Added 1 line, removed 1 line
+      1  """In-memory transaction storage"""
+      2 -from typing import List, Optional
+      2 +from typing import List, Optional, Literal
+      3  from datetime import datetime
+      4  from src.models.transaction import Transaction
+      5
+
+⏺ Update(src/storage/store.py)
+  ⎿  Added 51 lines
+      32          """Get all transactions"""
+      33          return self._transactions.copy()
+      34
+      35 +    def filter_transactions(
+      36 +        self,
+      37 +        account_id: Optional[str] = None,
+      38 +        transaction_type: Optional[Literal["deposit", "withdrawal", "transfer"]] = None,
+      39 +        from_date: Optional[datetime] = None,
+      40 +        to_date: Optional[datetime] = None,
+      41 +    ) -> List[Transaction]:
+      42 +        """
+      43 +        Filter transactions based on provided criteria.
+      44 +
+      45 +        Args:
+      46 +            account_id: Filter by account (matches fromAccount OR toAccount)
+      47 +            transaction_type: Filter by transaction type
+      48 +            from_date: Filter transactions on or after this date
+      49 +            to_date: Filter transactions on or before this date
+      50 +
+      51 +        Returns:
+      52 +            List of transactions matching all provided criteria
+      53 +        """
+      54 +        results = self._transactions.copy()
+      55 +
+      56 +        # Filter by account (matches either fromAccount or toAccount)
+      57 +        if account_id:
+      58 +            results = [
+      59 +                txn for txn in results
+      60 +                if txn.fromAccount == account_id or txn.toAccount == account_id
+      61 +            ]
+      62 +
+      63 +        # Filter by transaction type
+      64 +        if transaction_type:
+      65 +            results = [
+      66 +                txn for txn in results
+      67 +                if txn.type == transaction_type
+      68 +            ]
+      69 +
+      70 +        # Filter by from_date (inclusive)
+      71 +        if from_date:
+      72 +            results = [
+      73 +                txn for txn in results
+      74 +                if txn.timestamp >= from_date
+      75 +            ]
+      76 +
+      77 +        # Filter by to_date (inclusive)
+      78 +        if to_date:
+      79 +            results = [
+      80 +                txn for txn in results
+      81 +                if txn.timestamp <= to_date
+      82 +            ]
+      83 +
+      84 +        return results
+      85 +
+      86      def find_by_account(self, account_id: str) -> List[Transaction]:
+      87          """Find all transactions for a specific account"""
+      88          return [
+
+⏺ Write(src/routes/transactions.py)
+  ⎿  Added 75 lines, removed 6 lines
+       1  """Transaction routes for the banking API"""
+       2 -from fastapi import APIRouter, HTTPException, status
+       3 -from typing import List
+       2 +from fastapi import APIRouter, HTTPException, Query, status
+       3 +from typing import List, Optional, Literal
+       4  from src.models.transaction import Transaction
+       5  from src.schemas.transaction import TransactionCreate, TransactionResponse
+       6  from src.storage.store import TransactionStore
+       7 +from src.utils.date_utils import parse_date_start, parse_date_end
+       8
+       9  router = APIRouter(prefix="/transactions", tags=["transactions"])
+      10  store = TransactionStore()
+     ...
+       42
+       43
+       44  @router.get("", response_model=List[TransactionResponse])
+       45 -def list_transactions() -> List[dict]:
+       45 +def list_transactions(
+       46 +    accountId: Optional[str] = Query(
+       47 +        None,
+       48 +        description="Filter by account ID (matches fromAccount or toAccount)"
+       49 +    ),
+       50 +    type: Optional[Literal["deposit", "withdrawal", "transfer"]] = Query(
+       51 +        None,
+       52 +        description="Filter by transaction type"
+       53 +    ),
+       54 +    from_date: Optional[str] = Query(
+       55 +        None,
+       56 +        alias="from",
+       57 +        description="Filter transactions from this date (inclusive, format: YYYY-MM-DD)"
+       58 +    ),
+       59 +    to_date: Optional[str] = Query(
+       60 +        None,
+       61 +        alias="to",
+       62 +        description="Filter transactions to this date (inclusive, format: YYYY-MM-DD)"
+       63 +    ),
+       64 +) -> List[dict]:
+       65      """
+       66 -    Get all transactions
+       66 +    Get all transactions with optional filtering
+       67
+       68 -    Returns a list of all transactions in the system.
+       68 +    - **accountId**: Filter by account (matches fromAccount OR toAccount)
+       69 +    - **type**: Filter by transaction type (deposit, withdrawal, transfer)
+       70 +    - **from**: Filter transactions on or after this date (YYYY-MM-DD)
+       71 +    - **to**: Filter transactions on or before this date (YYYY-MM-DD)
+       72 +
+       73 +    All filters can be combined. Returns empty array if no matches found.
+       74      """
+       75 -    transactions = store.get_all()
+       75 +    # Parse and validate date parameters
+       76 +    parsed_from = None
+       77 +    parsed_to = None
+       78 +    validation_errors = []
+       79 +
+       80 +    if from_date:
+       81 +        is_valid, parsed_from, error = parse_date_start(from_date)
+       82 +        if not is_valid:
+       83 +            validation_errors.append({"field": "from", "message": error})
+       84 +
+       85 +    if to_date:
+       86 +        is_valid, parsed_to, error = parse_date_end(to_date)
+       87 +        if not is_valid:
+       88 +            validation_errors.append({"field": "to", "message": error})
+       89 +
+       90 +    # Return validation errors if any
+       91 +    if validation_errors:
+       92 +        raise HTTPException(
+       93 +            status_code=status.HTTP_400_BAD_REQUEST,
+       94 +            detail={
+       95 +                "error": "Validation failed",
+       96 +                "details": validation_errors
+       97 +            }
+       98 +        )
+       99 +
+      100 +    # Validate date range (from should not be after to)
+      101 +    if parsed_from and parsed_to and parsed_from > parsed_to:
+      102 +        raise HTTPException(
+      103 +            status_code=status.HTTP_400_BAD_REQUEST,
+      104 +            detail={
+      105 +                "error": "Validation failed",
+      106 +                "details": [
+      107 +                    {"field": "from", "message": "'from' date cannot be after 'to' date"}
+      108 +                ]
+      109 +            }
+      110 +        )
+      111 +
+      112 +    # Apply filters
+      113 +    transactions = store.filter_transactions(
+      114 +        account_id=accountId,
+      115 +        transaction_type=type,
+      116 +        from_date=parsed_from,
+      117 +        to_date=parsed_to,
+      118 +    )
+      119 +
+      120      return [txn.to_dict() for txn in transactions]
+      121
+      122
+
+⏺ Update(README.md)
+  ⎿  Added 5 lines, removed 5 lines
+      27  - [x] Currency validation (ISO 4217 codes)
+      28  - [x] Detailed error response with field-level messages
+      29
+      30 -#### ⏳ **Task 3: Transaction Filtering** (PLANNED)
+      31 -- [ ] Filter by account ID
+      32 -- [ ] Filter by transaction type
+      33 -- [ ] Filter by date range
+      34 -- [ ] Combine multiple filters
+      30 +#### ✅ **Task 3: Transaction Filtering** (COMPLETE)
+      31 +- [x] Filter by account ID
+      32 +- [x] Filter by transaction type
+      33 +- [x] Filter by date range
+      34 +- [x] Combine multiple filters
+      35
+      36  #### ⏳ **Task 4: Rate Limiting** (PLANNED)
+      37  - [ ] Rate limit: 100 requests per minute per IP
+
+⏺ Update(README.md)
+  ⎿  Added 36 lines
+      132
+      133  ---
+      134
+      135 +## 🔍 Transaction Filtering (Task 3)
+      136 +
+      137 +The `GET /transactions` endpoint supports optional query parameters for filtering:
+      138 +
+      139 +| Parameter | Description | Example |
+      140 +|-----------|-------------|---------|
+      141 +| `accountId` | Filter by account (matches fromAccount OR toAccount) | `?accountId=ACC-12345` |
+      142 +| `type` | Filter by transaction type | `?type=transfer` |
+      143 +| `from` | Filter transactions on or after date (YYYY-MM-DD) | `?from=2024-01-01` |
+      144 +| `to` | Filter transactions on or before date (YYYY-MM-DD) | `?to=2024-01-31` |
+      145 +
+      146 +### Filter Examples
+      147 +
+      148 +```bash
+      149 +# Get all transactions for an account
+      150 +GET /transactions?accountId=ACC-12345
+      151 +
+      152 +# Get only transfer transactions
+      153 +GET /transactions?type=transfer
+      154 +
+      155 +# Get transactions in January 2024
+      156 +GET /transactions?from=2024-01-01&to=2024-01-31
+      157 +
+      158 +# Combined: transfers for ACC-12345 in January
+      159 +GET /transactions?accountId=ACC-12345&type=transfer&from=2024-01-01&to=2024-01-31
+      160 +```
+      161 +
+      162 +### Filter Behavior
+      163 +- All filters are optional and can be combined
+      164 +- `accountId` matches both `fromAccount` and `toAccount`
+      165 +- Date range is inclusive (includes both from and to dates)
+      166 +- Returns empty array `[]` if no transactions match
+      167 +- Returns 400 Bad Request for invalid date formats or if `from` > `to`
+      168 +
+      169 +---
+      170 +
+      171  ## 🔄 API Endpoints
+      172
+      173  ### Create Transaction
+
+⏺ Update(README.md)
+  ⎿  Added 1 line, removed 1 line
+      319  ## 🚀 Future Enhancements
+      320
+      321  - [x] **Task 2**: Enhanced validation with detailed error messages
+      322 -- [ ] **Task 3**: Transaction filtering and search
+      322 +- [x] **Task 3**: Transaction filtering and search
+      323  - [ ] **Task 4**: Rate limiting (100 req/min per IP)
+      324  - [ ] Database persistence (PostgreSQL/SQLite)
+      325  - [ ] User authentication
+
+⏺ Update(README.md)
+  ⎿  Added 2 lines, removed 1 line
+      57  │   ├── validators/
+      58  │   │   └── transaction_validator.py  # Transaction validation logic
+      59  │   └── utils/
+      60 -│       └── exceptions.py       # Custom exceptions & error handlers
+      60 +│       ├── exceptions.py       # Custom exceptions & error handlers
+      61 +│       └── date_utils.py       # Date parsing utilities
+      62  ├── demo/
+      63  │   ├── run.sh                  # Script to start API
+      64  │   ├── sample-requests.http    # Sample API calls
+
+⏺ Bash(python3 -m uvicorn src.main:app --host 0.0.0.0 --port 8000 &) timeout: 10s
+  ⎿  (No content)
+
+⏺ Bash(sleep 2 && curl -s http://localhost:8000/health | python3 -m json.tool)
+  ⎿  {
+         "status": "healthy",
+         "timestamp": "2026-01-25T11:53:34.350560"
+     }
+
+⏺ Bash(echo "=== Creating test transactions ===" && \
+      curl -s -X POST http://localhost:8000/transactions -H "Content-Type: application/json" -d '{"fromAccount":
+      "ACC-1…)
+  ⎿  === Creating test transactions ===
+     Created 4 transactions
+
+⏺ Bash(echo "=== Test 1: Get all transactions ===" && curl -s "http://localhost:8000/transactions" | python3 -m
+      json.tool | head -30)
+  ⎿  === Test 1: Get all transactions ===
+     [
+         {
+     … +28 lines (ctrl+o to expand)
+
+⏺ Bash(echo "=== Test 2: Filter by accountId (ACC-11111) ===" && curl -s
+      "http://localhost:8000/transactions?accountId=ACC-11111" | python3 -m json.tool)
+  ⎿  === Test 2: Filter by accountId (ACC-11111) ===
+     [
+         {
+     … +30 lines (ctrl+o to expand)
+
+⏺ Bash(echo "=== Test 3: Filter by type (transfer) ===" && curl -s
+      "http://localhost:8000/transactions?type=transfer" | python3 -m json.tool)
+  ⎿  === Test 3: Filter by type (transfer) ===
+     [
+         {
+     … +20 lines (ctrl+o to expand)
+
+⏺ Bash(echo "=== Test 4: Filter by today's date ===" && curl -s
+      "http://localhost:8000/transactions?from=2026-01-25&to=2026-01-25" | python3 -m json.tool | head -20)
+  ⎿  === Test 4: Filter by today's date ===
+     [
+         {
+     … +18 lines (ctrl+o to expand)
+
+⏺ Bash(echo "=== Test 5: Combined filters (accountId + type) ===" && curl -s
+      "http://localhost:8000/transactions?accountId=ACC-11111&type=transfer" | python3 -m json.t…)
+  ⎿  === Test 5: Combined filters (accountId + type) ===
+     [
+         {
+     … +20 lines (ctrl+o to expand)
+
+⏺ Bash(echo "=== Test 6: Invalid date format ===" && curl -s "http://localhost:8000/transactions?from=invalid-date"
+       | python3 -m json.tool)
+  ⎿  === Test 6: Invalid date format ===
+     {
+         "detail": {
+     … +9 lines (ctrl+o to expand)
+
+⏺ Bash(echo "=== Test 7: From date after to date ===" && curl -s
+      "http://localhost:8000/transactions?from=2026-01-31&to=2026-01-01" | python3 -m json.tool)
+  ⎿  === Test 7: From date after to date ===
+     {
+         "detail": {
+     … +9 lines (ctrl+o to expand)
+
+⏺ Bash(echo "=== Test 8: No matching transactions ===" && curl -s
+      "http://localhost:8000/transactions?accountId=ACC-99999" | python3 -m json.tool)
+  ⎿  === Test 8: No matching transactions ===
+     []
+
+⏺ All tests pass. Let me clean up.
+
+⏺ Bash(pkill -f "uvicorn src.main:app" 2>/dev/null || true)
+  ⎿  (No content)
+
+⏺ Task 3: Transaction Filtering — Complete
+
+  All filtering features have been implemented and tested successfully.
+
+  Files Created/Modified
+  ┌────────────────────────────┬──────────────────────────────────────┐
+  │            File            │                Action                │
+  ├────────────────────────────┼──────────────────────────────────────┤
+  │ src/utils/date_utils.py    │ Created                              │
+  ├────────────────────────────┼──────────────────────────────────────┤
+  │ src/storage/store.py       │ Modified (added filter_transactions) │
+  ├────────────────────────────┼──────────────────────────────────────┤
+  │ src/routes/transactions.py │ Modified (added query parameters)    │
+  ├────────────────────────────┼──────────────────────────────────────┤
+  │ README.md                  │ Updated                              │
+  └────────────────────────────┴──────────────────────────────────────┘
+  Test Results
+  ┌───────────────────────────────┬─────────────────────────────────────────────┐
+  │           Test Case           │                   Result                    │
+  ├───────────────────────────────┼─────────────────────────────────────────────┤
+  │ Get all transactions          │ ✅ Returns 4 transactions                   │
+  ├───────────────────────────────┼─────────────────────────────────────────────┤
+  │ Filter by accountId=ACC-11111 │ ✅ Returns 3 transactions (matches from/to) │
+  ├───────────────────────────────┼─────────────────────────────────────────────┤
+  │ Filter by type=transfer       │ ✅ Returns 2 transfer transactions          │
+  ├───────────────────────────────┼─────────────────────────────────────────────┤
+  │ Filter by date range          │ ✅ Returns transactions within range        │
+  ├───────────────────────────────┼─────────────────────────────────────────────┤
+  │ Combined filters              │ ✅ Returns intersection of criteria         │
+  ├───────────────────────────────┼─────────────────────────────────────────────┤
+  │ Invalid date format           │ ✅ Returns 400 with error message           │
+  ├───────────────────────────────┼─────────────────────────────────────────────┤
+  │ from > to date                │ ✅ Returns 400 with error message           │
+  ├───────────────────────────────┼─────────────────────────────────────────────┤
+  │ No matching transactions      │ ✅ Returns empty array []                   │
+  └───────────────────────────────┴─────────────────────────────────────────────┘
+  Supported Query Parameters
+
+  GET /transactions?accountId=ACC-12345        # Filter by account
+  GET /transactions?type=transfer              # Filter by type
+  GET /transactions?from=2024-01-01            # From date
+  GET /transactions?to=2024-01-31              # To date
+  GET /transactions?accountId=ACC-12345&type=transfer&from=2024-01-01&to=2024-01-31
+
+  Tasks 1, 2, and 3 are now complete. Task 4 (Rate Limiting) is optional.
+
+✻ Brewed for 2m 24s

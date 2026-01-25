@@ -27,11 +27,11 @@ A REST API for managing banking transactions built with **FastAPI** and **Python
 - [x] Currency validation (ISO 4217 codes)
 - [x] Detailed error response with field-level messages
 
-#### ⏳ **Task 3: Transaction Filtering** (PLANNED)
-- [ ] Filter by account ID
-- [ ] Filter by transaction type
-- [ ] Filter by date range
-- [ ] Combine multiple filters
+#### ✅ **Task 3: Transaction Filtering** (COMPLETE)
+- [x] Filter by account ID
+- [x] Filter by transaction type
+- [x] Filter by date range
+- [x] Combine multiple filters
 
 #### ⏳ **Task 4: Rate Limiting** (PLANNED)
 - [ ] Rate limit: 100 requests per minute per IP
@@ -57,7 +57,8 @@ homework-1/
 │   ├── validators/
 │   │   └── transaction_validator.py  # Transaction validation logic
 │   └── utils/
-│       └── exceptions.py       # Custom exceptions & error handlers
+│       ├── exceptions.py       # Custom exceptions & error handlers
+│       └── date_utils.py       # Date parsing utilities
 ├── demo/
 │   ├── run.sh                  # Script to start API
 │   ├── sample-requests.http    # Sample API calls
@@ -129,6 +130,42 @@ homework-1/
   ]
 }
 ```
+
+---
+
+## 🔍 Transaction Filtering (Task 3)
+
+The `GET /transactions` endpoint supports optional query parameters for filtering:
+
+| Parameter | Description | Example |
+|-----------|-------------|---------|
+| `accountId` | Filter by account (matches fromAccount OR toAccount) | `?accountId=ACC-12345` |
+| `type` | Filter by transaction type | `?type=transfer` |
+| `from` | Filter transactions on or after date (YYYY-MM-DD) | `?from=2024-01-01` |
+| `to` | Filter transactions on or before date (YYYY-MM-DD) | `?to=2024-01-31` |
+
+### Filter Examples
+
+```bash
+# Get all transactions for an account
+GET /transactions?accountId=ACC-12345
+
+# Get only transfer transactions
+GET /transactions?type=transfer
+
+# Get transactions in January 2024
+GET /transactions?from=2024-01-01&to=2024-01-31
+
+# Combined: transfers for ACC-12345 in January
+GET /transactions?accountId=ACC-12345&type=transfer&from=2024-01-01&to=2024-01-31
+```
+
+### Filter Behavior
+- All filters are optional and can be combined
+- `accountId` matches both `fromAccount` and `toAccount`
+- Date range is inclusive (includes both from and to dates)
+- Returns empty array `[]` if no transactions match
+- Returns 400 Bad Request for invalid date formats or if `from` > `to`
 
 ---
 
@@ -283,7 +320,7 @@ print(response.json())
 ## 🚀 Future Enhancements
 
 - [x] **Task 2**: Enhanced validation with detailed error messages
-- [ ] **Task 3**: Transaction filtering and search
+- [x] **Task 3**: Transaction filtering and search
 - [ ] **Task 4**: Rate limiting (100 req/min per IP)
 - [ ] Database persistence (PostgreSQL/SQLite)
 - [ ] User authentication
