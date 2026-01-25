@@ -15,7 +15,7 @@ describe('Storage - Business Logic', () => {
   describe('createTransaction', () => {
     it('should create a deposit transaction with generated id and timestamp', () => {
       const input: CreateTransactionInput = {
-        toAccount: 'ACC001',
+        toAccount: 'ACC-7H9K2',
         amount: 100,
         currency: 'USD',
         type: 'deposit'
@@ -30,12 +30,12 @@ describe('Storage - Business Logic', () => {
       expect(result.amount).toBe(100);
       expect(result.currency).toBe('USD');
       expect(result.type).toBe('deposit');
-      expect(result.toAccount).toBe('ACC001');
+      expect(result.toAccount).toBe('ACC-7H9K2');
     });
 
     it('should create a withdrawal transaction', () => {
       const input: CreateTransactionInput = {
-        fromAccount: 'ACC001',
+        fromAccount: 'ACC-3M8N5',
         amount: 50,
         currency: 'EUR',
         type: 'withdrawal'
@@ -47,13 +47,13 @@ describe('Storage - Business Logic', () => {
       expect(result.status).toBe('completed');
       expect(result.amount).toBe(50);
       expect(result.type).toBe('withdrawal');
-      expect(result.fromAccount).toBe('ACC001');
+      expect(result.fromAccount).toBe('ACC-3M8N5');
     });
 
     it('should create a transfer transaction', () => {
       const input: CreateTransactionInput = {
-        fromAccount: 'ACC001',
-        toAccount: 'ACC002',
+        fromAccount: 'ACC-5Q7R4',
+        toAccount: 'ACC-9T2W6',
         amount: 200,
         currency: 'USD',
         type: 'transfer'
@@ -64,13 +64,13 @@ describe('Storage - Business Logic', () => {
       expect(result.id).toBeDefined();
       expect(result.status).toBe('completed');
       expect(result.type).toBe('transfer');
-      expect(result.fromAccount).toBe('ACC001');
-      expect(result.toAccount).toBe('ACC002');
+      expect(result.fromAccount).toBe('ACC-5Q7R4');
+      expect(result.toAccount).toBe('ACC-9T2W6');
     });
 
     it('should include optional description if provided', () => {
       const input: CreateTransactionInput = {
-        toAccount: 'ACC001',
+        toAccount: 'ACC-1B4C8',
         amount: 100,
         currency: 'USD',
         type: 'deposit',
@@ -84,7 +84,7 @@ describe('Storage - Business Logic', () => {
 
     it('should store the transaction and make it retrievable', () => {
       const input: CreateTransactionInput = {
-        toAccount: 'ACC001',
+        toAccount: 'ACC-6P8S3',
         amount: 100,
         currency: 'USD',
         type: 'deposit'
@@ -105,13 +105,13 @@ describe('Storage - Business Logic', () => {
 
     it('should return all created transactions', () => {
       createTransaction({
-        toAccount: 'ACC001',
+        toAccount: 'ACC-2D7E9',
         amount: 100,
         currency: 'USD',
         type: 'deposit'
       });
       createTransaction({
-        fromAccount: 'ACC002',
+        fromAccount: 'ACC-4L6M1',
         amount: 50,
         currency: 'USD',
         type: 'withdrawal'
@@ -124,7 +124,7 @@ describe('Storage - Business Logic', () => {
 
     it('should return a copy to prevent external modifications', () => {
       createTransaction({
-        toAccount: 'ACC001',
+        toAccount: 'ACC-8V3X7',
         amount: 100,
         currency: 'USD',
         type: 'deposit'
@@ -145,13 +145,13 @@ describe('Storage - Business Logic', () => {
 
     it('should return the correct transaction by id', () => {
       const tx1 = createTransaction({
-        toAccount: 'ACC001',
+        toAccount: 'ACC-9Y5Z2',
         amount: 100,
         currency: 'USD',
         type: 'deposit'
       });
       const tx2 = createTransaction({
-        toAccount: 'ACC002',
+        toAccount: 'ACC-1A4B6',
         amount: 200,
         currency: 'EUR',
         type: 'deposit'
@@ -166,112 +166,112 @@ describe('Storage - Business Logic', () => {
     describe('Deposits', () => {
       it('should increase account balance on deposit', () => {
         createTransaction({
-          toAccount: 'ACC001',
+          toAccount: 'ACC-3C7D8',
           amount: 100,
           currency: 'USD',
           type: 'deposit'
         });
 
-        expect(getAccountBalance('ACC001')).toBe(100);
+        expect(getAccountBalance('ACC-3C7D8')).toBe(100);
       });
 
       it('should accumulate multiple deposits', () => {
         createTransaction({
-          toAccount: 'ACC001',
+          toAccount: 'ACC-5E9F1',
           amount: 100,
           currency: 'USD',
           type: 'deposit'
         });
         createTransaction({
-          toAccount: 'ACC001',
+          toAccount: 'ACC-5E9F1',
           amount: 50,
           currency: 'USD',
           type: 'deposit'
         });
 
-        expect(getAccountBalance('ACC001')).toBe(150);
+        expect(getAccountBalance('ACC-5E9F1')).toBe(150);
       });
 
       it('should handle deposits to different accounts independently', () => {
         createTransaction({
-          toAccount: 'ACC001',
+          toAccount: 'ACC-7G2H4',
           amount: 100,
           currency: 'USD',
           type: 'deposit'
         });
         createTransaction({
-          toAccount: 'ACC002',
+          toAccount: 'ACC-9J6K3',
           amount: 200,
           currency: 'USD',
           type: 'deposit'
         });
 
-        expect(getAccountBalance('ACC001')).toBe(100);
-        expect(getAccountBalance('ACC002')).toBe(200);
+        expect(getAccountBalance('ACC-7G2H4')).toBe(100);
+        expect(getAccountBalance('ACC-9J6K3')).toBe(200);
       });
     });
 
     describe('Withdrawals', () => {
       it('should decrease account balance on withdrawal', () => {
         createTransaction({
-          toAccount: 'ACC001',
+          toAccount: 'ACC-1L5M7',
           amount: 100,
           currency: 'USD',
           type: 'deposit'
         });
         createTransaction({
-          fromAccount: 'ACC001',
+          fromAccount: 'ACC-1L5M7',
           amount: 30,
           currency: 'USD',
           type: 'withdrawal'
         });
 
-        expect(getAccountBalance('ACC001')).toBe(70);
+        expect(getAccountBalance('ACC-1L5M7')).toBe(70);
       });
 
       it('should allow negative balance (overdraft)', () => {
         createTransaction({
-          fromAccount: 'ACC001',
+          fromAccount: 'ACC-3N8P2',
           amount: 50,
           currency: 'USD',
           type: 'withdrawal'
         });
 
-        expect(getAccountBalance('ACC001')).toBe(-50);
+        expect(getAccountBalance('ACC-3N8P2')).toBe(-50);
       });
     });
 
     describe('Transfers', () => {
       it('should decrease source account and increase destination account', () => {
         createTransaction({
-          toAccount: 'ACC001',
+          toAccount: 'ACC-5Q9R6',
           amount: 100,
           currency: 'USD',
           type: 'deposit'
         });
         createTransaction({
-          fromAccount: 'ACC001',
-          toAccount: 'ACC002',
+          fromAccount: 'ACC-5Q9R6',
+          toAccount: 'ACC-7S4T1',
           amount: 40,
           currency: 'USD',
           type: 'transfer'
         });
 
-        expect(getAccountBalance('ACC001')).toBe(60);
-        expect(getAccountBalance('ACC002')).toBe(40);
+        expect(getAccountBalance('ACC-5Q9R6')).toBe(60);
+        expect(getAccountBalance('ACC-7S4T1')).toBe(40);
       });
 
       it('should handle transfer between two new accounts', () => {
         createTransaction({
-          fromAccount: 'ACC001',
-          toAccount: 'ACC002',
+          fromAccount: 'ACC-9U3V8',
+          toAccount: 'ACC-2W7X5',
           amount: 100,
           currency: 'USD',
           type: 'transfer'
         });
 
-        expect(getAccountBalance('ACC001')).toBe(-100);
-        expect(getAccountBalance('ACC002')).toBe(100);
+        expect(getAccountBalance('ACC-9U3V8')).toBe(-100);
+        expect(getAccountBalance('ACC-2W7X5')).toBe(100);
       });
     });
   });
@@ -283,43 +283,43 @@ describe('Storage - Business Logic', () => {
 
     it('should return 0 for account with zero balance', () => {
       createTransaction({
-        toAccount: 'ACC001',
+        toAccount: 'ACC-4Y9Z1',
         amount: 100,
         currency: 'USD',
         type: 'deposit'
       });
       createTransaction({
-        fromAccount: 'ACC001',
+        fromAccount: 'ACC-4Y9Z1',
         amount: 100,
         currency: 'USD',
         type: 'withdrawal'
       });
 
-      expect(getAccountBalance('ACC001')).toBe(0);
+      expect(getAccountBalance('ACC-4Y9Z1')).toBe(0);
     });
 
     it('should handle decimal amounts correctly', () => {
       createTransaction({
-        toAccount: 'ACC001',
+        toAccount: 'ACC-6A2B4',
         amount: 100.50,
         currency: 'USD',
         type: 'deposit'
       });
       createTransaction({
-        fromAccount: 'ACC001',
+        fromAccount: 'ACC-6A2B4',
         amount: 25.25,
         currency: 'USD',
         type: 'withdrawal'
       });
 
-      expect(getAccountBalance('ACC001')).toBeCloseTo(75.25);
+      expect(getAccountBalance('ACC-6A2B4')).toBeCloseTo(75.25);
     });
   });
 
   describe('clearStorage', () => {
     it('should clear all transactions', () => {
       createTransaction({
-        toAccount: 'ACC001',
+        toAccount: 'ACC-8C5D7',
         amount: 100,
         currency: 'USD',
         type: 'deposit'
@@ -332,7 +332,7 @@ describe('Storage - Business Logic', () => {
 
     it('should clear all account balances', () => {
       createTransaction({
-        toAccount: 'ACC001',
+        toAccount: 'ACC-1E6F9',
         amount: 100,
         currency: 'USD',
         type: 'deposit'
@@ -340,7 +340,7 @@ describe('Storage - Business Logic', () => {
 
       clearStorage();
 
-      expect(getAccountBalance('ACC001')).toBeNull();
+      expect(getAccountBalance('ACC-1E6F9')).toBeNull();
     });
   });
 
@@ -373,7 +373,7 @@ describe('Storage - Business Logic', () => {
 
     it('should handle transfer without fromAccount (defensive)', () => {
       const input = {
-        toAccount: 'ACC002',
+        toAccount: 'ACC-3G8H2',
         amount: 100,
         currency: 'USD',
         type: 'transfer'
@@ -383,12 +383,12 @@ describe('Storage - Business Logic', () => {
 
       expect(result.type).toBe('transfer');
       // toAccount gets initialized but no transfer happens (missing fromAccount)
-      expect(getAccountBalance('ACC002')).toBe(0);
+      expect(getAccountBalance('ACC-3G8H2')).toBe(0);
     });
 
     it('should handle transfer without toAccount (defensive)', () => {
       const input = {
-        fromAccount: 'ACC001',
+        fromAccount: 'ACC-5J1K7',
         amount: 100,
         currency: 'USD',
         type: 'transfer'
@@ -398,7 +398,7 @@ describe('Storage - Business Logic', () => {
 
       expect(result.type).toBe('transfer');
       // fromAccount gets initialized but no transfer happens (missing toAccount)
-      expect(getAccountBalance('ACC001')).toBe(0);
+      expect(getAccountBalance('ACC-5J1K7')).toBe(0);
     });
 
     it('should handle transfer without both accounts (defensive)', () => {

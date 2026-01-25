@@ -10,7 +10,7 @@ describe('Transaction Service', () => {
   describe('createTransaction', () => {
     it('should create and return a transaction', () => {
       const result = transactionService.createTransaction({
-        toAccount: 'ACC001',
+        toAccount: 'ACC-4F8B2',
         amount: 100,
         currency: 'USD',
         type: 'deposit'
@@ -30,7 +30,7 @@ describe('Transaction Service', () => {
 
     it('should return all transactions', () => {
       transactionService.createTransaction({
-        toAccount: 'ACC001',
+        toAccount: 'ACC-7D9E3',
         amount: 100,
         currency: 'USD',
         type: 'deposit'
@@ -44,7 +44,7 @@ describe('Transaction Service', () => {
   describe('getTransactionById', () => {
     it('should return transaction when found', () => {
       const created = transactionService.createTransaction({
-        toAccount: 'ACC001',
+        toAccount: 'ACC-2K5M8',
         amount: 100,
         currency: 'USD',
         type: 'deposit'

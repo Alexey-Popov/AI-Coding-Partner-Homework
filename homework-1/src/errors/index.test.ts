@@ -62,12 +62,12 @@ describe('Errors', () => {
     });
 
     it('should format NotFoundException', () => {
-      const error = new NotFoundException('Account', 'ACC001');
+      const error = new NotFoundException('Account', 'ACC-8Q1R7');
 
       const result = formatErrorResponse(error);
 
       expect(result.statusCode).toBe(404);
-      expect(result.body).toEqual({ error: 'Account ACC001 not found' });
+      expect(result.body).toEqual({ error: 'Account ACC-8Q1R7 not found' });
     });
 
     it('should format standard Error', () => {
