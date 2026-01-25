@@ -4,7 +4,7 @@
 
 - Python 3.8 or higher
 - pip (Python package manager)
-- Terminal/Command line access
+- Terminal/Command line access (macOS zsh)
 
 ## Quick Start (Easiest Method)
 
@@ -16,9 +16,10 @@ chmod +x demo/run.sh
 ./demo/run.sh
 ```
 
-The script will automatically:
+The script will:
 - Install dependencies
-- Start the server on http://localhost:8000
+- Start the server at http://localhost:8000
+- Print links to Swagger UI and ReDoc
 
 ### Option 2: Manual setup
 
@@ -26,69 +27,38 @@ The script will automatically:
 # 1. Navigate to the project directory
 cd homework-1
 
-# 2. Install dependencies
+# 2. (Recommended) Create and activate a virtual environment
+python3 -m venv .venv
+source .venv/bin/activate
+
+# 3. Install dependencies
 pip install -r requirements.txt
 
-# 3. Start the server
+# 4. Start the server
 python3 -m uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
 
-# 4. Open browser to:
+# 5. Open browser to:
 # - API: http://localhost:8000
 # - Docs: http://localhost:8000/docs
 # - ReDoc: http://localhost:8000/redoc
 ```
 
-## Detailed Setup Steps
-
-### Step 1: Install Python Dependencies
-
-```bash
-cd homework-1
-pip install -r requirements.txt
-```
-
-**Dependencies installed:**
-- `fastapi` - Web framework
-- `uvicorn` - ASGI server
-- `pydantic` - Data validation
-- `python-dateutil` - Date handling
-- `slowapi` - Rate limiting
-
-### Step 2: Start the API Server
-
-**Method A: Using Uvicorn directly**
-```bash
-python3 -m uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
-```
-
-**Method B: Using Python module execution**
-```bash
-python3 src/main.py
-```
-
-**Method C: Using the demo script**
-```bash
-./demo/run.sh
-```
-
-### Step 3: Verify the API is Running
+## Verify the API is Running
 
 Open in browser or terminal:
 ```bash
 curl http://localhost:8000/health
 ```
 
-You should see:
+Expected response:
 ```json
 {
   "status": "healthy",
-  "timestamp": "2026-01-25T10:30:45.123456"
+  "timestamp": "<ISO timestamp>"
 }
 ```
 
 ## API Endpoints
-
-Once running, access the API at:
 
 | Endpoint | Purpose |
 |----------|---------|
@@ -124,7 +94,7 @@ curl http://localhost:8000/accounts/ACC-12345/balance
 
 ### Using VS Code REST Client
 
-1. Install "REST Client" extension in VS Code
+1. Install "REST Client" extension
 2. Open `demo/sample-requests.http`
 3. Click "Send Request" above each request
 
@@ -132,10 +102,10 @@ curl http://localhost:8000/accounts/ACC-12345/balance
 
 1. Open Postman
 2. Create new request
-3. Choose method: POST
+3. Method: POST
 4. URL: `http://localhost:8000/transactions`
 5. Headers: `Content-Type: application/json`
-6. Body (raw):
+6. Body (raw JSON):
 ```json
 {
   "fromAccount": "ACC-12345",
@@ -150,7 +120,6 @@ curl http://localhost:8000/accounts/ACC-12345/balance
 
 ```python
 import requests
-import json
 
 BASE_URL = "http://localhost:8000"
 
@@ -176,16 +145,8 @@ print(response.json())
 
 ## Interactive API Documentation
 
-The API includes automatic interactive documentation:
-
-- **Swagger UI** (Recommended): http://localhost:8000/docs
-  - Try requests directly in the browser
-  - See request/response schemas
-  - Auto-generated from code
-
-- **ReDoc**: http://localhost:8000/redoc
-  - Alternative documentation viewer
-  - Better for reading
+- Swagger UI: http://localhost:8000/docs (try requests in browser)
+- ReDoc: http://localhost:8000/redoc
 
 ## Stopping the Server
 
@@ -196,7 +157,7 @@ Press `Ctrl+C` in the terminal where the server is running.
 ### "Port 8000 already in use"
 ```bash
 # Use a different port
-python3 -m uvicorn src.main:app --host 0.0.0.0 --port 8001
+python3 -m uvicorn src.main:app --host 0.0.0.0 --port 8001 --reload
 ```
 
 ### "Module not found" errors
@@ -212,9 +173,6 @@ pwd  # Should end with /homework-1
 ```bash
 # Check Python version (should be 3.8+)
 python3 --version
-
-# If error, try:
-python --version
 ```
 
 ### Permission denied on run.sh
@@ -237,11 +195,13 @@ homework-1/
 │   ├── schemas/
 │   │   └── transaction.py   # Pydantic validators
 │   ├── routes/
-│   │   └── transactions.py  # API endpoints
+│   │   ├── transactions.py  # API endpoints
+│   │   └── accounts.py      # Balance endpoint
 │   ├── storage/
 │   │   └── store.py         # In-memory storage
 │   └── utils/
-│       └── exceptions.py    # Custom exceptions
+│       ├── exceptions.py    # Custom exceptions
+│       └── rate_limiter.py  # Rate limiting
 ├── demo/
 │   ├── run.sh               # Start script
 │   ├── sample-requests.http # Sample API calls
@@ -251,13 +211,9 @@ homework-1/
 └── HOWTORUN.md             # This file
 ```
 
-## Next Steps
+## Status
 
-1. ✅ **Task 1 Complete**: Core API implementation
-2. 🔄 **Task 2**: Add transaction validation with detailed errors
-3. 🔄 **Task 3**: Implement transaction filtering
-4. 🔄 **Task 4**: Add rate limiting
-
----
-
-For more details, see [README.md](README.md)
+- Task 1: Core API — Complete
+- Task 2: Transaction Validation — Complete
+- Task 3: Transaction Filtering — Complete
+- Task 4: Rate Limiting — Complete

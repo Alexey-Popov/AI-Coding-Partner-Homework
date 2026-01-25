@@ -8,13 +8,13 @@ echo ""
 # Check if running in virtual environment
 if [ -z "$VIRTUAL_ENV" ]; then
     echo "⚠️  No virtual environment detected."
-    echo "💡 Consider creating one: python3 -m venv venv && source venv/bin/activate"
+    echo "💡 Consider creating one: python3 -m venv .venv && source .venv/bin/activate"
     echo ""
 fi
 
 # Install dependencies
 echo "📦 Installing dependencies..."
-pip install -r requirements.txt > /dev/null 2>&1
+python3 -m pip install -r requirements.txt > /dev/null 2>&1
 
 # Start the API server
 echo "✅ Starting server on http://localhost:8000"
