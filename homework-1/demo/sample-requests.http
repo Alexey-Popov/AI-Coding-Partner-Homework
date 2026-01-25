@@ -1,0 +1,177 @@
+### Banking Transactions API - Sample Requests
+### Use with VS Code REST Client extension or similar tools
+
+@baseUrl = http://localhost:3000
+
+### Health Check
+GET {{baseUrl}}/
+
+###
+
+### 1. Create a deposit transaction
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-00000",
+  "toAccount": "ACC-12345",
+  "amount": 1000.00,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+###
+
+### 2. Create a withdrawal transaction
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-00000",
+  "amount": 250.50,
+  "currency": "USD",
+  "type": "withdrawal"
+}
+
+###
+
+### 3. Create a transfer transaction
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.50,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### 4. Create another deposit (different account)
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-00000",
+  "toAccount": "ACC-67890",
+  "amount": 500.00,
+  "currency": "EUR",
+  "type": "deposit"
+}
+
+###
+
+### 5. Get all transactions
+GET {{baseUrl}}/transactions
+
+###
+
+### 6. Get transactions for specific account
+GET {{baseUrl}}/transactions?accountId=ACC-12345
+
+###
+
+### 7. Get transactions by type
+GET {{baseUrl}}/transactions?type=transfer
+
+###
+
+### 8. Get transactions by date range
+GET {{baseUrl}}/transactions?from=2024-01-01&to=2024-12-31
+
+###
+
+### 9. Get transactions with multiple filters
+GET {{baseUrl}}/transactions?accountId=ACC-12345&type=deposit
+
+###
+
+### 10. Get specific transaction by ID (replace with actual ID)
+GET {{baseUrl}}/transactions/TXN-00000001
+
+###
+
+### 11. Get account balance
+GET {{baseUrl}}/accounts/ACC-12345/balance
+
+###
+
+### 12. Get another account balance
+GET {{baseUrl}}/accounts/ACC-67890/balance
+
+###
+
+### 13. Export transactions as CSV
+GET {{baseUrl}}/transactions/export?format=csv
+
+###
+
+### 14. Try invalid transaction (negative amount)
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": -50.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### 15. Try invalid transaction (invalid account format)
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "INVALID",
+  "toAccount": "ACC-67890",
+  "amount": 50.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### 16. Try invalid transaction (invalid currency)
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 50.00,
+  "currency": "INVALID",
+  "type": "transfer"
+}
+
+###
+
+### 17. Try invalid transaction (too many decimal places)
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 50.123,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### 18. Get non-existent transaction
+GET {{baseUrl}}/transactions/TXN-99999999
+
+###
+
+### 19. Get non-existent account balance
+GET {{baseUrl}}/accounts/ACC-99999/balance
+
+###
+

@@ -1,0 +1,110 @@
+{
+  "description": "Sample transaction data for testing the Banking Transactions API",
+  "accounts": [
+    {
+      "accountId": "ACC-12345",
+      "description": "John Doe's checking account"
+    },
+    {
+      "accountId": "ACC-67890",
+      "description": "Jane Smith's savings account"
+    },
+    {
+      "accountId": "ACC-ABCDE",
+      "description": "Business account"
+    },
+    {
+      "accountId": "ACC-00000",
+      "description": "System account for deposits/withdrawals"
+    }
+  ],
+  "sampleTransactions": [
+    {
+      "fromAccount": "ACC-00000",
+      "toAccount": "ACC-12345",
+      "amount": 1000.00,
+      "currency": "USD",
+      "type": "deposit",
+      "description": "Initial deposit"
+    },
+    {
+      "fromAccount": "ACC-00000",
+      "toAccount": "ACC-67890",
+      "amount": 2500.00,
+      "currency": "USD",
+      "type": "deposit",
+      "description": "Initial deposit"
+    },
+    {
+      "fromAccount": "ACC-12345",
+      "toAccount": "ACC-67890",
+      "amount": 250.50,
+      "currency": "USD",
+      "type": "transfer",
+      "description": "Payment to Jane"
+    },
+    {
+      "fromAccount": "ACC-67890",
+      "toAccount": "ACC-00000",
+      "amount": 100.00,
+      "currency": "USD",
+      "type": "withdrawal",
+      "description": "ATM withdrawal"
+    },
+    {
+      "fromAccount": "ACC-00000",
+      "toAccount": "ACC-ABCDE",
+      "amount": 5000.00,
+      "currency": "EUR",
+      "type": "deposit",
+      "description": "Business funding"
+    }
+  ],
+  "validationTestCases": [
+    {
+      "description": "Invalid - negative amount",
+      "transaction": {
+        "fromAccount": "ACC-12345",
+        "toAccount": "ACC-67890",
+        "amount": -50.00,
+        "currency": "USD",
+        "type": "transfer"
+      },
+      "expectedError": "Amount must be a positive number"
+    },
+    {
+      "description": "Invalid - too many decimal places",
+      "transaction": {
+        "fromAccount": "ACC-12345",
+        "toAccount": "ACC-67890",
+        "amount": 50.123,
+        "currency": "USD",
+        "type": "transfer"
+      },
+      "expectedError": "Amount must have maximum 2 decimal places"
+    },
+    {
+      "description": "Invalid - wrong account format",
+      "transaction": {
+        "fromAccount": "INVALID",
+        "toAccount": "ACC-67890",
+        "amount": 50.00,
+        "currency": "USD",
+        "type": "transfer"
+      },
+      "expectedError": "From account must follow format ACC-XXXXX"
+    },
+    {
+      "description": "Invalid - unsupported currency",
+      "transaction": {
+        "fromAccount": "ACC-12345",
+        "toAccount": "ACC-67890",
+        "amount": 50.00,
+        "currency": "XYZ",
+        "type": "transfer"
+      },
+      "expectedError": "Invalid currency code"
+    }
+  ]
+}
+
