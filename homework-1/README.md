@@ -33,9 +33,9 @@ A REST API for managing banking transactions built with **FastAPI** and **Python
 - [x] Filter by date range
 - [x] Combine multiple filters
 
-#### ⏳ **Task 4: Rate Limiting** (PLANNED)
-- [ ] Rate limit: 100 requests per minute per IP
-- [ ] Return 429 status when exceeded
+#### ✅ **Task 4: Rate Limiting** (COMPLETE)
+- [x] Rate limit: 100 requests per minute per IP
+- [x] Return 429 status when exceeded
 
 ---
 
@@ -58,7 +58,8 @@ homework-1/
 │   │   └── transaction_validator.py  # Transaction validation logic
 │   └── utils/
 │       ├── exceptions.py       # Custom exceptions & error handlers
-│       └── date_utils.py       # Date parsing utilities
+│       ├── date_utils.py       # Date parsing utilities
+│       └── rate_limiter.py     # Rate limiting configuration
 ├── demo/
 │   ├── run.sh                  # Script to start API
 │   ├── sample-requests.http    # Sample API calls
@@ -166,6 +167,36 @@ GET /transactions?accountId=ACC-12345&type=transfer&from=2024-01-01&to=2024-01-3
 - Date range is inclusive (includes both from and to dates)
 - Returns empty array `[]` if no transactions match
 - Returns 400 Bad Request for invalid date formats or if `from` > `to`
+
+---
+
+## 🚦 Rate Limiting (Task 4)
+
+All API endpoints are rate limited to protect against abuse.
+
+| Setting | Value |
+|---------|-------|
+| **Limit** | 100 requests per minute |
+| **Scope** | Per IP address |
+| **Status Code** | 429 Too Many Requests |
+
+### Rate Limit Response
+
+When the rate limit is exceeded, the API returns:
+
+```json
+{
+  "error": "Rate limit exceeded",
+  "detail": "Too many requests. Maximum 100 requests per minute allowed.",
+  "retry_after": "1 per 1 minute"
+}
+```
+
+### Implementation Details
+- Uses `slowapi` library (FastAPI-compatible rate limiting)
+- Rate limits are tracked per client IP address
+- All endpoints share the same rate limit counter
+- Limits reset after 1 minute
 
 ---
 
@@ -321,7 +352,7 @@ print(response.json())
 
 - [x] **Task 2**: Enhanced validation with detailed error messages
 - [x] **Task 3**: Transaction filtering and search
-- [ ] **Task 4**: Rate limiting (100 req/min per IP)
+- [x] **Task 4**: Rate limiting (100 req/min per IP)
 - [ ] Database persistence (PostgreSQL/SQLite)
 - [ ] User authentication
 - [ ] Transaction status updates

@@ -1,17 +1,19 @@
 """Transaction routes for the banking API"""
-from fastapi import APIRouter, HTTPException, Query, status
+from fastapi import APIRouter, HTTPException, Query, Request, status
 from typing import List, Optional, Literal
 from src.models.transaction import Transaction
 from src.schemas.transaction import TransactionCreate, TransactionResponse
 from src.storage.store import TransactionStore
 from src.utils.date_utils import parse_date_start, parse_date_end
+from src.utils.rate_limiter import limiter, RATE_LIMIT
 
 router = APIRouter(prefix="/transactions", tags=["transactions"])
 store = TransactionStore()
 
 
 @router.post("", response_model=TransactionResponse, status_code=status.HTTP_201_CREATED)
-def create_transaction(transaction_data: TransactionCreate) -> dict:
+@limiter.limit(RATE_LIMIT)
+def create_transaction(request: Request, transaction_data: TransactionCreate) -> dict:
     """
     Create a new transaction
 
@@ -20,6 +22,8 @@ def create_transaction(transaction_data: TransactionCreate) -> dict:
     - **amount**: Transaction amount (must be positive)
     - **currency**: ISO 4217 currency code
     - **type**: Transaction type (deposit, withdrawal, or transfer)
+
+    Rate limited to 100 requests per minute per IP.
     """
     try:
         # Create transaction object
@@ -43,7 +47,9 @@ def create_transaction(transaction_data: TransactionCreate) -> dict:
 
 
 @router.get("", response_model=List[TransactionResponse])
+@limiter.limit(RATE_LIMIT)
 def list_transactions(
+    request: Request,
     accountId: Optional[str] = Query(
         None,
         description="Filter by account ID (matches fromAccount or toAccount)"
@@ -72,6 +78,7 @@ def list_transactions(
     - **to**: Filter transactions on or before this date (YYYY-MM-DD)
 
     All filters can be combined. Returns empty array if no matches found.
+    Rate limited to 100 requests per minute per IP.
     """
     # Parse and validate date parameters
     parsed_from = None
@@ -122,11 +129,14 @@ def list_transactions(
 
 
 @router.get("/{transaction_id}", response_model=TransactionResponse)
-def get_transaction(transaction_id: str) -> dict:
+@limiter.limit(RATE_LIMIT)
+def get_transaction(request: Request, transaction_id: str) -> dict:
     """
     Get a specific transaction by ID
 
     - **transaction_id**: The ID of the transaction to retrieve
+
+    Rate limited to 100 requests per minute per IP.
     """
     transaction = store.get_by_id(transaction_id)
     if not transaction:
