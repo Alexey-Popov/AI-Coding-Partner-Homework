@@ -83,3 +83,8 @@ curl "http://localhost:8080/transactions?accountId=ACC-12345"
 curl "http://localhost:8080/transactions?type=DEPOSIT&from=2024-01-01&to=2024-12-31"
 ```
 
+#### 7. Summary
+```bash
+curl http://localhost:8080/accounts/ACC-12345/summary
+```
+

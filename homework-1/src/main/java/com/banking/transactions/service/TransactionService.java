@@ -1,15 +1,18 @@
 package com.banking.transactions.service;
 
 import com.banking.transactions.dto.AccountBalanceResponse;
+import com.banking.transactions.dto.AccountSummaryResponse;
 import com.banking.transactions.model.Transaction;
 import com.banking.transactions.model.TransactionStatus;
 import com.banking.transactions.model.TransactionType;
 import com.banking.transactions.repository.InMemoryTransactionRepository;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -145,5 +148,47 @@ public class TransactionService {
         }
         
         return BigDecimal.ZERO;
+    }
+
+    /**
+     * Get account summary - Task 4 Option A
+     */
+    public AccountSummaryResponse getAccountSummary(String accountId) {
+        List<Transaction> accountTransactions = repository.findAll().stream()
+                .filter(t -> accountMatchesTransaction(accountId, t))
+                .collect(Collectors.toList());
+        
+        if (accountTransactions.isEmpty()) {
+            return null;
+        }
+        
+        BigDecimal totalDeposits = calculateTotalByType(accountTransactions, TransactionType.DEPOSIT);
+        
+        BigDecimal totalWithdrawals = calculateTotalByType(accountTransactions, TransactionType.WITHDRAWAL);
+        
+        LocalDateTime mostRecentDate = getMostRecentDate(accountTransactions);
+        
+        return new AccountSummaryResponse(
+                accountId,
+                totalDeposits,
+                totalWithdrawals,
+                accountTransactions.size(),
+                mostRecentDate
+        );
+    }
+
+    @Nullable
+    private LocalDateTime getMostRecentDate(List<Transaction> accountTransactions) {
+        return accountTransactions.stream()
+                .map(Transaction::getTimestamp)
+                .max(Comparator.naturalOrder())
+                .orElse(null);
+    }
+
+    private BigDecimal calculateTotalByType(List<Transaction> accountTransactions, TransactionType withdrawal) {
+        return accountTransactions.stream()
+                .filter(t -> t.getType() == withdrawal)
+                .map(Transaction::getAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

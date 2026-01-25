@@ -1,6 +1,7 @@
 package com.banking.transactions.controller;
 
 import com.banking.transactions.dto.AccountBalanceResponse;
+import com.banking.transactions.dto.AccountSummaryResponse;
 import com.banking.transactions.model.Transaction;
 import com.banking.transactions.service.TransactionService;
 import jakarta.validation.Valid;
@@ -62,5 +63,17 @@ public class TransactionController {
     public ResponseEntity<AccountBalanceResponse> getAccountBalance(@PathVariable String accountId) {
         AccountBalanceResponse balance = transactionService.getAccountBalance(accountId);
         return ResponseEntity.ok(balance);
+    }
+
+    /**
+     * GET /accounts/:accountId/summary - Get account summary
+     */
+    @GetMapping("/accounts/{accountId}/summary")
+    public ResponseEntity<?> getAccountSummary(@PathVariable String accountId) {
+        AccountSummaryResponse summary = transactionService.getAccountSummary(accountId);
+        if (summary == null) {
+            return ResponseEntity.status(404).body("No transactions found");
+        }
+        return ResponseEntity.ok(summary);
     }
 }
