@@ -5,7 +5,7 @@ Content-Type: application/json
 {
   "fromAccount": "ACC-12345",
   "toAccount": "ACC-67890",
-  "amount": 100.50,
+  "amount": 555.50,
   "currency": "USD",
   "type": "transfer"
 }

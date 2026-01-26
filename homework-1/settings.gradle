@@ -1,1 +1,5 @@
 rootProject.name = 'banking-transactions-api'
+
+include 'banking-transactions-api-copilot'
+include 'banking-transactions-api-claude'
+
