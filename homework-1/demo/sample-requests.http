@@ -1,0 +1,176 @@
+### Banking Transactions API - Sample Requests
+### Use with VS Code REST Client extension
+
+### ========================================
+### Health Check
+### ========================================
+
+GET http://localhost:3000/health
+
+### ========================================
+### TRANSACTIONS
+### ========================================
+
+### Create a deposit to ACC-12345
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-12345",
+  "amount": 1000.00,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+### Create another deposit to ACC-67890
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-67890",
+  "amount": 500.00,
+  "currency": "EUR",
+  "type": "deposit"
+}
+
+### Create a transfer from ACC-12345 to ACC-67890
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.50,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### Create a withdrawal from ACC-12345
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "amount": 50.00,
+  "currency": "USD",
+  "type": "withdrawal"
+}
+
+### List all transactions
+GET http://localhost:3000/transactions
+
+### Filter transactions by account
+GET http://localhost:3000/transactions?accountId=ACC-12345
+
+### Filter transactions by type
+GET http://localhost:3000/transactions?type=transfer
+
+### Filter transactions by date range
+GET http://localhost:3000/transactions?from=2024-01-01&to=2025-12-31
+
+### Combine multiple filters
+GET http://localhost:3000/transactions?accountId=ACC-12345&type=deposit
+
+### Get transaction by ID (replace with actual ID from previous responses)
+GET http://localhost:3000/transactions/txn-12345678
+
+### ========================================
+### ACCOUNTS
+### ========================================
+
+### Get balance for ACC-12345
+GET http://localhost:3000/accounts/ACC-12345/balance
+
+### Get balance for ACC-67890
+GET http://localhost:3000/accounts/ACC-67890/balance
+
+### Calculate interest with default parameters (5% for 30 days)
+GET http://localhost:3000/accounts/ACC-12345/interest
+
+### Calculate interest with custom rate and days
+GET http://localhost:3000/accounts/ACC-12345/interest?rate=0.08&days=90
+
+### Calculate interest with 10% annual rate for 365 days
+GET http://localhost:3000/accounts/ACC-12345/interest?rate=0.10&days=365
+
+### ========================================
+### VALIDATION ERRORS
+### ========================================
+
+### Invalid amount (negative)
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-12345",
+  "amount": -100,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+### Invalid amount (too many decimals)
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-12345",
+  "amount": 100.999,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+### Invalid currency
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-12345",
+  "amount": 100,
+  "currency": "XYZ",
+  "type": "deposit"
+}
+
+### Invalid account format
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "12345",
+  "amount": 100,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+### Invalid type
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-12345",
+  "amount": 100,
+  "currency": "USD",
+  "type": "invalid"
+}
+
+### Missing required fields for transfer
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "amount": 100,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### ========================================
+### 404 ERRORS
+### ========================================
+
+### Non-existent transaction
+GET http://localhost:3000/transactions/txn-nonexistent
+
+### Non-existent account balance
+GET http://localhost:3000/accounts/ACC-ZZZZZ/balance
+
+### Non-existent account interest
+GET http://localhost:3000/accounts/ACC-ZZZZZ/interest
