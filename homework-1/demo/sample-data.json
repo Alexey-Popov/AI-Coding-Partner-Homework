@@ -1,0 +1,38 @@
+{
+  "description": "Sample transaction data for testing the Banking Transactions API",
+  "transactions": [
+    {
+      "fromAccount": "ACC-00000",
+      "toAccount": "ACC-12345",
+      "amount": 1000.00,
+      "currency": "USD",
+      "type": "deposit"
+    },
+    {
+      "fromAccount": "ACC-12345",
+      "toAccount": "ACC-67890",
+      "amount": 250.50,
+      "currency": "USD",
+      "type": "transfer"
+    },
+    {
+      "fromAccount": "ACC-12345",
+      "toAccount": "ACC-00000",
+      "amount": 100.00,
+      "currency": "EUR",
+      "type": "withdrawal"
+    },
+    {
+      "fromAccount": "ACC-00000",
+      "toAccount": "ACC-67890",
+      "amount": 500.00,
+      "currency": "GBP",
+      "type": "deposit"
+    }
+  ],
+  "testAccounts": [
+    "ACC-12345",
+    "ACC-67890",
+    "ACC-ABCDE"
+  ]
+}
