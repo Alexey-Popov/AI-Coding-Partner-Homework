@@ -1,0 +1,219 @@
+### Banking Transactions API - Sample Requests
+### Use with VS Code REST Client extension or IntelliJ HTTP Client
+###
+### Instructions:
+### 1. Install "REST Client" extension in VS Code
+### 2. Click "Send Request" above any request
+### 3. View response in the side panel
+###
+### Make sure the application is running: mvn spring-boot:run
+
+@baseUrl = http://localhost:3000/api/v1
+
+### Health Check
+GET {{baseUrl}}/actuator/health
+
+###
+
+### 1. Create a deposit transaction
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-12345",
+  "amount": 1000.00,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+###
+
+### 2. Create a withdrawal transaction
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "amount": 150.50,
+  "currency": "USD",
+  "type": "withdrawal"
+}
+
+###
+
+### 3. Create a transfer transaction
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 250.75,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### 4. Get all transactions
+GET {{baseUrl}}/transactions
+
+###
+
+### 5. Get transactions by account ID
+GET {{baseUrl}}/transactions?accountId=ACC-12345
+
+###
+
+### 6. Get transactions by type
+GET {{baseUrl}}/transactions?type=transfer
+
+###
+
+### 7. Get transactions by status
+GET {{baseUrl}}/transactions?status=completed
+
+###
+
+### 8. Get transactions by date range
+GET {{baseUrl}}/transactions?from=2026-01-01T00:00:00&to=2026-12-31T23:59:59
+
+###
+
+### 9. Get transactions with multiple filters
+GET {{baseUrl}}/transactions?accountId=ACC-12345&type=transfer&status=completed&from=2026-01-01T00:00:00&to=2026-12-31T23:59:59
+
+###
+
+### 10. Get specific transaction by ID (replace with actual ID)
+GET {{baseUrl}}/transactions/550e8400-e29b-41d4-a716-446655440000
+
+###
+
+### 11. Get account balance
+GET {{baseUrl}}/accounts/ACC-12345/balance
+
+###
+
+### 12. Get transaction summary for account
+GET {{baseUrl}}/accounts/ACC-12345/summary
+
+###
+
+### 13. Calculate interest
+GET {{baseUrl}}/accounts/ACC-12345/interest?rate=0.05&days=30
+
+###
+
+### 14. Export transactions as CSV
+GET {{baseUrl}}/transactions/export?format=csv
+
+###
+
+### 15. Export transactions with filters
+GET {{baseUrl}}/transactions/export?format=csv&accountId=ACC-12345&from=2026-01-01T00:00:00
+
+###
+
+###############################################################################
+### VALIDATION TEST CASES
+###############################################################################
+
+### Validation 1: Invalid amount (negative)
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": -100.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### Validation 2: Invalid amount (too many decimal places)
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.999,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### Validation 3: Invalid account format
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "INVALID",
+  "toAccount": "ACC-67890",
+  "amount": 100.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### Validation 4: Invalid currency code
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.00,
+  "currency": "INVALID",
+  "type": "transfer"
+}
+
+###
+
+### Validation 5: Invalid transaction type
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.00,
+  "currency": "USD",
+  "type": "invalid_type"
+}
+
+###
+
+### Validation 6: Transfer with same accounts
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-12345",
+  "amount": 100.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### Validation 7: Missing required fields
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "amount": 100.00,
+  "currency": "USD"
+}
+
+{
+  "amount": 100.00
+}
+
+###
