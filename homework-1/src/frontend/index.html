@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banking Transactions API</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .card h2 {
+      color: #444;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #eee;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: #555;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #007bff;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    button.secondary {
+      background: #6c757d;
+    }
+
+    button.secondary:hover {
+      background: #545b62;
+    }
+
+    button.success {
+      background: #28a745;
+    }
+
+    button.success:hover {
+      background: #1e7e34;
+    }
+
+    .response {
+      margin-top: 15px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 13px;
+      white-space: pre-wrap;
+      word-break: break-all;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .response.error {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .response.success {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .transactions-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      font-size: 13px;
+    }
+
+    .transactions-table th,
+    .transactions-table td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    .transactions-table th {
+      background: #f8f9fa;
+      font-weight: 600;
+    }
+
+    .transactions-table tr:hover {
+      background: #f8f9fa;
+    }
+
+    .inline-form {
+      display: flex;
+      gap: 10px;
+    }
+
+    .inline-form input {
+      flex: 1;
+    }
+
+    .inline-form button {
+      width: auto;
+      margin-top: 0;
+    }
+
+    .filter-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .status-badge {
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .status-completed {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .status-pending {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .status-failed {
+      background: #f8d7da;
+      color: #721c24;
+    }
+  </style>
+</head>
+<body>
+  <h1>Banking Transactions API</h1>
+
+  <div class="container">
+    <!-- Create Transaction -->
+    <div class="card">
+      <h2>Create Transaction</h2>
+      <form id="createForm">
+        <div class="form-group">
+          <label>From Account</label>
+          <input type="text" id="fromAccount" placeholder="ACC-XXXXX" value="ACC-12345" required>
+        </div>
+        <div class="form-group">
+          <label>To Account</label>
+          <input type="text" id="toAccount" placeholder="ACC-XXXXX" value="ACC-67890" required>
+        </div>
+        <div class="form-group">
+          <label>Amount</label>
+          <input type="number" id="amount" step="0.01" min="0.01" placeholder="100.00" value="100" required>
+        </div>
+        <div class="form-group">
+          <label>Currency</label>
+          <select id="currency">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="JPY">JPY</option>
+            <option value="CHF">CHF</option>
+            <option value="CAD">CAD</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Type</label>
+          <select id="type">
+            <option value="transfer">Transfer</option>
+            <option value="deposit">Deposit</option>
+            <option value="withdrawal">Withdrawal</option>
+          </select>
+        </div>
+        <button type="submit">Create Transaction</button>
+      </form>
+      <div id="createResponse" class="response" style="display:none;"></div>
+    </div>
+
+    <!-- Get Transaction by ID -->
+    <div class="card">
+      <h2>Get Transaction by ID</h2>
+      <form id="getByIdForm" class="inline-form">
+        <input type="text" id="transactionId" placeholder="TXN-000001" required>
+        <button type="submit">Get</button>
+      </form>
+      <div id="getByIdResponse" class="response" style="display:none;"></div>
+
+      <h2 style="margin-top: 30px;">Get Account Balance</h2>
+      <form id="balanceForm" class="inline-form">
+        <input type="text" id="balanceAccountId" placeholder="ACC-12345" value="ACC-12345" required>
+        <button type="submit" class="secondary">Get Balance</button>
+      </form>
+      <div id="balanceResponse" class="response" style="display:none;"></div>
+    </div>
+
+    <!-- List All Transactions -->
+    <div class="card full-width">
+      <h2>All Transactions</h2>
+
+      <div class="filter-row">
+        <div class="form-group">
+          <label>Filter by Account</label>
+          <input type="text" id="filterAccount" placeholder="ACC-XXXXX">
+        </div>
+        <div class="form-group">
+          <label>Filter by Type</label>
+          <select id="filterType">
+            <option value="">All Types</option>
+            <option value="transfer">Transfer</option>
+            <option value="deposit">Deposit</option>
+            <option value="withdrawal">Withdrawal</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>From Date</label>
+          <input type="date" id="filterFrom">
+        </div>
+        <div class="form-group">
+          <label>To Date</label>
+          <input type="date" id="filterTo">
+        </div>
+      </div>
+
+      <button id="loadTransactions" class="secondary">Load Transactions</button>
+      <button id="exportCsv" class="success" style="margin-left: 10px; width: auto;">Export CSV</button>
+
+      <div id="transactionsContainer">
+        <table class="transactions-table" id="transactionsTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Amount</th>
+              <th>Currency</th>
+              <th>Type</th>
+              <th>Timestamp</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="transactionsBody">
+            <tr><td colspan="8" style="text-align:center; color:#999;">Click "Load Transactions" to view</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE = '';
+
+    // Helper function to show response
+    function showResponse(elementId, data, isError = false) {
+      const el = document.getElementById(elementId);
+      el.style.display = 'block';
+      el.className = 'response ' + (isError ? 'error' : 'success');
+      el.textContent = JSON.stringify(data, null, 2);
+    }
+
+    // Create Transaction
+    document.getElementById('createForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = {
+        fromAccount: document.getElementById('fromAccount').value,
+        toAccount: document.getElementById('toAccount').value,
+        amount: parseFloat(document.getElementById('amount').value),
+        currency: document.getElementById('currency').value,
+        type: document.getElementById('type').value
+      };
+
+      try {
+        const res = await fetch('/transactions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await res.json();
+        showResponse('createResponse', result, !res.ok);
+        if (res.ok) loadTransactions();
+      } catch (err) {
+        showResponse('createResponse', { error: err.message }, true);
+      }
+    });
+
+    // Get Transaction by ID
+    document.getElementById('getByIdForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('transactionId').value;
+
+      try {
+        const res = await fetch(`/transactions/${id}`);
+        const result = await res.json();
+        showResponse('getByIdResponse', result, !res.ok);
+      } catch (err) {
+        showResponse('getByIdResponse', { error: err.message }, true);
+      }
+    });
+
+    // Get Account Balance
+    document.getElementById('balanceForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const accountId = document.getElementById('balanceAccountId').value;
+
+      try {
+        const res = await fetch(`/accounts/${accountId}/balance`);
+        const result = await res.json();
+        showResponse('balanceResponse', result, !res.ok);
+      } catch (err) {
+        showResponse('balanceResponse', { error: err.message }, true);
+      }
+    });
+
+    // Load Transactions
+    async function loadTransactions() {
+      const params = new URLSearchParams();
+
+      const accountId = document.getElementById('filterAccount').value;
+      const type = document.getElementById('filterType').value;
+      const from = document.getElementById('filterFrom').value;
+      const to = document.getElementById('filterTo').value;
+
+      if (accountId) params.append('accountId', accountId);
+      if (type) params.append('type', type);
+      if (from) params.append('from', from);
+      if (to) params.append('to', to);
+
+      const queryString = params.toString();
+      const url = '/transactions' + (queryString ? '?' + queryString : '');
+
+      try {
+        const res = await fetch(url);
+        const transactions = await res.json();
+
+        const tbody = document.getElementById('transactionsBody');
+
+        if (transactions.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; color:#999;">No transactions found</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = transactions.map(t => `
+          <tr>
+            <td>${t.id}</td>
+            <td>${t.fromAccount}</td>
+            <td>${t.toAccount}</td>
+            <td>${t.amount.toFixed(2)}</td>
+            <td>${t.currency}</td>
+            <td>${t.type}</td>
+            <td>${new Date(t.timestamp).toLocaleString()}</td>
+            <td><span class="status-badge status-${t.status}">${t.status}</span></td>
+          </tr>
+        `).join('');
+      } catch (err) {
+        console.error('Error loading transactions:', err);
+      }
+    }
+
+    document.getElementById('loadTransactions').addEventListener('click', loadTransactions);
+
+    // Export CSV
+    document.getElementById('exportCsv').addEventListener('click', () => {
+      window.location.href = '/transactions/export?format=csv';
+    });
+
+    // Load transactions on page load
+    loadTransactions();
+  </script>
+</body>
+</html>
