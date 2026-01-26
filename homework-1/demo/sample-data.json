@@ -1,0 +1,111 @@
+{
+  "description": "Sample transaction data for testing the Banking Transactions API",
+  "transactions": [
+    {
+      "description": "Initial deposit to ACC-12345",
+      "request": {
+        "toAccount": "ACC-12345",
+        "amount": 1000.00,
+        "currency": "USD",
+        "type": "deposit"
+      },
+      "expectedResponse": {
+        "id": "txn-xxxxxxxx",
+        "fromAccount": null,
+        "toAccount": "ACC-12345",
+        "amount": 1000.00,
+        "currency": "USD",
+        "type": "deposit",
+        "timestamp": "2024-01-15T10:00:00.000Z",
+        "status": "completed"
+      }
+    },
+    {
+      "description": "Initial deposit to ACC-67890",
+      "request": {
+        "toAccount": "ACC-67890",
+        "amount": 500.00,
+        "currency": "EUR",
+        "type": "deposit"
+      }
+    },
+    {
+      "description": "Transfer between accounts",
+      "request": {
+        "fromAccount": "ACC-12345",
+        "toAccount": "ACC-67890",
+        "amount": 100.50,
+        "currency": "USD",
+        "type": "transfer"
+      }
+    },
+    {
+      "description": "Withdrawal from ACC-12345",
+      "request": {
+        "fromAccount": "ACC-12345",
+        "amount": 50.00,
+        "currency": "USD",
+        "type": "withdrawal"
+      }
+    },
+    {
+      "description": "Large deposit in GBP",
+      "request": {
+        "toAccount": "ACC-ABCDE",
+        "amount": 5000.00,
+        "currency": "GBP",
+        "type": "deposit"
+      }
+    },
+    {
+      "description": "International transfer in JPY",
+      "request": {
+        "fromAccount": "ACC-ABCDE",
+        "toAccount": "ACC-12345",
+        "amount": 10000,
+        "currency": "JPY",
+        "type": "transfer"
+      }
+    }
+  ],
+  "testAccounts": [
+    {
+      "accountId": "ACC-12345",
+      "description": "Primary test account"
+    },
+    {
+      "accountId": "ACC-67890",
+      "description": "Secondary test account"
+    },
+    {
+      "accountId": "ACC-ABCDE",
+      "description": "International account"
+    }
+  ],
+  "interestCalculationExamples": [
+    {
+      "description": "Default interest calculation (5% for 30 days)",
+      "accountId": "ACC-12345",
+      "params": {},
+      "formula": "interest = balance * 0.05 * (30/365)"
+    },
+    {
+      "description": "High interest rate for 90 days",
+      "accountId": "ACC-12345",
+      "params": {
+        "rate": 0.08,
+        "days": 90
+      },
+      "formula": "interest = balance * 0.08 * (90/365)"
+    },
+    {
+      "description": "Annual interest calculation",
+      "accountId": "ACC-12345",
+      "params": {
+        "rate": 0.10,
+        "days": 365
+      },
+      "formula": "interest = balance * 0.10 * (365/365) = balance * 0.10"
+    }
+  ]
+}
