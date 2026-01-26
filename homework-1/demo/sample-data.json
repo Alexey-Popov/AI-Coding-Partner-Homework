@@ -1,0 +1,143 @@
+[
+  {
+    "id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+    "toAccount": "ACC-12345",
+    "amount": 2500.00,
+    "currency": "USD",
+    "type": "deposit",
+    "timestamp": "2026-01-02T09:15:30",
+    "status": "completed"
+  },
+  {
+    "id": "b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e",
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-67890",
+    "amount": 350.50,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2026-01-03T14:22:45",
+    "status": "completed"
+  },
+  {
+    "id": "c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f",
+    "fromAccount": "ACC-12345",
+    "amount": 125.75,
+    "currency": "USD",
+    "type": "withdrawal",
+    "timestamp": "2026-01-05T11:45:12",
+    "status": "completed"
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f8a",
+    "toAccount": "ACC-67890",
+    "amount": 1200.00,
+    "currency": "EUR",
+    "type": "deposit",
+    "timestamp": "2026-01-06T08:30:00",
+    "status": "completed"
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a9b",
+    "fromAccount": "ACC-67890",
+    "toAccount": "ACC-11111",
+    "amount": 450.25,
+    "currency": "EUR",
+    "type": "transfer",
+    "timestamp": "2026-01-08T16:20:33",
+    "status": "completed"
+  },
+  {
+    "id": "f6a7b8c9-d0e1-4f2a-3b4c-5d6e7f8a9b0c",
+    "toAccount": "ACC-11111",
+    "amount": 3500.00,
+    "currency": "USD",
+    "type": "deposit",
+    "timestamp": "2026-01-10T10:00:00",
+    "status": "completed"
+  },
+  {
+    "id": "a7b8c9d0-e1f2-4a3b-4c5d-6e7f8a9b0c1d",
+    "fromAccount": "ACC-11111",
+    "amount": 89.99,
+    "currency": "USD",
+    "type": "withdrawal",
+    "timestamp": "2026-01-12T13:15:42",
+    "status": "completed"
+  },
+  {
+    "id": "b8c9d0e1-f2a3-4b4c-5d6e-7f8a9b0c1d2e",
+    "fromAccount": "ACC-11111",
+    "toAccount": "ACC-33333",
+    "amount": 750.00,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2026-01-14T09:45:18",
+    "status": "pending"
+  },
+  {
+    "id": "c9d0e1f2-a3b4-4c5d-6e7f-8a9b0c1d2e3f",
+    "toAccount": "ACC-33333",
+    "amount": 850.00,
+    "currency": "GBP",
+    "type": "deposit",
+    "timestamp": "2026-01-15T12:30:55",
+    "status": "completed"
+  },
+  {
+    "id": "d0e1f2a3-b4c5-4d6e-7f8a-9b0c1d2e3f4a",
+    "fromAccount": "ACC-33333",
+    "toAccount": "ACC-44444",
+    "amount": 275.50,
+    "currency": "GBP",
+    "type": "transfer",
+    "timestamp": "2026-01-17T15:10:20",
+    "status": "completed"
+  },
+  {
+    "id": "e1f2a3b4-c5d6-4e7f-8a9b-0c1d2e3f4a5b",
+    "toAccount": "ACC-44444",
+    "amount": 50000.00,
+    "currency": "JPY",
+    "type": "deposit",
+    "timestamp": "2026-01-18T11:20:30",
+    "status": "completed"
+  },
+  {
+    "id": "f2a3b4c5-d6e7-4f8a-9b0c-1d2e3f4a5b6c",
+    "fromAccount": "ACC-44444",
+    "amount": 15000.00,
+    "currency": "JPY",
+    "type": "withdrawal",
+    "timestamp": "2026-01-20T14:35:48",
+    "status": "completed"
+  },
+  {
+    "id": "a3b4c5d6-e7f8-4a9b-0c1d-2e3f4a5b6c7d",
+    "fromAccount": "ACC-44444",
+    "toAccount": "ACC-55555",
+    "amount": 20000.00,
+    "currency": "JPY",
+    "type": "transfer",
+    "timestamp": "2026-01-22T10:15:05",
+    "status": "failed"
+  },
+  {
+    "id": "b4c5d6e7-f8a9-4b0c-1d2e-3f4a5b6c7d8e",
+    "toAccount": "ACC-55555",
+    "amount": 1800.00,
+    "currency": "USD",
+    "type": "deposit",
+    "timestamp": "2026-01-24T09:00:00",
+    "status": "completed"
+  },
+  {
+    "id": "c5d6e7f8-a9b0-4c1d-2e3f-4a5b6c7d8e9f",
+    "fromAccount": "ACC-55555",
+    "toAccount": "ACC-12345",
+    "amount": 500.00,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2026-01-25T16:45:22",
+    "status": "pending"
+  }
+]
