@@ -89,3 +89,344 @@ GET http://localhost:3000/accounts/ACC-67890/balance
 GET http://localhost:3000/accounts/ACC-12345/summary
 
 ###
+
+### Get account summary for another account
+GET http://localhost:3000/accounts/ACC-67890/summary
+
+###
+
+### Get account summary for deposit account
+GET http://localhost:3000/accounts/ACC-11111/summary
+
+###
+
+### Get account summary for withdrawal account
+GET http://localhost:3000/accounts/ACC-22222/summary
+
+###
+
+### Create a transaction with GBP currency
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-99999",
+  "toAccount": "ACC-88888",
+  "amount": 1000.00,
+  "currency": "GBP",
+  "type": "transfer"
+}
+
+###
+
+### Get balance for GBP account
+GET http://localhost:3000/accounts/ACC-99999/balance
+
+###
+
+### Get balance for another GBP account
+GET http://localhost:3000/accounts/ACC-88888/balance
+
+###
+
+### Create large amount transaction
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-99999",
+  "amount": 10000.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### Create small amount transaction
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-67890",
+  "toAccount": "ACC-12345",
+  "amount": 0.01,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### VALIDATION TESTS - Testing error responses
+
+### Validation Error: Missing fromAccount
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-67890",
+  "amount": 100.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### Validation Error: Missing toAccount
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "amount": 100.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### Validation Error: Missing amount
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### Validation Error: Missing currency
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.00,
+  "type": "transfer"
+}
+
+###
+
+### Validation Error: Missing type
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.00,
+  "currency": "USD"
+}
+
+###
+
+### Validation Error: Invalid fromAccount format (too short)
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-123",
+  "toAccount": "ACC-67890",
+  "amount": 100.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### Validation Error: Invalid fromAccount format (missing prefix)
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### Validation Error: Invalid toAccount format (special characters)
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-678@0",
+  "amount": 100.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### Validation Error: Negative amount
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": -100.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### Validation Error: Zero amount
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 0.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### Validation Error: Amount with more than 2 decimal places
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.123,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### Validation Error: Invalid currency code
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.00,
+  "currency": "XYZ",
+  "type": "transfer"
+}
+
+###
+
+### Validation Error: Empty currency
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.00,
+  "currency": "",
+  "type": "transfer"
+}
+
+###
+
+### Validation Error: Invalid transaction type
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.00,
+  "currency": "USD",
+  "type": "invalid_type"
+}
+
+###
+
+### Validation Error: Same fromAccount and toAccount
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-12345",
+  "amount": 100.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### Validation Error: Multiple validation errors at once
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "INVALID",
+  "toAccount": "ACC-12345",
+  "amount": -50.123,
+  "currency": "FAKE",
+  "type": "invalid"
+}
+
+###
+
+### Validation Error: Empty fromAccount
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "",
+  "toAccount": "ACC-67890",
+  "amount": 100.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+
+### Validation Error: Empty toAccount
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "",
+  "amount": 100.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+
+### Test getting non-existent transaction by ID
+GET http://localhost:3000/transactions/non-existent-id-12345
+
+###
+
+### Test getting balance for non-existent account
+GET http://localhost:3000/accounts/ACC-00000/balance
+
+###
+
+### Test getting summary for non-existent account
+GET http://localhost:3000/accounts/ACC-00000/summary
+
+###
+
+### Test filter with invalid date format
+GET http://localhost:3000/transactions?from=invalid-date
+
+###
+
+### Test filter with invalid transaction type
+GET http://localhost:3000/transactions?type=invalid_type
+
+###
+

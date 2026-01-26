@@ -1,0 +1,94 @@
+{
+  "transactions": [
+    {
+      "toAccount": "ACC-123456",
+      "amount": 5000.00,
+      "currency": "USD",
+      "type": "deposit",
+      "description": "Initial deposit"
+    },
+    {
+      "toAccount": "ACC-789012",
+      "amount": 3000.00,
+      "currency": "USD",
+      "type": "deposit",
+      "description": "Initial deposit"
+    },
+    {
+      "fromAccount": "ACC-123456",
+      "toAccount": "ACC-789012",
+      "amount": 1500.00,
+      "currency": "USD",
+      "type": "transfer",
+      "description": "Payment for services"
+    },
+    {
+      "fromAccount": "ACC-123456",
+      "amount": 200.00,
+      "currency": "USD",
+      "type": "withdrawal",
+      "description": "ATM withdrawal"
+    },
+    {
+      "toAccount": "ACC-123456",
+      "amount": 750.50,
+      "currency": "EUR",
+      "type": "deposit",
+      "description": "International transfer received"
+    },
+    {
+      "fromAccount": "ACC-789012",
+      "toAccount": "ACC-123456",
+      "amount": 500.00,
+      "currency": "USD",
+      "type": "transfer",
+      "description": "Refund"
+    },
+    {
+      "fromAccount": "ACC-789012",
+      "amount": 100.00,
+      "currency": "USD",
+      "type": "withdrawal",
+      "description": "Cash withdrawal"
+    },
+    {
+      "toAccount": "ACC-345678",
+      "amount": 10000.00,
+      "currency": "GBP",
+      "type": "deposit",
+      "description": "New account funding"
+    },
+    {
+      "fromAccount": "ACC-345678",
+      "toAccount": "ACC-123456",
+      "amount": 2500.00,
+      "currency": "GBP",
+      "type": "transfer",
+      "description": "Business payment"
+    },
+    {
+      "fromAccount": "ACC-123456",
+      "amount": 50.00,
+      "currency": "USD",
+      "type": "withdrawal",
+      "description": "Service fee"
+    }
+  ],
+  "accounts": [
+    {
+      "accountId": "ACC-123456",
+      "accountHolder": "John Doe",
+      "accountType": "checking"
+    },
+    {
+      "accountId": "ACC-789012",
+      "accountHolder": "Jane Smith",
+      "accountType": "savings"
+    },
+    {
+      "accountId": "ACC-345678",
+      "accountHolder": "Acme Corporation",
+      "accountType": "business"
+    }
+  ]
+}
