@@ -1,0 +1,267 @@
+###
+# Banking Transactions API - Sample HTTP Requests
+# Use this file with REST Client extension in VS Code or similar HTTP clients
+# Base URL: http://localhost:8000
+###
+
+@baseUrl = http://localhost:8000
+@apiBase = {{baseUrl}}/api
+
+### 1. Root Endpoint - Get API Information
+GET {{baseUrl}}/
+Content-Type: application/json
+
+### 2. Health Check
+GET {{baseUrl}}/health
+Content-Type: application/json
+
+###############################################
+# TRANSACTION CREATION (Task 1)
+###############################################
+
+### 3. Create Transaction - Valid Deposit
+POST {{apiBase}}/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-12345",
+  "amount": 1000.00,
+  "currency": "USD",
+  "type": "deposit",
+  "status": "completed"
+}
+
+### 4. Create Transaction - Valid Withdrawal
+POST {{apiBase}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "amount": 150.50,
+  "currency": "USD",
+  "type": "withdrawal",
+  "status": "completed"
+}
+
+### 5. Create Transaction - Valid Transfer
+POST {{apiBase}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 250.75,
+  "currency": "USD",
+  "type": "transfer",
+  "status": "completed"
+}
+
+### 6. Create Transaction - EUR Deposit
+POST {{apiBase}}/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-67890",
+  "amount": 500.00,
+  "currency": "EUR",
+  "type": "deposit",
+  "status": "completed"
+}
+
+### 7. Create Transaction - GBP Transfer
+POST {{apiBase}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-67890",
+  "toAccount": "ACC-ABCDE",
+  "amount": 300.00,
+  "currency": "GBP",
+  "type": "transfer",
+  "status": "completed"
+}
+
+###############################################
+# VALIDATION TESTS (Task 2)
+###############################################
+
+### 8. Invalid - Negative Amount
+POST {{apiBase}}/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-12345",
+  "amount": -100.00,
+  "currency": "USD",
+  "type": "deposit",
+  "status": "completed"
+}
+
+### 9. Invalid - More than 2 Decimal Places
+POST {{apiBase}}/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-12345",
+  "amount": 100.123,
+  "currency": "USD",
+  "type": "deposit",
+  "status": "completed"
+}
+
+### 10. Invalid - Account Format (missing ACC- prefix)
+POST {{apiBase}}/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "12345",
+  "amount": 100.00,
+  "currency": "USD",
+  "type": "deposit",
+  "status": "completed"
+}
+
+### 11. Invalid - Account Format (wrong length)
+POST {{apiBase}}/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-123",
+  "amount": 100.00,
+  "currency": "USD",
+  "type": "deposit",
+  "status": "completed"
+}
+
+### 12. Invalid - Currency Code (not ISO 4217)
+POST {{apiBase}}/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-12345",
+  "amount": 100.00,
+  "currency": "XYZ",
+  "type": "deposit",
+  "status": "completed"
+}
+
+### 13. Invalid - Transfer without fromAccount
+POST {{apiBase}}/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "ACC-12345",
+  "amount": 100.00,
+  "currency": "USD",
+  "type": "transfer",
+  "status": "completed"
+}
+
+###############################################
+# TRANSACTION RETRIEVAL (Task 1 & 3)
+###############################################
+
+### 14. Get All Transactions
+GET {{apiBase}}/transactions
+Content-Type: application/json
+
+### 15. Get Transaction by ID (replace with actual ID from previous responses)
+GET {{apiBase}}/transactions/YOUR-TRANSACTION-ID-HERE
+Content-Type: application/json
+
+###############################################
+# FILTERING (Task 3)
+###############################################
+
+### 16. Filter by Account ID
+GET {{apiBase}}/transactions?accountId=ACC-12345
+Content-Type: application/json
+
+### 17. Filter by Transaction Type - Deposits
+GET {{apiBase}}/transactions?type=deposit
+Content-Type: application/json
+
+### 18. Filter by Transaction Type - Withdrawals
+GET {{apiBase}}/transactions?type=withdrawal
+Content-Type: application/json
+
+### 19. Filter by Transaction Type - Transfers
+GET {{apiBase}}/transactions?type=transfer
+Content-Type: application/json
+
+### 20. Filter by Date Range
+GET {{apiBase}}/transactions?from=2024-01-01&to=2024-12-31
+Content-Type: application/json
+
+### 21. Multiple Filters - Account + Type
+GET {{apiBase}}/transactions?accountId=ACC-12345&type=deposit
+Content-Type: application/json
+
+### 22. Multiple Filters - Account + Type + Date Range
+GET {{apiBase}}/transactions?accountId=ACC-12345&type=transfer&from=2024-01-01&to=2024-12-31
+Content-Type: application/json
+
+###############################################
+# BALANCE CALCULATION (Task 1)
+###############################################
+
+### 23. Get Account Balance - ACC-12345
+GET {{apiBase}}/accounts/ACC-12345/balance
+Content-Type: application/json
+
+### 24. Get Account Balance - ACC-67890
+GET {{apiBase}}/accounts/ACC-67890/balance
+Content-Type: application/json
+
+### 25. Get Account Balance - ACC-ABCDE
+GET {{apiBase}}/accounts/ACC-ABCDE/balance
+Content-Type: application/json
+
+### 26. Get Account Balance with Currency Filter
+GET {{apiBase}}/accounts/ACC-12345/balance?currency=USD
+Content-Type: application/json
+
+###############################################
+# ACCOUNT SUMMARY (Task 4 - Additional Feature)
+###############################################
+
+### 27. Get Account Summary - ACC-12345
+GET {{apiBase}}/accounts/ACC-12345/summary
+Content-Type: application/json
+
+### 28. Get Account Summary - ACC-67890
+GET {{apiBase}}/accounts/ACC-67890/summary
+Content-Type: application/json
+
+### 29. Get Account Summary - ACC-ABCDE
+GET {{apiBase}}/accounts/ACC-ABCDE/summary
+Content-Type: application/json
+
+###############################################
+# CURL EQUIVALENTS (for terminal testing)
+###############################################
+
+###
+# Create a deposit transaction:
+# curl -X POST http://localhost:8000/api/transactions \
+#   -H "Content-Type: application/json" \
+#   -d '{"toAccount":"ACC-12345","amount":1000.00,"currency":"USD","type":"deposit","status":"completed"}'
+
+# Get all transactions:
+# curl http://localhost:8000/api/transactions
+
+# Get account balance:
+# curl http://localhost:8000/api/accounts/ACC-12345/balance
+
+# Get account summary:
+# curl http://localhost:8000/api/accounts/ACC-12345/summary
+
+# Filter by account:
+# curl "http://localhost:8000/api/transactions?accountId=ACC-12345"
+
+# Filter by type:
+# curl "http://localhost:8000/api/transactions?type=deposit"
+
+# Filter by date range:
+# curl "http://localhost:8000/api/transactions?from=2024-01-01&to=2024-12-31"
+###
