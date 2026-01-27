@@ -1,0 +1,120 @@
+### Banking Transactions API - Sample Requests
+### Use with IntelliJ HTTP Client or VS Code REST Client
+
+### ===================
+### Transaction Endpoints
+### ===================
+
+### Create a deposit transaction
+POST http://localhost:8080/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-67890",
+  "toAccount": "ACC-12345",
+  "amount": 1000.00,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+### Create a withdrawal transaction
+POST http://localhost:8080/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 250.50,
+  "currency": "USD",
+  "type": "withdrawal"
+}
+
+### Create a transfer transaction
+POST http://localhost:8080/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-78901",
+  "amount": 500.00,
+  "currency": "EUR",
+  "type": "transfer"
+}
+
+### Get all transactions
+GET http://localhost:8080/transactions
+
+### Get transactions filtered by account
+GET http://localhost:8080/transactions?accountId=ACC-12345
+
+### Get transactions filtered by type
+GET http://localhost:8080/transactions?type=deposit
+
+### Get transactions filtered by date range
+GET http://localhost:8080/transactions?from=2024-01-01&to=2024-12-31
+
+### Get transactions with multiple filters
+GET http://localhost:8080/transactions?accountId=ACC-12345&type=transfer&from=2024-01-01
+
+### Get transaction by ID
+GET http://localhost:8080/transactions/1
+
+### ===================
+### Account Endpoints
+### ===================
+
+### Get account balance
+GET http://localhost:8080/accounts/ACC-12345/balance
+
+### Get account summary
+GET http://localhost:8080/accounts/ACC-12345/summary
+
+### ===================
+### Validation Error Examples
+### ===================
+
+### Invalid currency code (should return 400)
+POST http://localhost:8080/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-67890",
+  "toAccount": "ACC-12345",
+  "amount": 100.00,
+  "currency": "INVALID",
+  "type": "deposit"
+}
+
+### Missing required fields (should return 400)
+POST http://localhost:8080/transactions
+Content-Type: application/json
+
+{
+  "amount": 100.00,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+### Invalid amount - negative (should return 400)
+POST http://localhost:8080/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": -50.00,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+### Invalid amount - too many decimal places (should return 400)
+POST http://localhost:8080/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-67890",
+  "toAccount": "ACC-12345",
+  "amount": 100.999,
+  "currency": "USD",
+  "type": "deposit"
+}
