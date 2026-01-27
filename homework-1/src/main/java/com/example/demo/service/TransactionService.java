@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Transaction;
+import com.example.demo.model.AccountSummary;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -197,5 +198,45 @@ public class TransactionService {
             }
         }
         return balance;
+    }
+
+    public AccountSummary getAccountSummary(String accountId) {
+        BigDecimal deposits = BigDecimal.ZERO;
+        BigDecimal withdrawals = BigDecimal.ZERO;
+        int count = 0;
+        Instant mostRecent = null;
+
+        for (Transaction tx : transactions.values()) {
+            if (!"completed".equalsIgnoreCase(tx.getStatus())) {
+                continue;
+            }
+            boolean involved = accountId.equals(tx.getFromAccount()) || accountId.equals(tx.getToAccount());
+            if (!involved) {
+                continue;
+            }
+
+            count++;
+
+            if (tx.getTimestamp() != null) {
+                if (mostRecent == null || tx.getTimestamp().isAfter(mostRecent)) {
+                    mostRecent = tx.getTimestamp();
+                }
+            }
+
+            String type = tx.getType() == null ? "" : tx.getType().toLowerCase(Locale.ROOT);
+            if ("deposit".equals(type) && accountId.equals(tx.getToAccount())) {
+                deposits = deposits.add(tx.getAmount());
+            } else if ("withdrawal".equals(type) && accountId.equals(tx.getFromAccount())) {
+                withdrawals = withdrawals.add(tx.getAmount());
+            }
+            // transfers are counted in transactionCount but excluded from deposit/withdraw totals
+        }
+
+        AccountSummary summary = new AccountSummary();
+        summary.setTotalDeposits(deposits);
+        summary.setTotalWithdrawals(withdrawals);
+        summary.setTransactionCount(count);
+        summary.setMostRecentTransactionDate(mostRecent);
+        return summary;
     }
 }

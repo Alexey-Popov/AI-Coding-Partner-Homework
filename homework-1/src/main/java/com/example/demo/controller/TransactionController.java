@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Transaction;
+import com.example.demo.model.AccountSummary;
 import com.example.demo.service.TransactionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -65,6 +66,18 @@ public class TransactionController {
         Map<String, Object> resp = new HashMap<>();
         resp.put("accountId", accountId);
         resp.put("balance", balance);
+        return resp;
+    }
+
+    @GetMapping(path = "/accounts/{accountId}/summary")
+    public Map<String, Object> getAccountSummary(@PathVariable String accountId) {
+        AccountSummary summary = service.getAccountSummary(accountId);
+        Map<String, Object> resp = new HashMap<>();
+        resp.put("accountId", accountId);
+        resp.put("totalDeposits", summary.getTotalDeposits());
+        resp.put("totalWithdrawals", summary.getTotalWithdrawals());
+        resp.put("transactionCount", summary.getTransactionCount());
+        resp.put("mostRecentTransactionDate", summary.getMostRecentTransactionDate());
         return resp;
     }
 }
