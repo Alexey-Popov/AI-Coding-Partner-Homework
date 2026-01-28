@@ -1,0 +1,113 @@
+### Banking Transactions API - Test Requests
+### Use with VS Code REST Client extension or similar HTTP client
+
+@baseUrl = http://localhost:3000
+@accountId = ACC123
+@accountId2 = ACC456
+
+### ============================================
+### TRANSACTIONS
+### ============================================
+
+### Create a deposit transaction
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "{{accountId}}",
+  "amount": 1000,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+### Create another deposit
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "toAccount": "{{accountId}}",
+  "amount": 500,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+### Create a withdrawal transaction
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "{{accountId}}",
+  "amount": 200,
+  "currency": "USD",
+  "type": "withdrawal"
+}
+
+### Create a transfer transaction
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "{{accountId}}",
+  "toAccount": "{{accountId2}}",
+  "amount": 150,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### Get all transactions
+GET {{baseUrl}}/transactions
+
+### Get transactions filtered by account
+GET {{baseUrl}}/transactions?accountId={{accountId}}
+
+### Get transactions filtered by type
+GET {{baseUrl}}/transactions?type=deposit
+
+### Get transactions filtered by date range
+GET {{baseUrl}}/transactions?from=2024-01-01&to=2026-12-31
+
+### Get transactions with multiple filters
+GET {{baseUrl}}/transactions?accountId={{accountId}}&type=deposit
+
+### Export transactions as CSV
+GET {{baseUrl}}/transactions/export?format=csv
+
+### ============================================
+### ACCOUNTS
+### ============================================
+
+### Get account balance
+GET {{baseUrl}}/accounts/{{accountId}}/balance
+
+### Get account summary
+GET {{baseUrl}}/accounts/{{accountId}}/summary
+
+### Calculate interest (5% rate, 30 days)
+GET {{baseUrl}}/accounts/{{accountId}}/interest?rate=0.05&days=30
+
+### Calculate interest (10% rate, 365 days)
+GET {{baseUrl}}/accounts/{{accountId}}/interest?rate=0.10&days=365
+
+### ============================================
+### ERROR CASES
+### ============================================
+
+### Invalid transaction - missing required fields
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "amount": 100
+}
+
+### Account not found
+GET {{baseUrl}}/accounts/NONEXISTENT/summary
+
+### Invalid date format
+GET {{baseUrl}}/transactions?from=invalid-date
+
+### Missing format parameter for export
+GET {{baseUrl}}/transactions/export
+
+### Invalid interest parameters
+GET {{baseUrl}}/accounts/{{accountId}}/interest?rate=-1&days=abc
