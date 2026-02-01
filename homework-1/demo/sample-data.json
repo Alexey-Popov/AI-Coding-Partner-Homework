@@ -1,0 +1,131 @@
+{
+  "description": "Sample banking transactions for testing the API",
+  "accounts": [
+    "ACC-12345",
+    "ACC-67890",
+    "ACC-ABCDE",
+    "ACC-XYZ99",
+    "ACC-TEST1"
+  ],
+  "transactions": [
+    {
+      "fromAccount": null,
+      "toAccount": "ACC-12345",
+      "amount": 1000.00,
+      "currency": "USD",
+      "type": "deposit",
+      "status": "completed",
+      "description": "Initial deposit to ACC-12345"
+    },
+    {
+      "fromAccount": null,
+      "toAccount": "ACC-67890",
+      "amount": 2500.50,
+      "currency": "EUR",
+      "type": "deposit",
+      "status": "completed",
+      "description": "Initial deposit to ACC-67890"
+    },
+    {
+      "fromAccount": "ACC-12345",
+      "toAccount": null,
+      "amount": 150.75,
+      "currency": "USD",
+      "type": "withdrawal",
+      "status": "completed",
+      "description": "ATM withdrawal from ACC-12345"
+    },
+    {
+      "fromAccount": "ACC-12345",
+      "toAccount": "ACC-67890",
+      "amount": 250.00,
+      "currency": "USD",
+      "type": "transfer",
+      "status": "completed",
+      "description": "Transfer from ACC-12345 to ACC-67890"
+    },
+    {
+      "fromAccount": null,
+      "toAccount": "ACC-ABCDE",
+      "amount": 750.25,
+      "currency": "GBP",
+      "type": "deposit",
+      "status": "completed",
+      "description": "Initial deposit to ACC-ABCDE"
+    },
+    {
+      "fromAccount": "ACC-67890",
+      "toAccount": "ACC-ABCDE",
+      "amount": 500.00,
+      "currency": "EUR",
+      "type": "transfer",
+      "status": "completed",
+      "description": "Transfer from ACC-67890 to ACC-ABCDE"
+    },
+    {
+      "fromAccount": "ACC-ABCDE",
+      "toAccount": null,
+      "amount": 100.50,
+      "currency": "GBP",
+      "type": "withdrawal",
+      "status": "completed",
+      "description": "Cash withdrawal from ACC-ABCDE"
+    },
+    {
+      "fromAccount": null,
+      "toAccount": "ACC-XYZ99",
+      "amount": 3000.00,
+      "currency": "JPY",
+      "type": "deposit",
+      "status": "completed",
+      "description": "Initial deposit to ACC-XYZ99"
+    },
+    {
+      "fromAccount": "ACC-XYZ99",
+      "toAccount": "ACC-12345",
+      "amount": 1000.00,
+      "currency": "JPY",
+      "type": "transfer",
+      "status": "pending",
+      "description": "Pending transfer from ACC-XYZ99 to ACC-12345"
+    },
+    {
+      "fromAccount": null,
+      "toAccount": "ACC-TEST1",
+      "amount": 5000.99,
+      "currency": "CHF",
+      "type": "deposit",
+      "status": "completed",
+      "description": "Large deposit to ACC-TEST1"
+    }
+  ],
+  "test_scenarios": {
+    "valid_transactions": [
+      "Deposits with various currencies",
+      "Withdrawals from accounts",
+      "Transfers between accounts",
+      "Pending transaction status"
+    ],
+    "balance_calculations": {
+      "ACC-12345": "1000.00 (deposit) - 150.75 (withdrawal) - 250.00 (transfer out) = 599.25 USD",
+      "ACC-67890": "2500.50 (deposit) + 250.00 (transfer in) - 500.00 (transfer out) = 2250.50 EUR",
+      "ACC-ABCDE": "750.25 (deposit) + 500.00 (transfer in) - 100.50 (withdrawal) = 1149.75 GBP",
+      "ACC-XYZ99": "3000.00 (deposit) - 1000.00 (pending transfer, not counted) = 3000.00 JPY",
+      "ACC-TEST1": "5000.99 (deposit) = 5000.99 CHF"
+    },
+    "filtering_examples": {
+      "by_account": "Filter ACC-12345 should return 4 transactions",
+      "by_type_deposit": "Filter type=deposit should return 5 transactions",
+      "by_type_withdrawal": "Filter type=withdrawal should return 2 transactions",
+      "by_type_transfer": "Filter type=transfer should return 3 transactions"
+    }
+  },
+  "usage_instructions": [
+    "1. Start the API server using demo/run.sh or demo/run.bat",
+    "2. Use these sample transactions with the POST /api/transactions endpoint",
+    "3. Test balance calculation with GET /api/accounts/{accountId}/balance",
+    "4. Test filtering with GET /api/transactions?accountId=ACC-12345",
+    "5. Test account summary with GET /api/accounts/{accountId}/summary",
+    "6. Refer to demo/sample-requests.http for complete HTTP request examples"
+  ]
+}
