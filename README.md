@@ -61,7 +61,7 @@ git push origin homework-1-submission
 
 1. Go to your forked repository on GitHub
 2. Click **"Compare & pull request"** or go to **Pull requests** → **New pull request**
-3. Set the base repository to the **original instructor's repository**
+3. Set the base repository to the **your personal repository**
 4. Set the base branch to `main`
 5. Set the compare branch to your `homework-X-submission` branch
 6. Fill in the PR template with:
