@@ -1,0 +1,118 @@
+### Intelligent Customer Support System - API Test Requests
+### Use this file with VS Code REST Client extension
+
+@baseUrl = http://localhost:3000
+
+### Health Check
+GET {{baseUrl}}/health
+
+### 1. Create a New Ticket
+POST {{baseUrl}}/tickets
+Content-Type: application/json
+
+{
+  "customer_id": "CUST001",
+  "customer_email": "john.doe@example.com",
+  "customer_name": "John Doe",
+  "subject": "Cannot login to my account",
+  "description": "I have been unable to access my account for the past 2 hours and keep receiving error messages"
+}
+
+### 2. Create Another Ticket (Billing)
+POST {{baseUrl}}/tickets
+Content-Type: application/json
+
+{
+  "customer_id": "CUST002",
+  "customer_email": "jane.smith@example.com",
+  "customer_name": "Jane Smith",
+  "subject": "Billing discrepancy on my invoice",
+  "description": "I noticed that I was charged twice for my last subscription renewal and would like a refund"
+}
+
+### 3. Create Urgent Ticket (Production Down)
+POST {{baseUrl}}/tickets
+Content-Type: application/json
+
+{
+  "customer_id": "CUST003",
+  "customer_email": "bob.wilson@example.com",
+  "customer_name": "Bob Wilson",
+  "subject": "Production system is down critical security issue",
+  "description": "The production environment is completely down and affecting all users with a critical security vulnerability discovered"
+}
+
+### 4. List All Tickets
+GET {{baseUrl}}/tickets
+
+### 5. List Tickets - Filter by Status (new)
+GET {{baseUrl}}/tickets?status=new
+
+### 6. List Tickets - Filter by Priority (urgent)
+GET {{baseUrl}}/tickets?priority=urgent
+
+### 7. List Tickets - Filter by Category
+GET {{baseUrl}}/tickets?category=account_access
+
+### 8. List Tickets - Multiple Filters
+GET {{baseUrl}}/tickets?status=new&priority=urgent&category=technical_issue
+
+### 9. Get Specific Ticket (replace ID)
+GET {{baseUrl}}/tickets/550e8400-e29b-41d4-a716-446655440000
+
+### 10. Update Ticket Status to In Progress
+PUT {{baseUrl}}/tickets/550e8400-e29b-41d4-a716-446655440000
+Content-Type: application/json
+
+{
+  "status": "in_progress",
+  "assigned_to": "support-team-john"
+}
+
+### 11. Update Ticket to Resolved
+PUT {{baseUrl}}/tickets/550e8400-e29b-41d4-a716-446655440000
+Content-Type: application/json
+
+{
+  "status": "resolved"
+}
+
+### 12. Auto-Classify Ticket
+POST {{baseUrl}}/tickets/550e8400-e29b-41d4-a716-446655440000/auto-classify
+Content-Type: application/json
+
+{
+  "allow_override": true
+}
+
+### 13. Delete a Ticket
+DELETE {{baseUrl}}/tickets/550e8400-e29b-41d4-a716-446655440000
+
+### 14. Create Ticket with Invalid Email (Should Fail)
+POST {{baseUrl}}/tickets
+Content-Type: application/json
+
+{
+  "customer_id": "CUST004",
+  "customer_email": "invalid-email",
+  "customer_name": "Test User",
+  "subject": "Test Subject",
+  "description": "This should fail validation because email is invalid"
+}
+
+### 15. Create Ticket with Short Description (Should Fail)
+POST {{baseUrl}}/tickets
+Content-Type: application/json
+
+{
+  "customer_id": "CUST005",
+  "customer_email": "test@example.com",
+  "customer_name": "Test User",
+  "subject": "Test",
+  "description": "Short"
+}
+
+### Notes:
+### 1. Replace the ticket IDs in requests 9-13 with actual IDs from response headers
+### 2. Make sure server is running: npm start
+### 3. Install VS Code REST Client extension to run these requests directly

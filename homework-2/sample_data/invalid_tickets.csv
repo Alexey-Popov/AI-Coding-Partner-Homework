@@ -1,0 +1,6 @@
+customer_id,customer_email,customer_name,subject,description
+CUST001,not-an-email,John Doe,Missing Valid Email,This ticket has an invalid email format
+CUST002,jane@example.com,,Missing Name,This ticket is missing the customer name
+CUST003,bob@example.com,Bob Wilson,X,This subject is too short
+CUST004,alice@example.com,Alice,Valid Subject,Only five characters in description
+CUST005,,,Completely Invalid,Not even minimum description requirements are met here

@@ -1,0 +1,51 @@
+customer_id,customer_email,customer_name,subject,description,category,priority,status,tags,source,browser,device_type
+CUST001,john.doe@example.com,John Doe,Cannot login to my account,I have been unable to access my account for the past 2 hours and keep receiving an error message,account_access,urgent,new,urgent|account,web_form,Chrome,desktop
+CUST002,jane.smith@example.com,Jane Smith,Password reset not working,The password reset feature is not sending me the confirmation email,account_access,high,new,password|reset,web_form,Safari,mobile
+CUST003,bob.wilson@example.com,Bob Wilson,2FA not accepting codes,Two-factor authentication codes are being rejected even though they are correct,account_access,urgent,new,2fa|security,api,Firefox,desktop
+CUST004,alice.brown@example.com,Alice Brown,Account locked after multiple login attempts,My account has been locked and I need to regain access immediately,account_access,urgent,new,locked|access,email,Chrome,mobile
+CUST005,charlie.davis@example.com,Charlie Davis,Cannot update profile information,I am unable to update my personal information in the account settings,account_access,medium,new,profile,chat,Safari,desktop
+CUST006,diana.miller@example.com,Diana Miller,Application crashes on startup,The app crashes every time I try to open it,technical_issue,high,new,crash|bug,web_form,Chrome,mobile
+CUST007,edward.johnson@example.com,Edward Johnson,Slow performance loading dashboard,The dashboard takes over 30 seconds to load,technical_issue,medium,new,performance,api,Firefox,desktop
+CUST008,fiona.garcia@example.com,Fiona Garcia,Missing data in export feature,When I export my data the results are incomplete,technical_issue,high,new,data|export,email,Chrome,desktop
+CUST009,george.martinez@example.com,George Martinez,Error 500 on payment page,I get a server error when trying to proceed to checkout,technical_issue,urgent,new,error|payment,web_form,Safari,mobile
+CUST010,hannah.lee@example.com,Hannah Lee,Search function not working,The search feature returns no results for valid queries,technical_issue,medium,new,search|bug,api,Firefox,desktop
+CUST011,ivan.rodriguez@example.com,Ivan Rodriguez,Duplicate charge on invoice,I was charged twice for my subscription renewal,billing_question,high,new,billing|duplicate,email,Chrome,desktop
+CUST012,julia.taylor@example.com,Julia Taylor,Refund request for returned item,I returned my order but have not received the refund yet,billing_question,high,new,refund|return,web_form,Safari,mobile
+CUST013,kevin.anderson@example.com,Kevin Anderson,Invoice shows wrong amount,The invoice amount does not match what was quoted,billing_question,medium,new,invoice,api,Chrome,desktop
+CUST014,lucy.thomas@example.com,Lucy Thomas,Subscription renewal issue,I was not notified before my subscription was renewed,billing_question,medium,new,subscription,email,Firefox,mobile
+CUST015,michael.jackson@example.com,Michael Jackson,Payment method not accepted,My credit card is being rejected by the system,billing_question,high,new,payment,web_form,Safari,desktop
+CUST016,nancy.white@example.com,Nancy White,Dark mode feature request,Please add a dark mode option to the application,feature_request,low,new,feature|ui,email,Chrome,desktop
+CUST017,oscar.martin@example.com,Oscar Martin,Mobile app offline support,It would be great to access data without internet connection,feature_request,low,new,feature|mobile,api,Safari,mobile
+CUST018,patricia.perez@example.com,Patricia Perez,Batch processing capability,Need the ability to process multiple files at once,feature_request,medium,new,feature|batch,web_form,Firefox,desktop
+CUST019,quincy.robinson@example.com,Quincy Robinson,API rate limit increase request,Current limits are too restrictive for our use case,feature_request,medium,new,feature|api,email,Chrome,desktop
+CUST020,rachel.clark@example.com,Rachel Clark,Custom reporting dashboard,Would like to create custom reports from user data,feature_request,low,new,feature|reporting,api,Safari,mobile
+CUST021,samuel.lewis@example.com,Samuel Lewis,UI responsiveness issue,The interface breaks on tablet size screens,bug_report,high,new,ui|responsive|reproduction,web_form,Chrome,tablet
+CUST022,tina.walker@example.com,Tina Walker,Data export formatting wrong,Exported CSV has incorrect field formatting,bug_report,medium,new,export|bug,email,Firefox,desktop
+CUST023,uma.hall@example.com,Uma Hall,Button not clickable on checkout,The submit button is not responding to clicks,bug_report,high,new,bug|ui,api,Safari,mobile
+CUST024,victor.allen@example.com,Victor Allen,Filters not applying correctly,Applied filters are not restricting results as expected,bug_report,medium,new,bug|filter,web_form,Chrome,desktop
+CUST025,wendy.young@example.com,Wendy Young,Notifications not sending,User notifications are not being delivered,bug_report,urgent,new,bug|notification|critical,email,Firefox,mobile
+CUST026,xavier.king@example.com,Xavier King,Print functionality broken,Cannot print pages from the application,bug_report,low,new,bug|print,api,Chrome,desktop
+CUST027,yasmine.wright@example.com,Yasmine Wright,Cache clearing does not work,Clearing cache does not refresh the data,bug_report,medium,new,bug|cache,web_form,Safari,mobile
+CUST028,zachary.lopez@example.com,Zachary Lopez,Session timeout too aggressive,Users are logged out too quickly,bug_report,medium,new,bug|session,email,Firefox,desktop
+CUST029,amy.hill@example.com,Amy Hill,Suggestions for product documentation,The current documentation could be clearer,other,low,new,documentation,api,Chrome,desktop
+CUST030,brian.scott@example.com,Brian Scott,General inquiry about features,Just curious about upcoming features,other,low,new,inquiry,web_form,Safari,mobile
+CUST031,catherine.green@example.com,Catherine Green,Cannot access after migration,Account not accessible after platform migration,account_access,urgent,in_progress,urgent|migration,email,Chrome,desktop
+CUST032,david.adams@example.com,David Adams,Billing discrepancy for bulk users,Multiple accounts being charged incorrectly,billing_question,urgent,in_progress,billing|bulk,api,Firefox,mobile
+CUST033,emma.baker@example.com,Emma Baker,Critical security vulnerability,Found a security flaw in password reset,technical_issue,urgent,in_progress,security|critical,web_form,Safari,desktop
+CUST034,frank.nelson@example.com,Frank Nelson,Application completely unusable after update,Latest version is broken and application will not load,technical_issue,urgent,new,crash|update|critical,email,Chrome,mobile
+CUST035,grace.carter@example.com,Grace Carter,Production environment down,Main service is not responding and affecting customers,technical_issue,urgent,in_progress,production|critical|down,api,Firefox,desktop
+CUST036,henry.mitchell@example.com,Henry Mitchell,Feature needs in enterprise customers,Large customers are requesting new capabilities,feature_request,high,new,enterprise|feature,web_form,Safari,mobile
+CUST037,iris.roberts@example.com,Iris Roberts,Integration with third party needed,Need ability to connect with other platforms,feature_request,high,new,integration|feature,email,Chrome,desktop
+CUST038,jack.phillips@example.com,Jack Phillips,API documentation is incomplete,Some endpoints are missing from the API docs,bug_report,medium,new,documentation|api,api,Firefox,mobile
+CUST039,karen.campbell@example.com,Karen Campbell,Wrong error messages displayed,Error messages are confusing and unhelpful,bug_report,medium,new,error|ux,web_form,Safari,desktop
+CUST040,liam.parker@example.com,Liam Parker,Data loss after system crash,Lost important data when system experienced outage,bug_report,urgent,in_progress,data|loss|critical,email,Chrome,mobile
+CUST041,margaret.evans@example.com,Margaret Evans,Authentication timeout during upload,Session expires while uploading large files,technical_issue,high,new,authentication|upload,api,Firefox,desktop
+CUST042,nathan.edwards@example.com,Nathan Edwards,Cannot delete old records,Archive functionality not working properly,technical_issue,medium,new,deletion|archive,web_form,Safari,mobile
+CUST043,olivia.collins@example.com,Olivia Collins,Email notifications not working,Users are not receiving email alerts,technical_issue,high,new,email|notification,email,Chrome,desktop
+CUST044,paul.stewart@example.com,Paul Stewart,Mobile app crashes frequently,App is very unstable and crashes often,technical_issue,high,new,crash|mobile,api,Firefox,mobile
+CUST045,quinn.sanchez@example.com,Quinn Sanchez,Sorting on large datasets is slow,Table sorting takes too long with many records,technical_issue,medium,new,performance|sort,web_form,Safari,desktop
+CUST046,riley.morris@example.com,Riley Morris,Refund processing is delayed,Refunds are taking longer than expected,billing_question,high,new,refund|delay,email,Chrome,mobile
+CUST047,sophia.rogers@example.com,Sophia Rogers,Pricing model needs adjustment,Current pricing tier structure is confusing,billing_question,medium,new,pricing|confusion,api,Firefox,desktop
+CUST048,thomas.reed@example.com,Thomas Reed,Audit trail feature missing,Need to track user actions for compliance,feature_request,high,new,audit|compliance,web_form,Safari,mobile
+CUST049,ursula.cook@example.com,Ursula Cook,Real time collaboration feature,Would like multiple users to work simultaneously,feature_request,high,new,collaboration|feature,email,Chrome,desktop
+CUST050,victor.morgan@example.com,Victor Morgan,Advanced reporting capabilities needed,Need more sophisticated report generation options,feature_request,medium,new,reporting|feature,api,Firefox,mobile

@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickets>
+  <ticket>
+    <customer_id>CUST001</customer_id>
+    <customer_email>john.doe@example.com</customer_email>
+    <customer_name>John Doe</customer_name>
+    <subject>Cannot login to my account</subject>
+    <description>I have been unable to access my account for the past 2 hours and keep receiving an error message</description>
+    <category>account_access</category>
+    <priority>urgent</priority>
+    <status>new</status>
+    <tags>
+      <tag>urgent</tag>
+      <tag>account</tag>
+    </tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Chrome</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST002</customer_id>
+    <customer_email>jane.smith@example.com</customer_email>
+    <customer_name>Jane Smith</customer_name>
+    <subject>Billing discrepancy on invoice</subject>
+    <description>I noticed I was charged twice for my last subscription renewal</description>
+    <category>billing_question</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>
+      <tag>billing</tag>
+      <tag>duplicate</tag>
+    </tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Safari</browser>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST003</customer_id>
+    <customer_email>bob.wilson@example.com</customer_email>
+    <customer_name>Bob Wilson</customer_name>
+    <subject>Application crashes on startup</subject>
+    <description>The application is crashing immediately upon startup</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>
+      <tag>crash</tag>
+      <tag>bug</tag>
+    </tags>
+    <metadata>
+      <source>email</source>
+      <browser>Firefox</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST004</customer_id>
+    <customer_email>alice.brown@example.com</customer_email>
+    <customer_name>Alice Brown</customer_name>
+    <subject>Feature request for dark mode</subject>
+    <description>It would be great if the application had a dark mode option</description>
+    <category>feature_request</category>
+    <priority>low</priority>
+    <status>new</status>
+    <tags>
+      <tag>feature</tag>
+      <tag>ui</tag>
+    </tags>
+    <metadata>
+      <source>api</source>
+      <browser>Chrome</browser>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST005</customer_id>
+    <customer_email>charlie.davis@example.com</customer_email>
+    <customer_name>Charlie Davis</customer_name>
+    <subject>Cannot export data to CSV</subject>
+    <description>The export feature is not working and returns an error</description>
+    <category>bug_report</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>
+      <tag>export</tag>
+      <tag>bug</tag>
+    </tags>
+    <metadata>
+      <source>chat</source>
+      <browser>Safari</browser>
+      <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST006</customer_id>
+    <customer_email>diana.miller@example.com</customer_email>
+    <customer_name>Diana Miller</customer_name>
+    <subject>Account locked after password change</subject>
+    <description>After resetting my password my account became locked</description>
+    <category>account_access</category>
+    <priority>urgent</priority>
+    <status>new</status>
+    <tags>
+      <tag>locked</tag>
+      <tag>password</tag>
+    </tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Firefox</browser>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST007</customer_id>
+    <customer_email>edward.johnson@example.com</customer_email>
+    <customer_name>Edward Johnson</customer_name>
+    <subject>Performance issues with search</subject>
+    <description>The search function is extremely slow taking over a minute</description>
+    <category>technical_issue</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>
+      <tag>performance</tag>
+      <tag>search</tag>
+    </tags>
+    <metadata>
+      <source>phone</source>
+      <browser>Chrome</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST008</customer_id>
+    <customer_email>fiona.garcia@example.com</customer_email>
+    <customer_name>Fiona Garcia</customer_name>
+    <subject>Refund not processed</subject>
+    <description>I submitted a refund request three weeks ago but have not received it</description>
+    <category>billing_question</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>
+      <tag>refund</tag>
+      <tag>billing</tag>
+    </tags>
+    <metadata>
+      <source>email</source>
+      <browser>Safari</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST009</customer_id>
+    <customer_email>george.martinez@example.com</customer_email>
+    <customer_name>George Martinez</customer_name>
+    <subject>Production system is down critical</subject>
+    <description>The production environment is completely down affecting all users this is a critical security issue</description>
+    <category>technical_issue</category>
+    <priority>urgent</priority>
+    <status>new</status>
+    <tags>
+      <tag>production</tag>
+      <tag>critical</tag>
+    </tags>
+    <metadata>
+      <source>api</source>
+      <browser>Firefox</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST010</customer_id>
+    <customer_email>hannah.lee@example.com</customer_email>
+    <customer_name>Hannah Lee</customer_name>
+    <subject>Cannot access API documentation</subject>
+    <description>The API documentation link is broken and I cannot find information</description>
+    <category>other</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>
+      <tag>api</tag>
+      <tag>documentation</tag>
+    </tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Chrome</browser>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST011</customer_id>
+    <customer_email>ivan.rodriguez@example.com</customer_email>
+    <customer_name>Ivan Rodriguez</customer_name>
+    <subject>2FA setup is not working</subject>
+    <description>When I try to enable two factor authentication the system does not send the verification code</description>
+    <category>account_access</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>
+      <tag>2fa</tag>
+      <tag>security</tag>
+    </tags>
+    <metadata>
+      <source>email</source>
+      <browser>Safari</browser>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST012</customer_id>
+    <customer_email>julia.taylor@example.com</customer_email>
+    <customer_name>Julia Taylor</customer_name>
+    <subject>Subscription cancellation failed</subject>
+    <description>I attempted to cancel my subscription but the request failed</description>
+    <category>billing_question</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>
+      <tag>subscription</tag>
+      <tag>cancellation</tag>
+    </tags>
+    <metadata>
+      <source>api</source>
+      <browser>Firefox</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST013</customer_id>
+    <customer_email>kevin.anderson@example.com</customer_email>
+    <customer_name>Kevin Anderson</customer_name>
+    <subject>Mobile app offline mode</subject>
+    <description>It would be beneficial to have an offline mode for cached data</description>
+    <category>feature_request</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>
+      <tag>feature</tag>
+      <tag>mobile</tag>
+    </tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Chrome</browser>
+      <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST014</customer_id>
+    <customer_email>lucy.thomas@example.com</customer_email>
+    <customer_name>Lucy Thomas</customer_name>
+    <subject>Error on checkout page</subject>
+    <description>When I try to complete my purchase I get a 500 error on the checkout page</description>
+    <category>technical_issue</category>
+    <priority>urgent</priority>
+    <status>new</status>
+    <tags>
+      <tag>error</tag>
+      <tag>payment</tag>
+    </tags>
+    <metadata>
+      <source>email</source>
+      <browser>Safari</browser>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST015</customer_id>
+    <customer_email>michael.jackson@example.com</customer_email>
+    <customer_name>Michael Jackson</customer_name>
+    <subject>Request for bulk user management</subject>
+    <description>We need the ability to manage multiple user accounts at once</description>
+    <category>feature_request</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>
+      <tag>enterprise</tag>
+      <tag>feature</tag>
+    </tags>
+    <metadata>
+      <source>phone</source>
+      <browser>Firefox</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST016</customer_id>
+    <customer_email>nancy.white@example.com</customer_email>
+    <customer_name>Nancy White</customer_name>
+    <subject>Login page broken on mobile</subject>
+    <description>The login form is not displaying correctly on mobile devices</description>
+    <category>bug_report</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>
+      <tag>mobile</tag>
+      <tag>ui</tag>
+    </tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Chrome</browser>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST017</customer_id>
+    <customer_email>oscar.martin@example.com</customer_email>
+    <customer_name>Oscar Martin</customer_name>
+    <subject>Data sync issues across devices</subject>
+    <description>My data is not syncing properly between my desktop and mobile devices</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>
+      <tag>sync</tag>
+      <tag>bug</tag>
+    </tags>
+    <metadata>
+      <source>email</source>
+      <browser>Safari</browser>
+      <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST018</customer_id>
+    <customer_email>patricia.perez@example.com</customer_email>
+    <customer_name>Patricia Perez</customer_name>
+    <subject>Custom integration needed</subject>
+    <description>We need the ability to integrate this application with our custom enterprise systems</description>
+    <category>feature_request</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>
+      <tag>integration</tag>
+      <tag>enterprise</tag>
+    </tags>
+    <metadata>
+      <source>api</source>
+      <browser>Firefox</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST019</customer_id>
+    <customer_email>quincy.robinson@example.com</customer_email>
+    <customer_name>Quincy Robinson</customer_name>
+    <subject>Payment method rejected</subject>
+    <description>My credit card is being rejected even though it is valid</description>
+    <category>billing_question</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>
+      <tag>payment</tag>
+      <tag>billing</tag>
+    </tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Chrome</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST020</customer_id>
+    <customer_email>rachel.clark@example.com</customer_email>
+    <customer_name>Rachel Clark</customer_name>
+    <subject>Advanced filtering feature request</subject>
+    <description>We would like more advanced filtering options for our data</description>
+    <category>feature_request</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>
+      <tag>feature</tag>
+      <tag>search</tag>
+    </tags>
+    <metadata>
+      <source>email</source>
+      <browser>Safari</browser>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST021</customer_id>
+    <customer_email>samuel.lewis@example.com</customer_email>
+    <customer_name>Samuel Lewis</customer_name>
+    <subject>UI responsiveness issue</subject>
+    <description>The interface breaks on tablet size screens</description>
+    <category>bug_report</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>
+      <tag>ui</tag>
+      <tag>responsive</tag>
+    </tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Firefox</browser>
+      <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST022</customer_id>
+    <customer_email>tina.walker@example.com</customer_email>
+    <customer_name>Tina Walker</customer_name>
+    <subject>Data export formatting wrong</subject>
+    <description>Exported CSV has incorrect field formatting</description>
+    <category>bug_report</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>
+      <tag>export</tag>
+      <tag>bug</tag>
+    </tags>
+    <metadata>
+      <source>email</source>
+      <browser>Chrome</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST023</customer_id>
+    <customer_email>uma.hall@example.com</customer_email>
+    <customer_name>Uma Hall</customer_name>
+    <subject>Button not clickable on checkout</subject>
+    <description>The submit button is not responding to clicks</description>
+    <category>bug_report</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>
+      <tag>bug</tag>
+      <tag>ui</tag>
+    </tags>
+    <metadata>
+      <source>api</source>
+      <browser>Safari</browser>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST024</customer_id>
+    <customer_email>victor.allen@example.com</customer_email>
+    <customer_name>Victor Allen</customer_name>
+    <subject>Filters not applying correctly</subject>
+    <description>Applied filters are not restricting results as expected</description>
+    <category>bug_report</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>
+      <tag>bug</tag>
+      <tag>filter</tag>
+    </tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Firefox</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST025</customer_id>
+    <customer_email>wendy.young@example.com</customer_email>
+    <customer_name>Wendy Young</customer_name>
+    <subject>Notifications not sending</subject>
+    <description>User notifications are not being delivered as expected</description>
+    <category>bug_report</category>
+    <priority>urgent</priority>
+    <status>new</status>
+    <tags>
+      <tag>bug</tag>
+      <tag>notification</tag>
+    </tags>
+    <metadata>
+      <source>email</source>
+      <browser>Chrome</browser>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST026</customer_id>
+    <customer_email>xavier.king@example.com</customer_email>
+    <customer_name>Xavier King</customer_name>
+    <subject>Print functionality broken</subject>
+    <description>Cannot print pages from the application</description>
+    <category>bug_report</category>
+    <priority>low</priority>
+    <status>new</status>
+    <tags>
+      <tag>bug</tag>
+      <tag>print</tag>
+    </tags>
+    <metadata>
+      <source>api</source>
+      <browser>Safari</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST027</customer_id>
+    <customer_email>yasmine.wright@example.com</customer_email>
+    <customer_name>Yasmine Wright</customer_name>
+    <subject>Cache clearing does not work</subject>
+    <description>Clearing cache does not refresh the data properly</description>
+    <category>bug_report</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>
+      <tag>bug</tag>
+      <tag>cache</tag>
+    </tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Firefox</browser>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST028</customer_id>
+    <customer_email>zachary.lopez@example.com</customer_email>
+    <customer_name>Zachary Lopez</customer_name>
+    <subject>Session timeout too aggressive</subject>
+    <description>Users are logged out too quickly</description>
+    <category>bug_report</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>
+      <tag>bug</tag>
+      <tag>session</tag>
+    </tags>
+    <metadata>
+      <source>email</source>
+      <browser>Chrome</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST029</customer_id>
+    <customer_email>amy.hill@example.com</customer_email>
+    <customer_name>Amy Hill</customer_name>
+    <subject>Suggestions for product documentation</subject>
+    <description>The current documentation could be clearer and more comprehensive</description>
+    <category>other</category>
+    <priority>low</priority>
+    <status>new</status>
+    <tags>
+      <tag>documentation</tag>
+    </tags>
+    <metadata>
+      <source>api</source>
+      <browser>Safari</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST030</customer_id>
+    <customer_email>brian.scott@example.com</customer_email>
+    <customer_name>Brian Scott</customer_name>
+    <subject>General inquiry about features</subject>
+    <description>Just curious about upcoming features</description>
+    <category>other</category>
+    <priority>low</priority>
+    <status>new</status>
+    <tags>
+      <tag>inquiry</tag>
+    </tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Firefox</browser>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+</tickets>

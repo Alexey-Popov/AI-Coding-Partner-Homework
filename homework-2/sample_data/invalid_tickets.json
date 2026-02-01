@@ -1,0 +1,28 @@
+[
+  {
+    "customer_id": "CUST001",
+    "customer_email": "invalid-email",
+    "customer_name": "Invalid Email",
+    "subject": "Test",
+    "description": "This has an invalid email format that should fail validation"
+  },
+  {
+    "customer_id": "CUST002",
+    "customer_email": "test@example.com",
+    "customer_name": "Short Description",
+    "subject": "Subject",
+    "description": "Short"
+  },
+  {
+    "customer_email": "test@example.com",
+    "customer_name": "Missing ID",
+    "subject": "Subject",
+    "description": "This ticket is missing the required customer_id field"
+  },
+  {
+    "customer_id": "CUST004",
+    "customer_email": "test@example.com",
+    "subject": "Missing Name",
+    "description": "This ticket is missing the required customer_name field that must be present"
+  }
+]
