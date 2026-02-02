@@ -1,0 +1,51 @@
+customer_id,customer_email,customer_name,subject,description,category,priority,status,source,browser,device_type,tags
+CUST-001,john.doe@example.com,John Doe,Cannot login to account,I've been trying to login for the past hour but keep getting an error message. I've reset my password twice but still can't access my account.,ACCOUNT_ACCESS,URGENT,NEW,WEB_FORM,Chrome,DESKTOP,login;urgent
+CUST-002,jane.smith@techcorp.com,Jane Smith,Application crashes on startup,Every time I open the application it crashes immediately. This is blocking my work.,TECHNICAL_ISSUE,HIGH,NEW,EMAIL,Firefox,DESKTOP,crash;blocking
+CUST-003,mike.wilson@startup.io,Mike Wilson,Invoice payment failed,My payment was declined but I was still charged. Need a refund.,BILLING_QUESTION,HIGH,NEW,CHAT,Safari,MOBILE,payment;refund
+CUST-004,sarah.jones@company.com,Sarah Jones,Add dark mode feature,Would be great to have a dark mode option for night time use.,FEATURE_REQUEST,LOW,NEW,WEB_FORM,Edge,DESKTOP,enhancement
+CUST-005,david.brown@email.com,David Brown,Bug in search functionality,Search returns incorrect results when using special characters. Steps to reproduce: 1. Enter '@' in search 2. Click search 3. Wrong results appear,BUG_REPORT,MEDIUM,NEW,API,Chrome,DESKTOP,bug;search
+CUST-006,emma.davis@domain.com,Emma Davis,Password reset not working,Clicked forgot password but never received the reset email.,ACCOUNT_ACCESS,HIGH,NEW,WEB_FORM,Safari,MOBILE,password;email
+CUST-007,alex.miller@business.net,Alex Miller,Production server down,Critical: Our production server is completely down. Customers cannot access the service.,TECHNICAL_ISSUE,URGENT,IN_PROGRESS,PHONE,Chrome,DESKTOP,critical;production
+CUST-008,lisa.anderson@shop.com,Lisa Anderson,Duplicate charge on credit card,I was charged twice for the same subscription this month.,BILLING_QUESTION,MEDIUM,NEW,EMAIL,Firefox,TABLET,billing;duplicate
+CUST-009,chris.taylor@web.org,Chris Taylor,Export to PDF not working,When I try to export my report to PDF nothing happens.,TECHNICAL_ISSUE,MEDIUM,NEW,WEB_FORM,Chrome,DESKTOP,export;pdf
+CUST-010,amy.white@mail.com,Amy White,Request API documentation,Could you provide detailed API documentation for integration?,FEATURE_REQUEST,MEDIUM,NEW,EMAIL,Edge,DESKTOP,api;documentation
+CUST-011,tom.harris@tech.io,Tom Harris,2FA authentication issues,Two-factor authentication codes are not being sent to my phone.,ACCOUNT_ACCESS,HIGH,NEW,CHAT,Safari,MOBILE,2fa;authentication
+CUST-012,rachel.martin@biz.com,Rachel Martin,Slow page load times,Pages are taking 30+ seconds to load. This is very frustrating.,TECHNICAL_ISSUE,MEDIUM,NEW,WEB_FORM,Chrome,DESKTOP,performance;slow
+CUST-013,kevin.thompson@email.net,Kevin Thompson,Incorrect invoice amount,My latest invoice shows the wrong amount. Should be $99 not $199.,BILLING_QUESTION,HIGH,NEW,EMAIL,Firefox,DESKTOP,invoice;error
+CUST-014,nicole.garcia@company.io,Nicole Garcia,Add export to Excel feature,It would be helpful to export data directly to Excel format.,FEATURE_REQUEST,LOW,NEW,API,Chrome,DESKTOP,excel;export
+CUST-015,brian.rodriguez@web.com,Brian Rodriguez,Form validation bug,Form accepts invalid email addresses. Example: test@@ is accepted.,BUG_REPORT,MEDIUM,NEW,WEB_FORM,Safari,TABLET,validation;form
+CUST-016,jennifer.martinez@mail.org,Jennifer Martinez,Account locked after failed logins,My account was locked after 3 failed login attempts. Need urgent access.,ACCOUNT_ACCESS,URGENT,NEW,PHONE,Edge,MOBILE,locked;urgent
+CUST-017,daniel.lee@startup.com,Daniel Lee,Database connection timeout,Getting frequent database timeout errors when running reports.,TECHNICAL_ISSUE,HIGH,NEW,API,Chrome,DESKTOP,database;timeout
+CUST-018,michelle.walker@shop.net,Michelle Walker,Subscription cancellation refund,I cancelled my subscription but haven't received my pro-rated refund yet.,BILLING_QUESTION,MEDIUM,NEW,EMAIL,Firefox,DESKTOP,refund;subscription
+CUST-019,jason.hall@business.io,Jason Hall,Bulk upload feature needed,Need ability to upload multiple files at once instead of one by one.,FEATURE_REQUEST,MEDIUM,NEW,WEB_FORM,Chrome,DESKTOP,bulk;upload
+CUST-020,amanda.allen@domain.com,Amanda Allen,Dashboard widget displays wrong data,The sales widget on dashboard shows last month's data instead of current.,BUG_REPORT,HIGH,NEW,CHAT,Safari,DESKTOP,dashboard;data
+CUST-021,ryan.young@tech.com,Ryan Young,Cannot access admin panel,Getting 403 forbidden error when trying to access admin section.,ACCOUNT_ACCESS,HIGH,IN_PROGRESS,WEB_FORM,Chrome,DESKTOP,admin;403
+CUST-022,stephanie.king@email.io,Stephanie King,Memory leak in application,Application memory usage keeps growing until it crashes.,TECHNICAL_ISSUE,HIGH,NEW,API,Firefox,DESKTOP,memory;leak
+CUST-023,matthew.wright@mail.com,Matthew Wright,Double billing for annual plan,I was charged monthly rate even though I selected annual billing.,BILLING_QUESTION,HIGH,NEW,EMAIL,Edge,TABLET,billing;annual
+CUST-024,lauren.lopez@company.net,Lauren Lopez,Add keyboard shortcuts,Would love to have keyboard shortcuts for common actions.,FEATURE_REQUEST,LOW,NEW,WEB_FORM,Chrome,DESKTOP,keyboard;shortcuts
+CUST-025,andrew.hill@web.org,Andrew Hill,Date picker shows wrong format,Date picker displays MM/DD/YYYY but we need DD/MM/YYYY format.,BUG_REPORT,LOW,NEW,CHAT,Safari,MOBILE,date;format
+CUST-026,jessica.scott@biz.io,Jessica Scott,Login session expires too quickly,I get logged out every 5 minutes which is very annoying.,ACCOUNT_ACCESS,MEDIUM,NEW,WEB_FORM,Chrome,DESKTOP,session;timeout
+CUST-027,joshua.green@startup.com,Joshua Green,API rate limit too restrictive,Current API rate limit of 100 requests/hour is too low for our needs.,TECHNICAL_ISSUE,MEDIUM,NEW,API,Firefox,DESKTOP,api;rate-limit
+CUST-028,ashley.adams@shop.com,Ashley Adams,Missing transaction in statement,One of my transactions from last week is not showing in my statement.,BILLING_QUESTION,MEDIUM,NEW,EMAIL,Edge,DESKTOP,transaction;missing
+CUST-029,justin.baker@email.net,Justin Baker,Add mobile app support,Would be great to have a native mobile app instead of just web.,FEATURE_REQUEST,MEDIUM,NEW,WEB_FORM,Safari,MOBILE,mobile;app
+CUST-030,brittany.nelson@domain.io,Brittany Nelson,Image upload fails for large files,Cannot upload images larger than 2MB. Get timeout error.,BUG_REPORT,MEDIUM,NEW,CHAT,Chrome,TABLET,upload;timeout
+CUST-031,brandon.carter@tech.com,Brandon Carter,Forgot username recovery,I forgot my username and there's no option to recover it.,ACCOUNT_ACCESS,MEDIUM,NEW,WEB_FORM,Firefox,DESKTOP,username;recovery
+CUST-032,megan.mitchell@mail.org,Megan Mitchell,Server returns 500 error randomly,Getting intermittent 500 internal server errors on various pages.,TECHNICAL_ISSUE,HIGH,NEW,API,Chrome,DESKTOP,500;error
+CUST-033,tyler.perez@business.com,Tyler Perez,Need invoice for accounting,Can you send me an invoice for last month's charges?,BILLING_QUESTION,LOW,NEW,EMAIL,Safari,DESKTOP,invoice;request
+CUST-034,emily.roberts@company.net,Emily Roberts,Add filter by date range,Need ability to filter reports by custom date ranges.,FEATURE_REQUEST,MEDIUM,NEW,WEB_FORM,Edge,DESKTOP,filter;date
+CUST-035,jacob.turner@web.io,Jacob Turner,Notification emails not received,Not receiving any notification emails for the past 3 days.,BUG_REPORT,MEDIUM,NEW,CHAT,Chrome,MOBILE,email;notifications
+CUST-036,samantha.phillips@startup.com,Samantha Phillips,Password requirements too strict,Password policy requires too many special characters making it hard to remember.,ACCOUNT_ACCESS,LOW,NEW,WEB_FORM,Firefox,TABLET,password;policy
+CUST-037,nicholas.campbell@email.com,Nicholas Campbell,Timeout on large data exports,Export times out when trying to download large datasets.,TECHNICAL_ISSUE,MEDIUM,NEW,API,Safari,DESKTOP,export;timeout
+CUST-038,victoria.parker@shop.net,Victoria Parker,Charged after cancellation,Was charged this month even though I cancelled my subscription last month.,BILLING_QUESTION,HIGH,NEW,EMAIL,Chrome,DESKTOP,cancellation;charge
+CUST-039,austin.evans@domain.com,Austin Evans,Add integration with Slack,Would be useful to integrate with Slack for notifications.,FEATURE_REQUEST,MEDIUM,NEW,WEB_FORM,Edge,DESKTOP,slack;integration
+CUST-040,hannah.edwards@mail.io,Hannah Edwards,Sorting not working in table,Clicking column headers to sort data doesn't work properly.,BUG_REPORT,LOW,NEW,CHAT,Firefox,TABLET,sorting;table
+CUST-041,zachary.collins@tech.org,Zachary Collins,Security alert for suspicious login,Got security alert about login from unknown location but it was me.,ACCOUNT_ACCESS,MEDIUM,NEW,WEB_FORM,Chrome,MOBILE,security;alert
+CUST-042,alexis.stewart@business.com,Alexis Stewart,Slow query performance,Database queries taking 10+ seconds to complete.,TECHNICAL_ISSUE,HIGH,NEW,API,Safari,DESKTOP,performance;query
+CUST-043,ethan.sanchez@company.io,Ethan Sanchez,Tax not calculated correctly,Sales tax calculation is wrong for international orders.,BILLING_QUESTION,MEDIUM,NEW,EMAIL,Edge,DESKTOP,tax;calculation
+CUST-044,grace.morris@email.net,Grace Morris,Add CSV export option,Currently can only export to JSON but need CSV format.,FEATURE_REQUEST,LOW,NEW,WEB_FORM,Chrome,DESKTOP,csv;export
+CUST-045,nathan.rogers@web.com,Nathan Rogers,Pagination breaks after page 10,Cannot navigate beyond page 10 in search results.,BUG_REPORT,MEDIUM,NEW,CHAT,Firefox,TABLET,pagination;bug
+CUST-046,madison.reed@startup.net,Madison Reed,SSO authentication not working,Single sign-on through our corporate system fails with error.,ACCOUNT_ACCESS,HIGH,NEW,API,Safari,DESKTOP,sso;authentication
+CUST-047,caleb.cook@mail.org,Caleb Cook,Memory usage warning on dashboard,Dashboard shows high memory usage warning but performance seems fine.,TECHNICAL_ISSUE,LOW,NEW,WEB_FORM,Chrome,DESKTOP,memory;warning
+CUST-048,olivia.morgan@shop.io,Olivia Morgan,Promo code not applying discount,Entered valid promo code but discount not reflected in total.,BILLING_QUESTION,MEDIUM,NEW,EMAIL,Edge,MOBILE,promo;discount
+CUST-049,logan.bell@domain.net,Logan Bell,Add REST API webhooks,Need webhook support to get real-time notifications of events.,FEATURE_REQUEST,HIGH,NEW,API,Firefox,DESKTOP,webhook;api
+CUST-050,chloe.murphy@business.com,Chloe Murphy,Search results missing recent entries,Newly created items don't appear in search for 24 hours.,BUG_REPORT,MEDIUM,NEW,WEB_FORM,Chrome,TABLET,search;indexing
