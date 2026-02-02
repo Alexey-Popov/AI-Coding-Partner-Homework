@@ -49,12 +49,12 @@ pause
 
 # 1. Create Transfer Transaction
 print_section "1. Creating Transfer Transaction"
-print_test "POST /transactions - Transfer 100.50 USD from ACC-12345 to ACC-67890"
+print_test "POST /transactions - Transfer 100.50 USD from ACC-00001 to ACC-00002"
 curl -X POST "$BASE_URL/transactions" \
   -H "Content-Type: application/json" \
   -d '{
-    "fromAccount": "ACC-12345",
-    "toAccount": "ACC-67890",
+    "fromAccount": "ACC-00001",
+    "toAccount": "ACC-00002",
     "amount": 100.50,
     "currency": "USD",
     "type": "transfer"
@@ -63,12 +63,12 @@ pause
 
 # 2. Create Deposit Transaction
 print_section "2. Creating Deposit Transaction"
-print_test "POST /transactions - Deposit 500.00 USD to ACC-12345"
+print_test "POST /transactions - Deposit 500.00 USD to ACC-00001"
 curl -X POST "$BASE_URL/transactions" \
   -H "Content-Type: application/json" \
   -d '{
-    "fromAccount": "ACC-00000",
-    "toAccount": "ACC-12345",
+    "fromAccount": "ACC-00003",
+    "toAccount": "ACC-00001",
     "amount": 500.00,
     "currency": "USD",
     "type": "deposit"
@@ -77,12 +77,12 @@ pause
 
 # 3. Create Withdrawal Transaction
 print_section "3. Creating Withdrawal Transaction"
-print_test "POST /transactions - Withdraw 50.25 USD from ACC-67890"
+print_test "POST /transactions - Withdraw 50.25 USD from ACC-00002"
 curl -X POST "$BASE_URL/transactions" \
   -H "Content-Type: application/json" \
   -d '{
-    "fromAccount": "ACC-67890",
-    "toAccount": "ACC-00000",
+    "fromAccount": "ACC-00002",
+    "toAccount": "ACC-00003",
     "amount": 50.25,
     "currency": "USD",
     "type": "withdrawal"
@@ -97,14 +97,14 @@ pause
 
 # 5. Get Account Balance
 print_section "5. Getting Account Balance"
-print_test "GET /accounts/ACC-12345/balance"
-curl -X GET "$BASE_URL/accounts/ACC-12345/balance" | jq .
+print_test "GET /accounts/ACC-00001/balance"
+curl -X GET "$BASE_URL/accounts/ACC-00001/balance" | jq .
 pause
 
 # 6. Filter by Account
 print_section "6. Filtering Transactions by Account"
-print_test "GET /transactions?accountId=ACC-12345"
-curl -X GET "$BASE_URL/transactions?accountId=ACC-12345" | jq .
+print_test "GET /transactions?accountId=ACC-00001"
+curl -X GET "$BASE_URL/transactions?accountId=ACC-00001" | jq .
 pause
 
 # 7. Filter by Type
@@ -115,8 +115,8 @@ pause
 
 # 8. Filter by Date Range
 print_section "8. Filtering Transactions by Date Range"
-print_test "GET /transactions?from=2024-01-01&to=2024-12-31"
-curl -X GET "$BASE_URL/transactions?from=2024-01-01&to=2024-12-31" | jq .
+print_test "GET /transactions?from=2026-01-01&to=2026-12-31"
+curl -X GET "$BASE_URL/transactions?from=2026-01-01&to=2026-12-31" | jq .
 pause
 
 # 9. Test Validation - Invalid Amount
@@ -125,8 +125,8 @@ print_test "POST /transactions - Should fail with negative amount"
 curl -X POST "$BASE_URL/transactions" \
   -H "Content-Type: application/json" \
   -d '{
-    "fromAccount": "ACC-12345",
-    "toAccount": "ACC-67890",
+    "fromAccount": "ACC-00001",
+    "toAccount": "ACC-00002",
     "amount": -50.00,
     "currency": "USD",
     "type": "transfer"
@@ -139,8 +139,8 @@ print_test "POST /transactions - Should fail with invalid currency"
 curl -X POST "$BASE_URL/transactions" \
   -H "Content-Type: application/json" \
   -d '{
-    "fromAccount": "ACC-12345",
-    "toAccount": "ACC-67890",
+    "fromAccount": "ACC-00001",
+    "toAccount": "ACC-00002",
     "amount": 100.00,
     "currency": "INVALID",
     "type": "transfer"
@@ -154,7 +154,7 @@ curl -X POST "$BASE_URL/transactions" \
   -H "Content-Type: application/json" \
   -d '{
     "fromAccount": "INVALID",
-    "toAccount": "ACC-67890",
+    "toAccount": "ACC-00002",
     "amount": 100.00,
     "currency": "USD",
     "type": "transfer"
@@ -167,8 +167,8 @@ print_test "POST /transactions - Transfer 250.75 EUR"
 curl -X POST "$BASE_URL/transactions" \
   -H "Content-Type: application/json" \
   -d '{
-    "fromAccount": "ACC-11111",
-    "toAccount": "ACC-22222",
+    "fromAccount": "ACC-00004",
+    "toAccount": "ACC-00005",
     "amount": 250.75,
     "currency": "EUR",
     "type": "transfer"
@@ -181,8 +181,8 @@ print_test "POST /transactions - Transfer 150.00 GBP"
 curl -X POST "$BASE_URL/transactions" \
   -H "Content-Type: application/json" \
   -d '{
-    "fromAccount": "ACC-33333",
-    "toAccount": "ACC-44444",
+    "fromAccount": "ACC-00006",
+    "toAccount": "ACC-00007",
     "amount": 150.00,
     "currency": "GBP",
     "type": "transfer"

@@ -73,8 +73,8 @@ http://localhost:3000
 curl -X POST http://localhost:3000/transactions \
   -H "Content-Type: application/json" \
   -d '{
-    "fromAccount": "ACC-12345",
-    "toAccount": "ACC-67890",
+    "fromAccount": "ACC-00001",
+    "toAccount": "ACC-00002",
     "amount": 100.50,
     "currency": "USD",
     "type": "transfer"
@@ -93,12 +93,12 @@ curl http://localhost:3000/transactions/<transaction-id>
 
 **Get account balance:**
 ```bash
-curl http://localhost:3000/accounts/ACC-12345/balance
+curl http://localhost:3000/accounts/ACC-00001/balance
 ```
 
 **Filter transactions by account:**
 ```bash
-curl "http://localhost:3000/transactions?accountId=ACC-12345"
+curl "http://localhost:3000/transactions?accountId=ACC-00001"
 ```
 
 **Filter transactions by type:**
@@ -108,7 +108,12 @@ curl "http://localhost:3000/transactions?type=transfer"
 
 **Filter transactions by date range:**
 ```bash
-curl "http://localhost:3000/transactions?from=2024-01-01&to=2024-12-31"
+curl "http://localhost:3000/transactions?from=2026-01-01&to=2026-12-31"
+```
+
+**Combine multiple filters:**
+```bash
+curl "http://localhost:3000/transactions?accountId=ACC-00001&type=deposit"
 ```
 
 ### Option 2: Using the Sample Requests File
@@ -138,8 +143,8 @@ chmod +x demo/sample-requests.sh
 ```json
 {
   "id": "txn-123456",
-  "fromAccount": "ACC-12345",
-  "toAccount": "ACC-67890",
+  "fromAccount": "ACC-00001",
+  "toAccount": "ACC-00002",
   "amount": 100.50,
   "currency": "USD",
   "type": "transfer",
@@ -226,7 +231,8 @@ After starting the application, verify:
 - [ ] Can access `http://localhost:3000` (or configured port)
 - [ ] Can create a new transaction via POST
 - [ ] Can retrieve all transactions via GET
-- [ ] Can filter transactions by account/type/date
+- [ ] Can retrieve a specific transaction by ID
+- [ ] Can filter transactions by account, type, and date range
 - [ ] Can get account balance
 - [ ] Validation errors are returned for invalid data
 - [ ] API returns appropriate HTTP status codes
