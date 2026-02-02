@@ -1,0 +1,37 @@
+[
+  {
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-67890",
+    "amount": 100.50,
+    "currency": "USD",
+    "type": "transfer"
+  },
+  {
+    "fromAccount": "ACC-BANK",
+    "toAccount": "ACC-12345",
+    "amount": 500.00,
+    "currency": "EUR",
+    "type": "deposit"
+  },
+  {
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-BANK",
+    "amount": 50.00,
+    "currency": "USD",
+    "type": "withdrawal"
+  },
+  {
+    "fromAccount": "ACC-67890",
+    "toAccount": "ACC-12345",
+    "amount": 200.00,
+    "currency": "GBP",
+    "type": "transfer"
+  },
+  {
+    "fromAccount": "ACC-BANK",
+    "toAccount": "ACC-67890",
+    "amount": 1000.00,
+    "currency": "USD",
+    "type": "deposit"
+  }
+]

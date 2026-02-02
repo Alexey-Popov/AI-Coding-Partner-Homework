@@ -1,0 +1,5 @@
+micronaut:
+  application:
+    name: banking-transactions-api
+  server:
+    port: 8080
