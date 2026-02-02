@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickets>
+    <ticket>
+        <customer_id>CUST-201</customer_id>
+        <customer_email>adam.wilson@example.com</customer_email>
+        <customer_name>Adam Wilson</customer_name>
+        <subject>Cannot access my account</subject>
+        <description>I've been locked out of my account after multiple failed login attempts. Need urgent help to regain access.</description>
+        <category>ACCOUNT_ACCESS</category>
+        <priority>URGENT</priority>
+        <status>NEW</status>
+        <source>WEB_FORM</source>
+        <browser>Chrome</browser>
+        <device_type>DESKTOP</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-202</customer_id>
+        <customer_email>betty.davis@tech.com</customer_email>
+        <customer_name>Betty Davis</customer_name>
+        <subject>Application error on save</subject>
+        <description>Getting an error message 'Failed to save data' whenever I try to save my work. This is blocking my productivity.</description>
+        <category>TECHNICAL_ISSUE</category>
+        <priority>HIGH</priority>
+        <status>NEW</status>
+        <source>EMAIL</source>
+        <browser>Firefox</browser>
+        <device_type>DESKTOP</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-203</customer_id>
+        <customer_email>charlie.moore@business.io</customer_email>
+        <customer_name>Charlie Moore</customer_name>
+        <subject>Request invoice for tax purposes</subject>
+        <description>Need a detailed invoice for all charges from last year for our accounting department.</description>
+        <category>BILLING_QUESTION</category>
+        <priority>MEDIUM</priority>
+        <status>NEW</status>
+        <source>CHAT</source>
+        <browser>Safari</browser>
+        <device_type>TABLET</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-204</customer_id>
+        <customer_email>diana.taylor@company.net</customer_email>
+        <customer_name>Diana Taylor</customer_name>
+        <subject>Add calendar integration</subject>
+        <description>Would be helpful to integrate with Google Calendar and Outlook to sync deadlines and meetings.</description>
+        <category>FEATURE_REQUEST</category>
+        <priority>MEDIUM</priority>
+        <status>NEW</status>
+        <source>API</source>
+        <browser>Edge</browser>
+        <device_type>DESKTOP</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-205</customer_id>
+        <customer_email>eric.anderson@mail.org</customer_email>
+        <customer_name>Eric Anderson</customer_name>
+        <subject>Button click not working</subject>
+        <description>The submit button on the form doesn't respond to clicks. Steps: 1. Fill form 2. Click submit 3. Nothing happens.</description>
+        <category>BUG_REPORT</category>
+        <priority>HIGH</priority>
+        <status>NEW</status>
+        <source>WEB_FORM</source>
+        <browser>Chrome</browser>
+        <device_type>MOBILE</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-206</customer_id>
+        <customer_email>fiona.clark@startup.com</customer_email>
+        <customer_name>Fiona Clark</customer_name>
+        <subject>Password expired cannot login</subject>
+        <description>My password expired and when I try to reset it, the system says my account doesn't exist.</description>
+        <category>ACCOUNT_ACCESS</category>
+        <priority>HIGH</priority>
+        <status>IN_PROGRESS</status>
+        <source>PHONE</source>
+        <browser>Firefox</browser>
+        <device_type>DESKTOP</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-207</customer_id>
+        <customer_email>george.martinez@web.io</customer_email>
+        <customer_name>George Martinez</customer_name>
+        <subject>Critical database error</subject>
+        <description>Production database is throwing critical errors and affecting all users. Need immediate assistance.</description>
+        <category>TECHNICAL_ISSUE</category>
+        <priority>URGENT</priority>
+        <status>IN_PROGRESS</status>
+        <source>EMAIL</source>
+        <browser>Safari</browser>
+        <device_type>DESKTOP</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-208</customer_id>
+        <customer_email>helen.rodriguez@shop.com</customer_email>
+        <customer_name>Helen Rodriguez</customer_name>
+        <subject>Refund not processed</subject>
+        <description>Requested refund 2 weeks ago but still haven't received it. Can you check the status?</description>
+        <category>BILLING_QUESTION</category>
+        <priority>MEDIUM</priority>
+        <status>NEW</status>
+        <source>CHAT</source>
+        <browser>Edge</browser>
+        <device_type>MOBILE</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-209</customer_id>
+        <customer_email>ian.lee@domain.com</customer_email>
+        <customer_name>Ian Lee</customer_name>
+        <subject>Suggestion for improved UI</subject>
+        <description>The current UI is cluttered. Suggest using tabbed interface to organize features better.</description>
+        <category>FEATURE_REQUEST</category>
+        <priority>LOW</priority>
+        <status>NEW</status>
+        <source>API</source>
+        <browser>Chrome</browser>
+        <device_type>TABLET</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-210</customer_id>
+        <customer_email>julia.walker@email.com</customer_email>
+        <customer_name>Julia Walker</customer_name>
+        <subject>Broken link in navigation</subject>
+        <description>The Reports link in the main navigation returns a 404 error. This appears to be a broken link issue.</description>
+        <category>BUG_REPORT</category>
+        <priority>MEDIUM</priority>
+        <status>NEW</status>
+        <source>WEB_FORM</source>
+        <browser>Firefox</browser>
+        <device_type>DESKTOP</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-211</customer_id>
+        <customer_email>kevin.harris@business.net</customer_email>
+        <customer_name>Kevin Harris</customer_name>
+        <subject>Email verification link expired</subject>
+        <description>The verification link in my email has expired. Can you resend a new verification email?</description>
+        <category>ACCOUNT_ACCESS</category>
+        <priority>MEDIUM</priority>
+        <status>NEW</status>
+        <source>EMAIL</source>
+        <browser>Safari</browser>
+        <device_type>MOBILE</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-212</customer_id>
+        <customer_email>laura.thomas@tech.io</customer_email>
+        <customer_name>Laura Thomas</customer_name>
+        <subject>Performance degradation</subject>
+        <description>System performance has significantly degraded over the past week. Response times are 5x slower than normal.</description>
+        <category>TECHNICAL_ISSUE</category>
+        <priority>HIGH</priority>
+        <status>NEW</status>
+        <source>CHAT</source>
+        <browser>Edge</browser>
+        <device_type>DESKTOP</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-213</customer_id>
+        <customer_email>michael.jackson@company.com</customer_email>
+        <customer_name>Michael Jackson</customer_name>
+        <subject>Incorrect tax calculation</subject>
+        <description>The tax amount on my invoice doesn't match our state tax rate. Please review and correct.</description>
+        <category>BILLING_QUESTION</category>
+        <priority>MEDIUM</priority>
+        <status>NEW</status>
+        <source>API</source>
+        <browser>Chrome</browser>
+        <device_type>DESKTOP</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-214</customer_id>
+        <customer_email>nancy.white@startup.net</customer_email>
+        <customer_name>Nancy White</customer_name>
+        <subject>Add team collaboration features</subject>
+        <description>Request for team collaboration features like shared workspaces and real-time editing.</description>
+        <category>FEATURE_REQUEST</category>
+        <priority>HIGH</priority>
+        <status>NEW</status>
+        <source>WEB_FORM</source>
+        <browser>Firefox</browser>
+        <device_type>TABLET</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-215</customer_id>
+        <customer_email>oscar.brown@mail.org</customer_email>
+        <customer_name>Oscar Brown</customer_name>
+        <subject>File download corrupted</subject>
+        <description>Downloaded files are corrupted and won't open. Reproduced with: 1. Click download 2. Save file 3. Try to open - file is corrupted.</description>
+        <category>BUG_REPORT</category>
+        <priority>HIGH</priority>
+        <status>NEW</status>
+        <source>EMAIL</source>
+        <browser>Safari</browser>
+        <device_type>DESKTOP</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-216</customer_id>
+        <customer_email>patricia.garcia@web.com</customer_email>
+        <customer_name>Patricia Garcia</customer_name>
+        <subject>Multi-factor authentication setup issue</subject>
+        <description>Cannot complete 2FA setup. The backup codes page keeps loading indefinitely.</description>
+        <category>ACCOUNT_ACCESS</category>
+        <priority>MEDIUM</priority>
+        <status>NEW</status>
+        <source>CHAT</source>
+        <browser>Edge</browser>
+        <device_type>MOBILE</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-217</customer_id>
+        <customer_email>quinn.miller@business.io</customer_email>
+        <customer_name>Quinn Miller</customer_name>
+        <subject>Server timeout errors</subject>
+        <description>Experiencing frequent server timeout errors especially during peak hours. This impacts our business operations.</description>
+        <category>TECHNICAL_ISSUE</category>
+        <priority>URGENT</priority>
+        <status>NEW</status>
+        <source>PHONE</source>
+        <browser>Chrome</browser>
+        <device_type>DESKTOP</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-218</customer_id>
+        <customer_email>rebecca.wilson@domain.net</customer_email>
+        <customer_name>Rebecca Wilson</customer_name>
+        <subject>Billing cycle change request</subject>
+        <description>Want to change my billing cycle from monthly to annual. What's the process and any discounts?</description>
+        <category>BILLING_QUESTION</category>
+        <priority>LOW</priority>
+        <status>NEW</status>
+        <source>API</source>
+        <browser>Firefox</browser>
+        <device_type>TABLET</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-219</customer_id>
+        <customer_email>steven.davis@shop.io</customer_email>
+        <customer_name>Steven Davis</customer_name>
+        <subject>Add notification preferences</subject>
+        <description>Need more granular control over notification settings. Want to enable/disable different types of notifications.</description>
+        <category>FEATURE_REQUEST</category>
+        <priority>MEDIUM</priority>
+        <status>NEW</status>
+        <source>WEB_FORM</source>
+        <browser>Safari</browser>
+        <device_type>DESKTOP</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-220</customer_id>
+        <customer_email>tara.martinez@email.io</customer_email>
+        <customer_name>Tara Martinez</customer_name>
+        <subject>CSS styling broken on mobile</subject>
+        <description>The layout is completely broken on mobile devices. Elements overlap and text is unreadable. Defect found on iOS Safari.</description>
+        <category>BUG_REPORT</category>
+        <priority>HIGH</priority>
+        <status>NEW</status>
+        <source>EMAIL</source>
+        <browser>Safari</browser>
+        <device_type>MOBILE</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-221</customer_id>
+        <customer_email>uma.thompson@company.com</customer_email>
+        <customer_name>Uma Thompson</customer_name>
+        <subject>Account permissions issue</subject>
+        <description>I should have admin access but can only see user-level features. Need my permissions updated.</description>
+        <category>ACCOUNT_ACCESS</category>
+        <priority>HIGH</priority>
+        <status>NEW</status>
+        <source>CHAT</source>
+        <browser>Edge</browser>
+        <device_type>DESKTOP</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-222</customer_id>
+        <customer_email>victor.lopez@tech.com</customer_email>
+        <customer_name>Victor Lopez</customer_name>
+        <subject>SSL certificate warning</subject>
+        <description>Browser showing SSL certificate warning when accessing the site. Says the certificate is invalid.</description>
+        <category>TECHNICAL_ISSUE</category>
+        <priority>URGENT</priority>
+        <status>IN_PROGRESS</status>
+        <source>PHONE</source>
+        <browser>Chrome</browser>
+        <device_type>DESKTOP</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-223</customer_id>
+        <customer_email>wendy.rodriguez@mail.com</customer_email>
+        <customer_name>Wendy Rodriguez</customer_name>
+        <subject>Payment declined but account charged</subject>
+        <description>My payment was declined but my bank account was still charged. Need immediate assistance with this issue.</description>
+        <category>BILLING_QUESTION</category>
+        <priority>URGENT</priority>
+        <status>NEW</status>
+        <source>EMAIL</source>
+        <browser>Firefox</browser>
+        <device_type>TABLET</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-224</customer_id>
+        <customer_email>xavier.king@startup.com</customer_email>
+        <customer_name>Xavier King</customer_name>
+        <subject>Request for advanced analytics</subject>
+        <description>Current analytics are basic. Need advanced features like cohort analysis, funnel tracking, and custom metrics.</description>
+        <category>FEATURE_REQUEST</category>
+        <priority>MEDIUM</priority>
+        <status>NEW</status>
+        <source>API</source>
+        <browser>Safari</browser>
+        <device_type>DESKTOP</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-225</customer_id>
+        <customer_email>yara.scott@web.org</customer_email>
+        <customer_name>Yara Scott</customer_name>
+        <subject>Filter not saving preferences</subject>
+        <description>Set custom filters but they reset every time I reload the page. Bug reproduction: 1. Set filters 2. Refresh page 3. Filters are gone.</description>
+        <category>BUG_REPORT</category>
+        <priority>MEDIUM</priority>
+        <status>NEW</status>
+        <source>WEB_FORM</source>
+        <browser>Edge</browser>
+        <device_type>MOBILE</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-226</customer_id>
+        <customer_email>zack.green@business.net</customer_email>
+        <customer_name>Zack Green</customer_name>
+        <subject>Cannot delete account</subject>
+        <description>Trying to delete my account but the delete button doesn't work. Need help with account deletion.</description>
+        <category>ACCOUNT_ACCESS</category>
+        <priority>MEDIUM</priority>
+        <status>NEW</status>
+        <source>CHAT</source>
+        <browser>Chrome</browser>
+        <device_type>TABLET</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-227</customer_id>
+        <customer_email>anna.perez@domain.io</customer_email>
+        <customer_name>Anna Perez</customer_name>
+        <subject>Load balancer issues</subject>
+        <description>Load balancer is not distributing traffic evenly causing some servers to be overloaded while others are idle.</description>
+        <category>TECHNICAL_ISSUE</category>
+        <priority>HIGH</priority>
+        <status>NEW</status>
+        <source>EMAIL</source>
+        <browser>Firefox</browser>
+        <device_type>DESKTOP</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-228</customer_id>
+        <customer_email>brian.campbell@company.io</customer_email>
+        <customer_name>Brian Campbell</customer_name>
+        <subject>Question about enterprise pricing</subject>
+        <description>Interested in enterprise plan for 500+ users. What are the pricing options and volume discounts available?</description>
+        <category>BILLING_QUESTION</category>
+        <priority>MEDIUM</priority>
+        <status>NEW</status>
+        <source>API</source>
+        <browser>Safari</browser>
+        <device_type>DESKTOP</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-229</customer_id>
+        <customer_email>clara.evans@shop.net</customer_email>
+        <customer_name>Clara Evans</customer_name>
+        <subject>Add version history feature</subject>
+        <description>Need version history to track changes and revert to previous versions when needed. This is important for our workflow.</description>
+        <category>FEATURE_REQUEST</category>
+        <priority>HIGH</priority>
+        <status>NEW</status>
+        <source>WEB_FORM</source>
+        <browser>Edge</browser>
+        <device_type>TABLET</device_type>
+    </ticket>
+    <ticket>
+        <customer_id>CUST-230</customer_id>
+        <customer_email>derek.turner@email.net</customer_email>
+        <customer_name>Derek Turner</customer_name>
+        <subject>Dropdown menu not displaying options</subject>
+        <description>Dropdown menus are empty and not showing any options. This breaks the entire form functionality. Occurs in Chrome browser.</description>
+        <category>BUG_REPORT</category>
+        <priority>HIGH</priority>
+        <status>NEW</status>
+        <source>PHONE</source>
+        <browser>Chrome</browser>
+        <device_type>DESKTOP</device_type>
+    </ticket>
+</tickets>

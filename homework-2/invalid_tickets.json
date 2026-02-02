@@ -1,0 +1,10 @@
+[
+  {
+    "customer_id": "",
+    "customer_email": "missing@fields.com",
+    "subject": "Missing customer name"
+  },
+  {
+    "invalid_json": "this won't parse correctly
+  }
+]

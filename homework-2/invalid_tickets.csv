@@ -1,0 +1,3 @@
+customer_id,customer_email,customer_name,subject,description
+INVALID-001,not-an-email,Test User,Short,x
+INVALID-002,test@invalid,Another User,This subject is way too long and exceeds the maximum character limit of 200 characters which should cause a validation error when trying to import this record into the system because it violates the constraint,Valid description here
