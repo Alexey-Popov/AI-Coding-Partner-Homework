@@ -3,19 +3,19 @@
 ## Prerequisites
 
 - Java 21 or later
-- Gradle 8.x (or use the Gradle wrapper if included)
+- No Gradle installation needed (Gradle wrapper is included)
 
 ## Build
 
 ```bash
 cd homework-1
-gradle build
+./gradlew build
 ```
 
 ## Run
 
 ```bash
-gradle run
+./gradlew run
 ```
 
 The server starts on http://localhost:8080.
