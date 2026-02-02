@@ -2,7 +2,7 @@
 
 > **Student Name**: [Your Name]
 > **Date Submitted**: January 21, 2026
-> **AI Tools Used**: Claude Code (Primary), [Add second tool if used]
+> **AI Tools Used**: Claude Code (Primary), Oleksandr Kosholap
 
 ---
 
