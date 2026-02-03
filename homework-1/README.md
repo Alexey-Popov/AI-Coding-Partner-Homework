@@ -1,5 +1,9 @@
-# Banking Transactions API
+# Homework 1:  Banking Transactions API
+> **Student Name**: Ihor Chanzhar
+> **Date Submitted**: 23 Jan 2026
+> **AI Tools Used**: GitHub Copilot, Claude Code
 
+# Overview
 REST API for banking transactions built with Java 21, Spring Boot 3.2, and PostgreSQL.
 
 ## Features
