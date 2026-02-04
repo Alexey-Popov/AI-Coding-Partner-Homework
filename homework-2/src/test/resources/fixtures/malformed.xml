@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickets>
+    <ticket>
+        <customerId>CUST001</customerId>
+        <customerEmail>john@example.com</customerEmail>
+        <customerName>John Smith
+        <subject>Test Subject</subject>
+        <description>This XML is malformed because customerName tag is not closed</description>
+    </ticket>
+</tickets>

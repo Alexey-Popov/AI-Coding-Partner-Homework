@@ -1,0 +1,16 @@
+[
+  {
+    "customerId": "CUST001",
+    "customerEmail": "invalid-email",
+    "customerName": "John Smith",
+    "subject": "Test Subject",
+    "description": "This is a valid description for testing"
+  },
+  {
+    "customerId": "CUST002",
+    "customerEmail": "jane@example.com",
+    "customerName": "Jane Doe",
+    "subject": "",
+    "description": "This is a valid description for testing"
+  }
+]

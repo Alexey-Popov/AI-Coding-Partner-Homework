@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickets>
+    <ticket>
+        <customerId>CUST001</customerId>
+        <customerEmail>invalid-email</customerEmail>
+        <customerName>John Smith</customerName>
+        <subject>Test Subject</subject>
+        <description>This is a valid description for testing</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST002</customerId>
+        <customerEmail>jane@example.com</customerEmail>
+        <customerName></customerName>
+        <subject></subject>
+        <description>short</description>
+    </ticket>
+</tickets>

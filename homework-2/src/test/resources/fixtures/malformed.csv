@@ -1,0 +1,3 @@
+customer_id,customer_email,customer_name,subject,description
+CUST001,"john@example.com,"John Smith,Test Subject,This description has "bad quoting
+CUST002,jane@example.com,Jane Doe,"Unclosed quote,This is broken

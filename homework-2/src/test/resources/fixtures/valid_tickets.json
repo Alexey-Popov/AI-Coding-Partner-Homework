@@ -1,0 +1,23 @@
+[
+  {
+    "customerId": "CUST001",
+    "customerEmail": "john@example.com",
+    "customerName": "John Smith",
+    "subject": "Cannot login to account",
+    "description": "I have been trying to login for the past hour but keep getting an error message"
+  },
+  {
+    "customerId": "CUST002",
+    "customerEmail": "jane@example.com",
+    "customerName": "Jane Doe",
+    "subject": "Payment not processed",
+    "description": "My payment from yesterday has not been processed and I was charged twice"
+  },
+  {
+    "customerId": "CUST003",
+    "customerEmail": "bob@example.com",
+    "customerName": "Bob Wilson",
+    "subject": "Feature request for dark mode",
+    "description": "It would be nice if you could add dark mode support to the application"
+  }
+]

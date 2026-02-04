@@ -1,0 +1,230 @@
+### Customer Support Ticket System - Sample Requests
+### Use with IntelliJ HTTP Client or VS Code REST Client
+
+### ===================
+### Create Tickets
+### ===================
+
+### Create a ticket (account access issue)
+POST http://localhost:8080/tickets
+Content-Type: application/json
+
+{
+  "customerId": "CUST-12345",
+  "customerEmail": "john.doe@example.com",
+  "customerName": "John Doe",
+  "subject": "Unable to login to my account",
+  "description": "I have been trying to login for the past hour but keep getting an invalid credentials error even though I'm sure my password is correct.",
+  "category": "account_access",
+  "priority": "high",
+  "tags": ["login", "urgent"],
+  "metadata": {
+    "source": "web_form",
+    "browser": "Chrome 120.0",
+    "deviceType": "desktop"
+  }
+}
+
+### Create a ticket (technical issue)
+POST http://localhost:8080/tickets
+Content-Type: application/json
+
+{
+  "customerId": "CUST-67890",
+  "customerEmail": "jane.smith@example.com",
+  "customerName": "Jane Smith",
+  "subject": "Application crashes when uploading files",
+  "description": "Every time I try to upload a PDF file larger than 5MB, the application crashes immediately. This started happening after the last update.",
+  "category": "technical_issue",
+  "priority": "urgent",
+  "tags": ["crash", "upload", "pdf"]
+}
+
+### Create a ticket (billing question)
+POST http://localhost:8080/tickets
+Content-Type: application/json
+
+{
+  "customerId": "CUST-11111",
+  "customerEmail": "bob.wilson@example.com",
+  "customerName": "Bob Wilson",
+  "subject": "Charged twice for subscription",
+  "description": "I noticed two charges on my credit card for the monthly subscription. The duplicate charge appeared on January 10th. Please refund the extra payment.",
+  "category": "billing_question",
+  "priority": "high",
+  "tags": ["billing", "refund"]
+}
+
+### Create a ticket with auto-classification
+POST http://localhost:8080/tickets?autoClassify=true
+Content-Type: application/json
+
+{
+  "customerId": "CUST-22222",
+  "customerEmail": "alice.jones@example.com",
+  "customerName": "Alice Jones",
+  "subject": "Search feature not returning results",
+  "description": "The search function on the dashboard is broken. When I type any keyword and press enter, it returns zero results even though I know there should be matching records. This is a critical bug affecting my workflow.",
+  "priority": "medium"
+}
+
+### Create a feature request ticket
+POST http://localhost:8080/tickets
+Content-Type: application/json
+
+{
+  "customerId": "CUST-33333",
+  "customerEmail": "charlie.brown@example.com",
+  "customerName": "Charlie Brown",
+  "subject": "Dark mode support",
+  "description": "It would be great if the application supported a dark mode theme. Working late at night with the bright white interface is straining on the eyes. Please consider adding this feature.",
+  "category": "feature_request",
+  "priority": "low",
+  "metadata": {
+    "source": "email",
+    "deviceType": "mobile"
+  }
+}
+
+### ===================
+### Get Tickets
+### ===================
+
+### Get all tickets
+GET http://localhost:8080/tickets
+
+### Filter tickets by category
+GET http://localhost:8080/tickets?category=technical_issue
+
+### Filter tickets by priority
+GET http://localhost:8080/tickets?priority=urgent
+
+### Filter tickets by status
+GET http://localhost:8080/tickets?status=new
+
+### Filter with multiple parameters
+GET http://localhost:8080/tickets?category=billing_question&priority=high&status=new
+
+### Get ticket by ID (replace with actual UUID)
+GET http://localhost:8080/tickets/{{ticketId}}
+
+### ===================
+### Update Ticket
+### ===================
+
+### Update ticket status and assign agent (replace with actual UUID)
+PUT http://localhost:8080/tickets/{{ticketId}}
+Content-Type: application/json
+
+{
+  "status": "in_progress",
+  "assignedTo": "agent@company.com"
+}
+
+### Update ticket priority and add tags (replace with actual UUID)
+PUT http://localhost:8080/tickets/{{ticketId}}
+Content-Type: application/json
+
+{
+  "priority": "urgent",
+  "tags": ["escalated", "vip-customer"],
+  "assignedTo": "senior-agent@company.com"
+}
+
+### Resolve a ticket (replace with actual UUID)
+PUT http://localhost:8080/tickets/{{ticketId}}
+Content-Type: application/json
+
+{
+  "status": "resolved"
+}
+
+### ===================
+### Delete Ticket
+### ===================
+
+### Delete a ticket (replace with actual UUID)
+DELETE http://localhost:8080/tickets/{{ticketId}}
+
+### ===================
+### Classification
+### ===================
+
+### Auto-classify a ticket (replace with actual UUID)
+POST http://localhost:8080/tickets/{{ticketId}}/auto-classify
+
+### ===================
+### Bulk Import
+### ===================
+
+### Import tickets from CSV file
+POST http://localhost:8080/tickets/import
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="sample_tickets.csv"
+Content-Type: text/csv
+
+< ../sample_tickets.csv
+--boundary--
+
+### Import tickets from JSON file
+POST http://localhost:8080/tickets/import
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="sample_tickets.json"
+Content-Type: application/json
+
+< ../sample_tickets.json
+--boundary--
+
+### Import tickets from XML file
+POST http://localhost:8080/tickets/import
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="sample_tickets.xml"
+Content-Type: application/xml
+
+< ../sample_tickets.xml
+--boundary--
+
+### ===================
+### Validation Error Examples
+### ===================
+
+### Missing required fields (should return 400)
+POST http://localhost:8080/tickets
+Content-Type: application/json
+
+{
+  "customerId": "CUST-99999"
+}
+
+### Invalid email format (should return 400)
+POST http://localhost:8080/tickets
+Content-Type: application/json
+
+{
+  "customerId": "CUST-99999",
+  "customerEmail": "not-an-email",
+  "customerName": "Test User",
+  "subject": "Test ticket",
+  "description": "This ticket has an invalid email address format."
+}
+
+### Description too short (should return 400)
+POST http://localhost:8080/tickets
+Content-Type: application/json
+
+{
+  "customerId": "CUST-99999",
+  "customerEmail": "test@example.com",
+  "customerName": "Test User",
+  "subject": "Test",
+  "description": "Too short"
+}
+
+### Non-existent ticket (should return 404)
+GET http://localhost:8080/tickets/00000000-0000-0000-0000-000000000000

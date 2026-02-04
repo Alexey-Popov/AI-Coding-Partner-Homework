@@ -1,0 +1,6 @@
+customer_id,customer_email,customer_name,subject,description
+CUST001,john@example.com,John Smith,Cannot login to account,I have been trying to login for the past hour but keep getting an error message saying access denied
+CUST002,jane@example.com,Jane Doe,Payment not processed,My payment from yesterday has not been processed and I was charged twice on my credit card
+CUST003,bob@example.com,Bob Wilson,App crashes on startup,The application crashes every time I try to open it on my desktop computer since the latest update
+CUST004,alice@example.com,Alice Brown,Add dark mode feature,It would be nice if you could add a dark mode feature to the application for better readability
+CUST005,charlie@example.com,Charlie Davis,Bug in checkout process,Steps to reproduce: 1. Add item to cart 2. Click checkout 3. Enter payment details 4. App shows error. Expected: order confirmation. Actual: error page.
