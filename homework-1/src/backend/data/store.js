@@ -103,10 +103,19 @@ function getAccountBalance(accountId) {
   return balance;
 }
 
+/**
+ * Reset the store (for testing purposes)
+ */
+function resetStore() {
+  transactions.length = 0;
+  idCounter = 1;
+}
+
 module.exports = {
   getAllTransactions,
   getTransactionById,
   addTransaction,
   getFilteredTransactions,
-  getAccountBalance
+  getAccountBalance,
+  resetStore
 };

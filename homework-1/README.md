@@ -117,6 +117,81 @@ The application includes a built-in web interface for testing all API operations
 
 ---
 
+## Demo
+
+The `demo/` folder contains scripts and sample data for quickly testing the API.
+
+### Demo Files
+
+| File | Purpose |
+|------|---------|
+| `run.sh` | Starts the server on Linux/macOS (installs dependencies and runs `npm start`) |
+| `run.bat` | Starts the server on Windows |
+| `sample-requests.http` | Collection of HTTP requests for VS Code REST Client extension |
+| `sample-data.json` | Sample transaction data for reference |
+
+### Using the Demo
+
+1. **Start the server** using the appropriate script:
+   ```bash
+   # Linux/macOS
+   ./demo/run.sh
+
+   # Windows
+   demo\run.bat
+   ```
+
+2. **Test the API** using `sample-requests.http`:
+   - Install the [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension in VS Code
+   - Open `demo/sample-requests.http`
+   - Click "Send Request" above any request to execute it
+
+3. **Sample requests include**:
+   - Creating transactions (deposit, transfer, withdrawal)
+   - Validation error examples (negative amounts, invalid accounts, bad currency)
+   - Querying transactions with filters (by account, type, date range)
+   - Checking account balances
+   - Exporting transactions to CSV
+
+---
+
+## Testing
+
+The project includes comprehensive unit and integration tests using Jest and Supertest.
+
+### Running Tests
+
+```bash
+# Run all tests
+npm test
+
+# Run tests with coverage report
+npm run test:coverage
+```
+
+### Test Coverage
+
+| File | Statements | Branches | Functions | Lines |
+|------|------------|----------|-----------|-------|
+| **All files** | 98.49% | 96.20% | 100% | 99.21% |
+| transactionValidator.js | 100% | 100% | 100% | 100% |
+| store.js | 97.67% | 92.30% | 100% | 100% |
+| transactions.js | 97.50% | 94.11% | 100% | 97.50% |
+| accounts.js | 100% | 100% | 100% | 100% |
+
+### Test Suites
+
+| Suite | Tests | Description |
+|-------|-------|-------------|
+| `transactionValidator.test.js` | 28 | Validates account format, amounts, currencies, types |
+| `store.test.js` | 19 | Tests CRUD operations and balance calculations |
+| `transactions.test.js` | 15 | Integration tests for transaction API endpoints |
+| `accounts.test.js` | 8 | Integration tests for account balance endpoint |
+
+**Total: 70 tests**
+
+---
+
 ## Project Structure
 
 ```
@@ -125,24 +200,28 @@ homework-1/
 ├── README.md
 ├── HOWTORUN.md
 ├── src/
-│   ├── index.js                # Express app entry point
+│   ├── index.js                    # Express app entry point
 │   ├── backend/
 │   │   ├── routes/
-│   │   │   ├── transactions.js # Transaction endpoints
-│   │   │   └── accounts.js     # Account endpoints
+│   │   │   ├── transactions.js     # Transaction endpoints
+│   │   │   ├── transactions.test.js
+│   │   │   ├── accounts.js         # Account endpoints
+│   │   │   └── accounts.test.js
 │   │   ├── validators/
-│   │   │   └── transactionValidator.js
+│   │   │   ├── transactionValidator.js
+│   │   │   └── transactionValidator.test.js
 │   │   └── data/
-│   │       └── store.js        # In-memory data storage
+│   │       ├── store.js            # In-memory data storage
+│   │       └── store.test.js
 │   └── frontend/
-│       └── index.html          # Web UI for testing API
+│       └── index.html              # Web UI for testing API
 ├── demo/
-│   ├── run.bat                 # Windows start script
-│   ├── run.sh                  # Linux/Mac start script
-│   ├── sample-requests.http    # Sample API requests
-│   └── sample-data.json        # Sample transaction data
+│   ├── run.bat                     # Windows start script
+│   ├── run.sh                      # Linux/Mac start script
+│   ├── sample-requests.http        # Sample API requests
+│   └── sample-data.json            # Sample transaction data
 └── docs/
-    └── screenshots/            # AI interaction screenshots
+    └── screenshots/                # AI interaction screenshots
 ```
 
 ---
@@ -152,6 +231,7 @@ homework-1/
 - **Runtime**: Node.js
 - **Framework**: Express.js
 - **Storage**: In-memory (array)
+- **Testing**: Jest, Supertest
 
 <div align="center">
 
