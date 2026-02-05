@@ -1,0 +1,252 @@
+{
+  "tickets": [
+    {
+      "customer_id": "CUST-J001",
+      "customer_email": "alex.murphy@company.com",
+      "customer_name": "Alex Murphy",
+      "subject": "Can't access my account - urgent!",
+      "description": "I cannot login to my account. It says my credentials are invalid but I'm 100% sure I'm entering them correctly. This is critical as I have an important meeting in an hour.",
+      "tags": ["login", "urgent", "critical"],
+      "metadata": {
+        "source": "web_form",
+        "browser": "Chrome 120",
+        "device_type": "desktop"
+      }
+    },
+    {
+      "customer_id": "CUST-J002",
+      "customer_email": "betty.ross@email.com",
+      "customer_name": "Betty Ross",
+      "subject": "Invoice shows wrong amount",
+      "description": "My invoice for December shows $299 but I'm on the $99/month plan. Please correct this billing error and refund the overcharge.",
+      "tags": ["billing", "invoice"],
+      "metadata": {
+        "source": "email",
+        "device_type": "mobile"
+      }
+    },
+    {
+      "customer_id": "CUST-J003",
+      "customer_email": "carlos.mendez@startup.io",
+      "customer_name": "Carlos Mendez",
+      "subject": "Feature request: API webhooks",
+      "description": "We need webhook support for real-time notifications. Currently we have to poll the API which is inefficient. This would be a nice enhancement for developers.",
+      "tags": ["feature", "api", "webhooks"],
+      "metadata": {
+        "source": "api",
+        "device_type": "desktop"
+      }
+    },
+    {
+      "customer_id": "CUST-J004",
+      "customer_email": "diana.prince@work.com",
+      "customer_name": "Diana Prince",
+      "subject": "Bug: Export fails silently",
+      "description": "Steps to reproduce: 1) Go to Reports 2) Click Export 3) Select PDF 4) Nothing happens. Expected: PDF should download. Actual: No response, no error message.",
+      "tags": ["bug", "export"],
+      "metadata": {
+        "source": "chat",
+        "browser": "Firefox 121",
+        "device_type": "desktop"
+      }
+    },
+    {
+      "customer_id": "CUST-J005",
+      "customer_email": "eric.chen@enterprise.com",
+      "customer_name": "Eric Chen",
+      "subject": "Production down - security breach detected",
+      "description": "We detected unauthorized access to our production environment. Multiple users are affected. This is a critical security issue that needs immediate attention.",
+      "tags": ["security", "production", "critical"],
+      "metadata": {
+        "source": "phone",
+        "device_type": "desktop"
+      }
+    },
+    {
+      "customer_id": "CUST-J006",
+      "customer_email": "faith.williams@school.edu",
+      "customer_name": "Faith Williams",
+      "subject": "Minor typo in settings page",
+      "description": "There's a cosmetic issue - the word 'Preferences' is spelled as 'Preferances' in the settings menu. Not urgent, just something I noticed.",
+      "tags": ["typo", "cosmetic", "minor"],
+      "metadata": {
+        "source": "web_form",
+        "browser": "Safari 17",
+        "device_type": "tablet"
+      }
+    },
+    {
+      "customer_id": "CUST-J007",
+      "customer_email": "george.kumar@tech.com",
+      "customer_name": "George Kumar",
+      "subject": "2FA codes not arriving",
+      "description": "I'm not receiving the two-factor authentication codes via SMS. I've waited over 30 minutes. My phone number is correct and I have good signal.",
+      "tags": ["2fa", "authentication"],
+      "metadata": {
+        "source": "chat",
+        "device_type": "mobile"
+      }
+    },
+    {
+      "customer_id": "CUST-J008",
+      "customer_email": "hannah.jones@agency.co",
+      "customer_name": "Hannah Jones",
+      "subject": "Request refund for unused months",
+      "description": "I cancelled my annual subscription 3 months in. Would like a refund for the remaining 9 months as per your refund policy.",
+      "tags": ["refund", "subscription"],
+      "metadata": {
+        "source": "email",
+        "device_type": "desktop"
+      }
+    },
+    {
+      "customer_id": "CUST-J009",
+      "customer_email": "ian.shaw@consulting.net",
+      "customer_name": "Ian Shaw",
+      "subject": "App crashes when offline",
+      "description": "The mobile app crashes immediately when there's no internet connection. It should gracefully handle offline mode or at least show an error message instead of crashing.",
+      "tags": ["crash", "offline", "mobile"],
+      "metadata": {
+        "source": "api",
+        "device_type": "mobile"
+      }
+    },
+    {
+      "customer_id": "CUST-J010",
+      "customer_email": "jessica.lee@design.studio",
+      "customer_name": "Jessica Lee",
+      "subject": "Suggestion: Dark mode theme",
+      "description": "Would love to see a dark mode option. Working late at night with the bright interface causes eye strain. This would be a great enhancement.",
+      "tags": ["suggestion", "dark-mode", "ui"],
+      "metadata": {
+        "source": "web_form",
+        "browser": "Chrome 120",
+        "device_type": "desktop"
+      }
+    },
+    {
+      "customer_id": "CUST-J011",
+      "customer_email": "kevin.brown@startup.co",
+      "customer_name": "Kevin Brown",
+      "subject": "Password reset link expired instantly",
+      "description": "I requested a password reset and clicked the link within 30 seconds. It says the link has expired. This is blocking me from accessing my account.",
+      "tags": ["password", "reset", "blocking"],
+      "metadata": {
+        "source": "phone",
+        "device_type": "desktop"
+      }
+    },
+    {
+      "customer_id": "CUST-J012",
+      "customer_email": "lisa.wong@media.com",
+      "customer_name": "Lisa Wong",
+      "subject": "Double charged for subscription",
+      "description": "I was charged twice on December 1st - $49.99 each time. Please refund the duplicate charge as soon as possible.",
+      "tags": ["billing", "duplicate", "refund"],
+      "metadata": {
+        "source": "email",
+        "device_type": "mobile"
+      }
+    },
+    {
+      "customer_id": "CUST-J013",
+      "customer_email": "mike.johnson@corp.org",
+      "customer_name": "Mike Johnson",
+      "subject": "Bug: Charts show wrong data",
+      "description": "The analytics dashboard charts are showing data from the wrong date range. Selecting 'Last 7 days' shows data from last month instead.",
+      "tags": ["bug", "analytics", "charts"],
+      "metadata": {
+        "source": "web_form",
+        "browser": "Edge 120",
+        "device_type": "desktop"
+      }
+    },
+    {
+      "customer_id": "CUST-J014",
+      "customer_email": "nancy.davis@retail.com",
+      "customer_name": "Nancy Davis",
+      "subject": "Need to upgrade plan ASAP",
+      "description": "We've exceeded our current plan limits and need to upgrade immediately. Our business depends on this service. Please help expedite the upgrade process.",
+      "tags": ["upgrade", "asap", "important"],
+      "metadata": {
+        "source": "phone",
+        "device_type": "desktop"
+      }
+    },
+    {
+      "customer_id": "CUST-J015",
+      "customer_email": "oliver.smith@freelance.me",
+      "customer_name": "Oliver Smith",
+      "subject": "Feature: Scheduled reports",
+      "description": "It would be really useful to schedule reports to be generated and emailed automatically on a weekly/monthly basis.",
+      "tags": ["feature", "reports", "automation"],
+      "metadata": {
+        "source": "chat",
+        "device_type": "tablet"
+      }
+    },
+    {
+      "customer_id": "CUST-J016",
+      "customer_email": "patricia.garcia@health.org",
+      "customer_name": "Patricia Garcia",
+      "subject": "Cannot upload files larger than 1MB",
+      "description": "File uploads are failing for any file over 1MB. The error says 'File too large' but your docs say 10MB is the limit. Please fix this technical issue.",
+      "tags": ["upload", "error", "limit"],
+      "metadata": {
+        "source": "web_form",
+        "browser": "Chrome 120",
+        "device_type": "desktop"
+      }
+    },
+    {
+      "customer_id": "CUST-J017",
+      "customer_email": "quincy.adams@law.firm",
+      "customer_name": "Quincy Adams",
+      "subject": "Account permissions incorrect",
+      "description": "I was supposed to have admin access but I can only see regular user options. My supervisor confirmed I should have elevated permissions.",
+      "tags": ["permissions", "access", "admin"],
+      "metadata": {
+        "source": "email",
+        "device_type": "desktop"
+      }
+    },
+    {
+      "customer_id": "CUST-J018",
+      "customer_email": "rachel.kim@events.co",
+      "customer_name": "Rachel Kim",
+      "subject": "Questions about enterprise pricing",
+      "description": "We're considering the enterprise plan for our company of 500+ employees. Can you provide more details about volume discounts and custom pricing?",
+      "tags": ["pricing", "enterprise", "question"],
+      "metadata": {
+        "source": "web_form",
+        "browser": "Firefox 121",
+        "device_type": "desktop"
+      }
+    },
+    {
+      "customer_id": "CUST-J019",
+      "customer_email": "steven.park@gaming.io",
+      "customer_name": "Steven Park",
+      "subject": "Bug: Memory leak in dashboard",
+      "description": "The dashboard causes browser memory usage to grow continuously. After leaving it open for a few hours, Chrome uses over 4GB RAM and becomes unresponsive.",
+      "tags": ["bug", "memory", "performance"],
+      "metadata": {
+        "source": "api",
+        "browser": "Chrome 120",
+        "device_type": "desktop"
+      }
+    },
+    {
+      "customer_id": "CUST-J020",
+      "customer_email": "tina.nguyen@fashion.brand",
+      "customer_name": "Tina Nguyen",
+      "subject": "Request to change account email",
+      "description": "I need to change my account email from my personal to my work email. The change email option in settings doesn't work - button is disabled.",
+      "tags": ["account", "email", "settings"],
+      "metadata": {
+        "source": "chat",
+        "device_type": "mobile"
+      }
+    }
+  ]
+}

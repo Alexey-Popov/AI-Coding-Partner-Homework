@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickets>
+  <ticket>
+    <customer_id>CUST-X001</customer_id>
+    <customer_email>adam.stone@company.com</customer_email>
+    <customer_name>Adam Stone</customer_name>
+    <subject>Login fails with correct password</subject>
+    <description>I'm entering my correct password but the system keeps saying invalid credentials. I've tried multiple browsers and cleared my cache. Need urgent access to complete a critical project.</description>
+    <tags><tag>login</tag><tag>urgent</tag></tags>
+    <metadata><source>web_form</source><browser>Chrome</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X002</customer_id>
+    <customer_email>bella.cruz@email.org</customer_email>
+    <customer_name>Bella Cruz</customer_name>
+    <subject>Incorrect charge on my invoice</subject>
+    <description>My January invoice shows a charge of $199 for a service I never subscribed to. Please investigate this billing error and issue a refund if applicable.</description>
+    <tags><tag>billing</tag><tag>refund</tag></tags>
+    <metadata><source>email</source><device_type>mobile</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X003</customer_id>
+    <customer_email>chris.walker@dev.io</customer_email>
+    <customer_name>Chris Walker</customer_name>
+    <subject>App crashes when opening settings</subject>
+    <description>The mobile app crashes every time I try to open the settings menu. This started after the latest update. Device: Samsung Galaxy S23, Android 14.</description>
+    <tags><tag>crash</tag><tag>mobile</tag></tags>
+    <metadata><source>api</source><device_type>mobile</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X004</customer_id>
+    <customer_email>donna.hill@startup.co</customer_email>
+    <customer_name>Donna Hill</customer_name>
+    <subject>Feature request: Batch processing</subject>
+    <description>Would be great if we could process multiple items in a batch instead of one at a time. This enhancement would save hours of manual work for our team.</description>
+    <tags><tag>feature</tag><tag>enhancement</tag></tags>
+    <metadata><source>chat</source><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X005</customer_id>
+    <customer_email>eric.jones@tech.com</customer_email>
+    <customer_name>Eric Jones</customer_name>
+    <subject>Bug: Sorting doesn't work correctly</subject>
+    <description>Steps to reproduce: 1) Go to items list 2) Click sort by date 3) Items appear in random order. Expected: Items should be sorted by date. This is a regression from the previous version.</description>
+    <tags><tag>bug</tag><tag>sorting</tag></tags>
+    <metadata><source>web_form</source><browser>Firefox</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X006</customer_id>
+    <customer_email>fiona.black@agency.net</customer_email>
+    <customer_name>Fiona Black</customer_name>
+    <subject>Can't reset 2FA settings</subject>
+    <description>I lost my phone and can't access my authenticator app. The 2FA recovery process isn't working - the backup codes say they're invalid. I'm locked out of my account completely.</description>
+    <tags><tag>2fa</tag><tag>locked</tag></tags>
+    <metadata><source>phone</source><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X007</customer_id>
+    <customer_email>george.reed@finance.org</customer_email>
+    <customer_name>George Reed</customer_name>
+    <subject>Payment method update needed</subject>
+    <description>My credit card on file expired. I need to update it to a new card before my subscription renewal date on February 15th to avoid service interruption.</description>
+    <tags><tag>payment</tag><tag>update</tag></tags>
+    <metadata><source>email</source><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X008</customer_id>
+    <customer_email>helen.marsh@design.co</customer_email>
+    <customer_name>Helen Marsh</customer_name>
+    <subject>Slow loading times - unusable</subject>
+    <description>Pages are taking over 30 seconds to load making the application completely unusable. This is blocking our entire team from working. Started this morning around 9 AM.</description>
+    <tags><tag>slow</tag><tag>blocking</tag><tag>performance</tag></tags>
+    <metadata><source>chat</source><browser>Chrome</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X009</customer_id>
+    <customer_email>ivan.cox@enterprise.com</customer_email>
+    <customer_name>Ivan Cox</customer_name>
+    <subject>Request: Integration with Slack</subject>
+    <description>Our team uses Slack heavily. Having native Slack integration for notifications and commands would be extremely valuable for our workflow. Please consider adding this feature.</description>
+    <tags><tag>feature</tag><tag>integration</tag><tag>slack</tag></tags>
+    <metadata><source>api</source><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X010</customer_id>
+    <customer_email>julia.west@media.io</customer_email>
+    <customer_name>Julia West</customer_name>
+    <subject>Bug: File preview shows wrong document</subject>
+    <description>When previewing files in the document manager, the wrong file is displayed. Clicking on Document A shows the contents of Document B. This has caused confusion and errors.</description>
+    <tags><tag>bug</tag><tag>preview</tag><tag>files</tag></tags>
+    <metadata><source>web_form</source><browser>Safari</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X011</customer_id>
+    <customer_email>kevin.ray@logistics.net</customer_email>
+    <customer_name>Kevin Ray</customer_name>
+    <subject>Security concern: Suspicious emails</subject>
+    <description>I received emails claiming to be from your company asking for my password. They look official but the links go to different domains. Please investigate this potential security threat.</description>
+    <tags><tag>security</tag><tag>phishing</tag></tags>
+    <metadata><source>email</source><device_type>mobile</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X012</customer_id>
+    <customer_email>linda.ford@retail.com</customer_email>
+    <customer_name>Linda Ford</customer_name>
+    <subject>Subscription cancellation request</subject>
+    <description>I would like to cancel my subscription effective at the end of the current billing period. Please confirm the cancellation and let me know if there's any refund available.</description>
+    <tags><tag>cancellation</tag><tag>subscription</tag></tags>
+    <metadata><source>phone</source><device_type>mobile</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X013</customer_id>
+    <customer_email>mike.hart@education.edu</customer_email>
+    <customer_name>Mike Hart</customer_name>
+    <subject>Application error 500 on dashboard</subject>
+    <description>Getting internal server error (500) when accessing the main dashboard. Other pages work fine but the dashboard has been broken for 2 days now. Very frustrating.</description>
+    <tags><tag>error</tag><tag>dashboard</tag></tags>
+    <metadata><source>web_form</source><browser>Edge</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X014</customer_id>
+    <customer_email>nancy.bell@creative.studio</customer_email>
+    <customer_name>Nancy Bell</customer_name>
+    <subject>Minor suggestion: Add tooltips</subject>
+    <description>Some icons in the interface are not self-explanatory. Adding tooltips when hovering over them would be a nice cosmetic improvement for usability.</description>
+    <tags><tag>suggestion</tag><tag>minor</tag><tag>ui</tag></tags>
+    <metadata><source>chat</source><browser>Chrome</browser><device_type>tablet</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X015</customer_id>
+    <customer_email>oscar.price@consulting.co</customer_email>
+    <customer_name>Oscar Price</customer_name>
+    <subject>Account temporarily suspended</subject>
+    <description>My account was suspended without warning. I haven't violated any terms of service. This is impacting my business operations. Please review and restore access immediately.</description>
+    <tags><tag>suspended</tag><tag>access</tag><tag>urgent</tag></tags>
+    <metadata><source>phone</source><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X016</customer_id>
+    <customer_email>paula.kim@healthcare.org</customer_email>
+    <customer_name>Paula Kim</customer_name>
+    <subject>Invoice PDF not opening</subject>
+    <description>Downloaded invoices in PDF format won't open - shows file corrupted error. I need these for our accounting records. Tried different PDF readers with same result.</description>
+    <tags><tag>invoice</tag><tag>pdf</tag><tag>corrupted</tag></tags>
+    <metadata><source>email</source><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X017</customer_id>
+    <customer_email>quinn.davis@sports.io</customer_email>
+    <customer_name>Quinn Davis</customer_name>
+    <subject>Feature: Export to Excel format</subject>
+    <description>Currently only CSV export is available. Adding Excel (XLSX) export would make it much easier to work with the data in spreadsheets with proper formatting preserved.</description>
+    <tags><tag>feature</tag><tag>export</tag><tag>excel</tag></tags>
+    <metadata><source>web_form</source><browser>Firefox</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X018</customer_id>
+    <customer_email>rachel.grant@events.net</customer_email>
+    <customer_name>Rachel Grant</customer_name>
+    <subject>Bug: Notifications not clearing</subject>
+    <description>Read notifications remain in the notification center even after marking them as read. The badge count also doesn't update. Happens on both web and mobile versions.</description>
+    <tags><tag>bug</tag><tag>notifications</tag></tags>
+    <metadata><source>api</source><device_type>mobile</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X019</customer_id>
+    <customer_email>sam.torres@music.com</customer_email>
+    <customer_name>Sam Torres</customer_name>
+    <subject>Critical: Data loss after save</subject>
+    <description>I saved a document but when I reopened it, all my changes were gone. This has happened twice now. This is critical as I've lost hours of work. Data loss issue needs immediate attention.</description>
+    <tags><tag>critical</tag><tag>data-loss</tag></tags>
+    <metadata><source>chat</source><browser>Chrome</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X020</customer_id>
+    <customer_email>tina.ross@legal.firm</customer_email>
+    <customer_name>Tina Ross</customer_name>
+    <subject>Question about data retention policy</subject>
+    <description>For compliance purposes, we need to know how long data is retained after account deletion. Also, can we request a complete data export before cancellation?</description>
+    <tags><tag>question</tag><tag>policy</tag><tag>compliance</tag></tags>
+    <metadata><source>email</source><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X021</customer_id>
+    <customer_email>uma.singh@tech.startup</customer_email>
+    <customer_name>Uma Singh</customer_name>
+    <subject>SSO login redirect loop</subject>
+    <description>When trying to login with SSO, I get stuck in an infinite redirect loop between your site and our identity provider. Regular login works but SSO is required by our company policy.</description>
+    <tags><tag>sso</tag><tag>login</tag><tag>redirect</tag></tags>
+    <metadata><source>web_form</source><browser>Chrome</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X022</customer_id>
+    <customer_email>victor.lee@marketing.agency</customer_email>
+    <customer_name>Victor Lee</customer_name>
+    <subject>Refund for service outage</subject>
+    <description>There was a 6-hour service outage last week that affected our business significantly. We request compensation or a partial refund for the downtime as per the SLA.</description>
+    <tags><tag>refund</tag><tag>outage</tag><tag>sla</tag></tags>
+    <metadata><source>phone</source><device_type>mobile</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X023</customer_id>
+    <customer_email>wendy.clark@nonprofit.org</customer_email>
+    <customer_name>Wendy Clark</customer_name>
+    <subject>Request: Nonprofit discount</subject>
+    <description>We are a registered 501(c)(3) nonprofit organization. Do you offer any special pricing or discounts for nonprofits? We'd love to use your service but have limited budget.</description>
+    <tags><tag>pricing</tag><tag>nonprofit</tag><tag>discount</tag></tags>
+    <metadata><source>email</source><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X024</customer_id>
+    <customer_email>xavier.wu@finance.corp</customer_email>
+    <customer_name>Xavier Wu</customer_name>
+    <subject>Bug: Search results pagination broken</subject>
+    <description>Search returns 100+ results but clicking Next page shows the same first 10 results. Unable to access results beyond the first page. This is affecting our workflow significantly.</description>
+    <tags><tag>bug</tag><tag>search</tag><tag>pagination</tag></tags>
+    <metadata><source>api</source><browser>Firefox</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X025</customer_id>
+    <customer_email>yolanda.adams@realestate.co</customer_email>
+    <customer_name>Yolanda Adams</customer_name>
+    <subject>Cannot change account password</subject>
+    <description>The change password feature shows success message but password doesn't actually change. I can still login with old password. This is a security concern and needs to be fixed.</description>
+    <tags><tag>password</tag><tag>security</tag></tags>
+    <metadata><source>chat</source><device_type>tablet</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X026</customer_id>
+    <customer_email>zach.brown@gaming.io</customer_email>
+    <customer_name>Zach Brown</customer_name>
+    <subject>API rate limiting too aggressive</subject>
+    <description>We're getting rate limited after just 10 requests per minute. The documentation says 100/minute is the limit. This is blocking our integration from working properly.</description>
+    <tags><tag>api</tag><tag>rate-limit</tag><tag>blocking</tag></tags>
+    <metadata><source>api</source><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X027</customer_id>
+    <customer_email>amy.white@fashion.brand</customer_email>
+    <customer_name>Amy White</customer_name>
+    <subject>Feature: Customizable dashboard</subject>
+    <description>The default dashboard doesn't show the metrics we care about most. A customizable dashboard where users can add/remove/rearrange widgets would be very useful.</description>
+    <tags><tag>feature</tag><tag>dashboard</tag><tag>customization</tag></tags>
+    <metadata><source>web_form</source><browser>Safari</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X028</customer_id>
+    <customer_email>brian.green@manufacturing.com</customer_email>
+    <customer_name>Brian Green</customer_name>
+    <subject>Production environment unavailable</subject>
+    <description>Our production environment has been down for the past 2 hours. All our users are affected. This is causing significant business impact. Please escalate immediately.</description>
+    <tags><tag>production</tag><tag>down</tag><tag>critical</tag></tags>
+    <metadata><source>phone</source><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X029</customer_id>
+    <customer_email>carol.james@travel.agency</customer_email>
+    <customer_name>Carol James</customer_name>
+    <subject>Someday: Multi-language support</subject>
+    <description>Eventually it would be nice to have the interface available in other languages. We have international clients who would benefit from Spanish and French translations.</description>
+    <tags><tag>low-priority</tag><tag>language</tag><tag>nice-to-have</tag></tags>
+    <metadata><source>email</source><device_type>mobile</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-X030</customer_id>
+    <customer_email>david.miller@consulting.net</customer_email>
+    <customer_name>David Miller</customer_name>
+    <subject>Bug: Duplicate webhooks being sent</subject>
+    <description>Our webhook endpoint is receiving duplicate calls for the same event. Each event triggers 3-4 identical webhook calls causing issues in our system. This is a regression bug.</description>
+    <tags><tag>bug</tag><tag>webhooks</tag><tag>duplicate</tag></tags>
+    <metadata><source>api</source><device_type>desktop</device_type></metadata>
+  </ticket>
+</tickets>

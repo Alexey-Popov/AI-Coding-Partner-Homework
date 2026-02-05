@@ -1,0 +1,9 @@
+customer_id,customer_email,customer_name,subject,description,category,priority,status
+,invalid-email,Missing ID,Valid subject,This ticket is missing customer_id and has invalid email format for testing purposes.,other,medium,new
+CUST-001,valid@email.com,,Valid subject,This ticket is missing customer_name,other,medium,new
+CUST-002,also-invalid-email,John Doe,Valid subject,Invalid email format in this record,other,medium,new
+CUST-003,test@email.com,Jane Doe,,Description only no subject,other,medium,new
+CUST-004,test@email.com,Bob Smith,Valid subject,Short,other,medium,new
+CUST-005,test@email.com,Alice,Valid subject,Valid description here for testing,invalid_category,medium,new
+CUST-006,test@email.com,Charlie,Valid subject,Valid description here for testing,other,invalid_priority,new
+CUST-007,test@email.com,Diana,Valid subject,Valid description here for testing,other,medium,invalid_status
