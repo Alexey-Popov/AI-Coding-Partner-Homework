@@ -1,0 +1,38 @@
+[
+  {
+    "customer_name": "Alice Johnson",
+    "customer_email": "alice@example.com",
+    "subject": "Login issue",
+    "description": "Cannot log into my account",
+    "category": "account_access",
+    "priority": "high"
+  },
+  {
+    "customer_name": "",
+    "customer_email": "bad-email",
+    "subject": "",
+    "description": ""
+  },
+  {
+    "customer_name": "Bob Smith",
+    "customer_email": "bob@example.com",
+    "subject": "Slow performance",
+    "description": "Application is running very slowly",
+    "category": "technical_issue",
+    "priority": "medium"
+  },
+  {
+    "customer_name": "Carol White",
+    "customer_email": "carol@example.com",
+    "subject": "Billing error",
+    "description": "Incorrect amount on my latest invoice",
+    "category": "billing_question",
+    "priority": "high"
+  },
+  {
+    "customer_name": "",
+    "customer_email": "",
+    "subject": "",
+    "description": ""
+  }
+]

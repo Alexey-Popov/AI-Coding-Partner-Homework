@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickets>
+  <ticket>
+    <customer_name>Alice Johnson</customer_name>
+    <customer_email>alice@example.com</customer_email>
+    <subject>Login issue</subject>
+    <description>Cannot log into my account</description>
+    <category>account_access</category>
+    <priority>high</priority>
+  </ticket>
+  <ticket>
+    <customer_name></customer_name>
+    <customer_email>bad-email</customer_email>
+    <subject></subject>
+    <description></description>
+  </ticket>
+  <ticket>
+    <customer_name>Bob Smith</customer_name>
+    <customer_email>bob@example.com</customer_email>
+    <subject>Slow performance</subject>
+    <description>Application is running very slowly</description>
+    <category>technical_issue</category>
+    <priority>medium</priority>
+  </ticket>
+  <ticket>
+    <customer_name>Carol White</customer_name>
+    <customer_email>carol@example.com</customer_email>
+    <subject>Billing error</subject>
+    <description>Incorrect amount on my latest invoice</description>
+    <category>billing_question</category>
+    <priority>high</priority>
+  </ticket>
+  <ticket>
+    <customer_name></customer_name>
+    <customer_email></customer_email>
+    <subject></subject>
+    <description></description>
+  </ticket>
+</tickets>

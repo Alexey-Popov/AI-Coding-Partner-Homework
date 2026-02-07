@@ -1,0 +1,6 @@
+customer_name,customer_email,subject,description,category,priority,source,browser,device_type,tags
+Alice Johnson,alice@example.com,Login issue,Cannot log into my account,account_access,high,web_form,Chrome,desktop,login
+,bad-email,,Missing required fields,,,,,
+Bob Smith,bob@example.com,Slow performance,Application is running very slowly,technical_issue,medium,email,Firefox,desktop,performance
+Carol White,carol@example.com,Billing error,Incorrect amount on my latest invoice,billing_question,high,phone,,,billing
+,,,,,,,,,,
