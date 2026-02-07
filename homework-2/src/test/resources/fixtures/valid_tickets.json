@@ -1,0 +1,60 @@
+[
+  {
+    "customer_name": "Alice Johnson",
+    "customer_email": "alice@example.com",
+    "subject": "Cannot login to account",
+    "description": "I keep getting an error when trying to sign in with my credentials",
+    "category": "account_access",
+    "priority": "high",
+    "source": "web_form",
+    "browser": "Chrome 120",
+    "device_type": "desktop",
+    "tags": ["login", "access"]
+  },
+  {
+    "customer_name": "Bob Smith",
+    "customer_email": "bob@example.com",
+    "subject": "Page loads slowly",
+    "description": "The dashboard page takes over 30 seconds to load",
+    "category": "technical_issue",
+    "priority": "medium",
+    "source": "email",
+    "browser": "Firefox 121",
+    "device_type": "desktop",
+    "tags": ["performance", "slow"]
+  },
+  {
+    "customer_name": "Carol White",
+    "customer_email": "carol@example.com",
+    "subject": "Wrong charge on invoice",
+    "description": "I was charged twice for my monthly subscription",
+    "category": "billing_question",
+    "priority": "high",
+    "source": "phone",
+    "tags": ["billing", "overcharge"]
+  },
+  {
+    "customer_name": "David Lee",
+    "customer_email": "david@example.com",
+    "subject": "Add dark mode",
+    "description": "It would be great if the application supported a dark theme",
+    "category": "feature_request",
+    "priority": "low",
+    "source": "chat",
+    "browser": "Safari 17",
+    "device_type": "mobile",
+    "tags": ["ui", "theme"]
+  },
+  {
+    "customer_name": "Emma Brown",
+    "customer_email": "emma@example.com",
+    "subject": "Button not working",
+    "description": "The submit button on the contact form does nothing when clicked",
+    "category": "bug_report",
+    "priority": "medium",
+    "source": "web_form",
+    "browser": "Chrome 120",
+    "device_type": "tablet",
+    "tags": ["form", "button"]
+  }
+]

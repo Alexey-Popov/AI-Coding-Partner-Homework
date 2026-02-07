@@ -1,0 +1,26 @@
+[
+  {
+    "customer_name": "",
+    "customer_email": "not-an-email",
+    "subject": "Valid subject",
+    "description": "Valid description"
+  },
+  {
+    "customer_name": "Valid Name",
+    "customer_email": "",
+    "subject": "Valid subject",
+    "description": "Valid description"
+  },
+  {
+    "customer_name": "Valid Name",
+    "customer_email": "valid@email.com",
+    "subject": "",
+    "description": "Valid description"
+  },
+  {
+    "customer_name": "Valid Name",
+    "customer_email": "valid@email.com",
+    "subject": "Valid subject",
+    "description": ""
+  }
+]

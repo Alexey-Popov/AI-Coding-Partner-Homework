@@ -1,0 +1,38 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: supportiq-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/supportiq
+      SPRING_DATASOURCE_USERNAME: supportiq
+      SPRING_DATASOURCE_PASSWORD: supportiq
+      SPRING_FLYWAY_ENABLED: "true"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    container_name: supportiq-db
+    environment:
+      POSTGRES_DB: supportiq
+      POSTGRES_USER: supportiq
+      POSTGRES_PASSWORD: supportiq
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U supportiq -d supportiq"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

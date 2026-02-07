@@ -1,0 +1,50 @@
+[
+  {
+    "customer_name": "Test User",
+    "customer_email": "test@example.com",
+    "subject": "Cannot login to my account",
+    "description": "My password reset is not working and I am locked out of my account. I need to access my authentication settings."
+  },
+  {
+    "customer_name": "Test User",
+    "customer_email": "test@example.com",
+    "subject": "Application crashes on startup",
+    "description": "The app keeps crashing with an error message. It is completely broken and not working at all. Very slow performance."
+  },
+  {
+    "customer_name": "Test User",
+    "customer_email": "test@example.com",
+    "subject": "Incorrect invoice amount",
+    "description": "My billing statement shows the wrong charge. I need a refund for the extra payment on my subscription."
+  },
+  {
+    "customer_name": "Test User",
+    "customer_email": "test@example.com",
+    "subject": "Please add export feature",
+    "description": "I have a feature request to add CSV export functionality. This enhancement would improve the integration capabilities."
+  },
+  {
+    "customer_name": "Test User",
+    "customer_email": "test@example.com",
+    "subject": "UI displays incorrect data",
+    "description": "There is a bug where the dashboard shows missing information and incorrect values. I can reproduce this glitch every time."
+  },
+  {
+    "customer_name": "Test User",
+    "customer_email": "test@example.com",
+    "subject": "General question about the product",
+    "description": "I was wondering about the general capabilities of your platform and how it compares to alternatives."
+  },
+  {
+    "customer_name": "Test User",
+    "customer_email": "test@example.com",
+    "subject": "URGENT: Production system down",
+    "description": "This is an emergency! Our production system is completely down and we are experiencing critical data loss. We need help immediately asap."
+  },
+  {
+    "customer_name": "Test User",
+    "customer_email": "test@example.com",
+    "subject": "Minor cosmetic issue",
+    "description": "There is a minor visual glitch with no rush to fix. Would be nice to have it fixed eventually when possible."
+  }
+]

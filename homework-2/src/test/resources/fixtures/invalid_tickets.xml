@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickets>
+  <ticket>
+    <customer_name></customer_name>
+    <customer_email>not-an-email</customer_email>
+    <subject>Valid subject</subject>
+    <description>Valid description</description>
+  </ticket>
+  <ticket>
+    <customer_name>Valid Name</customer_name>
+    <customer_email></customer_email>
+    <subject>Valid subject</subject>
+    <description>Valid description</description>
+  </ticket>
+  <ticket>
+    <customer_name>Valid Name</customer_name>
+    <customer_email>valid@email.com</customer_email>
+    <subject></subject>
+    <description>Valid description</description>
+  </ticket>
+  <ticket>
+    <customer_name>Valid Name</customer_name>
+    <customer_email>valid@email.com</customer_email>
+    <subject>Valid subject</subject>
+    <description></description>
+  </ticket>
+</tickets>
