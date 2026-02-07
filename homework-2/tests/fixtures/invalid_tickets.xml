@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickets>
+  <ticket>
+    <customer_id></customer_id>
+    <customer_email>bad-email</customer_email>
+    <customer_name></customer_name>
+    <subject></subject>
+    <description>too short</description>
+    <category>bad_category</category>
+    <priority>extreme</priority>
+    <metadata>
+      <source>carrier_pigeon</source>
+    </metadata>
+  </ticket>
+  <ticket>
+    <!-- Missing required fields -->
+    <customer_id>CUST-8888</customer_id>
+  </ticket>
+</tickets>

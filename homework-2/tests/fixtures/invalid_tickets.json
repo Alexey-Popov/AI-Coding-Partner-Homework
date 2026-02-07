@@ -1,0 +1,15 @@
+[
+  {
+    "customer_id": "",
+    "customer_email": "not-an-email",
+    "customer_name": "",
+    "subject": "x",
+    "description": "short",
+    "category": "invalid_cat",
+    "priority": "critical",
+    "tags": [],
+    "metadata": {
+      "source": "invalid_source"
+    }
+  }
+]

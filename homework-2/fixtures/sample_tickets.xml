@@ -1,0 +1,503 @@
+<?xml version="1.0" ?>
+<tickets>
+  <ticket>
+    <customer_id>CUST-0200</customer_id>
+    <customer_email>customer200@example.com</customer_email>
+    <customer_name>Test Customer 200</customer_name>
+    <subject>Cannot login to my account</subject>
+    <description>I've been trying to log in but keep getting 'invalid credentials' error. I've reset my password twice but still can't access my account. This is critical as I need to access my data.</description>
+    <category>account_access</category>
+    <priority>urgent</priority>
+    <tags>
+      <tag>ui</tag>
+    </tags>
+    <metadata>
+      <source>api</source>
+      <browser>Firefox</browser>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0201</customer_id>
+    <customer_email>customer201@example.com</customer_email>
+    <customer_name>Test Customer 201</customer_name>
+    <subject>Search function not returning results</subject>
+    <description>The search bar doesn't return any results even when searching for items I know exist. I've tried different keywords but getting zero results every time.</description>
+    <category>technical_issue</category>
+    <priority>low</priority>
+    <tags>
+      <tag>urgent</tag>
+    </tags>
+    <metadata>
+      <source>chat</source>
+      <browser>Edge</browser>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0202</customer_id>
+    <customer_email>customer202@example.com</customer_email>
+    <customer_name>Test Customer 202</customer_name>
+    <subject>Need invoice for tax purposes</subject>
+    <description>I require detailed invoices for the past 6 months for my company's tax filing. Can you send them to my email? I need this by end of this week.</description>
+    <category>billing_question</category>
+    <priority>medium</priority>
+    <tags>
+      <tag>customer-request</tag>
+      <tag>ui</tag>
+    </tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Firefox</browser>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0203</customer_id>
+    <customer_email>customer203@example.com</customer_email>
+    <customer_name>Test Customer 203</customer_name>
+    <subject>Add dark mode to the application</subject>
+    <description>It would be really great if you could add a dark mode option. Many of us work late hours and the bright interface is straining our eyes. This is a much requested feature.</description>
+    <category>feature_request</category>
+    <priority>low</priority>
+    <tags>
+      <tag>urgent</tag>
+      <tag>ui</tag>
+    </tags>
+    <metadata>
+      <source>api</source>
+      <browser>Safari</browser>
+      <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0204</customer_id>
+    <customer_email>customer204@example.com</customer_email>
+    <customer_name>Test Customer 204</customer_name>
+    <subject>Calendar date picker shows wrong month</subject>
+    <description>The date picker in the scheduling section is showing February even though it's currently January. This causes confusion when trying to schedule appointments.</description>
+    <category>bug_report</category>
+    <priority>high</priority>
+    <metadata>
+      <source>api</source>
+      <browser>Safari</browser>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0205</customer_id>
+    <customer_email>customer205@example.com</customer_email>
+    <customer_name>Test Customer 205</customer_name>
+    <subject>Partnership opportunity</subject>
+    <description>I run a complementary SaaS business and think there could be partnership opportunities between our companies. Would you be open to a discussion about integration?</description>
+    <category>other</category>
+    <priority>medium</priority>
+    <tags>
+      <tag>followup</tag>
+      <tag>support</tag>
+      <tag>backend</tag>
+    </tags>
+    <metadata>
+      <source>email</source>
+      <browser>Firefox</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0206</customer_id>
+    <customer_email>customer206@example.com</customer_email>
+    <customer_name>Test Customer 206</customer_name>
+    <subject>Two-factor authentication not working</subject>
+    <description>The 2FA codes from my authenticator app are being rejected. I've tried multiple codes and even resynchronized the time on my phone but nothing works.</description>
+    <category>account_access</category>
+    <priority>low</priority>
+    <tags>
+      <tag>urgent</tag>
+      <tag>ui</tag>
+    </tags>
+    <metadata>
+      <source>phone</source>
+      <browser>Safari</browser>
+      <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0207</customer_id>
+    <customer_email>customer207@example.com</customer_email>
+    <customer_name>Test Customer 207</customer_name>
+    <subject>Slow loading times on dashboard</subject>
+    <description>The main dashboard takes over 30 seconds to load. This started happening after the last update. Other pages load fine but dashboard is extremely slow.</description>
+    <category>technical_issue</category>
+    <priority>low</priority>
+    <tags>
+      <tag>ui</tag>
+    </tags>
+    <metadata>
+      <source>chat</source>
+      <browser>Safari</browser>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0208</customer_id>
+    <customer_email>customer208@example.com</customer_email>
+    <customer_name>Test Customer 208</customer_name>
+    <subject>Payment method update failed</subject>
+    <description>I'm trying to update my credit card information but the system keeps saying 'payment method update failed'. My card is valid and has sufficient balance.</description>
+    <category>billing_question</category>
+    <priority>low</priority>
+    <metadata>
+      <source>api</source>
+      <browser>Safari</browser>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0209</customer_id>
+    <customer_email>customer209@example.com</customer_email>
+    <customer_name>Test Customer 209</customer_name>
+    <subject>Bulk edit functionality</subject>
+    <description>It would save a lot of time if we could edit multiple items at once instead of editing them one by one. A bulk edit feature would be a huge productivity boost.</description>
+    <category>feature_request</category>
+    <priority>urgent</priority>
+    <tags>
+      <tag>followup</tag>
+    </tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Safari</browser>
+      <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0210</customer_id>
+    <customer_email>customer210@example.com</customer_email>
+    <customer_name>Test Customer 210</customer_name>
+    <subject>Calendar date picker shows wrong month</subject>
+    <description>The date picker in the scheduling section is showing February even though it's currently January. This causes confusion when trying to schedule appointments.</description>
+    <category>bug_report</category>
+    <priority>urgent</priority>
+    <tags>
+      <tag>customer-request</tag>
+      <tag>followup</tag>
+    </tags>
+    <metadata>
+      <source>chat</source>
+      <browser>Safari</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0211</customer_id>
+    <customer_email>customer211@example.com</customer_email>
+    <customer_name>Test Customer 211</customer_name>
+    <subject>General inquiry about enterprise plans</subject>
+    <description>I represent a company with 500+ employees. We're interested in your enterprise plan. Can someone from sales contact me to discuss custom pricing and features?</description>
+    <category>other</category>
+    <priority>urgent</priority>
+    <tags>
+      <tag>backend</tag>
+      <tag>urgent</tag>
+      <tag>support</tag>
+    </tags>
+    <metadata>
+      <source>email</source>
+      <browser>Chrome</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0212</customer_id>
+    <customer_email>customer212@example.com</customer_email>
+    <customer_name>Test Customer 212</customer_name>
+    <subject>Cannot login to my account</subject>
+    <description>I've been trying to log in but keep getting 'invalid credentials' error. I've reset my password twice but still can't access my account. This is critical as I need to access my data.</description>
+    <category>account_access</category>
+    <priority>low</priority>
+    <tags>
+      <tag>urgent</tag>
+      <tag>followup</tag>
+    </tags>
+    <metadata>
+      <source>phone</source>
+      <browser>Edge</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0213</customer_id>
+    <customer_email>customer213@example.com</customer_email>
+    <customer_name>Test Customer 213</customer_name>
+    <subject>Slow loading times on dashboard</subject>
+    <description>The main dashboard takes over 30 seconds to load. This started happening after the last update. Other pages load fine but dashboard is extremely slow.</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
+    <tags>
+      <tag>customer-request</tag>
+      <tag>backend</tag>
+      <tag>ui</tag>
+    </tags>
+    <metadata>
+      <source>chat</source>
+      <browser>Chrome</browser>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0214</customer_id>
+    <customer_email>customer214@example.com</customer_email>
+    <customer_name>Test Customer 214</customer_name>
+    <subject>Need invoice for tax purposes</subject>
+    <description>I require detailed invoices for the past 6 months for my company's tax filing. Can you send them to my email? I need this by end of this week.</description>
+    <category>billing_question</category>
+    <priority>urgent</priority>
+    <tags>
+      <tag>followup</tag>
+      <tag>ui</tag>
+      <tag>backend</tag>
+    </tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Edge</browser>
+      <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0215</customer_id>
+    <customer_email>customer215@example.com</customer_email>
+    <customer_name>Test Customer 215</customer_name>
+    <subject>Export reports to PDF format</subject>
+    <description>Please add ability to export reports directly to PDF. Currently we can only export to Excel which requires additional conversion step for our workflow.</description>
+    <category>feature_request</category>
+    <priority>urgent</priority>
+    <metadata>
+      <source>email</source>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0216</customer_id>
+    <customer_email>customer216@example.com</customer_email>
+    <customer_name>Test Customer 216</customer_name>
+    <subject>Email notifications arriving hours late</subject>
+    <description>I'm receiving email notifications 4-6 hours after the actual events. The system timestamp is correct but email delivery is severely delayed.</description>
+    <category>bug_report</category>
+    <priority>medium</priority>
+    <tags>
+      <tag>backend</tag>
+    </tags>
+    <metadata>
+      <source>api</source>
+      <browser>Chrome</browser>
+      <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0217</customer_id>
+    <customer_email>customer217@example.com</customer_email>
+    <customer_name>Test Customer 217</customer_name>
+    <subject>Documentation request</subject>
+    <description>I'm looking for technical documentation on your API endpoints. The current documentation seems outdated. Can you point me to the latest version?</description>
+    <category>other</category>
+    <priority>urgent</priority>
+    <tags>
+      <tag>ui</tag>
+      <tag>customer-request</tag>
+    </tags>
+    <metadata>
+      <source>api</source>
+      <browser>Edge</browser>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0218</customer_id>
+    <customer_email>customer218@example.com</customer_email>
+    <customer_name>Test Customer 218</customer_name>
+    <subject>Cannot login to my account</subject>
+    <description>I've been trying to log in but keep getting 'invalid credentials' error. I've reset my password twice but still can't access my account. This is critical as I need to access my data.</description>
+    <category>account_access</category>
+    <priority>urgent</priority>
+    <tags>
+      <tag>backend</tag>
+    </tags>
+    <metadata>
+      <source>chat</source>
+      <browser>Edge</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0219</customer_id>
+    <customer_email>customer219@example.com</customer_email>
+    <customer_name>Test Customer 219</customer_name>
+    <subject>Search function not returning results</subject>
+    <description>The search bar doesn't return any results even when searching for items I know exist. I've tried different keywords but getting zero results every time.</description>
+    <category>technical_issue</category>
+    <priority>urgent</priority>
+    <tags>
+      <tag>backend</tag>
+    </tags>
+    <metadata>
+      <source>phone</source>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0220</customer_id>
+    <customer_email>customer220@example.com</customer_email>
+    <customer_name>Test Customer 220</customer_name>
+    <subject>Subscription cancellation refund</subject>
+    <description>I cancelled my subscription 3 days ago but was still charged for this month. According to your policy I should get a prorated refund. Please process my refund.</description>
+    <category>billing_question</category>
+    <priority>high</priority>
+    <tags>
+      <tag>backend</tag>
+      <tag>ui</tag>
+      <tag>support</tag>
+    </tags>
+    <metadata>
+      <source>chat</source>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0221</customer_id>
+    <customer_email>customer221@example.com</customer_email>
+    <customer_name>Test Customer 221</customer_name>
+    <subject>Add dark mode to the application</subject>
+    <description>It would be really great if you could add a dark mode option. Many of us work late hours and the bright interface is straining our eyes. This is a much requested feature.</description>
+    <category>feature_request</category>
+    <priority>high</priority>
+    <tags>
+      <tag>support</tag>
+      <tag>followup</tag>
+    </tags>
+    <metadata>
+      <source>email</source>
+      <browser>Chrome</browser>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0222</customer_id>
+    <customer_email>customer222@example.com</customer_email>
+    <customer_name>Test Customer 222</customer_name>
+    <subject>Submit button not working on contact form</subject>
+    <description>The submit button on the contact form doesn't respond to clicks. I've tried on Chrome and Firefox with same result. Console shows JavaScript error.</description>
+    <category>bug_report</category>
+    <priority>urgent</priority>
+    <tags>
+      <tag>urgent</tag>
+      <tag>customer-request</tag>
+      <tag>backend</tag>
+    </tags>
+    <metadata>
+      <source>api</source>
+      <browser>Safari</browser>
+      <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0223</customer_id>
+    <customer_email>customer223@example.com</customer_email>
+    <customer_name>Test Customer 223</customer_name>
+    <subject>Partnership opportunity</subject>
+    <description>I run a complementary SaaS business and think there could be partnership opportunities between our companies. Would you be open to a discussion about integration?</description>
+    <category>other</category>
+    <priority>medium</priority>
+    <metadata>
+      <source>api</source>
+      <browser>Edge</browser>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0224</customer_id>
+    <customer_email>customer224@example.com</customer_email>
+    <customer_name>Test Customer 224</customer_name>
+    <subject>Two-factor authentication not working</subject>
+    <description>The 2FA codes from my authenticator app are being rejected. I've tried multiple codes and even resynchronized the time on my phone but nothing works.</description>
+    <category>account_access</category>
+    <priority>high</priority>
+    <metadata>
+      <source>api</source>
+      <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0225</customer_id>
+    <customer_email>customer225@example.com</customer_email>
+    <customer_name>Test Customer 225</customer_name>
+    <subject>File upload fails with timeout error</subject>
+    <description>Every time I try to upload a file larger than 5MB, I get a timeout error. Smaller files upload fine. This is blocking my work as I need to upload project documents.</description>
+    <category>technical_issue</category>
+    <priority>medium</priority>
+    <metadata>
+      <source>email</source>
+      <browser>Safari</browser>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0226</customer_id>
+    <customer_email>customer226@example.com</customer_email>
+    <customer_name>Test Customer 226</customer_name>
+    <subject>Subscription cancellation refund</subject>
+    <description>I cancelled my subscription 3 days ago but was still charged for this month. According to your policy I should get a prorated refund. Please process my refund.</description>
+    <category>billing_question</category>
+    <priority>low</priority>
+    <tags>
+      <tag>urgent</tag>
+      <tag>customer-request</tag>
+      <tag>backend</tag>
+    </tags>
+    <metadata>
+      <source>email</source>
+      <browser>Safari</browser>
+      <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0227</customer_id>
+    <customer_email>customer227@example.com</customer_email>
+    <customer_name>Test Customer 227</customer_name>
+    <subject>Bulk edit functionality</subject>
+    <description>It would save a lot of time if we could edit multiple items at once instead of editing them one by one. A bulk edit feature would be a huge productivity boost.</description>
+    <category>feature_request</category>
+    <priority>urgent</priority>
+    <tags>
+      <tag>customer-request</tag>
+    </tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Chrome</browser>
+      <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0228</customer_id>
+    <customer_email>customer228@example.com</customer_email>
+    <customer_name>Test Customer 228</customer_name>
+    <subject>Data not saving properly</subject>
+    <description>When I edit my profile and click save, some fields revert to old values. Specifically the phone number and address fields don't persist after saving.</description>
+    <category>bug_report</category>
+    <priority>urgent</priority>
+    <tags>
+      <tag>followup</tag>
+    </tags>
+    <metadata>
+      <source>web_form</source>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-0229</customer_id>
+    <customer_email>customer229@example.com</customer_email>
+    <customer_name>Test Customer 229</customer_name>
+    <subject>Feedback on recent UI update</subject>
+    <description>I wanted to share feedback on the recent interface redesign. Overall it looks modern but the navigation has become less intuitive. Happy to provide detailed feedback.</description>
+    <category>other</category>
+    <priority>high</priority>
+    <tags>
+      <tag>urgent</tag>
+      <tag>ui</tag>
+    </tags>
+    <metadata>
+      <source>email</source>
+      <browser>Chrome</browser>
+    </metadata>
+  </ticket>
+</tickets>

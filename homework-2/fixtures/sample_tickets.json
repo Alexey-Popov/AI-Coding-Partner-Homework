@@ -1,0 +1,347 @@
+[
+  {
+    "customer_id": "CUST-0100",
+    "customer_email": "customer100@example.com",
+    "customer_name": "Test Customer 100",
+    "subject": "Account locked after failed attempts",
+    "description": "My account got locked out after I entered wrong password. I know the correct password now but system won't let me try again. Please unlock my account immediately.",
+    "category": "account_access",
+    "priority": "medium",
+    "tags": [
+      "urgent",
+      "customer-request",
+      "followup"
+    ],
+    "metadata": {
+      "source": "phone",
+      "browser": "Safari",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUST-0101",
+    "customer_email": "customer101@example.com",
+    "customer_name": "Test Customer 101",
+    "subject": "Application crashes on startup",
+    "description": "The desktop application crashes immediately when I try to open it. Error message says 'Unexpected error occurred'. I've tried reinstalling but same issue persists.",
+    "category": "technical_issue",
+    "priority": "medium",
+    "tags": [
+      "followup",
+      "customer-request"
+    ],
+    "metadata": {
+      "source": "email",
+      "browser": "Chrome",
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "CUST-0102",
+    "customer_email": "customer102@example.com",
+    "customer_name": "Test Customer 102",
+    "subject": "Unexpected charge on my credit card",
+    "description": "I noticed a charge of $99.99 on my statement that I don't recognize. My subscription should only be $49.99 per month. Please explain this extra charge.",
+    "category": "billing_question",
+    "priority": "urgent",
+    "tags": [
+      "customer-request",
+      "support",
+      "backend"
+    ],
+    "metadata": {
+      "source": "email",
+      "browser": "Edge",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUST-0103",
+    "customer_email": "customer103@example.com",
+    "customer_name": "Test Customer 103",
+    "subject": "Mobile app for iOS",
+    "description": "Your Android app is great but there's no iOS version. Many of our team members use iPhones and would benefit from a native iOS app. When can we expect this?",
+    "category": "feature_request",
+    "priority": "urgent",
+    "tags": [
+      "customer-request"
+    ],
+    "metadata": {
+      "source": "web_form",
+      "browser": null,
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "CUST-0104",
+    "customer_email": "customer104@example.com",
+    "customer_name": "Test Customer 104",
+    "subject": "Email notifications arriving hours late",
+    "description": "I'm receiving email notifications 4-6 hours after the actual events. The system timestamp is correct but email delivery is severely delayed.",
+    "category": "bug_report",
+    "priority": "low",
+    "tags": [
+      "ui",
+      "customer-request",
+      "backend"
+    ],
+    "metadata": {
+      "source": "email",
+      "browser": "Firefox",
+      "device_type": "tablet"
+    }
+  },
+  {
+    "customer_id": "CUST-0105",
+    "customer_email": "customer105@example.com",
+    "customer_name": "Test Customer 105",
+    "subject": "Partnership opportunity",
+    "description": "I run a complementary SaaS business and think there could be partnership opportunities between our companies. Would you be open to a discussion about integration?",
+    "category": "other",
+    "priority": "medium",
+    "tags": [
+      "urgent",
+      "backend"
+    ],
+    "metadata": {
+      "source": "chat",
+      "browser": "Edge",
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "CUST-0106",
+    "customer_email": "customer106@example.com",
+    "customer_name": "Test Customer 106",
+    "subject": "Cannot login to my account",
+    "description": "I've been trying to log in but keep getting 'invalid credentials' error. I've reset my password twice but still can't access my account. This is critical as I need to access my data.",
+    "category": "account_access",
+    "priority": "urgent",
+    "tags": [],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Firefox",
+      "device_type": null
+    }
+  },
+  {
+    "customer_id": "CUST-0107",
+    "customer_email": "customer107@example.com",
+    "customer_name": "Test Customer 107",
+    "subject": "Application crashes on startup",
+    "description": "The desktop application crashes immediately when I try to open it. Error message says 'Unexpected error occurred'. I've tried reinstalling but same issue persists.",
+    "category": "technical_issue",
+    "priority": "low",
+    "tags": [],
+    "metadata": {
+      "source": "api",
+      "browser": "Safari",
+      "device_type": null
+    }
+  },
+  {
+    "customer_id": "CUST-0108",
+    "customer_email": "customer108@example.com",
+    "customer_name": "Test Customer 108",
+    "subject": "Subscription cancellation refund",
+    "description": "I cancelled my subscription 3 days ago but was still charged for this month. According to your policy I should get a prorated refund. Please process my refund.",
+    "category": "billing_question",
+    "priority": "medium",
+    "tags": [
+      "ui",
+      "customer-request",
+      "backend"
+    ],
+    "metadata": {
+      "source": "email",
+      "browser": null,
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUST-0109",
+    "customer_email": "customer109@example.com",
+    "customer_name": "Test Customer 109",
+    "subject": "Mobile app for iOS",
+    "description": "Your Android app is great but there's no iOS version. Many of our team members use iPhones and would benefit from a native iOS app. When can we expect this?",
+    "category": "feature_request",
+    "priority": "urgent",
+    "tags": [],
+    "metadata": {
+      "source": "email",
+      "browser": null,
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "CUST-0110",
+    "customer_email": "customer110@example.com",
+    "customer_name": "Test Customer 110",
+    "subject": "Submit button not working on contact form",
+    "description": "The submit button on the contact form doesn't respond to clicks. I've tried on Chrome and Firefox with same result. Console shows JavaScript error.",
+    "category": "bug_report",
+    "priority": "low",
+    "tags": [
+      "support"
+    ],
+    "metadata": {
+      "source": "phone",
+      "browser": "Edge",
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "CUST-0111",
+    "customer_email": "customer111@example.com",
+    "customer_name": "Test Customer 111",
+    "subject": "Partnership opportunity",
+    "description": "I run a complementary SaaS business and think there could be partnership opportunities between our companies. Would you be open to a discussion about integration?",
+    "category": "other",
+    "priority": "urgent",
+    "tags": [
+      "urgent"
+    ],
+    "metadata": {
+      "source": "chat",
+      "browser": "Chrome",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUST-0112",
+    "customer_email": "customer112@example.com",
+    "customer_name": "Test Customer 112",
+    "subject": "Password reset email not received",
+    "description": "I requested a password reset 3 hours ago but haven't received the email yet. I've checked spam folder. My email is correct in the system.",
+    "category": "account_access",
+    "priority": "urgent",
+    "tags": [
+      "customer-request"
+    ],
+    "metadata": {
+      "source": "phone",
+      "browser": "Edge",
+      "device_type": null
+    }
+  },
+  {
+    "customer_id": "CUST-0113",
+    "customer_email": "customer113@example.com",
+    "customer_name": "Test Customer 113",
+    "subject": "Application crashes on startup",
+    "description": "The desktop application crashes immediately when I try to open it. Error message says 'Unexpected error occurred'. I've tried reinstalling but same issue persists.",
+    "category": "technical_issue",
+    "priority": "low",
+    "tags": [],
+    "metadata": {
+      "source": "chat",
+      "browser": "Safari",
+      "device_type": "tablet"
+    }
+  },
+  {
+    "customer_id": "CUST-0114",
+    "customer_email": "customer114@example.com",
+    "customer_name": "Test Customer 114",
+    "subject": "Need invoice for tax purposes",
+    "description": "I require detailed invoices for the past 6 months for my company's tax filing. Can you send them to my email? I need this by end of this week.",
+    "category": "billing_question",
+    "priority": "urgent",
+    "tags": [
+      "backend",
+      "support"
+    ],
+    "metadata": {
+      "source": "chat",
+      "browser": null,
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUST-0115",
+    "customer_email": "customer115@example.com",
+    "customer_name": "Test Customer 115",
+    "subject": "Add dark mode to the application",
+    "description": "It would be really great if you could add a dark mode option. Many of us work late hours and the bright interface is straining our eyes. This is a much requested feature.",
+    "category": "feature_request",
+    "priority": "urgent",
+    "tags": [
+      "customer-request",
+      "followup"
+    ],
+    "metadata": {
+      "source": "email",
+      "browser": "Firefox",
+      "device_type": "tablet"
+    }
+  },
+  {
+    "customer_id": "CUST-0116",
+    "customer_email": "customer116@example.com",
+    "customer_name": "Test Customer 116",
+    "subject": "Email notifications arriving hours late",
+    "description": "I'm receiving email notifications 4-6 hours after the actual events. The system timestamp is correct but email delivery is severely delayed.",
+    "category": "bug_report",
+    "priority": "low",
+    "tags": [],
+    "metadata": {
+      "source": "email",
+      "browser": null,
+      "device_type": "tablet"
+    }
+  },
+  {
+    "customer_id": "CUST-0117",
+    "customer_email": "customer117@example.com",
+    "customer_name": "Test Customer 117",
+    "subject": "General inquiry about enterprise plans",
+    "description": "I represent a company with 500+ employees. We're interested in your enterprise plan. Can someone from sales contact me to discuss custom pricing and features?",
+    "category": "other",
+    "priority": "low",
+    "tags": [
+      "urgent"
+    ],
+    "metadata": {
+      "source": "api",
+      "browser": "Edge",
+      "device_type": "tablet"
+    }
+  },
+  {
+    "customer_id": "CUST-0118",
+    "customer_email": "customer118@example.com",
+    "customer_name": "Test Customer 118",
+    "subject": "Account locked after failed attempts",
+    "description": "My account got locked out after I entered wrong password. I know the correct password now but system won't let me try again. Please unlock my account immediately.",
+    "category": "account_access",
+    "priority": "urgent",
+    "tags": [
+      "followup",
+      "customer-request"
+    ],
+    "metadata": {
+      "source": "api",
+      "browser": "Safari",
+      "device_type": "tablet"
+    }
+  },
+  {
+    "customer_id": "CUST-0119",
+    "customer_email": "customer119@example.com",
+    "customer_name": "Test Customer 119",
+    "subject": "Slow loading times on dashboard",
+    "description": "The main dashboard takes over 30 seconds to load. This started happening after the last update. Other pages load fine but dashboard is extremely slow.",
+    "category": "technical_issue",
+    "priority": "medium",
+    "tags": [
+      "backend",
+      "urgent",
+      "customer-request"
+    ],
+    "metadata": {
+      "source": "phone",
+      "browser": "Chrome",
+      "device_type": "tablet"
+    }
+  }
+]

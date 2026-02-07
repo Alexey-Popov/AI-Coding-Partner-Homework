@@ -118,24 +118,24 @@
 ### API Running Successfully
 <!-- Include screenshot of your application running -->
 
-![API Running](docs/screenshots/api-running.png)
+![API Running](https://github.com/bes422/AI-Coding-Partner-Homework/blob/main/homework-2/docs/screenshots/1.png?raw=true)
 
 ### AI Tool Interactions
 <!-- Include screenshots showing how you used AI tools -->
 
-![AI Prompt Example 1](docs/screenshots/ai-prompt-1.png)
+![AI Prompt Example 1](https://github.com/bes422/AI-Coding-Partner-Homework/blob/main/homework-2/docs/screenshots/2.png?raw=true)
 *Caption: [Describe what this shows]*
 
-![AI Prompt Example 2](docs/screenshots/ai-prompt-2.png)
+![AI Prompt Example 2](https://github.com/bes422/AI-Coding-Partner-Homework/blob/main/homework-2/docs/screenshots/3.png?raw=true)
 *Caption: [Describe what this shows]*
 
 ### API Testing
 <!-- Include screenshots of API requests/responses -->
 
-![API Test 1](docs/screenshots/api-test-1.png)
+![API Test 1](https://github.com/bes422/AI-Coding-Partner-Homework/blob/main/homework-2/docs/screenshots/4.png?raw=true)
 *Caption: [Describe the test]*
 
-![API Test 2](docs/screenshots/api-test-2.png)
+![API Test 2](https://github.com/bes422/AI-Coding-Partner-Homework/blob/main/homework-2/docs/screenshots/5.png?raw=true)
 *Caption: [Describe the test]*
 
 ### Demo Video (Optional)
