@@ -1,0 +1,4 @@
+customer_id,customer_email,customer_name,subject,description,source,browser,device_type
+cust_001,john@example.com,John Doe,Login issue,Cannot access my account after password reset,web_form,Chrome 120,desktop
+cust_002,jane@example.com,Jane Smith,Payment failed,Need refund for duplicate charge,email,Firefox 119,mobile
+cust_003,bob@example.com,Bob Johnson,Feature request,Would like to add dark mode to the app,api,Safari 17,tablet

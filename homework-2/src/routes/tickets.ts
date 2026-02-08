@@ -1,14 +1,18 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { validate as isValidUUID } from 'uuid';
+import multer from 'multer';
 import { Ticket } from '../models/Ticket';
 import { safeValidateCreateTicket, safeValidateUpdateTicket } from '../models/TicketValidator';
 import { ClassificationService } from '../services/ClassificationService';
+import { CsvImportService } from '../services/CsvImportService';
 
 const router = Router();
+const upload = multer({ dest: 'uploads/' });
 
 const tickets: Ticket[] = [];
 const classificationService = new ClassificationService();
+const csvImportService = new CsvImportService();
 
 function findTicketById(id: string): Ticket | undefined {
   return tickets.find((ticket) => ticket.id === id);
@@ -77,6 +81,91 @@ router.post('/', (req: Request, res: Response, next: NextFunction): void => {
     next(error);
   }
 });
+
+/**
+ * POST /tickets/import - Import tickets from CSV file
+ * @returns 200 OK with import results
+ */
+router.post(
+  '/import',
+  upload.single('file'),
+  async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      if (!req.file) {
+        res.status(400).json({
+          success: false,
+          error: 'No file uploaded',
+          details: { message: 'Please upload a CSV file using the "file" field' },
+        });
+        return;
+      }
+
+      if (!req.file.originalname.endsWith('.csv')) {
+        res.status(400).json({
+          success: false,
+          error: 'Invalid file type',
+          details: { message: 'Only CSV files are allowed' },
+        });
+        return;
+      }
+
+      const importResult = await csvImportService.importFromFile(req.file.path);
+
+      if (!importResult.success) {
+        res.status(400).json({
+          success: false,
+          error: 'CSV import failed',
+          imported: importResult.imported,
+          failed: importResult.failed,
+          errors: importResult.errors,
+        });
+        return;
+      }
+
+      const now = new Date();
+      const createdTickets: Ticket[] = [];
+
+      importResult.validTickets.forEach((ticketData) => {
+        const classification = classificationService.classify(
+          ticketData.subject,
+          ticketData.description
+        );
+
+        const newTicket: Ticket = {
+          id: uuidv4(),
+          customer_id: ticketData.customer_id,
+          customer_email: ticketData.customer_email,
+          customer_name: ticketData.customer_name,
+          subject: ticketData.subject,
+          description: ticketData.description,
+          category: classification.category,
+          priority: classification.priority,
+          status: 'new',
+          created_at: now,
+          updated_at: now,
+          resolved_at: null,
+          assigned_to: ticketData.assigned_to ?? null,
+          tags: ticketData.tags ?? [],
+          metadata: ticketData.metadata,
+        };
+
+        tickets.push(newTicket);
+        createdTickets.push(newTicket);
+      });
+
+      res.status(200).json({
+        success: true,
+        message: 'CSV import completed successfully',
+        imported: importResult.imported,
+        failed: importResult.failed,
+        errors: importResult.errors,
+        tickets: createdTickets,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 /**
  * GET /tickets - Get all tickets with optional filtering
