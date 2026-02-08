@@ -6,6 +6,8 @@ import { Ticket } from '../models/Ticket';
 import { safeValidateCreateTicket, safeValidateUpdateTicket } from '../models/TicketValidator';
 import { ClassificationService } from '../services/ClassificationService';
 import { CsvImportService } from '../services/CsvImportService';
+import { JsonImportService } from '../services/JsonImportService';
+import { XmlImportService } from '../services/XmlImportService';
 
 const router = Router();
 const upload = multer({ dest: 'uploads/' });
@@ -13,6 +15,8 @@ const upload = multer({ dest: 'uploads/' });
 const tickets: Ticket[] = [];
 const classificationService = new ClassificationService();
 const csvImportService = new CsvImportService();
+const jsonImportService = new JsonImportService();
+const xmlImportService = new XmlImportService();
 
 function findTicketById(id: string): Ticket | undefined {
   return tickets.find((ticket) => ticket.id === id);
@@ -83,7 +87,7 @@ router.post('/', (req: Request, res: Response, next: NextFunction): void => {
 });
 
 /**
- * POST /tickets/import - Import tickets from CSV file
+ * POST /tickets/import - Import tickets from CSV, JSON, or XML file
  * @returns 200 OK with import results
  */
 router.post(
@@ -95,26 +99,37 @@ router.post(
         res.status(400).json({
           success: false,
           error: 'No file uploaded',
-          details: { message: 'Please upload a CSV file using the "file" field' },
+          details: { message: 'Please upload a file using the "file" field' },
         });
         return;
       }
 
-      if (!req.file.originalname.endsWith('.csv')) {
+      const fileName = req.file.originalname.toLowerCase();
+      let importResult: any;
+      let fileType: string;
+
+      if (fileName.endsWith('.csv')) {
+        fileType = 'CSV';
+        importResult = await csvImportService.importFromFile(req.file.path);
+      } else if (fileName.endsWith('.json')) {
+        fileType = 'JSON';
+        importResult = await jsonImportService.importFromFile(req.file.path);
+      } else if (fileName.endsWith('.xml')) {
+        fileType = 'XML';
+        importResult = await xmlImportService.importFromFile(req.file.path);
+      } else {
         res.status(400).json({
           success: false,
           error: 'Invalid file type',
-          details: { message: 'Only CSV files are allowed' },
+          details: { message: 'Only CSV, JSON, and XML files are allowed' },
         });
         return;
       }
-
-      const importResult = await csvImportService.importFromFile(req.file.path);
 
       if (!importResult.success) {
         res.status(400).json({
           success: false,
-          error: 'CSV import failed',
+          error: `${fileType} import failed`,
           imported: importResult.imported,
           failed: importResult.failed,
           errors: importResult.errors,
@@ -125,7 +140,7 @@ router.post(
       const now = new Date();
       const createdTickets: Ticket[] = [];
 
-      importResult.validTickets.forEach((ticketData) => {
+      importResult.validTickets.forEach((ticketData: any) => {
         const classification = classificationService.classify(
           ticketData.subject,
           ticketData.description
@@ -155,7 +170,8 @@ router.post(
 
       res.status(200).json({
         success: true,
-        message: 'CSV import completed successfully',
+        message: `${fileType} import completed successfully`,
+        format: fileType,
         imported: importResult.imported,
         failed: importResult.failed,
         errors: importResult.errors,

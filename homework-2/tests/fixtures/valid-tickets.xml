@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickets>
+  <ticket>
+    <customer_id>cust_001</customer_id>
+    <customer_email>john@example.com</customer_email>
+    <customer_name>John Doe</customer_name>
+    <subject>Login issue</subject>
+    <description>Cannot access my account after password reset</description>
+    <metadata>
+      <source>web_form</source>
+      <browser>Chrome 120</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_002</customer_id>
+    <customer_email>jane@example.com</customer_email>
+    <customer_name>Jane Smith</customer_name>
+    <subject>Payment failed</subject>
+    <description>Need refund for duplicate charge</description>
+    <metadata>
+      <source>email</source>
+      <browser>Firefox 119</browser>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_003</customer_id>
+    <customer_email>bob@example.com</customer_email>
+    <customer_name>Bob Johnson</customer_name>
+    <subject>Feature request</subject>
+    <description>Would like to add dark mode to the app</description>
+    <metadata>
+      <source>api</source>
+      <browser>Safari 17</browser>
+      <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+</tickets>

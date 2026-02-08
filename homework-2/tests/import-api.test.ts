@@ -104,4 +104,58 @@ describe('POST /tickets/import', () => {
     expect(getResponse.status).toBe(200);
     expect(getResponse.body.data.id).toBe(ticketId);
   });
+
+  it('should import valid JSON file', async () => {
+    const filePath = path.join(fixturesPath, 'valid-tickets.json');
+
+    const response = await request(app)
+      .post('/tickets/import')
+      .attach('file', filePath);
+
+    expect(response.status).toBe(200);
+    expect(response.body.success).toBe(true);
+    expect(response.body.format).toBe('JSON');
+    expect(response.body.imported).toBe(3);
+    expect(response.body.failed).toBe(0);
+    expect(response.body.tickets).toHaveLength(3);
+  });
+
+  it('should import valid XML file', async () => {
+    const filePath = path.join(fixturesPath, 'valid-tickets.xml');
+
+    const response = await request(app)
+      .post('/tickets/import')
+      .attach('file', filePath);
+
+    expect(response.status).toBe(200);
+    expect(response.body.success).toBe(true);
+    expect(response.body.format).toBe('XML');
+    expect(response.body.imported).toBe(3);
+    expect(response.body.failed).toBe(0);
+    expect(response.body.tickets).toHaveLength(3);
+  });
+
+  it('should detect invalid email in JSON', async () => {
+    const filePath = path.join(fixturesPath, 'invalid-email.json');
+
+    const response = await request(app)
+      .post('/tickets/import')
+      .attach('file', filePath);
+
+    expect(response.status).toBe(400);
+    expect(response.body.success).toBe(false);
+    expect(response.body.imported).toBe(1);
+    expect(response.body.failed).toBe(1);
+  });
+
+  it('should reject malformed JSON', async () => {
+    const filePath = path.join(fixturesPath, 'malformed.json');
+
+    const response = await request(app)
+      .post('/tickets/import')
+      .attach('file', filePath);
+
+    expect(response.status).toBe(400);
+    expect(response.body.success).toBe(false);
+  });
 });
