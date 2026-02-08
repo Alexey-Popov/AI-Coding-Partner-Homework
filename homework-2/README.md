@@ -1,5 +1,10 @@
 # Intelligent Customer Support System
 
+
+> **Student Name**: Garnaga Kostiantyn
+> **Date Submitted**: 8/02/2026
+> **AI Tools Used**: GitHub Copilot
+
 ## Overview
 A ticket management API that supports multi-format imports, automatic classification, and CRUD operations with filtering.
 
