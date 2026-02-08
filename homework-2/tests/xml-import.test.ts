@@ -2,26 +2,26 @@ import * as path from 'path';
 import { XmlImportService } from '../src/services/XmlImportService';
 
 describe('XmlImportService', () => {
-  let service: XmlImportService;
-  const fixturesPath = path.join(__dirname, 'fixtures');
+    let service: XmlImportService;
+    const fixturesPath = path.join(__dirname, 'fixtures');
 
-  beforeEach(() => {
-    service = new XmlImportService();
-  });
+    beforeEach(() => {
+        service = new XmlImportService();
+    });
 
-  it('should import valid XML file', async () => {
-    const filePath = path.join(fixturesPath, 'valid-tickets.xml');
-    const result = await service.importFromFile(filePath);
+    it('should import valid XML file', async () => {
+        const filePath = path.join(fixturesPath, 'valid-tickets.xml');
+        const result = await service.importFromFile(filePath);
 
-    expect(result.success).toBe(true);
-    expect(result.imported).toBe(3);
-    expect(result.failed).toBe(0);
-    expect(result.errors).toHaveLength(0);
-    expect(result.validTickets).toHaveLength(3);
-  });
+        expect(result.success).toBe(true);
+        expect(result.imported).toBe(3);
+        expect(result.failed).toBe(0);
+        expect(result.errors).toHaveLength(0);
+        expect(result.validTickets).toHaveLength(3);
+    });
 
-  it('should parse XML with single ticket', async () => {
-    const xmlData = `<?xml version="1.0"?>
+    it('should parse XML with single ticket', async () => {
+        const xmlData = `<?xml version="1.0"?>
 <tickets>
   <ticket>
     <customer_id>cust_001</customer_id>
@@ -37,14 +37,14 @@ describe('XmlImportService', () => {
   </ticket>
 </tickets>`;
 
-    const result = await service.importFromString(xmlData);
+        const result = await service.importFromString(xmlData);
 
-    expect(result.success).toBe(true);
-    expect(result.imported).toBe(1);
-  });
+        expect(result.success).toBe(true);
+        expect(result.imported).toBe(1);
+    });
 
-  it('should parse XML with multiple tickets', async () => {
-    const xmlData = `<?xml version="1.0"?>
+    it('should parse XML with multiple tickets', async () => {
+        const xmlData = `<?xml version="1.0"?>
 <tickets>
   <ticket>
     <customer_id>cust_001</customer_id>
@@ -72,34 +72,34 @@ describe('XmlImportService', () => {
   </ticket>
 </tickets>`;
 
-    const result = await service.importFromString(xmlData);
+        const result = await service.importFromString(xmlData);
 
-    expect(result.success).toBe(true);
-    expect(result.imported).toBe(2);
-  });
+        expect(result.success).toBe(true);
+        expect(result.imported).toBe(2);
+    });
 
-  it('should reject malformed XML', async () => {
-    const xmlData = '<tickets><ticket><invalid</ticket>';
-    const result = await service.importFromString(xmlData);
+    it('should reject malformed XML', async () => {
+        const xmlData = '<tickets><ticket><invalid</ticket>';
+        const result = await service.importFromString(xmlData);
 
-    expect(result.success).toBe(false);
-    expect(result.errors[0]?.field).toBe('xml');
-  });
+        expect(result.success).toBe(false);
+        expect(result.errors[0]?.field).toBe('xml');
+    });
 
-  it('should reject XML without tickets root', async () => {
-    const xmlData = `<?xml version="1.0"?>
+    it('should reject XML without tickets root', async () => {
+        const xmlData = `<?xml version="1.0"?>
 <root>
   <item>test</item>
 </root>`;
 
-    const result = await service.importFromString(xmlData);
+        const result = await service.importFromString(xmlData);
 
-    expect(result.success).toBe(false);
-    expect(result.errors[0]?.field).toBe('format');
-  });
+        expect(result.success).toBe(false);
+        expect(result.errors[0]?.field).toBe('format');
+    });
 
-  it('should detect validation errors in XML tickets', async () => {
-    const xmlData = `<?xml version="1.0"?>
+    it('should detect validation errors in XML tickets', async () => {
+        const xmlData = `<?xml version="1.0"?>
 <tickets>
   <ticket>
     <customer_id>cust_001</customer_id>
@@ -115,10 +115,10 @@ describe('XmlImportService', () => {
   </ticket>
 </tickets>`;
 
-    const result = await service.importFromString(xmlData);
+        const result = await service.importFromString(xmlData);
 
-    expect(result.success).toBe(false);
-    expect(result.failed).toBe(1);
-    expect(result.errors.length).toBeGreaterThan(0);
-  });
+        expect(result.success).toBe(false);
+        expect(result.failed).toBe(1);
+        expect(result.errors.length).toBeGreaterThan(0);
+    });
 });
