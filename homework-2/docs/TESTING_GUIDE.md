@@ -148,13 +148,14 @@ homework-2/
 │   ├── test_categorization.test.ts      # Classification tests (10 tests)
 │   ├── test_integration.test.ts         # E2E workflow tests (5 tests)
 │   ├── test_performance.test.ts         # Performance benchmarks (5 tests)
-│   └── fixtures/                        # Test data files
-│       ├── valid_tickets.csv            # 6 valid ticket records
-│       ├── valid_tickets.json           # 4 valid ticket records
-│       ├── valid_tickets.xml            # 3 valid ticket records
-│       ├── invalid_tickets.csv          # 4 invalid records
-│       ├── invalid_tickets.json         # 2 invalid records
-│       └── malformed.xml                # Malformed XML for error testing
+│   └── fixtures/                        # Internal test fixtures (used by automated tests)
+├── docs/
+│   └── sample/                          # Sample data for manual testing
+│       ├── sample_tickets.csv           # 50 production-like tickets
+│       ├── sample_tickets.json          # 20 production-like tickets
+│       ├── sample_tickets.xml           # 30 production-like tickets
+│       ├── sample_tickets_invalid.*     # Invalid data for error testing
+│       └── demo-import-sample-data.sh   # Quick import script
 └── coverage/                            # Generated coverage reports
     ├── lcov-report/                     # HTML coverage viewer
     └── coverage-final.json              # JSON coverage data
@@ -162,43 +163,50 @@ homework-2/
 
 ---
 
-## Sample Test Data Locations
+## Sample Test Data
 
-### Test Fixtures
+### Sample Data Files
 
-All test data files are located in the `tests/fixtures/` directory.
+All sample data for manual testing is located in the `docs/sample/` directory. These files contain production-like data for realistic testing scenarios.
 
-#### 1. Valid CSV Data (`valid_tickets.csv`)
+#### 1. CSV Sample Data (`sample_tickets.csv`)
 
-**Location**: `tests/fixtures/valid_tickets.csv`  
+**Location**: `docs/sample/sample_tickets.csv`  
 **Format**: CSV with headers  
-**Records**: 6 tickets
+**Records**: 50 diverse tickets
 
+**Sample Structure**:
 ```csv
-customer_id,customer_email,customer_name,subject,description,tags,source,browser,device_type
-cust-001,alice@example.com,Alice Johnson,Cannot login - 2FA problem,I am locked out...,"login,2fa",web_form,Chrome,desktop
+customer_id,customer_email,customer_name,subject,description,category,priority,tags,source,browser,device_type
+cust-201,william.admin@system.com,William Administrator,Cannot reset password - link not working,...,account_access,urgent,"password,reset",web_form,Chrome 120,desktop
 ```
 
-**Use Cases**:
-- Bulk import testing
-- CSV parsing validation
-- Header validation
+**Categories Included**:
+- Account access issues (3 tickets)
+- Technical issues (9 tickets)
+- Billing questions (3 tickets)
+- Feature requests (7 tickets)
+- Bug reports (1 ticket)
+- Other inquiries (7 tickets)
 
-#### 2. Valid JSON Data (`valid_tickets.json`)
+#### 2. JSON Sample Data (`sample_tickets.json`)
 
-**Location**: `tests/fixtures/valid_tickets.json`  
+**Location**: `docs/sample/sample_tickets.json`  
 **Format**: JSON array  
-**Records**: 4 tickets
+**Records**: 20 diverse tickets
 
+**Sample Structure**:
 ```json
 [
   {
     "customer_id": "cust-101",
-    "customer_email": "john@example.com",
-    "customer_name": "John Doe",
-    "subject": "Payment not processing",
-    "description": "My payment keeps failing when I try to upgrade...",
-    "tags": ["payment", "upgrade"],
+    "customer_email": "john.developer@techstartup.com",
+    "customer_name": "John Developer",
+    "subject": "Payment processing failed - need urgent help",
+    "description": "My payment for the pro plan upgrade keeps failing...",
+    "category": "billing_question",
+    "priority": "urgent",
+    "tags": ["payment", "urgent", "billing", "upgrade"],
     "metadata": {
       "source": "web_form",
       "browser": "Chrome 120",
@@ -209,32 +217,37 @@ cust-001,alice@example.com,Alice Johnson,Cannot login - 2FA problem,I am locked 
 ```
 
 **Use Cases**:
-- JSON import testing
-- Nested object validation
-- Null value handling
+- Realistic bulk import testing
+- Various priority levels
+- Diverse category distribution
+- Complex metadata scenarios
 
-#### 3. Valid XML Data (`valid_tickets.xml`)
+#### 3. XML Sample Data (`sample_tickets.xml`)
 
-**Location**: `tests/fixtures/valid_tickets.xml`  
+**Location**: `docs/sample/sample_tickets.xml`  
 **Format**: XML with nested structure  
-**Records**: 3 tickets
+**Records**: 30 diverse tickets
 
+**Sample Structure**:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <tickets>
     <ticket>
         <customer_id>cust-201</customer_id>
-        <customer_email>user1@example.com</customer_email>
-        <customer_name>User One</customer_name>
-        <subject>Cannot reset password</subject>
-        <description>Password reset link in email is not working...</description>
+        <customer_email>william.admin@system.com</customer_email>
+        <customer_name>William Administrator</customer_name>
+        <subject>Cannot reset password - link not working</subject>
+        <description>I requested a password reset 4 times...</description>
+        <category>account_access</category>
+        <priority>urgent</priority>
         <tags>
             <tag>password</tag>
             <tag>reset</tag>
+            <tag>authentication</tag>
         </tags>
         <metadata>
             <source>web_form</source>
-            <browser>Firefox 121</browser>
+            <browser>Chrome 120</browser>
             <device_type>desktop</device_type>
         </metadata>
     </ticket>
@@ -242,17 +255,19 @@ cust-001,alice@example.com,Alice Johnson,Cannot login - 2FA problem,I am locked 
 ```
 
 **Use Cases**:
-- XML parsing validation
-- Nested tag handling
-- Special character escaping
+- Large-scale import testing (30 tickets)
+- XML structure validation
+- Nested element handling
 
-#### 4. Invalid Data Files
+#### 4. Invalid Sample Data Files
 
-| File | Purpose | Expected Behavior |
-|------|---------|-------------------|
-| `invalid_tickets.csv` | Missing required fields, invalid emails | Import with validation errors |
-| `invalid_tickets.json` | Schema violations | Partial import with error details |
-| `malformed.xml` | Syntax errors, unclosed tags | Complete rejection with error message |
+For error handling and validation testing:
+
+| File | Location | Purpose |
+|------|----------|----------|
+| `sample_tickets_invalid.csv` | `docs/sample/` | CSV validation error testing |
+| `sample_tickets_invalid.json` | `docs/sample/` | JSON schema violation testing |
+| `sample_tickets_invalid.xml` | `docs/sample/` | XML malformation testing |
 
 ---
 
@@ -261,9 +276,72 @@ cust-001,alice@example.com,Alice Johnson,Cannot login - 2FA problem,I am locked 
 ### Pre-Testing Setup
 
 - [ ] Server is running on port 3000
-- [ ] Database/storage is cleared (use `ticketRepository.clear()` in tests)
+- [ ] Database/storage is cleared (restart server or use demo script)
 - [ ] Environment variables are set correctly
-- [ ] Test fixtures are present in `tests/fixtures/`
+- [ ] Sample data files are present in `docs/sample/`
+
+---
+
+### Quick Start: Import Sample Data
+
+Before manual testing, you can quickly populate the system with 100 sample tickets using the demo import script.
+
+**Script Location**: `docs/sample/demo-import-sample-data.sh`
+
+```bash
+# Start the server first
+cd homework-2
+npm run build
+npm run dev
+
+# In another terminal, run the import script
+cd homework-2/docs/sample
+bash demo-import-sample-data.sh
+```
+
+**What it imports:**
+- ✅ 50 tickets from CSV (`sample_tickets.csv`)
+- ✅ 20 tickets from JSON (`sample_tickets.json`)
+- ✅ 30 tickets from XML (`sample_tickets.xml`)
+- **Total: 100 diverse sample tickets**
+
+**Sample Data Categories:**
+- Account access issues (password resets, authentication)
+- Technical issues (errors, crashes, API problems)
+- Billing questions (payments, refunds, subscriptions)
+- Feature requests (enhancements, new capabilities)
+- Bug reports (with reproduction steps)
+- General inquiries
+
+**Sample Data Priorities:**
+- Urgent: Critical production issues requiring immediate attention
+- High: Important functionality issues
+- Medium: Standard requests and issues
+- Low: Minor issues, suggestions, nice-to-haves
+
+**After Import - Quick Verification:**
+
+```bash
+# View all tickets
+curl http://localhost:3000/tickets
+
+# Filter by priority
+curl 'http://localhost:3000/tickets?priority=urgent'
+
+# Filter by category
+curl 'http://localhost:3000/tickets?category=technical_issue'
+
+# Get ticket count by status
+curl 'http://localhost:3000/tickets?status=new'
+```
+
+**Sample Files Location**: All sample data files are in `docs/sample/`:
+- `sample_tickets.csv` - 50 tickets in CSV format
+- `sample_tickets.json` - 20 tickets in JSON format
+- `sample_tickets.xml` - 30 tickets in XML format
+- `sample_tickets_invalid.csv/json/xml` - Invalid data for error testing
+
+---
 
 ### 1. Ticket Creation Testing
 
@@ -675,22 +753,22 @@ curl -X DELETE http://localhost:3000/tickets/{ticket-id}
 
 ```bash
 curl -X POST http://localhost:3000/tickets/import \
-  -F "file=@tests/fixtures/valid_tickets.csv"
+  -F "file=@docs/sample/sample_tickets.csv"
 ```
 
-**Expected Response** (201 Created):
+**Expected Response** (200 OK):
 ```json
 {
   "success": true,
-  "summary": {
-    "total": 6,
-    "successful": 6,
-    "failed": 0
-  },
+  "format": "CSV",
+  "imported": 50,
+  "failed": 0,
   "tickets": [
     {
       "id": "uuid-1",
-      "customer_email": "alice@example.com",
+      "customer_email": "william.admin@system.com",
+      "category": "account_access",
+      "priority": "urgent",
       ...
     }
   ],
@@ -699,11 +777,11 @@ curl -X POST http://localhost:3000/tickets/import \
 ```
 
 **Verification Checklist**:
-- [ ] Response status is 201
-- [ ] `summary.total` matches file row count (excluding header)
-- [ ] `summary.successful` equals number of valid records
+- [ ] Response status is 200
+- [ ] `imported` equals 50 (all valid records)
+- [ ] `failed` equals 0
 - [ ] `tickets` array contains all imported tickets
-- [ ] All imported tickets have auto-assigned category/priority
+- [ ] All tickets have required category and priority fields
 
 ---
 
@@ -711,37 +789,34 @@ curl -X POST http://localhost:3000/tickets/import \
 
 ```bash
 curl -X POST http://localhost:3000/tickets/import \
-  -F "file=@tests/fixtures/invalid_tickets.csv"
+  -F "file=@docs/sample/sample_tickets_invalid.csv"
 ```
 
-**Expected Response** (201 Created with errors):
+**Expected Response** (400 Bad Request):
 ```json
 {
-  "success": true,
-  "summary": {
-    "total": 4,
-    "successful": 0,
-    "failed": 4
-  },
+  "success": false,
+  "format": "CSV",
+  "imported": 0,
+  "failed": 5,
   "tickets": [],
   "errors": [
     {
       "row": 1,
-      "field": "customer_id",
-      "message": "Required"
+      "reason": "Invalid email format"
     },
     {
       "row": 2,
-      "field": "customer_email",
-      "message": "Invalid email"
+      "reason": "Missing required field: category"
     }
   ]
 }
 ```
 
 **Verification Checklist**:
+- [ ] Response status is 400
 - [ ] Response includes both successful and failed counts
-- [ ] Each error specifies row number and field
+- [ ] Each error specifies row number and reason
 - [ ] Error messages are actionable
 
 ---
@@ -1110,16 +1185,22 @@ open coverage/lcov-report/index.html
 | `DELETE` | `/tickets/:id` | Delete ticket |
 | `GET` | `/health` | Health check |
 
-### Test Data Files
+### Sample Data Files for Manual Testing
+
+All test data is located in `docs/sample/` - production-like data for realistic manual testing:
 
 | File | Records | Purpose |
-|------|---------|---------|
-| `valid_tickets.csv` | 6 | CSV import testing |
-| `valid_tickets.json` | 4 | JSON import testing |
-| `valid_tickets.xml` | 3 | XML import testing |
-| `invalid_tickets.csv` | 4 | Validation error testing |
-| `invalid_tickets.json` | 2 | JSON validation testing |
-| `malformed.xml` | 1 | Error handling testing |
+|------|---------|----------|
+| `sample_tickets.csv` | 50 | Production-like CSV data with diverse categories and priorities |
+| `sample_tickets.json` | 20 | Production-like JSON data with complex metadata |
+| `sample_tickets.xml` | 30 | Production-like XML data with nested structures |
+| `sample_tickets_invalid.csv` | Various | CSV validation error testing (missing fields, invalid emails) |
+| `sample_tickets_invalid.json` | Various | JSON validation error testing (schema violations) |
+| `sample_tickets_invalid.xml` | Various | XML validation error testing (malformed syntax) |
+
+**Quick Import All**: Use `docs/sample/demo-import-sample-data.sh` to import all 100 sample tickets at once.
+
+**Note**: Automated tests use separate fixture files located in `tests/fixtures/` that are optimized for unit and integration testing.
 
 ---
 

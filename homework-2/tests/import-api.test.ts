@@ -6,15 +6,15 @@ describe('POST /tickets/import', () => {
     const fixturesPath = path.join(__dirname, 'fixtures');
 
     it('should import valid CSV file', async () => {
-        const filePath = path.join(fixturesPath, 'valid-tickets.csv');
+        const filePath = path.join(fixturesPath, 'valid_tickets.csv');
 
         const response = await request(app).post('/tickets/import').attach('file', filePath);
 
         expect(response.status).toBe(200);
         expect(response.body.success).toBe(true);
-        expect(response.body.imported).toBe(3);
+        expect(response.body.imported).toBe(6);
         expect(response.body.failed).toBe(0);
-        expect(response.body.tickets).toHaveLength(3);
+        expect(response.body.tickets).toHaveLength(6);
         expect(response.body.tickets[0]).toHaveProperty('id');
         expect(response.body.tickets[0]).toHaveProperty('category');
         expect(response.body.tickets[0]).toHaveProperty('priority');
@@ -80,7 +80,7 @@ describe('POST /tickets/import', () => {
     });
 
     it('should verify imported tickets are accessible via GET', async () => {
-        const filePath = path.join(fixturesPath, 'valid-tickets.csv');
+        const filePath = path.join(fixturesPath, 'valid_tickets.csv');
 
         const importResponse = await request(app).post('/tickets/import').attach('file', filePath);
 
@@ -94,20 +94,20 @@ describe('POST /tickets/import', () => {
     });
 
     it('should import valid JSON file', async () => {
-        const filePath = path.join(fixturesPath, 'valid-tickets.json');
+        const filePath = path.join(fixturesPath, 'valid_tickets.json');
 
         const response = await request(app).post('/tickets/import').attach('file', filePath);
 
         expect(response.status).toBe(200);
         expect(response.body.success).toBe(true);
         expect(response.body.format).toBe('JSON');
-        expect(response.body.imported).toBe(3);
+        expect(response.body.imported).toBe(4);
         expect(response.body.failed).toBe(0);
-        expect(response.body.tickets).toHaveLength(3);
+        expect(response.body.tickets).toHaveLength(4);
     });
 
     it('should import valid XML file', async () => {
-        const filePath = path.join(fixturesPath, 'valid-tickets.xml');
+        const filePath = path.join(fixturesPath, 'valid_tickets.xml');
 
         const response = await request(app).post('/tickets/import').attach('file', filePath);
 

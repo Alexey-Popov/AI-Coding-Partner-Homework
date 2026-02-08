@@ -10,7 +10,7 @@ describe('XmlImportService', () => {
     });
 
     it('should import valid XML file', async () => {
-        const filePath = path.join(fixturesPath, 'valid-tickets.xml');
+        const filePath = path.join(fixturesPath, 'valid_tickets.xml');
         const result = await service.importFromFile(filePath);
 
         expect(result.success).toBe(true);

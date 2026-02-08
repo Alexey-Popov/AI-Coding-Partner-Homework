@@ -10,14 +10,14 @@ describe('JsonImportService', () => {
     });
 
     it('should import valid JSON file', async () => {
-        const filePath = path.join(fixturesPath, 'valid-tickets.json');
+        const filePath = path.join(fixturesPath, 'valid_tickets.json');
         const result = await service.importFromFile(filePath);
 
         expect(result.success).toBe(true);
-        expect(result.imported).toBe(3);
+        expect(result.imported).toBe(4);
         expect(result.failed).toBe(0);
         expect(result.errors).toHaveLength(0);
-        expect(result.validTickets).toHaveLength(3);
+        expect(result.validTickets).toHaveLength(4);
     });
 
     it('should handle JSON array format', () => {

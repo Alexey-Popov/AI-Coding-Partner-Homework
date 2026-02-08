@@ -10,11 +10,11 @@ describe('CsvImportService', () => {
     });
 
     it('should import valid CSV successfully', async () => {
-        const filePath = path.join(fixturesPath, 'valid-tickets.csv');
+        const filePath = path.join(fixturesPath, 'valid_tickets.csv');
         const result = await service.importFromFile(filePath);
 
         expect(result.success).toBe(true);
-        expect(result.imported).toBe(3);
+        expect(result.imported).toBe(6);
         expect(result.failed).toBe(0);
         expect(result.errors).toHaveLength(0);
     });
