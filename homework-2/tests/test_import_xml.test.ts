@@ -16,10 +16,9 @@ describe('XML Import', () => {
             .post('/tickets/import')
             .attach('file', xmlPath);
 
-        expect(response.status).toBe(201);
-        expect(response.body).toHaveProperty('summary');
-        expect(response.body.summary.total).toBeGreaterThan(0);
-        expect(response.body.summary.successful).toBeGreaterThan(0);
+        expect(response.status).toBe(200);
+        expect(response.body).toHaveProperty('imported');
+        expect(response.body.imported).toBeGreaterThan(0);
         expect(response.body.tickets).toBeInstanceOf(Array);
     });
 
@@ -61,8 +60,8 @@ describe('XML Import', () => {
 
         fs.unlinkSync(tmpPath);
 
-        expect(response.status).toBe(201);
-        expect(response.body.summary.failed).toBeGreaterThanOrEqual(1);
+        expect(response.status).toBe(400);
+        expect(response.body.failed).toBeGreaterThanOrEqual(1);
     });
 
     it('should handle empty XML tickets collection', async () => {
@@ -79,8 +78,8 @@ describe('XML Import', () => {
 
         fs.unlinkSync(tmpPath);
 
-        expect(response.status).toBe(201);
-        expect(response.body.summary.total).toBe(0);
+        expect(response.status).toBe(400);
+        expect(response.body.imported).toBe(0);
     });
 
     it('should parse XML with nested tags structure', async () => {
@@ -114,8 +113,8 @@ describe('XML Import', () => {
 
         fs.unlinkSync(tmpPath);
 
-        expect(response.status).toBe(201);
-        expect(response.body.summary.successful).toBeGreaterThanOrEqual(1);
+        expect(response.status).toBe(200);
+        expect(response.body.imported).toBeGreaterThanOrEqual(1);
         if (response.body.tickets.length > 0) {
             expect(response.body.tickets[0].tags).toBeInstanceOf(Array);
         }

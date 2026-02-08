@@ -1,15 +1,14 @@
-import { CreateTicketInput, UpdateTicketInput, TicketSchema, UpdateTicketSchema } from '../src/models/TicketValidator';
+import { CreateTicketSchemaType, UpdateTicketSchemaType, CreateTicketSchema, UpdateTicketSchema } from '../src/models/TicketValidator';
 
 describe('Ticket Model Validation', () => {
     describe('CreateTicketInput Validation', () => {
         it('should validate a complete valid ticket', () => {
-            const validTicket: CreateTicketInput = {
+            const validTicket: CreateTicketSchemaType = {
                 customer_id: 'cust-001',
                 customer_email: 'test@example.com',
                 customer_name: 'Test User',
                 subject: 'Valid ticket subject',
                 description: 'This is a valid description that meets the minimum length requirement.',
-                tags: ['test', 'validation'],
                 metadata: {
                     source: 'web_form',
                     browser: 'Chrome',
@@ -17,7 +16,7 @@ describe('Ticket Model Validation', () => {
                 }
             };
 
-            const result = TicketSchema.safeParse(validTicket);
+            const result = CreateTicketSchema.safeParse(validTicket);
             expect(result.success).toBe(true);
         });
 
@@ -28,7 +27,6 @@ describe('Ticket Model Validation', () => {
                 customer_name: 'Test User',
                 subject: 'Test subject',
                 description: 'Valid description with sufficient length for validation rules.',
-                tags: ['test'],
                 metadata: {
                     source: 'web_form',
                     browser: 'Chrome',
@@ -36,7 +34,7 @@ describe('Ticket Model Validation', () => {
                 }
             };
 
-            const result = TicketSchema.safeParse(invalidTicket);
+            const result = CreateTicketSchema.safeParse(invalidTicket);
             expect(result.success).toBe(false);
             if (!result.success) {
                 expect(result.error.issues.some(issue => issue.path.includes('customer_email'))).toBe(true);
@@ -49,7 +47,7 @@ describe('Ticket Model Validation', () => {
                 subject: 'Missing fields'
             };
 
-            const result = TicketSchema.safeParse(incompleteTicket);
+            const result = CreateTicketSchema.safeParse(incompleteTicket);
             expect(result.success).toBe(false);
             if (!result.success) {
                 expect(result.error.issues.length).toBeGreaterThan(0);
@@ -64,7 +62,6 @@ describe('Ticket Model Validation', () => {
                 customer_name: 'Test User',
                 subject: longSubject,
                 description: 'Valid description with enough length to pass validation.',
-                tags: ['test'],
                 metadata: {
                     source: 'web_form',
                     browser: 'Chrome',
@@ -72,7 +69,7 @@ describe('Ticket Model Validation', () => {
                 }
             };
 
-            const result = TicketSchema.safeParse(invalidTicket);
+            const result = CreateTicketSchema.safeParse(invalidTicket);
             expect(result.success).toBe(false);
         });
 
@@ -83,7 +80,6 @@ describe('Ticket Model Validation', () => {
                 customer_name: 'Test User',
                 subject: 'Test subject',
                 description: 'Short',
-                tags: ['test'],
                 metadata: {
                     source: 'web_form',
                     browser: 'Chrome',
@@ -91,7 +87,7 @@ describe('Ticket Model Validation', () => {
                 }
             };
 
-            const result = TicketSchema.safeParse(invalidTicket);
+            const result = CreateTicketSchema.safeParse(invalidTicket);
             expect(result.success).toBe(false);
         });
 
@@ -103,7 +99,6 @@ describe('Ticket Model Validation', () => {
                 customer_name: 'Test User',
                 subject: 'Test subject',
                 description: longDescription,
-                tags: ['test'],
                 metadata: {
                     source: 'web_form',
                     browser: 'Chrome',
@@ -111,7 +106,7 @@ describe('Ticket Model Validation', () => {
                 }
             };
 
-            const result = TicketSchema.safeParse(invalidTicket);
+            const result = CreateTicketSchema.safeParse(invalidTicket);
             expect(result.success).toBe(false);
         });
 
@@ -122,7 +117,6 @@ describe('Ticket Model Validation', () => {
                 customer_name: 'Test User',
                 subject: 'Test subject',
                 description: 'Valid description with sufficient length for validation.',
-                tags: ['test'],
                 metadata: {
                     source: 'invalid_source',
                     browser: 'Chrome',
@@ -130,7 +124,7 @@ describe('Ticket Model Validation', () => {
                 }
             };
 
-            const result = TicketSchema.safeParse(invalidTicket);
+            const result = CreateTicketSchema.safeParse(invalidTicket);
             expect(result.success).toBe(false);
         });
 
@@ -141,7 +135,6 @@ describe('Ticket Model Validation', () => {
                 customer_name: 'Test User',
                 subject: 'Test subject',
                 description: 'Valid description with sufficient length for validation.',
-                tags: ['test'],
                 metadata: {
                     source: 'web_form',
                     browser: 'Chrome',
@@ -149,14 +142,14 @@ describe('Ticket Model Validation', () => {
                 }
             };
 
-            const result = TicketSchema.safeParse(invalidTicket);
+            const result = CreateTicketSchema.safeParse(invalidTicket);
             expect(result.success).toBe(false);
         });
     });
 
     describe('UpdateTicketInput Validation', () => {
         it('should validate partial update with only status', () => {
-            const partialUpdate: UpdateTicketInput = {
+            const partialUpdate: UpdateTicketSchemaType = {
                 status: 'in_progress'
             };
 

@@ -65,8 +65,6 @@ export const CreateTicketSchema = z.object({
         .string()
         .min(10, 'Description must be at least 10 characters')
         .max(2000, 'Description must not exceed 2000 characters'),
-    assigned_to: z.string().nullable().optional().default(null),
-    tags: z.array(z.string()).optional().default([]),
     metadata: TicketMetadataSchema,
 });
 

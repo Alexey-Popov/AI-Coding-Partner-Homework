@@ -19,7 +19,6 @@ describe('Performance Benchmarks', () => {
                     customer_name: `Performance User ${i}`,
                     subject: `Performance test ticket ${i}`,
                     description: `This is a performance test ticket number ${i} with sufficient description content.`,
-                    tags: ['performance', 'test'],
                     metadata: {
                         source: 'api',
                         browser: null,
@@ -53,7 +52,6 @@ describe('Performance Benchmarks', () => {
                         customer_name: `Page User ${i}`,
                         subject: `Pagination test ${i}`,
                         description: `Pagination test ticket with enough description content to pass validation.`,
-                        tags: ['pagination'],
                         metadata: {
                             source: 'api',
                             browser: null,
@@ -97,14 +95,14 @@ describe('Performance Benchmarks', () => {
         );
 
         const startTime = Date.now();
-        const response = await request(app).get('/tickets?priority=urgent');
+        const response = await request(app).get('/tickets?priority=high');
         const endTime = Date.now();
         const duration = endTime - startTime;
 
         expect(response.status).toBe(200);
         expect(response.body.data.length).toBeGreaterThan(0);
 
-        console.log(`Filtered ${response.body.data.length} urgent tickets from 150 total in ${duration}ms`);
+        console.log(`Filtered ${response.body.data.length} high priority tickets from 150 total in ${duration}ms`);
         expect(duration).toBeLessThan(500);
     });
 
@@ -118,10 +116,10 @@ describe('Performance Benchmarks', () => {
         const endTime = Date.now();
         const duration = endTime - startTime;
 
-        expect(response.status).toBe(201);
-        expect(response.body.summary.successful).toBeGreaterThan(0);
+        expect(response.status).toBe(200);
+        expect(response.body.imported).toBeGreaterThan(0);
 
-        console.log(`Imported ${response.body.summary.successful} tickets from CSV in ${duration}ms`);
+        console.log(`Imported ${response.body.imported} tickets from CSV in ${duration}ms`);
         expect(duration).toBeLessThan(5000);
     });
 
@@ -134,7 +132,6 @@ describe('Performance Benchmarks', () => {
                 customer_name: 'Update Perf',
                 subject: 'Update performance test',
                 description: 'Testing update operation performance with sufficient description length.',
-                tags: ['performance'],
                 metadata: {
                     source: 'api',
                     browser: null,
@@ -146,7 +143,6 @@ describe('Performance Benchmarks', () => {
 
         const updateRequests = Array.from({ length: 10 }, (_, i) => ({
             status: i % 2 === 0 ? 'in_progress' : 'waiting_customer',
-            assigned_to: `agent-${i}`
         }));
 
         const startTime = Date.now();

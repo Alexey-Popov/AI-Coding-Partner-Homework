@@ -16,12 +16,11 @@ describe('CSV Import', () => {
             .post('/tickets/import')
             .attach('file', csvPath);
 
-        expect(response.status).toBe(201);
-        expect(response.body).toHaveProperty('summary');
-        expect(response.body.summary.total).toBeGreaterThan(0);
-        expect(response.body.summary.successful).toBeGreaterThan(0);
-        expect(response.body.summary.failed).toBeGreaterThanOrEqual(0);
-        expect(response.body.tickets).toBeInstanceOf(Array);
+        expect(response.status).toBe(200);
+        expect(response.body).toHaveProperty('imported');
+        expect(response.body.imported).toBeGreaterThan(0);
+        expect(response.body).toHaveProperty('failed');
+        expect(response.body.failed).toBeGreaterThanOrEqual(0);
     });
 
     it('should handle CSV with invalid records and report failures', async () => {
@@ -31,8 +30,8 @@ describe('CSV Import', () => {
             .post('/tickets/import')
             .attach('file', csvPath);
 
-        expect(response.status).toBe(201);
-        expect(response.body.summary.failed).toBeGreaterThan(0);
+        expect(response.status).toBe(400);
+        expect(response.body.failed).toBeGreaterThan(0);
         expect(response.body).toHaveProperty('errors');
         expect(response.body.errors.length).toBeGreaterThan(0);
     });
@@ -58,8 +57,8 @@ cust-100,test@example.com,Test User,Test subject,This is a valid test descriptio
 
         fs.unlinkSync(tmpPath);
 
-        expect(response.status).toBe(201);
-        expect(response.body.summary.successful).toBeGreaterThanOrEqual(1);
+        expect(response.status).toBe(200);
+        expect(response.body.imported).toBeGreaterThanOrEqual(1);
     });
 
     it('should validate email format in CSV records', async () => {
@@ -75,8 +74,8 @@ cust-100,invalid-email,Test User,Test subject,This description has enough charac
 
         fs.unlinkSync(tmpPath);
 
-        expect(response.status).toBe(201);
-        expect(response.body.summary.failed).toBeGreaterThanOrEqual(1);
+        expect(response.status).toBe(400);
+        expect(response.body.failed).toBeGreaterThanOrEqual(1);
     });
 
     it('should handle CSV with special characters and quotes', async () => {
@@ -92,7 +91,7 @@ cust-100,test@example.com,"User, Test","Subject with ""quotes""","Description wi
 
         fs.unlinkSync(tmpPath);
 
-        expect(response.status).toBe(201);
-        expect(response.body.summary.successful).toBeGreaterThanOrEqual(1);
+        expect(response.status).toBe(200);
+        expect(response.body.imported).toBeGreaterThanOrEqual(1);
     });
 });

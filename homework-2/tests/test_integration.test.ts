@@ -17,7 +17,6 @@ describe('Integration Tests - End-to-End Workflows', () => {
                 customer_name: 'Lifecycle Test',
                 subject: 'Test complete workflow',
                 description: 'This ticket will go through the complete lifecycle from creation to resolution.',
-                tags: ['test', 'integration'],
                 metadata: {
                     source: 'web_form',
                     browser: 'Chrome',
@@ -62,12 +61,12 @@ describe('Integration Tests - End-to-End Workflows', () => {
             .post('/tickets/import')
             .attach('file', csvPath);
 
-        expect(importResponse.status).toBe(201);
-        expect(importResponse.body.summary.successful).toBeGreaterThan(0);
+        expect(importResponse.status).toBe(200);
+        expect(importResponse.body.imported).toBeGreaterThan(0);
 
         const getAllResponse = await request(app).get('/tickets');
         expect(getAllResponse.status).toBe(200);
-        expect(getAllResponse.body.data.length).toBeGreaterThanOrEqual(importResponse.body.summary.successful);
+        expect(getAllResponse.body.data.length).toBeGreaterThanOrEqual(importResponse.body.imported);
 
         getAllResponse.body.data.forEach((ticket: any) => {
             expect(ticket).toHaveProperty('category');
@@ -85,7 +84,6 @@ describe('Integration Tests - End-to-End Workflows', () => {
                     customer_name: `User ${i}`,
                     subject: `Concurrent ticket ${i}`,
                     description: `This is a concurrent test ticket number ${i} with sufficient description length.`,
-                    tags: ['concurrent', 'test'],
                     metadata: {
                         source: 'api',
                         browser: null,
@@ -115,7 +113,6 @@ describe('Integration Tests - End-to-End Workflows', () => {
             customer_name: 'Urgent User',
             subject: 'Cannot login - critical issue',
             description: 'Cannot access account. This is urgent and blocking all work.',
-            tags: ['login', 'critical'],
             metadata: { source: 'web_form', browser: 'Chrome', device_type: 'desktop' }
         });
 
@@ -125,7 +122,6 @@ describe('Integration Tests - End-to-End Workflows', () => {
             customer_name: 'Feature User',
             subject: 'Minor feature suggestion',
             description: 'Small cosmetic improvement suggestion for the UI layout.',
-            tags: ['feature', 'minor'],
             metadata: { source: 'api', browser: null, device_type: 'mobile' }
         });
 
@@ -135,7 +131,6 @@ describe('Integration Tests - End-to-End Workflows', () => {
             customer_name: 'Billing User',
             subject: 'Critical billing error',
             description: 'Double charged urgently need refund. This is critical for our business.',
-            tags: ['billing', 'critical'],
             metadata: { source: 'email', browser: null, device_type: 'desktop' }
         });
 
@@ -164,7 +159,6 @@ describe('Integration Tests - End-to-End Workflows', () => {
                 customer_name: 'Integrity Test',
                 subject: 'Data integrity test ticket',
                 description: 'This ticket will be updated multiple times to test data integrity.',
-                tags: ['test'],
                 metadata: {
                     source: 'web_form',
                     browser: 'Firefox',

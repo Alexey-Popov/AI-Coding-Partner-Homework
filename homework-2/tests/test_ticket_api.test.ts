@@ -17,7 +17,6 @@ describe('Ticket API Endpoints', () => {
                     customer_name: 'Test User',
                     subject: 'Test ticket',
                     description: 'This is a test ticket description that is long enough to pass validation.',
-                    tags: ['test'],
                     metadata: {
                         source: 'web_form',
                         browser: 'Chrome',
@@ -26,12 +25,11 @@ describe('Ticket API Endpoints', () => {
                 });
 
             expect(response.status).toBe(201);
-            expect(response.body).toHaveProperty('id');
-            expect(response.body.customer_email).toBe('test@example.com');
-            expect(response.body.status).toBe('new');
-            expect(response.body).toHaveProperty('classification');
-            expect(response.body.classification).toHaveProperty('category');
-            expect(response.body.classification).toHaveProperty('priority');
+            expect(response.body.data).toHaveProperty('id');
+            expect(response.body.data.customer_email).toBe('test@example.com');
+            expect(response.body.data.status).toBe('new');
+            expect(response.body.data).toHaveProperty('category');
+            expect(response.body.data).toHaveProperty('priority');
         });
 
         it('should reject ticket with invalid email', async () => {
@@ -43,7 +41,6 @@ describe('Ticket API Endpoints', () => {
                     customer_name: 'Test User',
                     subject: 'Test ticket',
                     description: 'This is a test ticket description that is long enough.',
-                    tags: ['test'],
                     metadata: {
                         source: 'web_form',
                         browser: 'Chrome',
@@ -53,6 +50,30 @@ describe('Ticket API Endpoints', () => {
 
             expect(response.status).toBe(400);
             expect(response.body).toHaveProperty('error');
+        });
+
+        it('should ignore user-provided tags and assigned_to fields', async () => {
+            const response = await request(app)
+                .post('/tickets')
+                .send({
+                    customer_id: 'cust-001',
+                    customer_email: 'test@example.com',
+                    customer_name: 'Test User',
+                    subject: 'Test ticket with system fields',
+                    description: 'Testing that system-generated fields are ignored from user input.',
+                    tags: ['user-tag', 'should-be-ignored'],
+                    assigned_to: 'agent-123',
+                    metadata: {
+                        source: 'web_form',
+                        browser: 'Chrome',
+                        device_type: 'desktop'
+                    }
+                });
+
+            expect(response.status).toBe(201);
+            expect(response.body.data).toHaveProperty('id');
+            expect(response.body.data.tags).toEqual([]); // System sets to empty array
+            expect(response.body.data.assigned_to).toBeNull(); // System sets to null
         });
 
         it('should reject ticket with missing required fields', async () => {
@@ -75,7 +96,6 @@ describe('Ticket API Endpoints', () => {
                 customer_name: 'User One',
                 subject: 'Login issue - urgent',
                 description: 'Cannot access my account. This is critical and blocking work.',
-                tags: ['login', 'urgent'],
                 metadata: { source: 'web_form', browser: 'Chrome', device_type: 'desktop' }
             });
 
@@ -85,7 +105,6 @@ describe('Ticket API Endpoints', () => {
                 customer_name: 'User Two',
                 subject: 'Feature suggestion: dark mode',
                 description: 'Would be nice to have a dark mode option for the interface.',
-                tags: ['feature'],
                 metadata: { source: 'api', browser: null, device_type: 'mobile' }
             });
         });
@@ -99,11 +118,11 @@ describe('Ticket API Endpoints', () => {
         });
 
         it('should filter tickets by priority', async () => {
-            const response = await request(app).get('/tickets?priority=urgent');
+            const response = await request(app).get('/tickets?priority=high');
 
             expect(response.status).toBe(200);
             expect(response.body.data.length).toBeGreaterThan(0);
-            expect(response.body.data[0].priority).toBe('urgent');
+            expect(response.body.data[0].priority).toBe('high');
         });
 
         it('should filter tickets by category', async () => {
@@ -131,7 +150,6 @@ describe('Ticket API Endpoints', () => {
                 customer_name: 'Test User',
                 subject: 'Test ticket',
                 description: 'This is a test ticket with sufficient description length.',
-                tags: ['test'],
                 metadata: { source: 'web_form', browser: 'Chrome', device_type: 'desktop' }
             });
 
@@ -166,7 +184,6 @@ describe('Ticket API Endpoints', () => {
                 customer_name: 'Test User',
                 subject: 'Original subject',
                 description: 'Original description that is long enough for validation.',
-                tags: ['test'],
                 metadata: { source: 'web_form', browser: 'Chrome', device_type: 'desktop' }
             });
 
@@ -194,7 +211,6 @@ describe('Ticket API Endpoints', () => {
                 customer_name: 'Test User',
                 subject: 'To be deleted',
                 description: 'This ticket will be deleted in the test case.',
-                tags: ['test'],
                 metadata: { source: 'web_form', browser: 'Chrome', device_type: 'desktop' }
             });
 

@@ -145,8 +145,8 @@ export class TicketController {
             created_at: now,
             updated_at: now,
             resolved_at: null,
-            assigned_to: ticketData.assigned_to ?? null,
-            tags: ticketData.tags ?? [],
+            assigned_to: null, // System-generated: always starts as null
+            tags: [], // System-generated: always starts empty
             metadata: ticketData.metadata,
         };
     }
