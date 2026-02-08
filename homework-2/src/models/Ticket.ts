@@ -16,7 +16,7 @@ export type DeviceType = 'desktop' | 'mobile' | 'tablet';
 
 export interface TicketMetadata {
     source: TicketSource;
-    browser: string;
+    browser?: string | null;
     device_type: DeviceType;
 }
 

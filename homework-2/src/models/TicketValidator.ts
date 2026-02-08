@@ -25,7 +25,7 @@ export const DeviceTypeSchema = z.enum(['desktop', 'mobile', 'tablet']);
 
 export const TicketMetadataSchema = z.object({
     source: TicketSourceSchema,
-    browser: z.string().min(1, 'Browser information is required'),
+    browser: z.string().optional().nullable(),
     device_type: DeviceTypeSchema,
 });
 

@@ -56,12 +56,17 @@ export class CsvImportService {
             const line = lines[i]?.trim();
             if (!line) continue;
 
-            const values = line.split(',').map((v) => v.trim());
+            // Parse CSV line with proper handling of quoted fields
+            const values = this.parseCSVLine(line);
             const row: Record<string, string> = {};
 
             headers.forEach((header, index) => {
                 row[header] = values[index] || '';
             });
+
+            // Parse tags from CSV format (comma-separated string)
+            const tagsString = row['tags'] || '';
+            const tags = tagsString ? tagsString.split(',').map(t => t.trim()).filter(t => t) : [];
 
             const ticketData = {
                 customer_id: row['customer_id'],
@@ -69,9 +74,10 @@ export class CsvImportService {
                 customer_name: row['customer_name'],
                 subject: row['subject'],
                 description: row['description'],
+                tags: tags.length > 0 ? tags : undefined,
                 metadata: {
                     source: row['source'],
-                    browser: row['browser'],
+                    browser: row['browser'] || undefined,
                     device_type: row['device_type'],
                 },
             };
@@ -94,6 +100,36 @@ export class CsvImportService {
             }
         }
 
+        return result;
+    }
+
+    /**
+     * Parse a CSV line handling quoted fields properly
+     * Handles commas inside quoted strings
+     */
+    private parseCSVLine(line: string): string[] {
+        const result: string[] = [];
+        let current = '';
+        let insideQuotes = false;
+
+        for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            
+            if (char === '"') {
+                // Toggle quote state
+                insideQuotes = !insideQuotes;
+            } else if (char === ',' && !insideQuotes) {
+                // End of field
+                result.push(current.trim());
+                current = '';
+            } else {
+                current += char;
+            }
+        }
+        
+        // Push the last field
+        result.push(current.trim());
+        
         return result;
     }
 }
