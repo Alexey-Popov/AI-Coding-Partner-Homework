@@ -8,12 +8,7 @@ export type TicketCategory =
 
 export type TicketPriority = 'urgent' | 'high' | 'medium' | 'low';
 
-export type TicketStatus =
-  | 'new'
-  | 'in_progress'
-  | 'waiting_customer'
-  | 'resolved'
-  | 'closed';
+export type TicketStatus = 'new' | 'in_progress' | 'waiting_customer' | 'resolved' | 'closed';
 
 export type TicketSource = 'web_form' | 'email' | 'api' | 'chat' | 'phone';
 
@@ -45,9 +40,7 @@ export interface Ticket {
 
 export type CreateTicketInput = Omit<
   Ticket,
-  'id' | 'created_at' | 'updated_at' | 'resolved_at' | 'status'
+  'id' | 'created_at' | 'updated_at' | 'resolved_at' | 'status' | 'category' | 'priority'
 >;
 
-export type UpdateTicketInput = Partial<
-  Omit<Ticket, 'id' | 'created_at' | 'customer_id'>
->;
+export type UpdateTicketInput = Partial<Omit<Ticket, 'id' | 'created_at' | 'customer_id'>>;

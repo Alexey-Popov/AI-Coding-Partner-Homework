@@ -19,13 +19,7 @@ export const TicketStatusSchema = z.enum([
   'closed',
 ]);
 
-export const TicketSourceSchema = z.enum([
-  'web_form',
-  'email',
-  'api',
-  'chat',
-  'phone',
-]);
+export const TicketSourceSchema = z.enum(['web_form', 'email', 'api', 'chat', 'phone']);
 
 export const DeviceTypeSchema = z.enum(['desktop', 'mobile', 'tablet']);
 
@@ -71,8 +65,6 @@ export const CreateTicketSchema = z.object({
     .string()
     .min(10, 'Description must be at least 10 characters')
     .max(2000, 'Description must not exceed 2000 characters'),
-  category: TicketCategorySchema,
-  priority: TicketPrioritySchema,
   assigned_to: z.string().nullable().optional().default(null),
   tags: z.array(z.string()).optional().default([]),
   metadata: TicketMetadataSchema,

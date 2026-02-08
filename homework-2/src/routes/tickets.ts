@@ -2,14 +2,13 @@ import { Router, Request, Response, NextFunction } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { validate as isValidUUID } from 'uuid';
 import { Ticket } from '../models/Ticket';
-import {
-  safeValidateCreateTicket,
-  safeValidateUpdateTicket,
-} from '../models/TicketValidator';
+import { safeValidateCreateTicket, safeValidateUpdateTicket } from '../models/TicketValidator';
+import { ClassificationService } from '../services/ClassificationService';
 
 const router = Router();
 
 const tickets: Ticket[] = [];
+const classificationService = new ClassificationService();
 
 function findTicketById(id: string): Ticket | undefined {
   return tickets.find((ticket) => ticket.id === id);
@@ -39,6 +38,12 @@ router.post('/', (req: Request, res: Response, next: NextFunction): void => {
     const ticketData = validation.data;
     const now = new Date();
 
+    // Auto-classify ticket based on subject and description
+    const classification = classificationService.classify(
+      ticketData.subject,
+      ticketData.description
+    );
+
     const newTicket: Ticket = {
       id: uuidv4(),
       customer_id: ticketData.customer_id,
@@ -46,8 +51,8 @@ router.post('/', (req: Request, res: Response, next: NextFunction): void => {
       customer_name: ticketData.customer_name,
       subject: ticketData.subject,
       description: ticketData.description,
-      category: ticketData.category,
-      priority: ticketData.priority,
+      category: classification.category,
+      priority: classification.priority,
       status: 'new',
       created_at: now,
       updated_at: now,
@@ -62,6 +67,11 @@ router.post('/', (req: Request, res: Response, next: NextFunction): void => {
     res.status(201).json({
       success: true,
       data: newTicket,
+      classification: {
+        confidence: classification.confidence,
+        reasoning: classification.reasoning,
+        keywords: classification.keywords,
+      },
     });
   } catch (error) {
     next(error);
@@ -85,21 +95,15 @@ router.get('/', (req: Request, res: Response, next: NextFunction): void => {
 
     // Filter by status
     if (status && typeof status === 'string') {
-      filteredTickets = filteredTickets.filter(
-        (ticket) => ticket.status === status
-      );
+      filteredTickets = filteredTickets.filter((ticket) => ticket.status === status);
     }
 
     if (priority && typeof priority === 'string') {
-      filteredTickets = filteredTickets.filter(
-        (ticket) => ticket.priority === priority
-      );
+      filteredTickets = filteredTickets.filter((ticket) => ticket.priority === priority);
     }
 
     if (category && typeof category === 'string') {
-      filteredTickets = filteredTickets.filter(
-        (ticket) => ticket.category === category
-      );
+      filteredTickets = filteredTickets.filter((ticket) => ticket.category === category);
     }
 
     // Handle pagination
