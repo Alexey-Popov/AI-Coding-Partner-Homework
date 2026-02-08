@@ -125,6 +125,7 @@ export class ImportController {
                 assigned_to: ticketData.assigned_to ?? null,
                 tags: ticketData.tags ?? [],
                 metadata: ticketData.metadata,
+                classification_source: 'automatic',
             };
 
             createdTickets.push(newTicket);

@@ -36,6 +36,7 @@ export interface Ticket {
     assigned_to: string | null;
     tags: string[];
     metadata: TicketMetadata;
+    classification_source: 'manual' | 'automatic';
 }
 
 export type CreateTicketInput = Omit<

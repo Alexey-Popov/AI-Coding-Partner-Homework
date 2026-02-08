@@ -51,22 +51,28 @@ Content-Type: application/json
     "customer_name": "string (required)",
     "subject": "string (required, 1-200 characters)",
     "description": "string (required, 10-2000 characters)",
-    "assigned_to": "string (optional, nullable)",
-    "tags": ["string"] (optional, defaults to []),
+    "category": "account_access | technical_issue | billing_question | feature_request | bug_report | other (optional)",
+    "priority": "urgent | high | medium | low (optional)",
     "metadata": {
         "source": "web_form | email | api | chat | phone (required)",
-        "browser": "string (required)",
+        "browser": "string (optional)",
         "device_type": "desktop | mobile | tablet (required)"
     }
 }
 ```
 
-**Note:** `category` and `priority` are automatically assigned based on the subject and description content. Users cannot set these fields manually.
+**Classification Behavior:**
+- **Automatic Classification (default):** If `category` and `priority` are NOT provided, the system automatically classifies the ticket based on the subject and description content. The response will include classification metadata (confidence, reasoning, keywords).
+- **Manual Override:** If BOTH `category` and `priority` are provided, the system uses those values instead of automatic classification. The ticket's `classification_source` will be set to `"manual"`.
+- **Partial Override:** If only one of `category` or `priority` is provided, automatic classification is used for both fields.
+
+**Note:** `tags` and `assigned_to` are system-generated fields that cannot be set during creation. They start as empty array `[]` and `null` respectively.
 
 **Success Response:**
 
 **Status Code:** `201 Created`
 
+**With Automatic Classification:**
 ```json
 {
     "success": true,
@@ -76,7 +82,7 @@ Content-Type: application/json
         "customer_email": "john.doe@example.com",
         "customer_name": "John Doe",
         "subject": "Cannot access my account",
-        "description": "I've been locked out of my account after multiple failed login attempts. Need urgent help.",
+        "description": "I've been locked out after multiple failed login attempts.",
         "category": "account_access",
         "priority": "urgent",
         "status": "new",
@@ -84,7 +90,8 @@ Content-Type: application/json
         "updated_at": "2026-02-08T10:30:00.000Z",
         "resolved_at": null,
         "assigned_to": null,
-        "tags": ["login", "urgent"],
+        "tags": [],
+        "classification_source": "automatic",
         "metadata": {
             "source": "web_form",
             "browser": "Chrome 121",
@@ -93,11 +100,42 @@ Content-Type: application/json
     },
     "classification": {
         "confidence": 0.95,
-        "reasoning": "Keywords 'locked out', 'login' indicate account access issue. 'urgent' indicates high priority.",
+        "reasoning": "Keywords 'locked out', 'login' indicate account access issue.",
         "keywords": ["locked", "login", "urgent", "account"]
     }
 }
 ```
+
+**With Manual Override:**
+```json
+{
+    "success": true,
+    "data": {
+        "id": "550e8400-e29b-41d4-a716-446655440001",
+        "customer_id": "cust-002",
+        "customer_email": "jane.smith@example.com",
+        "customer_name": "Jane Smith",
+        "subject": "Feature suggestion",
+        "description": "It would be great to have dark mode.",
+        "category": "billing_question",
+        "priority": "urgent",
+        "status": "new",
+        "created_at": "2026-02-08T10:35:00.000Z",
+        "updated_at": "2026-02-08T10:35:00.000Z",
+        "resolved_at": null,
+        "assigned_to": null,
+        "tags": [],
+        "classification_source": "manual",
+        "metadata": {
+            "source": "web_form",
+            "browser": "Chrome 121",
+            "device_type": "desktop"
+        }
+    }
+}
+```
+
+**Note:** Manual override response does NOT include the `classification` object since classification was not performed.
 
 **Error Responses:**
 

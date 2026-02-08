@@ -76,6 +76,55 @@ describe('Ticket API Endpoints', () => {
             expect(response.body.data.assigned_to).toBeNull(); // System sets to null
         });
 
+        it('should allow manual classification override', async () => {
+            const response = await request(app)
+                .post('/tickets')
+                .send({
+                    customer_id: 'cust-001',
+                    customer_email: 'test@example.com',
+                    customer_name: 'Test User',
+                    subject: 'This should be billing',
+                    description: 'Testing manual override of automatic classification.',
+                    category: 'billing_question',
+                    priority: 'urgent',
+                    metadata: {
+                        source: 'web_form',
+                        browser: 'Chrome',
+                        device_type: 'desktop'
+                    }
+                });
+
+            expect(response.status).toBe(201);
+            expect(response.body.data.category).toBe('billing_question');
+            expect(response.body.data.priority).toBe('urgent');
+            expect(response.body.data.classification_source).toBe('manual');
+            expect(response.body).not.toHaveProperty('classification'); // No auto-classification metadata
+        });
+
+        it('should auto-classify when category or priority not provided', async () => {
+            const response = await request(app)
+                .post('/tickets')
+                .send({
+                    customer_id: 'cust-001',
+                    customer_email: 'test@example.com',
+                    customer_name: 'Test User',
+                    subject: 'Cannot login to my account',
+                    description: 'I am unable to log in. The password reset is not working.',
+                    metadata: {
+                        source: 'web_form',
+                        browser: 'Chrome',
+                        device_type: 'desktop'
+                    }
+                });
+
+            expect(response.status).toBe(201);
+            expect(response.body.data.category).toBe('account_access');
+            expect(response.body.data.classification_source).toBe('automatic');
+            expect(response.body).toHaveProperty('classification'); // Has auto-classification metadata
+            expect(response.body.classification).toHaveProperty('confidence');
+            expect(response.body.classification).toHaveProperty('reasoning');
+        });
+
         it('should reject ticket with missing required fields', async () => {
             const response = await request(app)
                 .post('/tickets')
