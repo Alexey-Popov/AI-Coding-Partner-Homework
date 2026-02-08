@@ -1,0 +1,125 @@
+[
+  {
+    "customer_id": "",
+    "customer_email": "empty-id@example.com",
+    "customer_name": "Empty Customer ID",
+    "subject": "This ticket has empty customer_id",
+    "description": "The customer_id field is present but empty which should fail validation.",
+    "tags": ["invalid", "test"],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Chrome",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "cust-invalid-002",
+    "customer_email": "not-a-valid-email",
+    "customer_name": "Invalid Email Format",
+    "subject": "Email validation test",
+    "description": "This ticket contains an email address that is not in valid email format and should be rejected.",
+    "tags": ["invalid", "email"],
+    "metadata": {
+      "source": "api",
+      "browser": null,
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "cust-invalid-003",
+    "customer_email": "missing-name@example.com",
+    "subject": "Missing customer name",
+    "description": "This ticket is missing the customer_name field which is a required field.",
+    "tags": ["invalid", "missing-field"],
+    "metadata": {
+      "source": "email",
+      "browser": "Firefox",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "cust-invalid-004",
+    "customer_email": "test@example.com",
+    "customer_name": "Short Description",
+    "subject": "Description too short",
+    "description": "Short",
+    "tags": ["invalid", "length"],
+    "metadata": {
+      "source": "chat",
+      "browser": "Safari",
+      "device_type": "tablet"
+    }
+  },
+  {
+    "customer_id": "cust-invalid-005",
+    "customer_email": "test@example.com",
+    "customer_name": "Long Subject",
+    "subject": "This is an extremely long subject line that exceeds the maximum allowed length of two hundred characters and should therefore fail validation when the ticket creation is attempted because it violates the subject length constraint set in the schema",
+    "description": "This ticket has a valid description but the subject is too long.",
+    "tags": ["invalid", "length"],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Chrome",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "cust-invalid-006",
+    "customer_email": "valid@example.com",
+    "customer_name": "Invalid Metadata",
+    "subject": "Invalid source value",
+    "description": "This ticket has an invalid value in the metadata.source field that is not in the allowed enum.",
+    "tags": ["invalid", "enum"],
+    "metadata": {
+      "source": "invalid_source_value",
+      "browser": "Chrome",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "cust-invalid-007",
+    "customer_email": "test@example.com",
+    "customer_name": "Invalid Device Type",
+    "subject": "Device type enum validation",
+    "description": "This ticket has an invalid device_type value that should fail enum validation.",
+    "tags": ["invalid", "enum"],
+    "metadata": {
+      "source": "api",
+      "browser": null,
+      "device_type": "smartwatch"
+    }
+  },
+  {
+    "customer_id": "cust-invalid-008",
+    "customer_email": "test@example.com",
+    "customer_name": "Missing Metadata",
+    "subject": "Metadata field missing",
+    "description": "This ticket is completely missing the metadata object which is required.",
+    "tags": ["invalid", "missing-field"]
+  },
+  {
+    "customer_email": "no-customer-id@example.com",
+    "customer_name": "No Customer ID",
+    "subject": "Customer ID field missing",
+    "description": "This ticket is completely missing the customer_id field from the JSON object.",
+    "tags": ["invalid", "missing-field"],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Firefox",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "cust-invalid-010",
+    "customer_email": "test@example.com",
+    "customer_name": "Tags Not Array",
+    "subject": "Tags should be array",
+    "description": "This ticket has tags as a string instead of an array which should fail validation.",
+    "tags": "should-be-array-not-string",
+    "metadata": {
+      "source": "chat",
+      "browser": "Chrome",
+      "device_type": "mobile"
+    }
+  }
+]

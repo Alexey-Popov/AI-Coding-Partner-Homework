@@ -1,0 +1,11 @@
+customer_id,customer_email,customer_name,subject,description,tags,source,browser,device_type
+,missing@example.com,No Customer ID,Test ticket,This ticket is missing the customer_id field which is required.,test,web_form,Chrome,desktop
+cust-999,not-an-email,Invalid Email,Bad email format,This email field does not contain a valid email address format.,test,email,,mobile
+cust-998,test@example.com,,No Customer Name,Missing customer name,This ticket is missing the customer_name field which is required.,test,api,,tablet
+cust-997,user@example.com,User,Short,Too short,This description is too short and should fail validation.,test,web_form,Chrome,desktop
+cust-996,another@example.com,User,Test,This is exactly ten characters which is the minimum required for description field.,test,chat,Firefox,desktop
+cust-995,long@example.com,User With Very Long Name That Exceeds Maximum Length Allowed,Subject with more than two hundred characters which should fail validation because the maximum allowed length for the subject field is exactly two hundred characters and this one is longer than that,Valid description that meets the length requirements.,test,web_form,Safari,mobile
+cust-994,valid@example.com,Valid User,Valid Subject,Valid description text.,test,invalid_source,Chrome,desktop
+cust-993,test@example.com,Test,Valid Subject,Valid description.,test,web_form,Chrome,invalid_device
+cust-992,email@example.com,Name,Subject,Description is valid.,"tag1,tag2",web_form,Browser,smartwatch
+cust-991,user@example.com,User Name,Valid Subject,This description has a sufficient length to pass validation requirements.,test,phone,Safari,desktop

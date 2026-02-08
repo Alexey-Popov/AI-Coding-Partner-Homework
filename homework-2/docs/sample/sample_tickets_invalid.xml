@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickets>
+    <ticket>
+        <customer_id></customer_id>
+        <customer_email>empty-id@example.com</customer_email>
+        <customer_name>Empty Customer ID</customer_name>
+        <subject>Empty customer_id field</subject>
+        <description>This ticket has an empty customer_id element which should fail validation.</description>
+        <tags>
+            <tag>invalid</tag>
+            <tag>test</tag>
+        </tags>
+        <metadata>
+            <source>web_form</source>
+            <browser>Chrome</browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>cust-xml-002</customer_id>
+        <customer_email>not-valid-email</customer_email>
+        <customer_name>Invalid Email</customer_name>
+        <subject>Email format validation test</subject>
+        <description>This ticket has an invalid email format that should be rejected by the validator.</description>
+        <tags>
+            <tag>invalid</tag>
+            <tag>email</tag>
+        </tags>
+        <metadata>
+            <source>api</source>
+            <browser></browser>
+            <device_type>mobile</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>cust-xml-003</customer_id>
+        <customer_email>missing-name@example.com</customer_email>
+        <subject>Missing customer name element</subject>
+        <description>This ticket is missing the customer_name element which is required for validation.</description>
+        <tags>
+            <tag>invalid</tag>
+        </tags>
+        <metadata>
+            <source>email</source>
+            <browser>Firefox</browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>cust-xml-004</customer_id>
+        <customer_email>test@example.com</customer_email>
+        <customer_name>Short Description</customer_name>
+        <subject>Description length validation</subject>
+        <description>Short</description>
+        <tags>
+            <tag>invalid</tag>
+            <tag>length</tag>
+        </tags>
+        <metadata>
+            <source>chat</source>
+            <browser>Safari</browser>
+            <device_type>tablet</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>cust-xml-005</customer_id>
+        <customer_email>test@example.com</customer_email>
+        <customer_name>Unclosed Tag Test</customer_name>
+        <subject>This XML has an unclosed subject tag
+        <description>Testing malformed XML with unclosed tags that should be rejected by the parser.</description>
+        <tags>
+            <tag>invalid</tag>
+            <tag>malformed</tag>
+        </tags>
+        <metadata>
+            <source>web_form</source>
+            <browser>Chrome</browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+</tickets>
