@@ -1,0 +1,366 @@
+import request from 'supertest';
+import app from '../src/app';
+import { ticketRepository } from '../src/repositories/ticket.repository';
+
+describe('Ticket API Endpoints', () => {
+    beforeEach(() => {
+        ticketRepository.clear();
+    });
+
+    describe('POST /tickets', () => {
+        it('should create a new ticket with valid data', async () => {
+            const response = await request(app)
+                .post('/tickets')
+                .send({
+                    customer_id: 'cust-001',
+                    customer_email: 'test@example.com',
+                    customer_name: 'Test User',
+                    subject: 'Test ticket',
+                    description: 'This is a test ticket description that is long enough to pass validation.',
+                    category: 'technical_issue',
+                    priority: 'medium',
+                    metadata: {
+                        source: 'web_form',
+                        browser: 'Chrome',
+                        device_type: 'desktop'
+                    }
+                });
+
+            expect(response.status).toBe(201);
+            expect(response.body.data).toHaveProperty('id');
+            expect(response.body.data.customer_email).toBe('test@example.com');
+            expect(response.body.data.status).toBe('new');
+            expect(response.body.data).toHaveProperty('category');
+            expect(response.body.data).toHaveProperty('priority');
+        });
+
+        it('should reject ticket with invalid email', async () => {
+            const response = await request(app)
+                .post('/tickets')
+                .send({
+                    customer_id: 'cust-001',
+                    customer_email: 'invalid-email',
+                    customer_name: 'Test User',
+                    subject: 'Test ticket',
+                    description: 'This is a test ticket description that is long enough.',
+                    category: 'technical_issue',
+                    priority: 'medium',
+                    metadata: {
+                        source: 'web_form',
+                        browser: 'Chrome',
+                        device_type: 'desktop'
+                    }
+                });
+
+            expect(response.status).toBe(400);
+            expect(response.body).toHaveProperty('error');
+        });
+
+        it('should ignore user-provided tags and assigned_to fields', async () => {
+            const response = await request(app)
+                .post('/tickets')
+                .send({
+                    customer_id: 'cust-001',
+                    customer_email: 'test@example.com',
+                    customer_name: 'Test User',
+                    subject: 'Test ticket with system fields',
+                    description: 'Testing that system-generated fields are ignored from user input.',
+                    category: 'technical_issue',
+                    priority: 'medium',
+                    tags: ['user-tag', 'should-be-ignored'],
+                    assigned_to: 'agent-123',
+                    metadata: {
+                        source: 'web_form',
+                        browser: 'Chrome',
+                        device_type: 'desktop'
+                    }
+                });
+
+            expect(response.status).toBe(201);
+            expect(response.body.data).toHaveProperty('id');
+            expect(response.body.data.tags).toEqual([]); // System sets to empty array
+            expect(response.body.data.assigned_to).toBeNull(); // System sets to null
+        });
+
+        it('should allow manual classification override', async () => {
+            const response = await request(app)
+                .post('/tickets')
+                .send({
+                    customer_id: 'cust-001',
+                    customer_email: 'test@example.com',
+                    customer_name: 'Test User',
+                    subject: 'This should be billing',
+                    description: 'Testing manual override of automatic classification.',
+                    category: 'billing_question',
+                    priority: 'urgent',
+                    metadata: {
+                        source: 'web_form',
+                        browser: 'Chrome',
+                        device_type: 'desktop'
+                    }
+                });
+
+            expect(response.status).toBe(201);
+            expect(response.body.data.category).toBe('billing_question');
+            expect(response.body.data.priority).toBe('urgent');
+            expect(response.body.data.classification_source).toBe('manual');
+            expect(response.body).not.toHaveProperty('classification'); // No auto-classification metadata
+        });
+
+        it('should require category and priority fields', async () => {
+            const response = await request(app)
+                .post('/tickets')
+                .send({
+                    customer_id: 'cust-001',
+                    customer_email: 'test@example.com',
+                    customer_name: 'Test User',
+                    subject: 'Cannot login to my account',
+                    description: 'I am unable to log in. The password reset is not working.',
+                    metadata: {
+                        source: 'web_form',
+                        browser: 'Chrome',
+                        device_type: 'desktop'
+                    }
+                });
+
+            expect(response.status).toBe(400);
+            expect(response.body).toHaveProperty('error');
+        });
+
+        it('should reject ticket with missing required fields', async () => {
+            const response = await request(app)
+                .post('/tickets')
+                .send({
+                    customer_email: 'test@example.com'
+                });
+
+            expect(response.status).toBe(400);
+            expect(response.body).toHaveProperty('error');
+        });
+    });
+
+    describe('GET /tickets', () => {
+        beforeEach(async () => {
+            await request(app).post('/tickets').send({
+                customer_id: 'cust-001',
+                customer_email: 'user1@example.com',
+                customer_name: 'User One',
+                subject: 'Login issue - urgent',
+                description: 'Cannot access my account. This is critical and blocking work.',
+                category: 'account_access',
+                priority: 'urgent',
+                metadata: { source: 'web_form', browser: 'Chrome', device_type: 'desktop' }
+            });
+
+            await request(app).post('/tickets').send({
+                customer_id: 'cust-002',
+                customer_email: 'user2@example.com',
+                customer_name: 'User Two',
+                subject: 'Feature suggestion: dark mode',
+                description: 'Would be nice to have a dark mode option for the interface.',
+                category: 'feature_request',
+                priority: 'low',
+                metadata: { source: 'api', browser: null, device_type: 'mobile' }
+            });
+        });
+
+        it('should return all tickets', async () => {
+            const response = await request(app).get('/tickets');
+
+            expect(response.status).toBe(200);
+            expect(response.body).toHaveProperty('data');
+            expect(response.body.data).toHaveLength(2);
+        });
+
+        it('should filter tickets by priority', async () => {
+            const response = await request(app).get('/tickets?priority=urgent');
+
+            expect(response.status).toBe(200);
+            expect(response.body.data.length).toBeGreaterThan(0);
+            expect(response.body.data[0].priority).toBe('urgent');
+        });
+
+        it('should filter tickets by category', async () => {
+            const response = await request(app).get('/tickets?category=account_access');
+
+            expect(response.status).toBe(200);
+            if (response.body.data.length > 0) {
+                expect(response.body.data[0].category).toBe('account_access');
+            }
+        });
+
+        it('should paginate results with limit and offset', async () => {
+            const response = await request(app).get('/tickets?limit=1&offset=0');
+
+            expect(response.status).toBe(200);
+            expect(response.body.data).toHaveLength(1);
+        });
+    });
+
+    describe('GET /tickets/:id', () => {
+        it('should return a specific ticket by ID', async () => {
+            const createResponse = await request(app).post('/tickets').send({
+                customer_id: 'cust-001',
+                customer_email: 'test@example.com',
+                customer_name: 'Test User',
+                subject: 'Test ticket',
+                description: 'This is a test ticket with sufficient description length.',
+                category: 'technical_issue',
+                priority: 'medium',
+                metadata: { source: 'web_form', browser: 'Chrome', device_type: 'desktop' }
+            });
+
+            const ticketId = createResponse.body.data.id;
+            const response = await request(app).get(`/tickets/${ticketId}`);
+
+            expect(response.status).toBe(200);
+            expect(response.body.data.id).toBe(ticketId);
+            expect(response.body.data.customer_email).toBe('test@example.com');
+        });
+
+        it('should return 404 for non-existent ticket', async () => {
+            const response = await request(app).get('/tickets/00000000-0000-0000-0000-000000000000');
+
+            expect(response.status).toBe(404);
+            expect(response.body).toHaveProperty('error');
+        });
+
+        it('should return 400 for invalid UUID format', async () => {
+            const response = await request(app).get('/tickets/invalid-uuid');
+
+            expect(response.status).toBe(400);
+            expect(response.body).toHaveProperty('error');
+        });
+    });
+
+    describe('PUT /tickets/:id', () => {
+        it('should update an existing ticket', async () => {
+            const createResponse = await request(app).post('/tickets').send({
+                customer_id: 'cust-001',
+                customer_email: 'test@example.com',
+                customer_name: 'Test User',
+                subject: 'Original subject',
+                description: 'Original description that is long enough for validation.',
+                category: 'technical_issue',
+                priority: 'medium',
+                metadata: { source: 'web_form', browser: 'Chrome', device_type: 'desktop' }
+            });
+
+            const ticketId = createResponse.body.data.id;
+            const updateResponse = await request(app)
+                .put(`/tickets/${ticketId}`)
+                .send({
+                    subject: 'Updated subject',
+                    status: 'in_progress',
+                    assigned_to: 'agent-john'
+                });
+
+            expect(updateResponse.status).toBe(200);
+            expect(updateResponse.body.data.subject).toBe('Updated subject');
+            expect(updateResponse.body.data.status).toBe('in_progress');
+            expect(updateResponse.body.data.assigned_to).toBe('agent-john');
+        });
+    });
+
+    describe('DELETE /tickets/:id', () => {
+        it('should delete an existing ticket', async () => {
+            const createResponse = await request(app).post('/tickets').send({
+                customer_id: 'cust-001',
+                customer_email: 'test@example.com',
+                customer_name: 'Test User',
+                subject: 'To be deleted',
+                description: 'This ticket will be deleted in the test case.',
+                category: 'technical_issue',
+                priority: 'medium',
+                metadata: { source: 'web_form', browser: 'Chrome', device_type: 'desktop' }
+            });
+
+            const ticketId = createResponse.body.data.id;
+            const deleteResponse = await request(app).delete(`/tickets/${ticketId}`);
+
+            expect(deleteResponse.status).toBe(200);
+            expect(deleteResponse.body).toHaveProperty('message');
+
+            const getResponse = await request(app).get(`/tickets/${ticketId}`);
+            expect(getResponse.status).toBe(404);
+        });
+    });
+
+    describe('POST /tickets/:id/auto-classify', () => {
+        it('should auto-classify an existing ticket', async () => {
+            // Create a ticket with manual classification
+            const createResponse = await request(app).post('/tickets').send({
+                customer_id: 'cust-001',
+                customer_email: 'test@example.com',
+                customer_name: 'Test User',
+                subject: 'Cannot login to my account',
+                description: 'I am having trouble logging in. The system says my password is incorrect.',
+                category: 'other',
+                priority: 'low',
+                metadata: { source: 'web_form', browser: 'Chrome', device_type: 'desktop' }
+            });
+
+            const ticketId = createResponse.body.data.id;
+            expect(createResponse.body.data.classification_source).toBe('manual');
+            expect(createResponse.body.data.category).toBe('other');
+            expect(createResponse.body.data.priority).toBe('low');
+
+            // Auto-classify the ticket
+            const classifyResponse = await request(app)
+                .post(`/tickets/${ticketId}/auto-classify`)
+                .send();
+
+            expect(classifyResponse.status).toBe(200);
+            expect(classifyResponse.body.data.classification_source).toBe('automatic');
+            expect(classifyResponse.body.data.category).toBe('account_access');
+            expect(classifyResponse.body.data.priority).not.toBe('low');
+            expect(classifyResponse.body.classification).toBeDefined();
+            expect(classifyResponse.body.classification).toHaveProperty('confidence');
+            expect(classifyResponse.body.classification).toHaveProperty('reasoning');
+            expect(classifyResponse.body.classification).toHaveProperty('keywords');
+        });
+
+        it('should return 404 for non-existent ticket', async () => {
+            const response = await request(app)
+                .post('/tickets/550e8400-e29b-41d4-a716-446655440000/auto-classify')
+                .send();
+
+            expect(response.status).toBe(404);
+        });
+
+        it('should re-classify ticket even if already automatic', async () => {
+            // Create a ticket with manual classification first
+            const createResponse = await request(app).post('/tickets').send({
+                customer_id: 'cust-001',
+                customer_email: 'test@example.com',
+                customer_name: 'Test User',
+                subject: 'Server error 500',
+                description: 'The application crashes when I try to load the dashboard.',
+                category: 'technical_issue',
+                priority: 'high',
+                metadata: { source: 'web_form', browser: 'Chrome', device_type: 'desktop' }
+            });
+
+            const ticketId = createResponse.body.data.id;
+            expect(createResponse.body.data.classification_source).toBe('manual');
+
+            // Auto-classify the ticket
+            const classifyResponse = await request(app)
+                .post(`/tickets/${ticketId}/auto-classify`)
+                .send();
+
+            expect(classifyResponse.status).toBe(200);
+            expect(classifyResponse.body.data.classification_source).toBe('automatic');
+            expect(classifyResponse.body.classification).toBeDefined();
+            
+            // Re-run auto-classify again
+            const reclassifyResponse = await request(app)
+                .post(`/tickets/${ticketId}/auto-classify`)
+                .send();
+
+            expect(reclassifyResponse.status).toBe(200);
+            expect(reclassifyResponse.body.data.classification_source).toBe('automatic');
+            expect(reclassifyResponse.body.classification).toBeDefined();
+        });
+    });
+});
