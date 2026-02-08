@@ -1,0 +1,54 @@
+[
+    {
+        "customer_id": "cust-101",
+        "customer_email": "john@example.com",
+        "customer_name": "John Doe",
+        "subject": "Payment not processing",
+        "description": "My payment keeps failing when I try to upgrade to premium plan. Getting error code 4001.",
+        "tags": ["payment", "upgrade"],
+        "metadata": {
+            "source": "web_form",
+            "browser": "Chrome 120",
+            "device_type": "desktop"
+        }
+    },
+    {
+        "customer_id": "cust-102",
+        "customer_email": "jane@example.com",
+        "customer_name": "Jane Smith",
+        "subject": "Account deletion request",
+        "description": "I want to delete my account and all associated data per GDPR regulations.",
+        "tags": ["account", "gdpr"],
+        "metadata": {
+            "source": "email",
+            "browser": null,
+            "device_type": "mobile"
+        }
+    },
+    {
+        "customer_id": "cust-103",
+        "customer_email": "mike@example.com",
+        "customer_name": "Mike Johnson",
+        "subject": "Production server down - URGENT",
+        "description": "Our production server is completely down. This is blocking all our operations. Need immediate assistance!",
+        "tags": ["production", "critical", "server"],
+        "metadata": {
+            "source": "chat",
+            "browser": "Safari 17",
+            "device_type": "desktop"
+        }
+    },
+    {
+        "customer_id": "cust-104",
+        "customer_email": "sarah@example.com",
+        "customer_name": "Sarah Wilson",
+        "subject": "Add export to PDF feature",
+        "description": "It would be nice to have the ability to export reports to PDF format.",
+        "tags": ["feature", "export", "pdf"],
+        "metadata": {
+            "source": "api",
+            "browser": null,
+            "device_type": "desktop"
+        }
+    }
+]

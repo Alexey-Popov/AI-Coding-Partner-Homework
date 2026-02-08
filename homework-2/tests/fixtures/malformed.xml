@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickets>
+    <ticket>
+        <customer_id>cust-301</customer_id>
+        <customer_email>test@example.com</customer_email>
+        <subject>Unclosed tag</subject>
+        <description>This XML has an unclosed description tag
+    </ticket>
+</tickets>

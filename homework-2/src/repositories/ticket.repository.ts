@@ -76,4 +76,10 @@ export class TicketRepository {
     addBulk(tickets: Ticket[]): void {
         this.tickets.push(...tickets);
     }
+
+    clear(): void {
+        this.tickets = [];
+    }
 }
+
+export const ticketRepository = new TicketRepository();

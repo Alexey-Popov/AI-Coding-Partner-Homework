@@ -6,12 +6,11 @@ import { ClassificationService } from '../services/ClassificationService';
 import { CsvImportService } from '../services/CsvImportService';
 import { JsonImportService } from '../services/JsonImportService';
 import { XmlImportService } from '../services/XmlImportService';
-import { TicketRepository } from '../repositories/ticket.repository';
+import { ticketRepository } from '../repositories/ticket.repository';
 
 const router = Router();
 const upload = multer({ dest: 'uploads/' });
 
-const ticketRepository = new TicketRepository();
 const classificationService = new ClassificationService();
 
 const ticketController = new TicketController(ticketRepository, classificationService);
