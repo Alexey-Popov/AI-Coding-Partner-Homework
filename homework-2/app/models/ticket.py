@@ -36,6 +36,13 @@ class Ticket:
         self.tags: list[str] = data.get("tags", [])
         self.metadata: dict = data.get("metadata", {})
 
+        # Classification fields — populated by the auto-classify endpoint
+        self.classification_confidence: float | None = data.get("classification_confidence")
+        self.classification_reasoning: str | None = data.get("classification_reasoning")
+        self.classification_keywords: list[str] = data.get("classification_keywords", [])
+        self.classified_at: str | None = data.get("classified_at")
+        self.manual_override: bool = data.get("manual_override", False)
+
     def to_dict(self) -> dict:
         """Serialize the ticket to a plain dictionary for JSON responses."""
         return {
@@ -54,6 +61,11 @@ class Ticket:
             "assigned_to": self.assigned_to,
             "tags": self.tags,
             "metadata": self.metadata,
+            "classification_confidence": self.classification_confidence,
+            "classification_reasoning": self.classification_reasoning,
+            "classification_keywords": self.classification_keywords,
+            "classified_at": self.classified_at,
+            "manual_override": self.manual_override,
         }
 
     def update(self, data: dict) -> None:
@@ -70,6 +82,11 @@ class Ticket:
             "status", "assigned_to", "tags", "metadata",
         ]
 
+        # Track manual override: if the user explicitly changes category or
+        # priority through an update call, mark this ticket as manually overridden
+        if "category" in data or "priority" in data:
+            self.manual_override = True
+
         for field in updatable_fields:
             if field in data:
                 setattr(self, field, data[field])
@@ -80,3 +97,18 @@ class Ticket:
         # Auto-set resolved_at when ticket is resolved or closed
         if "status" in data and data["status"] in ("resolved", "closed") and self.resolved_at is None:
             self.resolved_at = self.updated_at
+
+    def apply_classification(self, result: dict) -> None:
+        """
+        Apply an auto-classification result to this ticket.
+
+        Updates category, priority, and stores classification metadata.
+        Does NOT set manual_override (only manual edits do that).
+        """
+        self.category = result["category"]
+        self.priority = result["priority"]
+        self.classification_confidence = result["confidence"]
+        self.classification_reasoning = result["reasoning"]
+        self.classification_keywords = result["keywords_found"]
+        self.classified_at = datetime.now(timezone.utc).isoformat()
+        self.updated_at = self.classified_at

@@ -2,12 +2,13 @@
 Ticket API routes.
 
 Blueprint that exposes all REST endpoints for managing support tickets:
-  POST   /tickets          – create a single ticket
-  POST   /tickets/import   – bulk import from CSV / JSON / XML
-  GET    /tickets          – list tickets (with optional filters)
-  GET    /tickets/<id>     – retrieve one ticket
-  PUT    /tickets/<id>     – update a ticket
-  DELETE /tickets/<id>     – delete a ticket
+  POST   /tickets                    – create a single ticket
+  POST   /tickets/import             – bulk import from CSV / JSON / XML
+  POST   /tickets/<id>/auto-classify – auto-classify a ticket
+  GET    /tickets                    – list tickets (with optional filters)
+  GET    /tickets/<id>               – retrieve one ticket
+  PUT    /tickets/<id>               – update a ticket (manual override)
+  DELETE /tickets/<id>               – delete a ticket
 """
 
 from flask import Blueprint, jsonify, request
@@ -34,12 +35,24 @@ _FORMAT_MAP = {
 
 @tickets_bp.route("/tickets", methods=["POST"])
 def create_ticket():
-    """Create a new support ticket from a JSON body."""
+    """
+    Create a new support ticket from a JSON body.
+
+    Accepts an optional ``auto_classify`` query parameter or JSON field.
+    When set to "true" / true, the ticket is automatically classified
+    after creation and its category/priority may be updated.
+    """
     data = request.get_json(silent=True)
     if data is None:
         return jsonify({"error": "Request body must be valid JSON"}), 400
 
-    ticket, errors = ticket_service.create_ticket(data)
+    # Check for auto_classify flag in query param or request body
+    auto_classify = (
+        request.args.get("auto_classify", "").lower() == "true"
+        or data.pop("auto_classify", False) is True
+    )
+
+    ticket, errors = ticket_service.create_ticket(data, auto_classify=auto_classify)
     if errors:
         return jsonify({"error": "Validation failed", "details": errors}), 400
 
@@ -103,6 +116,30 @@ def import_tickets():
     # Return 400 if every record failed, 200 otherwise (partial success is OK)
     status_code = 400 if summary["total"] > 0 and summary["successful"] == 0 else 200
     return jsonify(summary), status_code
+
+
+# ---------------------------------------------------------------------------
+# POST /tickets/<id>/auto-classify  — auto-classify a ticket
+# ---------------------------------------------------------------------------
+
+@tickets_bp.route("/tickets/<ticket_id>/auto-classify", methods=["POST"])
+def auto_classify_ticket(ticket_id: str):
+    """
+    Run the auto-classification engine on an existing ticket.
+
+    Analyses the ticket's subject and description, then updates the ticket's
+    category and priority based on keyword matching.  Returns the classification
+    result including confidence score, reasoning, and matched keywords.
+    """
+    ticket, result = ticket_service.auto_classify_ticket(ticket_id)
+
+    if ticket is None:
+        return jsonify({"error": "Ticket not found"}), 404
+
+    return jsonify({
+        "ticket": ticket,
+        "classification": result,
+    }), 200
 
 
 # ---------------------------------------------------------------------------

@@ -6,6 +6,7 @@ that the route layer calls into.
 """
 
 from app.models.ticket import Ticket
+from app.services.classification_service import classify_ticket
 from app.utils.validators import validate_ticket_data
 
 
@@ -18,9 +19,12 @@ def reset_store() -> None:
     _tickets.clear()
 
 
-def create_ticket(data: dict) -> tuple[dict, list[str]]:
+def create_ticket(data: dict, auto_classify: bool = False) -> tuple[dict, list[str]]:
     """
     Validate *data* and persist a new ticket.
+
+    If *auto_classify* is True, the ticket is automatically classified
+    after creation and its category/priority are updated accordingly.
 
     Returns (ticket_dict, errors).  If errors is non-empty the ticket was
     NOT created.
@@ -31,6 +35,12 @@ def create_ticket(data: dict) -> tuple[dict, list[str]]:
 
     ticket = Ticket(data)
     _tickets[ticket.id] = ticket
+
+    # Optionally run auto-classification right after creation
+    if auto_classify:
+        result = classify_ticket(ticket.to_dict())
+        ticket.apply_classification(result)
+
     return ticket.to_dict(), []
 
 
@@ -81,6 +91,26 @@ def update_ticket(ticket_id: str, data: dict) -> tuple[dict | None, list[str]]:
 
     ticket.update(data)
     return ticket.to_dict(), []
+
+
+def auto_classify_ticket(ticket_id: str) -> tuple[dict | None, dict | None]:
+    """
+    Run auto-classification on an existing ticket.
+
+    Returns (ticket_dict | None, classification_result | None).
+    First element is None if the ticket was not found.
+    """
+    ticket = _tickets.get(ticket_id)
+    if ticket is None:
+        return None, None
+
+    # Run the classifier against the ticket's current content
+    result = classify_ticket(ticket.to_dict())
+
+    # Apply classification results to the ticket
+    ticket.apply_classification(result)
+
+    return ticket.to_dict(), result
 
 
 def delete_ticket(ticket_id: str) -> bool:
