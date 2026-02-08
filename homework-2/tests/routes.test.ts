@@ -20,6 +20,8 @@ describe('Tickets API Routes', () => {
         customer_name: 'John Doe',
         subject: 'Login issue',
         description: 'Cannot access my account after password reset',
+        category: 'account_access',
+        priority: 'high',
         metadata: {
             source: 'web_form',
             browser: 'Chrome 120',

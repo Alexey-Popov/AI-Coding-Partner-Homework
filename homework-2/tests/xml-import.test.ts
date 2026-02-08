@@ -29,6 +29,8 @@ describe('XmlImportService', () => {
     <customer_name>Test User</customer_name>
     <subject>Test subject</subject>
     <description>Test description for the ticket</description>
+    <category>technical_issue</category>
+    <priority>medium</priority>
     <metadata>
       <source>web_form</source>
       <browser>Chrome</browser>
@@ -52,6 +54,8 @@ describe('XmlImportService', () => {
     <customer_name>User One</customer_name>
     <subject>First ticket</subject>
     <description>First ticket description</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
     <metadata>
       <source>web_form</source>
       <browser>Chrome</browser>
@@ -64,6 +68,8 @@ describe('XmlImportService', () => {
     <customer_name>User Two</customer_name>
     <subject>Second ticket</subject>
     <description>Second ticket description</description>
+    <category>feature_request</category>
+    <priority>low</priority>
     <metadata>
       <source>email</source>
       <browser>Firefox</browser>

@@ -6,6 +6,8 @@
         <customer_name>William Administrator</customer_name>
         <subject>Cannot reset password - link not working</subject>
         <description>I requested a password reset 4 times in the past 2 hours but the reset link in the email does nothing when clicked. The page just reloads and shows the same login screen. Tried in Chrome Safari and Firefox. I am completely locked out of my account and cannot access critical business data.</description>
+        <category>account_access</category>
+        <priority>urgent</priority>
         <tags>
             <tag>password</tag>
             <tag>reset</tag>
@@ -24,6 +26,8 @@
         <customer_name>Jennifer Billing</customer_name>
         <subject>Refund request for cancelled annual subscription</subject>
         <description>I cancelled my annual subscription on January 15th but was still charged the full year amount of $1200 on January 20th. Per your cancellation policy I should receive a prorated refund for the remaining 11 months. Please process the refund of $1100 to my original payment method as soon as possible.</description>
+        <category>billing_question</category>
+        <priority>high</priority>
         <tags>
             <tag>billing</tag>
             <tag>refund</tag>
@@ -42,6 +46,8 @@
         <customer_name>Michael Engineer</customer_name>
         <subject>Critical: API returning 503 service unavailable</subject>
         <description>For the past 45 minutes all API requests are returning 503 Service Unavailable errors. This is affecting our production application and causing service disruption for our customers. Error rate is 100% across all endpoints. Need immediate investigation and resolution. Our SLA with customers is being breached.</description>
+        <category>technical_issue</category>
+        <priority>urgent</priority>
         <tags>
             <tag>critical</tag>
             <tag>api</tag>
@@ -61,6 +67,8 @@
         <customer_name>Susan Product Manager</customer_name>
         <subject>Feature request: Activity audit log for compliance</subject>
         <description>We require a comprehensive activity audit log that tracks all user actions system changes and data access for compliance purposes. This should include timestamps user IDs IP addresses and detailed action descriptions. This is a mandatory requirement for our SOC 2 certification and enterprise customers.</description>
+        <category>feature_request</category>
+        <priority>medium</priority>
         <tags>
             <tag>feature</tag>
             <tag>audit</tag>
@@ -80,6 +88,8 @@
         <customer_name>Daniel QA Lead</customer_name>
         <subject>Bug: File upload fails for files with spaces in filename</subject>
         <description>Reproducible bug: Files with spaces in their names cannot be uploaded. Steps to reproduce: 1. Click upload button 2. Select a file like my document.pdf 3. Click upload 4. Get error Invalid filename. Expected: System should accept filenames with spaces or automatically replace spaces with underscores. Affects user experience significantly.</description>
+        <category>technical_issue</category>
+        <priority>high</priority>
         <tags>
             <tag>bug</tag>
             <tag>upload</tag>
@@ -98,6 +108,8 @@
         <customer_name>Karen Security</customer_name>
         <subject>Security: Stored XSS vulnerability in profile fields</subject>
         <description>CRITICAL SECURITY VULNERABILITY: I discovered a stored XSS vulnerability in the user profile bio field. Malicious JavaScript can be injected and is executed when other users view the profile page. PoC: Setting bio to script alert document.cookie script triggers the alert. This allows session hijacking and needs immediate patching.</description>
+        <category>other</category>
+        <priority>medium</priority>
         <tags>
             <tag>security</tag>
             <tag>xss</tag>
@@ -117,6 +129,8 @@
         <customer_name>Patricia Manager</customer_name>
         <subject>Cannot access reports - getting 404 error</subject>
         <description>Since the maintenance yesterday I cannot access any reports. Navigating to /reports shows a 404 page not found error. This is blocking my ability to generate monthly reports for stakeholders. Other sections of the application work fine but the entire reports section is inaccessible.</description>
+        <category>technical_issue</category>
+        <priority>high</priority>
         <tags>
             <tag>bug</tag>
             <tag>reports</tag>
@@ -136,6 +150,8 @@
         <customer_name>Richard Architect</customer_name>
         <subject>Request for API rate limit increase to 5000 req/min</subject>
         <description>Our enterprise application serves 50000+ daily active users and we are constantly hitting the 500 requests per minute rate limit causing degraded performance and errors. We require an increase to at least 5000 requests per minute to handle peak traffic. We are on the enterprise plan and willing to upgrade to a custom tier if needed.</description>
+        <category>technical_issue</category>
+        <priority>high</priority>
         <tags>
             <tag>api</tag>
             <tag>rate-limit</tag>
@@ -155,6 +171,8 @@
         <customer_name>Linda UX Designer</customer_name>
         <subject>Feature: Add drag and drop file upload</subject>
         <description>The current file upload requires clicking a button and selecting files from a dialog which is tedious when uploading multiple files. Please add drag and drop functionality where users can simply drag files from their desktop directly into the upload area. This is a common UX pattern that would greatly improve usability.</description>
+        <category>feature_request</category>
+        <priority>medium</priority>
         <tags>
             <tag>feature</tag>
             <tag>upload</tag>
@@ -173,6 +191,8 @@
         <customer_name>Steven Operations</customer_name>
         <subject>Database connection timeout errors</subject>
         <description>Application is intermittently throwing database connection timeout errors approximately every 10-15 minutes. Error message: Error: Connection timeout: unable to connect to database within 30000ms. This causes transaction failures and requires users to retry operations. Started happening 2 days ago. Need database performance investigation.</description>
+        <category>technical_issue</category>
+        <priority>high</priority>
         <tags>
             <tag>database</tag>
             <tag>timeout</tag>
@@ -191,6 +211,8 @@
         <customer_name>Nancy Content Manager</customer_name>
         <subject>Rich text editor loses formatting on save</subject>
         <description>When editing content in the rich text editor all formatting (bold italic headings lists) is lost when I click save. The content saves but appears as plain text without any formatting. This makes the editor unusable for creating formatted documentation and blog posts.</description>
+        <category>other</category>
+        <priority>medium</priority>
         <tags>
             <tag>bug</tag>
             <tag>editor</tag>
@@ -209,6 +231,8 @@
         <customer_name>Thomas DevOps</customer_name>
         <subject>Request infrastructure documentation for self-hosting</subject>
         <description>We are interested in self-hosting the application on our own infrastructure for data sovereignty and compliance reasons. Need detailed documentation on infrastructure requirements system architecture database schemas deployment process and ongoing maintenance. Is self-hosting supported for enterprise customers?</description>
+        <category>other</category>
+        <priority>medium</priority>
         <tags>
             <tag>documentation</tag>
             <tag>self-hosting</tag>
@@ -227,6 +251,8 @@
         <customer_name>Betty Support</customer_name>
         <subject>Cannot reassign tickets to other team members</subject>
         <description>The reassign ticket feature is not working. When I select a team member from the dropdown and click save the assignment does not change. The ticket remains assigned to me. Tried with multiple tickets and multiple team members. This is blocking our ticket triage workflow.</description>
+        <category>technical_issue</category>
+        <priority>high</priority>
         <tags>
             <tag>bug</tag>
             <tag>assignment</tag>
@@ -245,6 +271,8 @@
         <customer_name>Charles Integration</customer_name>
         <subject>Webhook retry logic is too aggressive</subject>
         <description>Your webhook system retries failed deliveries every 10 seconds which is overwhelming our endpoint when there are temporary issues. This causes a cascading failure. Industry standard is exponential backoff (1min 5min 15min 1hr). Please implement proper retry backoff to give endpoints time to recover from transient failures.</description>
+        <category>technical_issue</category>
+        <priority>high</priority>
         <tags>
             <tag>webhook</tag>
             <tag>api</tag>
@@ -263,6 +291,8 @@
         <customer_name>Barbara Analyst</customer_name>
         <subject>Dashboard widgets showing cached stale data</subject>
         <description>The dashboard widgets are showing stale data from several hours ago. The refresh button does not update the data. I have to clear browser cache and do a hard refresh to see current data. This defeats the purpose of a real-time dashboard. Dashboard should either auto-refresh or clearly indicate data timestamp.</description>
+        <category>other</category>
+        <priority>medium</priority>
         <tags>
             <tag>bug</tag>
             <tag>dashboard</tag>
@@ -281,6 +311,8 @@
         <customer_name>Edward Mobile Dev</customer_name>
         <subject>Mobile app login screen frozen on iOS</subject>
         <description>The mobile app login screen becomes completely unresponsive after entering credentials on iOS devices. Cannot tap the login button or any other UI elements. Only happens on iOS 17.3 and above. Works fine on iOS 16. This is blocking all iOS users from accessing the app.</description>
+        <category>account_access</category>
+        <priority>high</priority>
         <tags>
             <tag>bug</tag>
             <tag>mobile</tag>
@@ -300,6 +332,8 @@
         <customer_name>Margaret Project Manager</customer_name>
         <subject>Feature: Gantt chart view for project timelines</subject>
         <description>Request to add a Gantt chart visualization for project timelines. Current list and calendar views do not provide a good overview of project schedules dependencies and milestones. A Gantt chart would greatly improve project planning and tracking capabilities. This is a highly requested feature from our team.</description>
+        <category>feature_request</category>
+        <priority>medium</priority>
         <tags>
             <tag>feature</tag>
             <tag>gantt</tag>
@@ -318,6 +352,8 @@
         <customer_name>Joseph Backend</customer_name>
         <subject>API pagination is inconsistent across endpoints</subject>
         <description>Different API endpoints use different pagination parameters. Some use page/pageSize some use offset/limit and some use cursor-based pagination. This makes the API confusing to use and requires different client-side handling for each endpoint. Please standardize pagination across all endpoints.</description>
+        <category>other</category>
+        <priority>medium</priority>
         <tags>
             <tag>api</tag>
             <tag>pagination</tag>
@@ -336,6 +372,8 @@
         <customer_name>Dorothy Finance</customer_name>
         <subject>Cannot download invoices older than 6 months</subject>
         <description>Trying to download historical invoices for our annual tax filing but the system only shows invoices from the past 6 months. Older invoices are not accessible. We need access to all historical invoices dating back to when we started using the service 3 years ago for our accounting records.</description>
+        <category>billing_question</category>
+        <priority>high</priority>
         <tags>
             <tag>billing</tag>
             <tag>invoice</tag>
@@ -354,6 +392,8 @@
         <customer_name>George Tester</customer_name>
         <subject>Minor: Tooltip text is cut off on narrow screens</subject>
         <description>On screen widths below 1024px tooltip text gets cut off and is not fully readable. The tooltip container does not wrap or adjust its width based on viewport size. This is a minor UI polish issue but affects user experience on laptops and smaller screens. Suggest making tooltips responsive or limiting text length.</description>
+        <category>feature_request</category>
+        <priority>medium</priority>
         <tags>
             <tag>bug</tag>
             <tag>ui</tag>
@@ -373,6 +413,8 @@
         <customer_name>Helen Legal</customer_name>
         <subject>Need data processing agreement for GDPR compliance</subject>
         <description>Our legal team requires a signed Data Processing Agreement (DPA) as we are handling EU customer data through your platform. This is mandatory for GDPR compliance. Please provide a standard DPA or send one for review and signature. Also need to know your data center locations and data retention policies.</description>
+        <category>other</category>
+        <priority>medium</priority>
         <tags>
             <tag>legal</tag>
             <tag>gdpr</tag>
@@ -391,6 +433,8 @@
         <customer_name>Paul Frontend</customer_name>
         <subject>Feature: Support for multiple language localization</subject>
         <description>Request to add internationalization (i18n) support for multiple languages. Our user base is global and we need the interface in at least English Spanish French German and Japanese. Currently the application is English-only which limits adoption in non-English markets. Willing to provide translations if technical framework is added.</description>
+        <category>feature_request</category>
+        <priority>medium</priority>
         <tags>
             <tag>feature</tag>
             <tag>i18n</tag>
@@ -409,6 +453,8 @@
         <customer_name>Sandra Sales</customer_name>
         <subject>Payment method update failing with card validation error</subject>
         <description>Trying to update our payment method before the next billing cycle but keep getting error Card validation failed even though I have verified the card details multiple times. Tried with 3 different valid cards from different banks. Same error each time. Our current card expires next month so this needs to be resolved urgently.</description>
+        <category>billing_question</category>
+        <priority>urgent</priority>
         <tags>
             <tag>billing</tag>
             <tag>payment</tag>
@@ -428,6 +474,8 @@
         <customer_name>Kenneth Architect</customer_name>
         <subject>Request for API request/response logging for debugging</subject>
         <description>When integrating with your API it is difficult to debug issues without visibility into the actual requests and responses. Please add an API request log feature in the dashboard where we can see recent API calls request headers payloads response codes and response bodies. This would dramatically speed up integration debugging.</description>
+        <category>technical_issue</category>
+        <priority>high</priority>
         <tags>
             <tag>feature</tag>
             <tag>api</tag>
@@ -446,6 +494,8 @@
         <customer_name>Ruth Customer Success</customer_name>
         <subject>Notification settings not saving preferences</subject>
         <description>I have unchecked all email notification settings in my preferences multiple times but I continue to receive email notifications for every single action. The settings appear to save successfully but the changes do not take effect. This is resulting in inbox overload with hundreds of unwanted notifications daily.</description>
+        <category>other</category>
+        <priority>medium</priority>
         <tags>
             <tag>bug</tag>
             <tag>notifications</tag>
@@ -464,6 +514,8 @@
         <customer_name>Larry DevOps</customer_name>
         <subject>Feature: Terraform provider for infrastructure as code</subject>
         <description>We manage all our infrastructure using Terraform and would like to manage your resources (workspaces users API keys etc) through Terraform as well. Please develop an official Terraform provider so we can define your resources in our infrastructure as code. This is important for our GitOps workflow and change management process.</description>
+        <category>feature_request</category>
+        <priority>medium</priority>
         <tags>
             <tag>feature</tag>
             <tag>terraform</tag>
@@ -482,6 +534,8 @@
         <customer_name>Sharon Content Writer</customer_name>
         <subject>Spell check not working in text editor</subject>
         <description>The built-in spell check in the text editor is not highlighting misspelled words. Browser spell check works in other websites but not in your editor. This makes it difficult to catch typos and spelling errors when writing long documents. Please enable spell check or ensure browser spell check is not being blocked.</description>
+        <category>account_access</category>
+        <priority>high</priority>
         <tags>
             <tag>bug</tag>
             <tag>editor</tag>
@@ -500,6 +554,8 @@
         <customer_name>Jason Security</customer_name>
         <subject>Broken access control allows viewing other users data</subject>
         <description>CRITICAL SECURITY ISSUE: Found a broken access control vulnerability where users can view other users' private data by manipulating URL parameters. For example changing user_id=123 to user_id=124 in the URL shows another user's profile and data. There is no authorization check on the backend. This needs immediate fixing.</description>
+        <category>technical_issue</category>
+        <priority>urgent</priority>
         <tags>
             <tag>security</tag>
             <tag>critical</tag>
@@ -519,6 +575,8 @@
         <customer_name>Carol HR</customer_name>
         <subject>Need to bulk offboard 50 employees who left company</subject>
         <description>We had a company restructuring and need to remove 50 employee accounts from our workspace. Currently there is no bulk user removal feature and I have to delete each account individually which is very time consuming. Please add bulk user management or provide an API endpoint for bulk deletions.</description>
+        <category>feature_request</category>
+        <priority>medium</priority>
         <tags>
             <tag>feature</tag>
             <tag>bulk</tag>
@@ -537,6 +595,8 @@
         <customer_name>Frank Business Analyst</customer_name>
         <subject>Custom report builder has limited filtering options</subject>
         <description>The custom report builder only supports basic AND conditions for filters. We need support for OR conditions and nested filter groups to create more complex reports. For example: (status=active AND created_date greater than 2024-01-01) OR (priority=high). Current limitations make many reports impossible to create.</description>
+        <category>bug_report</category>
+        <priority>medium</priority>
         <tags>
             <tag>feature</tag>
             <tag>reports</tag>

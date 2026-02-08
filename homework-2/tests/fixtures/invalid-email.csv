@@ -1,6 +1,6 @@
-customer_id,customer_email,customer_name,subject,description,source,browser,device_type
-cust_001,valid@example.com,John Doe,Login issue,Cannot access my account after password reset,web_form,Chrome 120,desktop
-cust_002,also-valid@test.com,Jane Smith,Payment failed,Need refund for duplicate charge on my invoice,email,Firefox 119,mobile
-cust_003,bob@example.com,Bob Johnson,Bug report,Steps to reproduce the error I found in production,api,Safari 17,tablet
-cust_004,alice@test.com,Alice Williams,Feature request,Would like to add notifications,chat,Edge 120,desktop
-cust_005,not-an-email,Charlie Brown,Technical issue,Application crashes on startup,phone,Chrome 120,mobile
+customer_id,customer_email,customer_name,subject,description,source,browser,device_type,category,priority
+cust_001,valid@example.com,John Doe,Login issue,Cannot access my account after password reset,web_form,Chrome 120,desktop,technical_issue,medium
+cust_002,also-valid@test.com,Jane Smith,Payment failed,Need refund for duplicate charge on my invoice,email,Firefox 119,mobile,technical_issue,medium
+cust_003,bob@example.com,Bob Johnson,Bug report,Steps to reproduce the error I found in production,api,Safari 17,tablet,technical_issue,medium
+cust_004,alice@test.com,Alice Williams,Feature request,Would like to add notifications,chat,Edge 120,desktop,technical_issue,medium
+cust_005,not-an-email,Charlie Brown,Technical issue,Application crashes on startup,phone,Chrome 120,mobile,technical_issue,medium

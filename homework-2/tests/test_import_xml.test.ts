@@ -41,8 +41,8 @@ describe('XML Import', () => {
         <customer_email>invalid-email</customer_email>
         <customer_name>Test User</customer_name>
         <subject>Invalid email</subject>
-        <description>This ticket has an invalid email format.</description>
-        <tags><tag>test</tag></tags>
+        <description>This ticket has an invalid email format.</description>        <category>technical</category>
+        <priority>medium</priority>        <tags><tag>test</tag></tags>
         <metadata>
             <source>web_form</source>
             <browser>Chrome</browser>
@@ -91,6 +91,8 @@ describe('XML Import', () => {
         <customer_name>Nested User</customer_name>
         <subject>Ticket with nested tags</subject>
         <description>This ticket description has sufficient length to pass validation rules.</description>
+        <category>technical_issue</category>
+        <priority>medium</priority>
         <tags>
             <tag>tag1</tag>
             <tag>tag2</tag>

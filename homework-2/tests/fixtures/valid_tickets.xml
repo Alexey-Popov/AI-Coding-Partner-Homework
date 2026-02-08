@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <tickets>
     <ticket>
         <customer_id>cust-201</customer_id>
@@ -6,7 +6,7 @@
         <customer_name>User One</customer_name>
         <subject>Cannot reset password</subject>
         <description>Password reset link in email is not working. Clicking it does nothing. Very frustrating!</description>
-        <tags>
+        <category>technical_issue</category><priority>medium</priority><tags>
             <tag>password</tag>
             <tag>reset</tag>
         </tags>
@@ -22,13 +22,13 @@
         <customer_name>User Two</customer_name>
         <subject>Refund request for annual plan</subject>
         <description>I need a refund for my annual subscription. Service did not meet my needs.</description>
-        <tags>
+        <category>technical_issue</category><priority>medium</priority><tags>
             <tag>refund</tag>
             <tag>billing</tag>
         </tags>
         <metadata>
             <source>email</source>
-            <browser></browser>
+            <browser />
             <device_type>mobile</device_type>
         </metadata>
     </ticket>
@@ -38,7 +38,7 @@
         <customer_name>User Three</customer_name>
         <subject>Database connection timeout errors</subject>
         <description>Getting frequent database connection timeout errors in the admin panel. Error code: DB_TIMEOUT_500.</description>
-        <tags>
+        <category>technical_issue</category><priority>medium</priority><tags>
             <tag>database</tag>
             <tag>error</tag>
             <tag>technical</tag>

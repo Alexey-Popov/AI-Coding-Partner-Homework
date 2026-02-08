@@ -17,6 +17,8 @@ describe('Ticket API Endpoints', () => {
                     customer_name: 'Test User',
                     subject: 'Test ticket',
                     description: 'This is a test ticket description that is long enough to pass validation.',
+                    category: 'technical_issue',
+                    priority: 'medium',
                     metadata: {
                         source: 'web_form',
                         browser: 'Chrome',
@@ -41,6 +43,8 @@ describe('Ticket API Endpoints', () => {
                     customer_name: 'Test User',
                     subject: 'Test ticket',
                     description: 'This is a test ticket description that is long enough.',
+                    category: 'technical_issue',
+                    priority: 'medium',
                     metadata: {
                         source: 'web_form',
                         browser: 'Chrome',
@@ -61,6 +65,8 @@ describe('Ticket API Endpoints', () => {
                     customer_name: 'Test User',
                     subject: 'Test ticket with system fields',
                     description: 'Testing that system-generated fields are ignored from user input.',
+                    category: 'technical_issue',
+                    priority: 'medium',
                     tags: ['user-tag', 'should-be-ignored'],
                     assigned_to: 'agent-123',
                     metadata: {
@@ -101,7 +107,7 @@ describe('Ticket API Endpoints', () => {
             expect(response.body).not.toHaveProperty('classification'); // No auto-classification metadata
         });
 
-        it('should auto-classify when category or priority not provided', async () => {
+        it('should require category and priority fields', async () => {
             const response = await request(app)
                 .post('/tickets')
                 .send({
@@ -117,12 +123,8 @@ describe('Ticket API Endpoints', () => {
                     }
                 });
 
-            expect(response.status).toBe(201);
-            expect(response.body.data.category).toBe('account_access');
-            expect(response.body.data.classification_source).toBe('automatic');
-            expect(response.body).toHaveProperty('classification'); // Has auto-classification metadata
-            expect(response.body.classification).toHaveProperty('confidence');
-            expect(response.body.classification).toHaveProperty('reasoning');
+            expect(response.status).toBe(400);
+            expect(response.body).toHaveProperty('error');
         });
 
         it('should reject ticket with missing required fields', async () => {
@@ -145,6 +147,8 @@ describe('Ticket API Endpoints', () => {
                 customer_name: 'User One',
                 subject: 'Login issue - urgent',
                 description: 'Cannot access my account. This is critical and blocking work.',
+                category: 'account_access',
+                priority: 'urgent',
                 metadata: { source: 'web_form', browser: 'Chrome', device_type: 'desktop' }
             });
 
@@ -154,6 +158,8 @@ describe('Ticket API Endpoints', () => {
                 customer_name: 'User Two',
                 subject: 'Feature suggestion: dark mode',
                 description: 'Would be nice to have a dark mode option for the interface.',
+                category: 'feature_request',
+                priority: 'low',
                 metadata: { source: 'api', browser: null, device_type: 'mobile' }
             });
         });
@@ -167,11 +173,11 @@ describe('Ticket API Endpoints', () => {
         });
 
         it('should filter tickets by priority', async () => {
-            const response = await request(app).get('/tickets?priority=high');
+            const response = await request(app).get('/tickets?priority=urgent');
 
             expect(response.status).toBe(200);
             expect(response.body.data.length).toBeGreaterThan(0);
-            expect(response.body.data[0].priority).toBe('high');
+            expect(response.body.data[0].priority).toBe('urgent');
         });
 
         it('should filter tickets by category', async () => {
@@ -199,6 +205,8 @@ describe('Ticket API Endpoints', () => {
                 customer_name: 'Test User',
                 subject: 'Test ticket',
                 description: 'This is a test ticket with sufficient description length.',
+                category: 'technical_issue',
+                priority: 'medium',
                 metadata: { source: 'web_form', browser: 'Chrome', device_type: 'desktop' }
             });
 
@@ -233,6 +241,8 @@ describe('Ticket API Endpoints', () => {
                 customer_name: 'Test User',
                 subject: 'Original subject',
                 description: 'Original description that is long enough for validation.',
+                category: 'technical_issue',
+                priority: 'medium',
                 metadata: { source: 'web_form', browser: 'Chrome', device_type: 'desktop' }
             });
 
@@ -260,6 +270,8 @@ describe('Ticket API Endpoints', () => {
                 customer_name: 'Test User',
                 subject: 'To be deleted',
                 description: 'This ticket will be deleted in the test case.',
+                category: 'technical_issue',
+                priority: 'medium',
                 metadata: { source: 'web_form', browser: 'Chrome', device_type: 'desktop' }
             });
 
@@ -317,29 +329,38 @@ describe('Ticket API Endpoints', () => {
         });
 
         it('should re-classify ticket even if already automatic', async () => {
-            // Create a ticket with automatic classification
+            // Create a ticket with manual classification first
             const createResponse = await request(app).post('/tickets').send({
                 customer_id: 'cust-001',
                 customer_email: 'test@example.com',
                 customer_name: 'Test User',
                 subject: 'Server error 500',
                 description: 'The application crashes when I try to load the dashboard.',
+                category: 'technical_issue',
+                priority: 'high',
                 metadata: { source: 'web_form', browser: 'Chrome', device_type: 'desktop' }
             });
 
             const ticketId = createResponse.body.data.id;
-            expect(createResponse.body.data.classification_source).toBe('automatic');
-            const originalCategory = createResponse.body.data.category;
+            expect(createResponse.body.data.classification_source).toBe('manual');
 
-            // Re-run auto-classify
+            // Auto-classify the ticket
             const classifyResponse = await request(app)
                 .post(`/tickets/${ticketId}/auto-classify`)
                 .send();
 
             expect(classifyResponse.status).toBe(200);
             expect(classifyResponse.body.data.classification_source).toBe('automatic');
-            expect(classifyResponse.body.data.category).toBe(originalCategory);
             expect(classifyResponse.body.classification).toBeDefined();
+            
+            // Re-run auto-classify again
+            const reclassifyResponse = await request(app)
+                .post(`/tickets/${ticketId}/auto-classify`)
+                .send();
+
+            expect(reclassifyResponse.status).toBe(200);
+            expect(reclassifyResponse.body.data.classification_source).toBe('automatic');
+            expect(reclassifyResponse.body.classification).toBeDefined();
         });
     });
 });

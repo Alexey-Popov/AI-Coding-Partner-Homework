@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { Ticket } from '../models/Ticket';
-import { ClassificationService } from '../services/ClassificationService';
 import { CsvImportService } from '../services/CsvImportService';
 import { JsonImportService } from '../services/JsonImportService';
 import { XmlImportService } from '../services/XmlImportService';
@@ -9,20 +8,17 @@ import { TicketRepository } from '../repositories/ticket.repository';
 
 export class ImportController {
     private repository: TicketRepository;
-    private classificationService: ClassificationService;
     private csvImportService: CsvImportService;
     private jsonImportService: JsonImportService;
     private xmlImportService: XmlImportService;
 
     constructor(
         repository: TicketRepository,
-        classificationService: ClassificationService,
         csvImportService: CsvImportService,
         jsonImportService: JsonImportService,
         xmlImportService: XmlImportService
     ) {
         this.repository = repository;
-        this.classificationService = classificationService;
         this.csvImportService = csvImportService;
         this.jsonImportService = jsonImportService;
         this.xmlImportService = xmlImportService;
@@ -104,11 +100,7 @@ export class ImportController {
         const createdTickets: Ticket[] = [];
 
         validTickets.forEach((ticketData) => {
-            const classification = this.classificationService.classify(
-                ticketData.subject,
-                ticketData.description
-            );
-
+            // Use category and priority from import data (required fields)
             const newTicket: Ticket = {
                 id: uuidv4(),
                 customer_id: ticketData.customer_id,
@@ -116,8 +108,8 @@ export class ImportController {
                 customer_name: ticketData.customer_name,
                 subject: ticketData.subject,
                 description: ticketData.description,
-                category: classification.category,
-                priority: classification.priority,
+                category: ticketData.category,
+                priority: ticketData.priority,
                 status: 'new',
                 created_at: now,
                 updated_at: now,
@@ -125,7 +117,7 @@ export class ImportController {
                 assigned_to: ticketData.assigned_to ?? null,
                 tags: ticketData.tags ?? [],
                 metadata: ticketData.metadata,
-                classification_source: 'automatic',
+                classification_source: 'manual',
             };
 
             createdTickets.push(newTicket);

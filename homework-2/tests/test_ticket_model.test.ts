@@ -9,6 +9,8 @@ describe('Ticket Model Validation', () => {
                 customer_name: 'Test User',
                 subject: 'Valid ticket subject',
                 description: 'This is a valid description that meets the minimum length requirement.',
+                category: 'technical_issue',
+                priority: 'medium',
                 metadata: {
                     source: 'web_form',
                     browser: 'Chrome',

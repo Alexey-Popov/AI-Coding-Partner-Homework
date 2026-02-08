@@ -94,6 +94,8 @@ export class XmlImportService {
             customer_name: getValue(xmlTicket.customer_name),
             subject: getValue(xmlTicket.subject),
             description: getValue(xmlTicket.description),
+            category: getValue(xmlTicket.category),
+            priority: getValue(xmlTicket.priority),
             assigned_to: getValue(xmlTicket.assigned_to) || null,
             tags: xmlTicket.tags?.[0]?.tag || [],
             metadata: {

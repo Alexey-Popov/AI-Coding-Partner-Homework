@@ -5,12 +5,16 @@
         "customer_name": "Test User",
         "subject": "Missing customer ID",
         "description": "This ticket has an empty customer_id and should fail validation.",
-        "tags": ["test"],
+        "tags": [
+            "test"
+        ],
         "metadata": {
             "source": "web_form",
             "browser": "Chrome",
             "device_type": "desktop"
-        }
+        },
+        "category": "technical_issue",
+        "priority": "medium"
     },
     {
         "customer_id": "cust-500",
@@ -18,11 +22,15 @@
         "customer_name": "Invalid Email",
         "subject": "Bad email format",
         "description": "This ticket has an invalid email address format and should be rejected.",
-        "tags": ["test"],
+        "tags": [
+            "test"
+        ],
         "metadata": {
             "source": "api",
             "browser": null,
             "device_type": "mobile"
-        }
+        },
+        "category": "technical_issue",
+        "priority": "medium"
     }
 ]

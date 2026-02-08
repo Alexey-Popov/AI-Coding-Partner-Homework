@@ -28,45 +28,15 @@ export class TicketController {
             const ticketData = validation.data;
             const now = new Date();
             
-            // Check if manual classification is provided
-            const isManualClassification = ticketData.category && ticketData.priority;
-            
-            let category, priority, classificationSource;
-            let classificationMetadata = null;
-
-            if (isManualClassification) {
-                // Manual override: use user-provided values
-                category = ticketData.category!;
-                priority = ticketData.priority!;
-                classificationSource = 'manual' as const;
-            } else {
-                // Automatic classification
-                const classification = this.classificationService.classify(
-                    ticketData.subject,
-                    ticketData.description
-                );
-                category = classification.category;
-                priority = classification.priority;
-                classificationSource = 'automatic' as const;
-                classificationMetadata = {
-                    confidence: classification.confidence,
-                    reasoning: classification.reasoning,
-                    keywords: classification.keywords,
-                };
-            }
-
+            // Manual classification: use user-provided category and priority
             const newTicket = this.buildNewTicket(
                 ticketData, 
-                { category, priority, source: classificationSource }, 
+                { category: ticketData.category, priority: ticketData.priority, source: 'manual' }, 
                 now
             );
             this.repository.create(newTicket);
 
-            if (classificationMetadata) {
-                sendCreated(res, newTicket, { classification: classificationMetadata });
-            } else {
-                sendCreated(res, newTicket);
-            }
+            sendCreated(res, newTicket);
         } catch (error) {
             next(error);
         }

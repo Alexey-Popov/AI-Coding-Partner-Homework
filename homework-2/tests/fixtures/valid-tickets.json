@@ -5,6 +5,8 @@
     "customer_name": "John Doe",
     "subject": "Login issue",
     "description": "Cannot access my account after password reset",
+    "category": "account_access",
+    "priority": "high",
     "metadata": {
       "source": "web_form",
       "browser": "Chrome 120",
@@ -17,6 +19,8 @@
     "customer_name": "Jane Smith",
     "subject": "Payment failed",
     "description": "Need refund for duplicate charge",
+    "category": "billing_question",
+    "priority": "high",
     "metadata": {
       "source": "email",
       "browser": "Firefox 119",
@@ -29,6 +33,8 @@
     "customer_name": "Bob Johnson",
     "subject": "Feature request",
     "description": "Would like to add dark mode to the app",
+    "category": "feature_request",
+    "priority": "low",
     "metadata": {
       "source": "api",
       "browser": "Safari 17",

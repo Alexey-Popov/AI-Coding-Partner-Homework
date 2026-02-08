@@ -74,6 +74,8 @@ export class CsvImportService {
                 customer_name: row['customer_name'],
                 subject: row['subject'],
                 description: row['description'],
+                category: row['category'],
+                priority: row['priority'],
                 tags: tags.length > 0 ? tags : undefined,
                 metadata: {
                     source: row['source'],

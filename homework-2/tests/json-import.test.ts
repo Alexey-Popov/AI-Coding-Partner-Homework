@@ -28,6 +28,8 @@ describe('JsonImportService', () => {
                 customer_name: 'Test User',
                 subject: 'Test subject',
                 description: 'Test description for the ticket',
+                category: 'technical_issue',
+                priority: 'medium',
                 metadata: {
                     source: 'web_form',
                     browser: 'Chrome',
@@ -50,8 +52,8 @@ describe('JsonImportService', () => {
                     customer_email: 'test@example.com',
                     customer_name: 'Test User',
                     subject: 'Test subject',
-                    description: 'Test description for the ticket',
-                    metadata: {
+                    description: 'Test description for the ticket',                    category: 'technical_issue',
+                    priority: 'medium',                    metadata: {
                         source: 'web_form',
                         browser: 'Chrome',
                         device_type: 'desktop',

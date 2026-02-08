@@ -45,8 +45,8 @@ describe('CSV Import', () => {
     });
 
     it('should parse CSV with empty optional fields', async () => {
-        const csvContent = `customer_id,customer_email,customer_name,subject,description,tags,source,browser,device_type
-cust-100,test@example.com,Test User,Test subject,This is a valid test description with enough characters.,,web_form,,desktop`;
+        const csvContent = `customer_id,customer_email,customer_name,subject,description,tags,source,browser,device_type,category,priority
+cust-100,test@example.com,Test User,Test subject,This is a valid test description with enough characters.,,web_form,,desktop,technical_issue,medium`;
 
         const tmpPath = path.join(__dirname, 'fixtures', 'temp_test.csv');
         fs.writeFileSync(tmpPath, csvContent);
@@ -62,8 +62,8 @@ cust-100,test@example.com,Test User,Test subject,This is a valid test descriptio
     });
 
     it('should validate email format in CSV records', async () => {
-        const csvContent = `customer_id,customer_email,customer_name,subject,description,tags,source,browser,device_type
-cust-100,invalid-email,Test User,Test subject,This description has enough characters to pass validation.,test,web_form,Chrome,desktop`;
+        const csvContent = `customer_id,customer_email,customer_name,subject,description,tags,source,browser,device_type,category,priority
+cust-100,invalid-email,Test User,Test subject,This description has enough characters to pass validation.,test,web_form,Chrome,desktop,technical_issue,low`;
 
         const tmpPath = path.join(__dirname, 'fixtures', 'temp_invalid_email.csv');
         fs.writeFileSync(tmpPath, csvContent);
@@ -79,8 +79,8 @@ cust-100,invalid-email,Test User,Test subject,This description has enough charac
     });
 
     it('should handle CSV with special characters and quotes', async () => {
-        const csvContent = `customer_id,customer_email,customer_name,subject,description,tags,source,browser,device_type
-cust-100,test@example.com,"User, Test","Subject with ""quotes""","Description with special chars: !@#$%^&*() and enough length to validate.",test,web_form,Chrome,desktop`;
+        const csvContent = `customer_id,customer_email,customer_name,subject,description,tags,source,browser,device_type,category,priority
+cust-100,test@example.com,"User, Test","Subject with ""quotes""","Description with special chars: !@#$%^&*() and enough length to validate.",test,web_form,Chrome,desktop,technical_issue,medium`;
 
         const tmpPath = path.join(__dirname, 'fixtures', 'temp_special_chars.csv');
         fs.writeFileSync(tmpPath, csvContent);

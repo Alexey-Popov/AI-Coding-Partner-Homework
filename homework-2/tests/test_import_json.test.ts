@@ -57,6 +57,8 @@ describe('JSON Import', () => {
                 customer_name: 'Valid User',
                 subject: 'Valid ticket',
                 description: 'This is a valid ticket description with enough characters.',
+                category: 'technical_issue',
+                priority: 'medium',
                 tags: ['test'],
                 metadata: {
                     source: 'web_form',
@@ -70,6 +72,8 @@ describe('JSON Import', () => {
                 customer_name: 'Invalid User',
                 subject: 'Invalid ticket',
                 description: 'This ticket has an invalid email address.',
+                category: 'technical_issue',
+                priority: 'low',
                 tags: ['test'],
                 metadata: {
                     source: 'api',

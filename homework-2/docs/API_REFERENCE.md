@@ -42,7 +42,7 @@ Complete reference for the Customer Support Ticket Management API.
 
 ### Create Ticket
 
-Creates a new support ticket with automatic category and priority classification.
+Creates a new support ticket. Category and priority must be manually specified - automatic classification is not performed during creation.
 
 **HTTP Method:** `POST`
 
@@ -61,8 +61,8 @@ Content-Type: application/json
     "customer_name": "string (required)",
     "subject": "string (required, 1-200 characters)",
     "description": "string (required, 10-2000 characters)",
-    "category": "account_access | technical_issue | billing_question | feature_request | bug_report | other (optional)",
-    "priority": "urgent | high | medium | low (optional)",
+    "category": "account_access | technical_issue | billing_question | feature_request | bug_report | other (REQUIRED)",
+    "priority": "urgent | high | medium | low (REQUIRED)",
     "metadata": {
         "source": "web_form | email | api | chat | phone (required)",
         "browser": "string (optional)",
@@ -72,17 +72,22 @@ Content-Type: application/json
 ```
 
 **Classification Behavior:**
-- **Automatic Classification (default):** If `category` and `priority` are NOT provided, the system automatically classifies the ticket based on the subject and description content. The response will include classification metadata (confidence, reasoning, keywords).
-- **Manual Override:** If BOTH `category` and `priority` are provided, the system uses those values instead of automatic classification. The ticket's `classification_source` will be set to `"manual"`.
-- **Partial Override:** If only one of `category` or `priority` is provided, automatic classification is used for both fields.
+- **Manual Classification (REQUIRED):** Both `category` and `priority` MUST be provided when creating a ticket. These are required fields for all ticket creation methods (single ticket API, bulk import).
+- **Automatic Classification:** NOT performed during ticket creation. To automatically classify or re-classify a ticket based on its content, use the separate `POST /tickets/:id/auto-classify` endpoint after the ticket has been created.
 
-**Note:** `tags` and `assigned_to` are system-generated fields that cannot be set during creation. They start as empty array `[]` and `null` respectively.
+**System-Controlled Fields:**
+- `id` - Auto-generated UUID
+- `status` - Always starts as `"new"`
+- `created_at`, `updated_at` - Auto-generated timestamps
+- `resolved_at` - Initially `null`
+- `tags` - Cannot be set during creation (starts as `[]`), can be updated later
+- `assigned_to` - Cannot be set during creation (starts as `null`), can be updated later
+- `classification_source` - Always `"manual"` for tickets created via POST /tickets
 
 **Success Response:**
 
 **Status Code:** `201 Created`
 
-**With Automatic Classification:**
 ```json
 {
     "success": true,
@@ -101,40 +106,6 @@ Content-Type: application/json
         "resolved_at": null,
         "assigned_to": null,
         "tags": [],
-        "classification_source": "automatic",
-        "metadata": {
-            "source": "web_form",
-            "browser": "Chrome 121",
-            "device_type": "desktop"
-        }
-    },
-    "classification": {
-        "confidence": 0.95,
-        "reasoning": "Keywords 'locked out', 'login' indicate account access issue.",
-        "keywords": ["locked", "login", "urgent", "account"]
-    }
-}
-```
-
-**With Manual Override:**
-```json
-{
-    "success": true,
-    "data": {
-        "id": "550e8400-e29b-41d4-a716-446655440001",
-        "customer_id": "cust-002",
-        "customer_email": "jane.smith@example.com",
-        "customer_name": "Jane Smith",
-        "subject": "Feature suggestion",
-        "description": "It would be great to have dark mode.",
-        "category": "billing_question",
-        "priority": "urgent",
-        "status": "new",
-        "created_at": "2026-02-08T10:35:00.000Z",
-        "updated_at": "2026-02-08T10:35:00.000Z",
-        "resolved_at": null,
-        "assigned_to": null,
-        "tags": [],
         "classification_source": "manual",
         "metadata": {
             "source": "web_form",
@@ -145,7 +116,7 @@ Content-Type: application/json
 }
 ```
 
-**Note:** Manual override response does NOT include the `classification` object since classification was not performed.
+**Note:** All tickets created via POST /tickets have `classification_source: "manual"` since category and priority are user-provided required fields.
 
 **Error Responses:**
 
@@ -189,7 +160,8 @@ curl -X POST http://localhost:3000/tickets \
     "customer_name": "John Doe",
     "subject": "Cannot access my account",
     "description": "I have been locked out of my account after multiple failed login attempts. Need urgent help.",
-    "tags": ["login", "urgent"],
+    "category": "account_access",
+    "priority": "urgent",
     "metadata": {
       "source": "web_form",
       "browser": "Chrome 121",
@@ -202,7 +174,7 @@ curl -X POST http://localhost:3000/tickets \
 
 ### Import Tickets
 
-Bulk import tickets from CSV, JSON, or XML files. All imported tickets are automatically classified.
+Bulk import tickets from CSV, JSON, or XML files. Category and priority must be specified for each ticket in the import file - automatic classification is not performed during import.
 
 **HTTP Method:** `POST`
 
@@ -221,8 +193,8 @@ Form data with a single file field:
 
 **CSV Format Example:**
 ```csv
-customer_id,customer_email,customer_name,subject,description,tags,source,browser,device_type
-cust-001,alice@example.com,Alice Johnson,Login issue,Cannot login to my account,login;urgent,web_form,Chrome,desktop
+customer_id,customer_email,customer_name,subject,description,category,priority,tags,source,browser,device_type
+cust-001,alice@example.com,Alice Johnson,Login issue,Cannot login to my account,account_access,high,login;urgent,web_form,Chrome,desktop
 ```
 
 **JSON Format Example:**
@@ -234,6 +206,8 @@ cust-001,alice@example.com,Alice Johnson,Login issue,Cannot login to my account,
         "customer_name": "Alice Johnson",
         "subject": "Login issue",
         "description": "Cannot login to my account",
+        "category": "account_access",
+        "priority": "high",
         "tags": ["login", "urgent"],
         "metadata": {
             "source": "web_form",
@@ -254,6 +228,8 @@ cust-001,alice@example.com,Alice Johnson,Login issue,Cannot login to my account,
         <customer_name>Alice Johnson</customer_name>
         <subject>Login issue</subject>
         <description>Cannot login to my account</description>
+        <category>account_access</category>
+        <priority>high</priority>
         <tags>login,urgent</tags>
         <metadata>
             <source>web_form</source>
@@ -263,6 +239,22 @@ cust-001,alice@example.com,Alice Johnson,Login issue,Cannot login to my account,
     </ticket>
 </tickets>
 ```
+
+**Important:** `category` and `priority` are **required fields** in all import formats (CSV, JSON, XML). Each ticket must include valid category and priority values. Tickets missing these fields will fail validation and be listed in the errors array.
+
+**Valid Categories:**
+- `account_access` - Login, password, authentication issues
+- `technical_issue` - Bugs, errors, system problems
+- `billing_question` - Payments, refunds, invoices
+- `feature_request` - New features, enhancements
+- `bug_report` - Detailed bug reports with reproduction steps
+- `other` - General inquiries
+
+**Valid Priorities:**
+- `urgent` - Critical issues requiring immediate attention
+- `high` - Important issues affecting functionality
+- `medium` - Standard requests and issues
+- `low` - Minor issues, suggestions, nice-to-haves
 
 **Success Response:**
 
@@ -738,7 +730,13 @@ curl -X DELETE http://localhost:3000/tickets/550e8400-e29b-41d4-a716-44665544000
 
 ### Auto-Classify Ticket
 
-Re-run automatic classification on an existing ticket. This endpoint analyzes the ticket's subject and description to determine the most appropriate category and priority, overriding any previous classification (manual or automatic).
+Automatically classify an existing ticket based on its content. This endpoint uses AI/ML analysis of the ticket's subject and description to determine the most appropriate category and priority, **overriding the current values**.
+
+**When to Use:**
+- Since ticket creation requires manual category/priority, use this endpoint to get AI-powered classification suggestions
+- Re-classify tickets after significant description updates
+- Validate or correct manual classifications
+- Batch re-classify tickets when classification rules are updated
 
 **HTTP Method:** `POST`
 
@@ -835,12 +833,14 @@ curl -X POST http://localhost:3000/tickets/550e8400-e29b-41d4-a716-446655440000/
   | jq '.classification'
 ```
 
-**Use Cases:**
+**Workflow Example:**
 
-- Re-classify tickets that were manually categorized incorrectly
-- Update classification after ticket description is edited
-- Batch re-classification of old tickets when classification rules change
-- Quality assurance checks on manual classifications
+1. Create ticket with manual category/priority (required)
+2. Optionally call `/tickets/:id/auto-classify` to get AI suggestions
+3. Compare AI classification with manual classification
+4. The auto-classify endpoint updates the ticket automatically, or you can choose to keep manual values
+
+**Note:** The auto-classify endpoint immediately updates the ticket. If you want to preview the classification without applying it, you should implement that logic separately or backup the current values before calling this endpoint.
 
 ---
 
@@ -912,14 +912,14 @@ Complete ticket object structure:
 | `customer_name` | string | Yes | Customer's full name |
 | `subject` | string | Yes | Brief description (1-200 chars) |
 | `description` | string | Yes | Detailed description (10-2000 chars) |
-| `category` | enum | Auto | Auto-classified category |
-| `priority` | enum | Auto | Auto-assigned priority level |
+| `category` | enum | Yes | Ticket category |
+| `priority` | enum | Yes | Priority level |
 | `status` | enum | Auto | Current ticket status (starts as "new") |
 | `created_at` | datetime | Auto | Ticket creation timestamp |
 | `updated_at` | datetime | Auto | Last update timestamp |
 | `resolved_at` | datetime | Auto | Resolution timestamp (null until resolved) |
-| `assigned_to` | string | No | Agent/team identifier |
-| `tags` | array | No | Custom tags for categorization |
+| `assigned_to` | string | No | Agent/team identifier (cannot be set during creation) |
+| `tags` | array | No | Custom tags (cannot be set during creation) |
 | `metadata` | object | Yes | Additional context information |
 
 ### Metadata Schema

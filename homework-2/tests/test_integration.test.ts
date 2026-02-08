@@ -17,6 +17,8 @@ describe('Integration Tests - End-to-End Workflows', () => {
                 customer_name: 'Lifecycle Test',
                 subject: 'Test complete workflow',
                 description: 'This ticket will go through the complete lifecycle from creation to resolution.',
+                category: 'technical_issue',
+                priority: 'medium',
                 metadata: {
                     source: 'web_form',
                     browser: 'Chrome',
@@ -84,6 +86,8 @@ describe('Integration Tests - End-to-End Workflows', () => {
                     customer_name: `User ${i}`,
                     subject: `Concurrent ticket ${i}`,
                     description: `This is a concurrent test ticket number ${i} with sufficient description length.`,
+                    category: 'technical_issue',
+                    priority: 'medium',
                     metadata: {
                         source: 'api',
                         browser: null,
@@ -113,6 +117,8 @@ describe('Integration Tests - End-to-End Workflows', () => {
             customer_name: 'Urgent User',
             subject: 'Cannot login - critical issue',
             description: 'Cannot access account. This is urgent and blocking all work.',
+            category: 'account_access',
+            priority: 'urgent',
             metadata: { source: 'web_form', browser: 'Chrome', device_type: 'desktop' }
         });
 
@@ -122,6 +128,8 @@ describe('Integration Tests - End-to-End Workflows', () => {
             customer_name: 'Feature User',
             subject: 'Minor feature suggestion',
             description: 'Small cosmetic improvement suggestion for the UI layout.',
+            category: 'feature_request',
+            priority: 'low',
             metadata: { source: 'api', browser: null, device_type: 'mobile' }
         });
 
@@ -131,6 +139,8 @@ describe('Integration Tests - End-to-End Workflows', () => {
             customer_name: 'Billing User',
             subject: 'Critical billing error',
             description: 'Double charged urgently need refund. This is critical for our business.',
+            category: 'billing_question',
+            priority: 'urgent',
             metadata: { source: 'email', browser: null, device_type: 'desktop' }
         });
 
@@ -159,6 +169,8 @@ describe('Integration Tests - End-to-End Workflows', () => {
                 customer_name: 'Integrity Test',
                 subject: 'Data integrity test ticket',
                 description: 'This ticket will be updated multiple times to test data integrity.',
+                category: 'technical_issue',
+                priority: 'high',
                 metadata: {
                     source: 'web_form',
                     browser: 'Firefox',

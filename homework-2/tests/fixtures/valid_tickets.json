@@ -5,7 +5,12 @@
         "customer_name": "John Doe",
         "subject": "Payment not processing",
         "description": "My payment keeps failing when I try to upgrade to premium plan. Getting error code 4001.",
-        "tags": ["payment", "upgrade"],
+        "category": "billing_question",
+        "priority": "high",
+        "tags": [
+            "payment",
+            "upgrade"
+        ],
         "metadata": {
             "source": "web_form",
             "browser": "Chrome 120",
@@ -18,7 +23,12 @@
         "customer_name": "Jane Smith",
         "subject": "Account deletion request",
         "description": "I want to delete my account and all associated data per GDPR regulations.",
-        "tags": ["account", "gdpr"],
+        "category": "account_access",
+        "priority": "medium",
+        "tags": [
+            "account",
+            "gdpr"
+        ],
         "metadata": {
             "source": "email",
             "browser": null,
@@ -31,7 +41,13 @@
         "customer_name": "Mike Johnson",
         "subject": "Production server down - URGENT",
         "description": "Our production server is completely down. This is blocking all our operations. Need immediate assistance!",
-        "tags": ["production", "critical", "server"],
+        "category": "technical_issue",
+        "priority": "urgent",
+        "tags": [
+            "production",
+            "critical",
+            "server"
+        ],
         "metadata": {
             "source": "chat",
             "browser": "Safari 17",
@@ -44,7 +60,13 @@
         "customer_name": "Sarah Wilson",
         "subject": "Add export to PDF feature",
         "description": "It would be nice to have the ability to export reports to PDF format.",
-        "tags": ["feature", "export", "pdf"],
+        "category": "feature_request",
+        "priority": "low",
+        "tags": [
+            "feature",
+            "export",
+            "pdf"
+        ],
         "metadata": {
             "source": "api",
             "browser": null,

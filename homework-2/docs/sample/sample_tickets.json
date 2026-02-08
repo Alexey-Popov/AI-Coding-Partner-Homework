@@ -5,12 +5,19 @@
     "customer_name": "John Developer",
     "subject": "Payment processing failed - need urgent help",
     "description": "My payment for the pro plan upgrade keeps failing with error code PAY-5001. I have tried three different credit cards and all show the same error. My account is about to be downgraded and I need this resolved immediately as it affects my business operations.",
-    "tags": ["payment", "urgent", "billing", "upgrade"],
+    "tags": [
+      "payment",
+      "urgent",
+      "billing",
+      "upgrade"
+    ],
     "metadata": {
       "source": "web_form",
       "browser": "Chrome 120",
       "device_type": "desktop"
-    }
+    },
+    "category": "billing_question",
+    "priority": "urgent"
   },
   {
     "customer_id": "cust-102",
@@ -18,12 +25,19 @@
     "customer_name": "Jane Manager",
     "subject": "Request to delete all company data per GDPR",
     "description": "Our company is migrating to a different solution. Per GDPR Article 17 we request complete deletion of all our account data including all users team members documents and billing information. Please confirm deletion and provide a deletion certificate.",
-    "tags": ["gdpr", "privacy", "data-deletion", "account"],
+    "tags": [
+      "gdpr",
+      "privacy",
+      "data-deletion",
+      "account"
+    ],
     "metadata": {
       "source": "email",
       "browser": null,
       "device_type": "mobile"
-    }
+    },
+    "category": "other",
+    "priority": "high"
   },
   {
     "customer_id": "cust-103",
@@ -31,12 +45,20 @@
     "customer_name": "Mike Operations",
     "subject": "CRITICAL: Production database backup failed",
     "description": "Our production database automated backup has been failing for the past 3 consecutive nights. Error logs indicate insufficient storage space on backup volume. This is a critical data integrity and disaster recovery issue that needs immediate attention from your infrastructure team.",
-    "tags": ["critical", "database", "backup", "production", "urgent"],
+    "tags": [
+      "critical",
+      "database",
+      "backup",
+      "production",
+      "urgent"
+    ],
     "metadata": {
       "source": "chat",
       "browser": "Safari 17",
       "device_type": "desktop"
-    }
+    },
+    "category": "other",
+    "priority": "medium"
   },
   {
     "customer_id": "cust-104",
@@ -44,12 +66,19 @@
     "customer_name": "Sarah Designer",
     "subject": "Add dark mode theme option",
     "description": "It would be wonderful if the application had a dark mode theme option. As someone who works late nights this would significantly reduce eye strain and improve the user experience. I know many other users would appreciate this feature as well.",
-    "tags": ["feature", "dark-mode", "ui", "enhancement"],
+    "tags": [
+      "feature",
+      "dark-mode",
+      "ui",
+      "enhancement"
+    ],
     "metadata": {
       "source": "api",
       "browser": null,
       "device_type": "desktop"
-    }
+    },
+    "category": "other",
+    "priority": "medium"
   },
   {
     "customer_id": "cust-105",
@@ -57,12 +86,19 @@
     "customer_name": "Dave QA Engineer",
     "subject": "Bug: Dashboard crashes when filtering by date range",
     "description": "Reproducible bug in the analytics dashboard. Steps to reproduce: 1. Navigate to Analytics Dashboard 2. Click on Date Range filter 3. Select a range longer than 90 days 4. Application crashes with white screen. Console shows: TypeError: Cannot read property 'map' of undefined. This happens consistently on Chrome Firefox and Safari.",
-    "tags": ["bug", "crash", "dashboard", "analytics"],
+    "tags": [
+      "bug",
+      "crash",
+      "dashboard",
+      "analytics"
+    ],
     "metadata": {
       "source": "web_form",
       "browser": "Chrome 121",
       "device_type": "desktop"
-    }
+    },
+    "category": "technical_issue",
+    "priority": "high"
   },
   {
     "customer_id": "cust-106",
@@ -70,12 +106,20 @@
     "customer_name": "Emily Support",
     "subject": "Cannot access admin panel - getting 403 forbidden",
     "description": "Since yesterday I cannot access the admin panel. When I navigate to /admin I get a 403 Forbidden error. My role is set to Administrator and I have not changed any permissions. Other admins on my team are experiencing the same issue. This is blocking our ability to manage user accounts.",
-    "tags": ["admin", "access", "403", "permissions", "urgent"],
+    "tags": [
+      "admin",
+      "access",
+      "403",
+      "permissions",
+      "urgent"
+    ],
     "metadata": {
       "source": "email",
       "browser": "Firefox 120",
       "device_type": "desktop"
-    }
+    },
+    "category": "other",
+    "priority": "medium"
   },
   {
     "customer_id": "cust-107",
@@ -83,12 +127,19 @@
     "customer_name": "Robert Security",
     "subject": "Security: API keys exposed in browser developer tools",
     "description": "CRITICAL SECURITY ISSUE: I discovered that API keys are being exposed in the browser's network tab when making API calls. Anyone with basic knowledge of browser dev tools can extract these keys. This needs to be fixed immediately by implementing proper token-based authentication with short-lived tokens.",
-    "tags": ["security", "critical", "api", "vulnerability"],
+    "tags": [
+      "security",
+      "critical",
+      "api",
+      "vulnerability"
+    ],
     "metadata": {
       "source": "chat",
       "browser": "Chrome DevTools",
       "device_type": "desktop"
-    }
+    },
+    "category": "other",
+    "priority": "medium"
   },
   {
     "customer_id": "cust-108",
@@ -96,12 +147,19 @@
     "customer_name": "Lisa Content",
     "subject": "Feature request: Bulk import users from CSV",
     "description": "We need to onboard 500+ users to our workspace. Currently the only option is to manually invite each user one by one which is not practical. Please add functionality to bulk import users from a CSV file with columns for email name role and team assignment.",
-    "tags": ["feature", "bulk-import", "csv", "users"],
+    "tags": [
+      "feature",
+      "bulk-import",
+      "csv",
+      "users"
+    ],
     "metadata": {
       "source": "api",
       "browser": null,
       "device_type": "desktop"
-    }
+    },
+    "category": "feature_request",
+    "priority": "low"
   },
   {
     "customer_id": "cust-109",
@@ -109,12 +167,19 @@
     "customer_name": "Tom Finance",
     "subject": "Invoice INV-2024-0234 has incorrect tax calculation",
     "description": "The invoice for our January subscription shows an incorrect tax amount. According to our records the tax should be $45.00 (15% of $300) but the invoice shows $60.00. We need a corrected invoice for our accounting records and possible refund of the overcharged amount.",
-    "tags": ["billing", "invoice", "tax", "refund"],
+    "tags": [
+      "billing",
+      "invoice",
+      "tax",
+      "refund"
+    ],
     "metadata": {
       "source": "email",
       "browser": "Outlook",
       "device_type": "desktop"
-    }
+    },
+    "category": "other",
+    "priority": "medium"
   },
   {
     "customer_id": "cust-110",
@@ -122,12 +187,19 @@
     "customer_name": "Anna Mobile Dev",
     "subject": "Mobile app not syncing data with web version",
     "description": "Changes made in the mobile app are not syncing to the web dashboard. For example I created 5 new projects on mobile yesterday but they are not visible on the web version today. Force refresh does not help. The sync status always shows as synced but clearly data is not being synchronized properly.",
-    "tags": ["mobile", "sync", "bug", "data"],
+    "tags": [
+      "mobile",
+      "sync",
+      "bug",
+      "data"
+    ],
     "metadata": {
       "source": "web_form",
       "browser": "Mobile Safari",
       "device_type": "mobile"
-    }
+    },
+    "category": "other",
+    "priority": "medium"
   },
   {
     "customer_id": "cust-111",
@@ -135,12 +207,19 @@
     "customer_name": "Peter Integration",
     "subject": "Webhook payload format changed without notice",
     "description": "Our webhook integration broke this morning because the payload format has changed. The user.created event now sends user_email instead of email field. This breaking change was not documented in your changelog and has caused issues in our production system. Please maintain backward compatibility or provide advance notice of breaking changes.",
-    "tags": ["webhook", "api", "integration", "breaking-change"],
+    "tags": [
+      "webhook",
+      "api",
+      "integration",
+      "breaking-change"
+    ],
     "metadata": {
       "source": "chat",
       "browser": "Postman",
       "device_type": "desktop"
-    }
+    },
+    "category": "other",
+    "priority": "medium"
   },
   {
     "customer_id": "cust-112",
@@ -148,12 +227,20 @@
     "customer_name": "Mary UX Designer",
     "subject": "Minor UI issue: Buttons overlap on small screens",
     "description": "On mobile devices with screen width less than 375px the action buttons in the toolbar overlap making them difficult to tap. This is a minor cosmetic issue but does affect mobile user experience. Suggest using a responsive flex layout or moving buttons to a dropdown menu on small screens.",
-    "tags": ["ui", "mobile", "responsive", "minor", "cosmetic"],
+    "tags": [
+      "ui",
+      "mobile",
+      "responsive",
+      "minor",
+      "cosmetic"
+    ],
     "metadata": {
       "source": "web_form",
       "browser": "Chrome Mobile",
       "device_type": "mobile"
-    }
+    },
+    "category": "other",
+    "priority": "medium"
   },
   {
     "customer_id": "cust-113",
@@ -161,12 +248,19 @@
     "customer_name": "Chris DevOps",
     "subject": "API rate limit increased needed for enterprise",
     "description": "Our enterprise application is being throttled by the current 100 requests per minute rate limit. We regularly exceed this limit during business hours causing failures in our production system. As an enterprise customer we request an increase to 1000 requests per minute or a custom rate limit that matches our usage patterns.",
-    "tags": ["api", "rate-limit", "enterprise", "technical"],
+    "tags": [
+      "api",
+      "rate-limit",
+      "enterprise",
+      "technical"
+    ],
     "metadata": {
       "source": "email",
       "browser": null,
       "device_type": "desktop"
-    }
+    },
+    "category": "other",
+    "priority": "medium"
   },
   {
     "customer_id": "cust-114",
@@ -174,12 +268,20 @@
     "customer_name": "Nina Analytics",
     "subject": "CSV export is truncating data after row 1000",
     "description": "When exporting report data to CSV the file only contains the first 1000 rows even though the query returns 5000 results. This makes the export feature unusable for large datasets. Please either remove the row limit or implement pagination/chunking for large exports.",
-    "tags": ["bug", "export", "csv", "data", "technical"],
+    "tags": [
+      "bug",
+      "export",
+      "csv",
+      "data",
+      "technical"
+    ],
     "metadata": {
       "source": "api",
       "browser": "Chrome 120",
       "device_type": "desktop"
-    }
+    },
+    "category": "other",
+    "priority": "medium"
   },
   {
     "customer_id": "cust-115",
@@ -187,12 +289,20 @@
     "customer_name": "Alex Backend",
     "subject": "Feature: Support for custom domain with SSL",
     "description": "Request to add support for custom domains with automatic SSL certificate provisioning. We want to host the application at app.ourcompany.com instead of the default subdomain. This is important for our branding and professional appearance. Ideally this would include automatic SSL certificate renewal via Let's Encrypt.",
-    "tags": ["feature", "domain", "ssl", "branding", "enterprise"],
+    "tags": [
+      "feature",
+      "domain",
+      "ssl",
+      "branding",
+      "enterprise"
+    ],
     "metadata": {
       "source": "chat",
       "browser": "Chrome 121",
       "device_type": "desktop"
-    }
+    },
+    "category": "feature_request",
+    "priority": "low"
   },
   {
     "customer_id": "cust-116",
@@ -200,12 +310,19 @@
     "customer_name": "Rachel Project Manager",
     "subject": "Unable to delete team workspace",
     "description": "I am trying to delete our old team workspace but the delete button does nothing when clicked. No error message is shown. The workspace still appears in the list after refreshing. I have confirmed I have admin permissions and followed all the deletion steps in your documentation.",
-    "tags": ["bug", "workspace", "delete", "technical"],
+    "tags": [
+      "bug",
+      "workspace",
+      "delete",
+      "technical"
+    ],
     "metadata": {
       "source": "web_form",
       "browser": "Safari 17",
       "device_type": "desktop"
-    }
+    },
+    "category": "other",
+    "priority": "high"
   },
   {
     "customer_id": "cust-117",
@@ -213,12 +330,19 @@
     "customer_name": "Kevin Sales",
     "subject": "Request detailed usage analytics and reporting",
     "description": "We need more detailed usage analytics for our team including per-user activity logs API usage statistics and feature adoption metrics. Current dashboard only shows basic aggregate numbers. This data is required for our internal reporting and ROI analysis.",
-    "tags": ["feature", "analytics", "reporting", "usage"],
+    "tags": [
+      "feature",
+      "analytics",
+      "reporting",
+      "usage"
+    ],
     "metadata": {
       "source": "email",
       "browser": null,
       "device_type": "desktop"
-    }
+    },
+    "category": "feature_request",
+    "priority": "low"
   },
   {
     "customer_id": "cust-118",
@@ -226,12 +350,19 @@
     "customer_name": "Olivia Customer Success",
     "subject": "Search function returns no results",
     "description": "The global search feature is completely broken. No matter what I search for I get zero results even for records I know exist. Tried searching by name email ID and various keywords. This started happening after yesterday's maintenance window. Search was working fine before that.",
-    "tags": ["bug", "search", "technical", "urgent"],
+    "tags": [
+      "bug",
+      "search",
+      "technical",
+      "urgent"
+    ],
     "metadata": {
       "source": "chat",
       "browser": "Firefox 121",
       "device_type": "desktop"
-    }
+    },
+    "category": "other",
+    "priority": "medium"
   },
   {
     "customer_id": "cust-119",
@@ -239,12 +370,20 @@
     "customer_name": "Marcus Architect",
     "subject": "Need API documentation for SSO integration",
     "description": "We are planning to implement Single Sign-On (SSO) using SAML 2.0 for our enterprise deployment. However I cannot find any documentation on your SSO API endpoints or configuration requirements. Please provide detailed technical documentation for SSO implementation or advise if this is available as a separate enterprise add-on.",
-    "tags": ["documentation", "sso", "saml", "enterprise", "integration"],
+    "tags": [
+      "documentation",
+      "sso",
+      "saml",
+      "enterprise",
+      "integration"
+    ],
     "metadata": {
       "source": "api",
       "browser": "Chrome 120",
       "device_type": "desktop"
-    }
+    },
+    "category": "other",
+    "priority": "medium"
   },
   {
     "customer_id": "cust-120",
@@ -252,11 +391,19 @@
     "customer_name": "Sophie Tester",
     "subject": "Password reset link expires too quickly",
     "description": "The password reset link expires after only 15 minutes which is too short. Often by the time I receive the email and click the link it has already expired. Please increase the expiration time to at least 1 hour or ideally 24 hours to match industry standards. This is causing frustration for users who are locked out of their accounts.",
-    "tags": ["bug", "password", "reset", "authentication", "ux"],
+    "tags": [
+      "bug",
+      "password",
+      "reset",
+      "authentication",
+      "ux"
+    ],
     "metadata": {
       "source": "web_form",
       "browser": "Chrome 119",
       "device_type": "mobile"
-    }
+    },
+    "category": "account_access",
+    "priority": "high"
   }
 ]

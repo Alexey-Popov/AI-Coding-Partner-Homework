@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <tickets>
   <ticket>
     <customer_id>cust_001</customer_id>
@@ -6,7 +6,7 @@
     <customer_name>John Doe</customer_name>
     <subject>Login issue</subject>
     <description>Cannot access my account after password reset</description>
-    <metadata>
+    <category>technical_issue</category><priority>medium</priority><metadata>
       <source>web_form</source>
       <browser>Chrome 120</browser>
       <device_type>desktop</device_type>
@@ -18,7 +18,7 @@
     <customer_name>Jane Smith</customer_name>
     <subject>Payment failed</subject>
     <description>Need refund for duplicate charge</description>
-    <metadata>
+    <category>technical_issue</category><priority>medium</priority><metadata>
       <source>email</source>
       <browser>Firefox 119</browser>
       <device_type>mobile</device_type>
@@ -30,7 +30,7 @@
     <customer_name>Bob Johnson</customer_name>
     <subject>Feature request</subject>
     <description>Would like to add dark mode to the app</description>
-    <metadata>
+    <category>technical_issue</category><priority>medium</priority><metadata>
       <source>api</source>
       <browser>Safari 17</browser>
       <device_type>tablet</device_type>

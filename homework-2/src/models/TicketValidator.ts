@@ -66,9 +66,8 @@ export const CreateTicketSchema = z.object({
         .string()
         .min(10, 'Description must be at least 10 characters')
         .max(2000, 'Description must not exceed 2000 characters'),
-    // Optional: Allow manual classification override
-    category: z.enum(['account_access', 'technical_issue', 'billing_question', 'feature_request', 'bug_report', 'other']).optional(),
-    priority: z.enum(['urgent', 'high', 'medium', 'low']).optional(),
+    category: TicketCategorySchema,
+    priority: TicketPrioritySchema,
     metadata: TicketMetadataSchema,
 });
 

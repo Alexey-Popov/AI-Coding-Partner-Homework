@@ -9,7 +9,9 @@
       "source": "web_form",
       "browser": "Chrome 120",
       "device_type": "desktop"
-    }
+    },
+    "category": "technical_issue",
+    "priority": "medium"
   },
   {
     "customer_id": "cust_002",
@@ -21,6 +23,8 @@
       "source": "email",
       "browser": "Firefox 119",
       "device_type": "mobile"
-    }
+    },
+    "category": "technical_issue",
+    "priority": "medium"
   }
 ]

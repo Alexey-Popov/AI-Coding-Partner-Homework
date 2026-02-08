@@ -17,7 +17,6 @@ const ticketController = new TicketController(ticketRepository, classificationSe
 
 const importController = new ImportController(
     ticketRepository,
-    classificationService,
     new CsvImportService(),
     new JsonImportService(),
     new XmlImportService()

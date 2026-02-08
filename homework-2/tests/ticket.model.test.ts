@@ -7,6 +7,8 @@ describe('Ticket Model Validation', () => {
         customer_name: 'John Doe',
         subject: 'Login issue',
         description: 'Cannot access my account after password reset',
+        category: 'account_access' as const,
+        priority: 'high' as const,
         metadata: {
             source: 'web_form' as const,
             browser: 'Chrome 120',

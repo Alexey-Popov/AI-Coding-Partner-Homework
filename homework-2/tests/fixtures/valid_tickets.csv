@@ -1,7 +1,7 @@
-customer_id,customer_email,customer_name,subject,description,tags,source,browser,device_type
-cust-001,alice@example.com,Alice Johnson,Cannot login - 2FA problem,I am locked out and cannot access my account. 2FA code never arrives and sign in fails.,"login,2fa",web_form,Chrome,desktop
-cust-002,bob@example.com,Bob Smith,Billing: double charge on subscription,I was charged twice for my pro plan renewal. Please refund the duplicate charge.,"billing,refund",email,,mobile
-cust-003,carol@example.com,Carol Williams,App crashes with 500 error,The dashboard crashes and shows a 500 server error. Completely broken right now.,"crash,server",chat,Safari,tablet
-cust-004,dave@example.com,Dave Brown,Feature request: dark mode,It would be great to have a dark mode option. Nice to have when you have time.,feature,api,,desktop
-cust-005,erin@example.com,Erin Davis,Bug report: intermittent logout,I keep getting signed out randomly. Steps to reproduce: leave tab open ~10 min then it logs out.,bug,web_form,Firefox,desktop
-cust-006,frank@example.com,Frank Miller,Critical security vulnerability found,Found a major security issue that allows unauthorized access to user data. This is urgent!,"security,critical",email,Postman,desktop
+customer_id,customer_email,customer_name,subject,description,tags,source,browser,device_type,category,priority
+cust-001,alice@example.com,Alice Johnson,Cannot login - 2FA problem,I am locked out and cannot access my account. 2FA code never arrives and sign in fails.,"login,2fa",web_form,Chrome,desktop,account_access,high
+cust-002,bob@example.com,Bob Smith,Billing: double charge on subscription,I was charged twice for my pro plan renewal. Please refund the duplicate charge.,"billing,refund",email,,mobile,billing_question,high
+cust-003,carol@example.com,Carol Williams,App crashes with 500 error,The dashboard crashes and shows a 500 server error. Completely broken right now.,"crash,server",chat,Safari,tablet,technical_issue,urgent
+cust-004,dave@example.com,Dave Brown,Feature request: dark mode,It would be great to have a dark mode option. Nice to have when you have time.,feature,api,,desktop,feature_request,low
+cust-005,erin@example.com,Erin Davis,Bug report: intermittent logout,I keep getting signed out randomly. Steps to reproduce: leave tab open ~10 min then it logs out.,bug,web_form,Firefox,desktop,technical_issue,medium
+cust-006,frank@example.com,Frank Miller,Critical security vulnerability found,Found a major security issue that allows unauthorized access to user data. This is urgent!,"security,critical",email,Postman,desktop,technical_issue,medium
