@@ -1,9 +1,14 @@
 import { Response } from 'express';
 
-export function sendSuccess<T>(res: Response, data: T, statusCode = 200): void {
-    res.status(statusCode).json({
+export function sendSuccess<T>(
+    res: Response,
+    data: T,
+    additionalData?: Record<string, unknown>
+): void {
+    res.status(200).json({
         success: true,
         data,
+        ...additionalData,
     });
 }
 

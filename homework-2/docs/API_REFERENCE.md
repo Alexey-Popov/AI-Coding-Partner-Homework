@@ -12,19 +12,29 @@ Complete reference for the Customer Support Ticket Management API.
 
 ## Table of Contents
 
-- [Endpoints](#endpoints)
-  - [Create Ticket](#create-ticket)
-  - [Import Tickets](#import-tickets)
-  - [List Tickets](#list-tickets)
-  - [Get Ticket by ID](#get-ticket-by-id)
-  - [Update Ticket](#update-ticket)
-  - [Delete Ticket](#delete-ticket)
-  - [Health Check](#health-check)
-- [Data Models](#data-models)
-  - [Ticket Schema](#ticket-schema)
-  - [Metadata Schema](#metadata-schema)
-- [Error Handling](#error-handling)
-- [Pagination](#pagination)
+- [API Reference](#api-reference)
+  - [Table of Contents](#table-of-contents)
+  - [Endpoints](#endpoints)
+    - [Create Ticket](#create-ticket)
+    - [Import Tickets](#import-tickets)
+    - [List Tickets](#list-tickets)
+    - [Get Ticket by ID](#get-ticket-by-id)
+    - [Update Ticket](#update-ticket)
+    - [Delete Ticket](#delete-ticket)
+    - [Auto-Classify Ticket](#auto-classify-ticket)
+    - [Health Check](#health-check)
+  - [Data Models](#data-models)
+    - [Ticket Schema](#ticket-schema)
+    - [Metadata Schema](#metadata-schema)
+  - [Error Handling](#error-handling)
+    - [Standard Error Response](#standard-error-response)
+    - [HTTP Status Codes](#http-status-codes)
+    - [Validation Error Example](#validation-error-example)
+    - [JSON Parse Error](#json-parse-error)
+  - [Pagination](#pagination)
+  - [Rate Limiting](#rate-limiting)
+  - [Versioning](#versioning)
+  - [Support](#support)
 
 ---
 
@@ -723,6 +733,114 @@ Permanently delete a ticket from the system.
 ```bash
 curl -X DELETE http://localhost:3000/tickets/550e8400-e29b-41d4-a716-446655440000
 ```
+
+---
+
+### Auto-Classify Ticket
+
+Re-run automatic classification on an existing ticket. This endpoint analyzes the ticket's subject and description to determine the most appropriate category and priority, overriding any previous classification (manual or automatic).
+
+**HTTP Method:** `POST`
+
+**Path:** `/tickets/:id/auto-classify`
+
+**Path Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `id` | UUID | Unique ticket identifier |
+
+**Success Response:**
+
+**Status Code:** `200 OK`
+
+```json
+{
+    "success": true,
+    "data": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "customer_id": "cust-001",
+        "customer_email": "john.doe@example.com",
+        "customer_name": "John Doe",
+        "subject": "Cannot login to my account",
+        "description": "I am having trouble logging in. The system says my password is incorrect.",
+        "category": "account_access",
+        "priority": "high",
+        "status": "new",
+        "created_at": "2026-02-08T10:30:00.000Z",
+        "updated_at": "2026-02-08T11:45:00.000Z",
+        "resolved_at": null,
+        "assigned_to": null,
+        "tags": [],
+        "metadata": {
+            "source": "web_form",
+            "browser": "Chrome 121",
+            "device_type": "desktop"
+        },
+        "classification_source": "automatic"
+    },
+    "classification": {
+        "confidence": 0.9,
+        "reasoning": "Keywords indicate account access issue",
+        "keywords": ["login", "password", "account"]
+    }
+}
+```
+
+**Response Fields:**
+
+The `classification` object contains metadata about the auto-classification:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `confidence` | number | Classification confidence score (0-1) |
+| `reasoning` | string | Explanation of why this category/priority was chosen |
+| `keywords` | array | Keywords found that influenced the classification |
+
+**Error Responses:**
+
+**Status Code:** `400 Bad Request` (Invalid UUID)
+
+```json
+{
+    "success": false,
+    "error": "Invalid ticket ID format",
+    "details": {
+        "field": "id",
+        "message": "Must be a valid UUID"
+    }
+}
+```
+
+**Status Code:** `404 Not Found`
+
+```json
+{
+    "success": false,
+    "error": "Ticket not found",
+    "details": {
+        "id": "550e8400-e29b-41d4-a716-446655440000"
+    }
+}
+```
+
+**cURL Example:**
+
+```bash
+# Auto-classify an existing ticket
+curl -X POST http://localhost:3000/tickets/550e8400-e29b-41d4-a716-446655440000/auto-classify
+
+# Example with response
+curl -X POST http://localhost:3000/tickets/550e8400-e29b-41d4-a716-446655440000/auto-classify \
+  | jq '.classification'
+```
+
+**Use Cases:**
+
+- Re-classify tickets that were manually categorized incorrectly
+- Update classification after ticket description is edited
+- Batch re-classification of old tickets when classification rules change
+- Quality assurance checks on manual classifications
 
 ---
 

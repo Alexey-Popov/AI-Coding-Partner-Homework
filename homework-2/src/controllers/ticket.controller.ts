@@ -156,6 +156,51 @@ export class TicketController {
         }
     };
 
+    autoClassifyTicket = (req: Request, res: Response, next: NextFunction): void => {
+        try {
+            const { id } = req.params;
+
+            if (!id || !validateUUID(id, res)) {
+                return;
+            }
+
+            const existingTicket = this.repository.findById(id);
+
+            if (!existingTicket) {
+                sendNotFound(res, id);
+                return;
+            }
+
+            // Run auto-classification
+            const classification = this.classificationService.classify(
+                existingTicket.subject,
+                existingTicket.description
+            );
+
+            // Update ticket with new classification
+            const updatedTicket: Ticket = {
+                ...existingTicket,
+                category: classification.category,
+                priority: classification.priority,
+                classification_source: 'automatic',
+                updated_at: new Date(),
+            };
+
+            this.repository.update(id, updatedTicket);
+
+            // Return updated ticket with classification metadata
+            sendSuccess(res, updatedTicket, {
+                classification: {
+                    confidence: classification.confidence,
+                    reasoning: classification.reasoning,
+                    keywords: classification.keywords,
+                },
+            });
+        } catch (error) {
+            next(error);
+        }
+    };
+
     private buildNewTicket(ticketData: any, classification: any, now: Date): Ticket {
         return {
             id: uuidv4(),

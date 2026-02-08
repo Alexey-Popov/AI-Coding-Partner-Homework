@@ -273,4 +273,73 @@ describe('Ticket API Endpoints', () => {
             expect(getResponse.status).toBe(404);
         });
     });
+
+    describe('POST /tickets/:id/auto-classify', () => {
+        it('should auto-classify an existing ticket', async () => {
+            // Create a ticket with manual classification
+            const createResponse = await request(app).post('/tickets').send({
+                customer_id: 'cust-001',
+                customer_email: 'test@example.com',
+                customer_name: 'Test User',
+                subject: 'Cannot login to my account',
+                description: 'I am having trouble logging in. The system says my password is incorrect.',
+                category: 'other',
+                priority: 'low',
+                metadata: { source: 'web_form', browser: 'Chrome', device_type: 'desktop' }
+            });
+
+            const ticketId = createResponse.body.data.id;
+            expect(createResponse.body.data.classification_source).toBe('manual');
+            expect(createResponse.body.data.category).toBe('other');
+            expect(createResponse.body.data.priority).toBe('low');
+
+            // Auto-classify the ticket
+            const classifyResponse = await request(app)
+                .post(`/tickets/${ticketId}/auto-classify`)
+                .send();
+
+            expect(classifyResponse.status).toBe(200);
+            expect(classifyResponse.body.data.classification_source).toBe('automatic');
+            expect(classifyResponse.body.data.category).toBe('account_access');
+            expect(classifyResponse.body.data.priority).not.toBe('low');
+            expect(classifyResponse.body.classification).toBeDefined();
+            expect(classifyResponse.body.classification).toHaveProperty('confidence');
+            expect(classifyResponse.body.classification).toHaveProperty('reasoning');
+            expect(classifyResponse.body.classification).toHaveProperty('keywords');
+        });
+
+        it('should return 404 for non-existent ticket', async () => {
+            const response = await request(app)
+                .post('/tickets/550e8400-e29b-41d4-a716-446655440000/auto-classify')
+                .send();
+
+            expect(response.status).toBe(404);
+        });
+
+        it('should re-classify ticket even if already automatic', async () => {
+            // Create a ticket with automatic classification
+            const createResponse = await request(app).post('/tickets').send({
+                customer_id: 'cust-001',
+                customer_email: 'test@example.com',
+                customer_name: 'Test User',
+                subject: 'Server error 500',
+                description: 'The application crashes when I try to load the dashboard.',
+                metadata: { source: 'web_form', browser: 'Chrome', device_type: 'desktop' }
+            });
+
+            const ticketId = createResponse.body.data.id;
+            expect(createResponse.body.data.classification_source).toBe('automatic');
+            const originalCategory = createResponse.body.data.category;
+
+            // Re-run auto-classify
+            const classifyResponse = await request(app)
+                .post(`/tickets/${ticketId}/auto-classify`)
+                .send();
+
+            expect(classifyResponse.status).toBe(200);
+            expect(classifyResponse.body.data.classification_source).toBe('automatic');
+            expect(classifyResponse.body.data.category).toBe(originalCategory);
+            expect(classifyResponse.body.classification).toBeDefined();
+        });
+    });
 });

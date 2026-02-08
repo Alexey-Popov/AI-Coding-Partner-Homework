@@ -25,6 +25,7 @@ const importController = new ImportController(
 
 router.post('/', ticketController.createTicket);
 router.post('/import', upload.single('file'), importController.importTickets);
+router.post('/:id/auto-classify', ticketController.autoClassifyTicket);
 router.get('/', ticketController.getAllTickets);
 router.get('/:id', ticketController.getTicketById);
 router.put('/:id', ticketController.updateTicket);
