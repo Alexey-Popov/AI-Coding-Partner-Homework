@@ -1,0 +1,32 @@
+[
+  {
+    "id": "11111111-1111-1111-1111-111111111111",
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-67890",
+    "amount": 100.50,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-15T10:00:00Z",
+    "status": "completed"
+  },
+  {
+    "id": "22222222-2222-2222-2222-222222222222",
+    "fromAccount": "ACC-00001",
+    "toAccount": "ACC-12345",
+    "amount": 250.00,
+    "currency": "EUR",
+    "type": "deposit",
+    "timestamp": "2024-02-01T09:30:00Z",
+    "status": "completed"
+  },
+  {
+    "id": "33333333-3333-3333-3333-333333333333",
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-00001",
+    "amount": 75.25,
+    "currency": "GBP",
+    "type": "withdrawal",
+    "timestamp": "2024-02-10T14:45:00Z",
+    "status": "completed"
+  }
+]
