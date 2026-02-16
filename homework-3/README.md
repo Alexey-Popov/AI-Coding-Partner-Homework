@@ -2,7 +2,7 @@
 
 > **Student Name**: Oleksandr Stadnyk
 >
-> **Date Submitted**: 14 Fec 2026
+> **Date Submitted**: 14 Feb 2026
 >
 > **AI Tools Used**: Claude Code
 >
