@@ -1,259 +1,200 @@
-# 📝 Homework Submission - Homework 2
+# 📝 Homework Submission - Homework 3
 
-> **Student Name**: Mykhailo Bestiuk
-> **Date Submitted**: 2026-02-02
-> **Assignment**: Homework 2: Customer Support Ticket System
+> **Student Name**: Mykhailo Bestiuk  
+> **Date Submitted**: February 10, 2026  
+> **Assignment**: Homework 3: Specification-Driven Design
 
 ---
 
-## ✅ Summary of Implementation
+## ✅ Summary of Submission
 
-This PR submits the complete Homework 2 implementation: a Customer Support Ticket System REST API built with FastAPI and Python. It includes full CRUD operations, multi-format bulk import (CSV/JSON/XML), keyword-based auto-classification with confidence scoring, advanced filtering, and comprehensive testing with 117 tests across 9 test files.
+This PR submits a **specification package** (no code) for a **Virtual Card Lifecycle Management** microservice in a regulated FinTech environment. The package provides complete guidance for AI-driven implementation of a PCI-DSS compliant system.
 
-### Core Features Implemented
-- [x] **Task 1-3**: Project structure, Pydantic models, and validators
-- [x] **Task 4**: Ticket service with in-memory storage and full CRUD
-- [x] **Task 5**: Import service supporting CSV, JSON, and XML bulk import
-- [x] **Task 6**: Classification service with keyword-based auto-categorization and confidence scoring
-- [x] **Task 7-9**: RESTful routes for tickets, import, and classification
-- [x] **Task 10-13**: Unit tests for API, models, services, categorization, and imports
-- [x] **Task 14**: Integration tests (14 end-to-end workflow tests)
-- [x] **Task 15**: Performance tests (13 benchmark tests)
-- [x] **Task 16**: Sample data generation with fixture files
-- [x] **Task 17**: Comprehensive documentation (API Reference, Architecture, Testing Guide)
+**Deliverable Type**: Documentation only (no implementation)  
+**Files Created**: 4 specification and configuration documents  
+**Folder**: `homework-3/`
 
-### Key Highlights
+### 📦 Deliverables (per TASKS.md requirements)
 
-- 117 tests across 9 test files, all passing with 85%+ coverage target
-- Multi-format bulk import with partial failure handling (CSV, JSON, XML)
-- Keyword-based auto-classification across 6 categories with confidence scores
-- Production-grade documentation with Mermaid diagrams and ADRs
+| # | Required Deliverable | File | Purpose |
+|---|---------------------|------|--------|
+| 1 | specification.md | `homework-3/specification.md` | High/mid/low-level objectives + 18 implementation tasks |
+| 2 | agents.md | `homework-3/agents.md` | AI coding partner guidelines for FinTech domain |
+| 3 | Editor / AI rules | `homework-3/.github/copilot-instructions.md` | ALWAYS/NEVER rules for Copilot |
+| 4 | README.md | `homework-3/README.md` | Rationale and industry best practices mapping |
 
-### Technology Stack
+### 🎯 Domain: Virtual Card Lifecycle Management
 
-- **Language**: Python 3.8+
-- **Framework**: FastAPI + Pydantic
-- **Key Dependencies**: uvicorn, email-validator, python-multipart, httpx, pytest, pytest-cov, pytest-asyncio
+**Why this domain?** Maximizes demonstration of FinTech best practices:
+- State machine complexity (4 states, 5 transitions, strict invariants)
+- Compliance frameworks (PCI-DSS, PSD2, GDPR)
+- Security requirements (tokenization, encryption, masking, audit)
+- Real-world production patterns (Stripe, Privacy.com, Revolut)
+
+### 🏗️ System Design Overview
+
+**High-Level Objective**: Build a microservice enabling virtual card creation, lifecycle management (activate/freeze/unfreeze/close), spending limits, transaction visibility, immutable audit trails, and GDPR compliance.
+
+**Mid-Level Objectives (7)**:
+1. PCI-DSS Compliant Data Storage (tokenized PANs, AES-256 encryption, masking)
+2. Immutable Audit Trail (append-only events, complete actor tracking)
+3. Card Lifecycle State Machine (CREATED → ACTIVE ↔ FROZEN → CLOSED)
+4. Spending Limits & Controls (per-transaction/daily/monthly, Decimal precision)
+5. Transaction Visibility (filterable logs, pagination, masked responses)
+6. Role-Based Access Control (cardholder vs ops_compliance, JWT auth)
+7. GDPR Compliance (right to erasure, data portability, retention policies)
+
+**Low-Level Tasks (18)**: Each with prompt template, target files, functions, and detailed acceptance criteria.
+
+### 🛠️ Technology Stack Specified
+
+```yaml
+Language: Python 3.11+
+Framework: FastAPI 0.110+
+ORM: SQLAlchemy 2.0 (async)
+Database: PostgreSQL 16
+Cache: Redis 7
+Testing: pytest + httpx (72 tests specified)
+Linting: Ruff + mypy (strict)
+```
+
+---
+
+### 🤖 AI Agent Configuration Highlights
+
+**agents.md** — Comprehensive guidelines covering:
+- Domain rules (Decimal for money, PAN tokenization, state machine validation)
+- Code style (naming conventions, structure patterns, error handling)
+- Testing expectations (72 tests across 10 suites, compliance tests)
+- Security/compliance constraints (PCI-DSS, GDPR, audit requirements)
+
+**copilot-instructions.md** — Editor-level rules:
+- **ALWAYS Do**: Use Decimal, UUID, async def, mask PANs, emit audit events, type hints
+- **NEVER Do**: Use float for money, store raw PANs, log sensitive data, skip validation
+
+### 📊 Testing Strategy (72 Tests Specified)
+
+| Test Suite | Tests | Focus |
+|------------|-------|-------|
+| Models & Services | 34 | PAN masking, state transitions, limit validation |
+| RBAC & GDPR | 14 | JWT auth, role enforcement, erasure, export |
+| Integration | 10 | Full lifecycle workflows, concurrent operations |
+| Compliance | 8 | PAN leak detection, security headers, immutability |
+| Performance | 6 | Latency benchmarks (p95 thresholds) |
 
 ---
 
 ## 🛠️ AI Tools Used
 
 ### Primary AI Tools
-- [x] Claude Code
-- [ ] GitHub Copilot
-- [ ] Other: __________
+- [x] **Claude Code** (Primary specification architect)
+- [x] **GitHub Copilot** (Markdown formatting assistance)
 
 ### How AI Tools Were Used
 
-#### Claude Code
-**Used for:**
-- Designing layered architecture (routes → services → models → validators)
-- Implementing all source modules following AI-PLAN.md templates
-- Writing 117 tests across unit, integration, and performance categories
-- Generating comprehensive documentation with Mermaid diagrams
+**Claude Code:**
+- Structuring specification from high-level to low-level tasks
+- Defining compliance requirements (PCI-DSS, GDPR, PSD2)
+- Creating comprehensive agent guidelines with domain rules
+- Designing 18 implementation tasks with detailed acceptance criteria
 
-**Example prompts:**
-```
-1. "Complete following tasks from the homework-2/AI-PLAN.md [task list]"
-2. "Add missing required test files and fixtures for homework-2 compliance"
-```
+**GitHub Copilot:**
+- Auto-completing Markdown tables and formatting
+- Suggesting consistent terminology
+- Code block syntax for examples
 
-**Effectiveness:** Excellent
-
-### AI Tools Comparison
-
-| Aspect | Claude Code |
-|--------|-------------|
-| Code Quality | Excellent - clean separation of concerns |
-| Speed | Very fast - full implementation in few sessions |
-| Understanding Context | Excellent - followed templates and existing patterns |
-| Best For | Architecture design, test generation, documentation |
-
-**Which tool was more helpful overall?**
-Claude Code was used as the primary tool and proved highly effective for structured implementation following established templates.
+**Effectiveness**: Claude Code excelled at domain-specific specification design; Copilot useful for formatting consistency.
 
 ---
 
-## ⚠️ Challenges Encountered
+## 💡 Key Insights & Best Practices
 
-### Technical Challenges
+### Specification Quality
+- **Granularity**: Each of 18 tasks includes prompt template, target files, functions, and acceptance criteria
+- **Compliance-first**: Security/audit requirements embedded throughout (not bolted on)
+- **AI-ready**: Structured format enables autonomous AI implementation
 
-1. **Challenge**: Integration test for `classify-all` endpoint expected different response format
-   - **Solution**: Fixed test assertion to match actual API response format (ClassificationResult list)
-   - **AI Tool Help**: Claude identified the issue and corrected the test expectations
+### FinTech Best Practices Demonstrated
 
-2. **Challenge**: Ensuring performance tests validate realistic benchmarks
-   - **Solution**: Set appropriate timeout thresholds (50ms single ops, 2s bulk for 100 tickets)
-   - **AI Tool Help**: Claude applied standard API performance benchmarks
+| Practice | Location in Spec | Industry Standard |
+|----------|-----------------|-------------------|
+| PAN tokenization | Task 3, MO-1 | PCI-DSS Req 3.4 |
+| Immutable audit trail | Task 4, MO-2 | SOX, PSD2 |
+| State machine validation | Task 9, MO-3 | Domain-driven design |
+| Decimal precision for money | agents.md Domain Rules | FinTech standard |
+| Right to erasure | Task 12, MO-7 | GDPR Art 17 |
+| Security headers | Task 15 | OWASP best practice |
+| Rate limiting | Task 10 | API security standard |
 
-### AI-Related Challenges
+### Design Decisions Rationale
 
-- **Issue**: Initial classify-all test failed due to incorrect field expectations
-  - **How you resolved it**: Reviewed actual API endpoint response, updated test to match ClassificationResult model
+**Why Python 3.11+?** Type hints, performance, async/await support, mature FinTech ecosystem.
 
-### Learning Points
+**Why PostgreSQL over MySQL?** Better JSONB support for metadata, row-level security, stronger ACID guarantees.
 
-- Integration tests should validate complete workflows, not just individual operations
-- Performance benchmarks need realistic thresholds based on operation complexity
-- Clear templates (TEMPLATE_CLAUDE_TESTER_INTEGRATION) guide AI to produce consistent results
+**Why append-only audit?** Regulatory compliance (SOX, PCI-DSS), forensic integrity, simpler reasoning about system state.
 
----
-
-## 📸 Screenshots & Demos
-
-### Project Setup & Prompt Templates
-
-![VS Code project setup](https://github.com/bes422/AI-Coding-Partner-Homework/blob/homework-2-submissions/homework-2/docs/screenshots/1.png?raw=true)
-*Caption: VS Code with project structure and prompt template creation*
-
-![Prompt template plan](https://github.com/bes422/AI-Coding-Partner-Homework/blob/homework-2-submissions/homework-2/docs/screenshots/5.png?raw=true)
-*Caption: Claude Code planning structured AI prompt templates with model subfolders*
-
-### AI Tool Interactions
-
-![Claude Code template output](https://github.com/bes422/AI-Coding-Partner-Homework/blob/homework-2-submissions/homework-2/docs/screenshots/10.png?raw=true)
-*Caption: Claude Code output format specification for AI-PLAN.md generation*
-
-![Claude Code reviewing AI-PLAN](https://github.com/bes422/AI-Coding-Partner-Homework/blob/homework-2-submissions/homework-2/docs/screenshots/15.png?raw=true)
-*Caption: Claude Code session reviewing AI-PLAN and fixing 7 review issues*
-
-![Claude Code writing integration tests](https://github.com/bes422/AI-Coding-Partner-Homework/blob/homework-2-submissions/homework-2/docs/screenshots/20.png?raw=true)
-*Caption: Claude Code session writing integration and performance tests from AI-PLAN tasks*
-
-![Task verification](https://github.com/bes422/AI-Coding-Partner-Homework/blob/homework-2-submissions/homework-2/docs/screenshots/25.png?raw=true)
-*Caption: Claude Code verifying integration tests (14 tests) and performance tests (13 tests) are complete*
-
-### Code Review & Demo Scripts
-
-![Code review and demo fixes](https://github.com/bes422/AI-Coding-Partner-Homework/blob/homework-2-submissions/homework-2/docs/screenshots/30.png?raw=true)
-*Caption: GPT-5 mini reviewing and patching demo scripts (run.sh, run.bat, sample-requests.http)*
-
-### Test Coverage
-
-![Test coverage report](https://github.com/bes422/AI-Coding-Partner-Homework/blob/homework-2-submissions/homework-2/docs/screenshots/test_coverage.png?raw=true)
-*Caption: Coverage report showing 85% total coverage across all source modules*
+**Why 72 tests?** Comprehensive coverage across functional, security, compliance, and performance dimensions.
 
 ---
 
-## 📚 Documentation
+## 📋 Submission Checklist (per TASKS.md)
 
-### README.md
-- [x] Project overview included
-- [x] Features documented
-- [x] Architecture explained
-- [x] AI tools usage documented
+### Deliverable 1: specification.md
+- [x] High-level objective
+- [x] Mid-level objectives (7)
+- [x] Implementation notes (tech stack, coding standards, context)
+- [x] Low-level tasks (18) with prompt templates and acceptance criteria
 
-### HOWTORUN.md
-- [x] Prerequisites listed
-- [x] Installation steps clear
-- [x] Running instructions complete
-- [x] Testing guide included
+### Deliverable 2: agents.md
+- [x] Tech stack definition
+- [x] Domain rules (banking/FinTech)
+- [x] Code style conventions
+- [x] Testing expectations
+- [x] Security and compliance constraints
 
-### Code Comments
-- [x] Complex logic explained
-- [x] Functions documented
-- [x] API endpoints described
+### Deliverable 3: Editor / AI rules
+- [x] `.github/copilot-instructions.md` with ALWAYS/NEVER rules
+- [x] Naming conventions, architecture patterns, testing rules
 
----
-
-## 🧪 Testing
-
-### Manual Testing Completed
-- [x] All endpoints tested
-- [x] Validation rules verified
-- [x] Error handling checked
-- [x] Edge cases considered
-
-### Test Results
-
-| Feature | Status | Notes |
-|---------|--------|-------|
-| Create Ticket | ✅ | POST with full validation |
-| List Tickets | ✅ | GET with filtering by category/priority/status |
-| Get Ticket by ID | ✅ | 404 for non-existent |
-| Update Ticket | ✅ | PATCH with partial updates |
-| Delete Ticket | ✅ | Soft delete with confirmation |
-| CSV Import | ✅ | Bulk import with error handling |
-| JSON Import | ✅ | Bulk import with validation |
-| XML Import | ✅ | Bulk import with tag parsing |
-| Auto-Classification | ✅ | Keyword-based with confidence scores |
-| Statistics | ✅ | Category/priority/status distribution |
-| Performance | ✅ | All benchmarks within thresholds |
+### Deliverable 4: README.md
+- [x] Student name and task summary
+- [x] Rationale for specification design choices
+- [x] Industry best practices with locations in the spec
 
 ---
 
-## 📋 Submission Checklist
-
-### Required Files
-- [x] Source code in `src/` directory
-- [x] `README.md` with project documentation
-- [x] `HOWTORUN.md` with setup instructions
-- [x] `.gitignore` file (excludes node_modules, .env, etc.)
-
-### Screenshots (in `docs/screenshots/`)
-- [x] AI tool interactions
-- [x] Application running successfully
-- [x] API request/response examples
-
-### Demo Files (in `demo/`)
-- [x] Run script (`run.sh` and `run.bat`)
-- [x] Sample API requests file
-- [x] Sample data
-
-### Code Quality
-- [x] Code is well-organized
-- [x] Proper folder structure
-- [x] Meaningful variable/function names
-- [x] Error handling implemented
-- [x] Input validation working
-
----
-
-## 💭 Reflection
+## 🎓 Reflection
 
 ### What Went Well
+- **Specification depth**: 18 tasks with line-by-line implementation guidance
+- **Compliance integration**: Security/audit requirements woven throughout design
+- **AI-readiness**: Structured format with explicit prompts for each task
+- **Real-world relevance**: Virtual cards are used by millions in production systems
 
-- Layered architecture kept code clean and testable
-- AI-PLAN.md templates provided clear implementation targets
-- 117 tests give strong confidence in correctness
+### Learning About Specification-Driven Design
+- **Granularity matters**: Detailed acceptance criteria reduce AI interpretation errors
+- **Compliance upfront**: Easier to design-in than retrofit security requirements
+- **Agent guidelines critical**: Domain-specific rules (Decimal, PAN masking) prevent common FinTech bugs
+- **Testing as specification**: 72 specified tests clarify expected system behavior
 
-### What Could Be Improved
+### Time Spent (Specification Creation Only)
+- **Research**: ~2 hours (PCI-DSS requirements, state machine patterns, FinTech best practices)
+- **Specification writing**: ~3 hours (specification.md with 18 detailed tasks)
+- **Agent configuration**: ~1 hour (agents.md, copilot-instructions.md)
+- **Documentation**: ~1 hour (README.md rationale and best practices)
 
-- Could add database persistence layer for production use
-- Could add authentication/authorization
-- Could use ML-based classification instead of keyword matching
-
-### Key Learnings About AI-Assisted Development
-
-- AI excels at generating comprehensive test suites following established patterns
-- Clear templates guide AI to produce consistent, high-quality results
-- Iterative refinement with AI tools is fast and effective
-
-### Time Spent
-
-- **Planning**: ~10 minutes
-- **Implementation**: ~60 minutes
-- **Testing & Debugging**: ~15 minutes
-- **Documentation**: ~15 minutes
-- **Total**: ~100 minutes
+**Total**: ~7 hours for specification package (no code implementation)
 
 ---
 
-## 🔗 Additional Resources
+## 📚 References
 
-- [FastAPI Documentation](https://fastapi.tiangolo.com/)
-- [pytest Documentation](https://docs.pytest.org/)
-- [Pydantic Documentation](https://docs.pydantic.dev/)
-
----
-
-## ✨ Bonus Features (Optional)
-
-- Mermaid diagrams in architecture documentation
-- 5 Architecture Decision Records (ADRs)
-- Performance benchmark suite with timing thresholds
-- Manual testing checklist for pre-deployment verification
+- **PCI-DSS v4.0**: Requirements 3.3, 3.4, 10.2
+- **GDPR**: Articles 17 (erasure), 20 (portability)
+- **PSD2**: Strong Customer Authentication (SCA)
+- **OWASP**: Security Headers Best Practices
+- **Real-world systems**: Stripe, Privacy.com, Revolut virtual card implementations
 
 ---
 
