@@ -4,6 +4,8 @@
 
 This skill defines a comprehensive methodology for verifying applications against the **OWASP Top 10 for Large Language Model Applications (2025)**. Use this skill to systematically identify security vulnerabilities in LLM-powered applications.
 
+**Compatible with**: GitHub Copilot, Claude Code, Cursor, and other AI coding assistants.
+
 ---
 
 ## The 10 Security Risks
@@ -34,6 +36,14 @@ const response = await llm.complete(webContent);
 
 // VULNERABLE: No separation of concerns
 llm.complete(`You are a helpful assistant. User says: ${userInput}`);
+```
+
+```python
+# VULNERABLE: Direct concatenation
+prompt = f"{system_prompt}\n{user_input}"
+
+# VULNERABLE: No validation
+response = llm.complete(user_input)
 ```
 
 **Severity**: CRITICAL
@@ -70,9 +80,14 @@ return response; // Could contain SSN, credit cards, etc.
 
 // VULNERABLE: Logging sensitive data
 console.log(`Full conversation: ${JSON.stringify(messages)}`);
+```
 
-// VULNERABLE: Including sensitive context
-const context = `User email: ${user.email}, SSN: ${user.ssn}...`;
+```python
+# VULNERABLE: Secrets in code
+system_prompt = "Database: postgresql://admin:password@db.example.com"
+
+# VULNERABLE: No filtering
+logger.info(f"LLM response: {response}")
 ```
 
 **Severity**: HIGH
@@ -112,10 +127,15 @@ const model = await loadModel("random-huggingface-model");
 
 // VULNERABLE: Unverified plugins
 llm.use(untrustedPlugin);
+```
 
-// VULNERABLE: No integrity checks
-const modelData = await fetch(modelURL);
-loadModel(modelData); // No hash verification
+```python
+# VULNERABLE: No integrity checks
+model = load_model(model_url)  # No hash verification
+
+# VULNERABLE: Wildcard versions
+requirements.txt:
+openai==*
 ```
 
 **Severity**: HIGH
@@ -153,10 +173,12 @@ await model.fineTune(trainingData);
 app.post('/feedback', async (req, res) => {
   await addToTrainingSet(req.body.text); // No validation
 });
+```
 
-// VULNERABLE: Unverified external data
-const webData = await scrapeWebsite(url);
-await model.addToTrainingData(webData);
+```python
+# VULNERABLE: Unverified external data
+web_data = scrape_website(url)
+model.add_to_training_data(web_data)
 ```
 
 **Severity**: MEDIUM to HIGH
@@ -200,6 +222,14 @@ eval(llmGeneratedCode);
 
 // VULNERABLE: SSRF via LLM URLs
 const data = await fetch(llmProvidedURL);
+```
+
+```python
+# VULNERABLE: SQL injection
+query = f"SELECT * FROM users WHERE name = '{llm_response}'"
+
+# VULNERABLE: Command injection
+os.system(f"process {llm_response}")
 ```
 
 **Severity**: CRITICAL
@@ -246,11 +276,12 @@ const llmAgent = {
   canDelete: true, // Too permissive
   canExecute: true
 };
+```
 
-// VULNERABLE: No rate limiting
-while(true) {
-  await llm.call(availableTools); // Can spam actions
-}
+```python
+# VULNERABLE: No rate limiting
+while True:
+    await llm.call(available_tools)  # Can spam actions
 ```
 
 **Severity**: HIGH
@@ -308,6 +339,14 @@ try {
 }
 ```
 
+```python
+# VULNERABLE: Logging prompts
+logging.debug(f"System prompt: {system_prompt}")
+
+# VULNERABLE: Full history exposed
+return jsonify({"conversation": full_conversation_history})
+```
+
 **Severity**: MEDIUM to HIGH
 
 **Mitigation**:
@@ -347,10 +386,12 @@ const results = await vectorDB.search(query); // Any user can access all docs
 // VULNERABLE: Trusting retrieved content
 const context = await vectorDB.retrieve(userQuery);
 const prompt = `Context: ${context}\nAnswer: `; // No validation
+```
 
-// VULNERABLE: No source verification
-const docs = await vectorDB.similaritySearch(embedding);
-return docs[0].content; // Could be poisoned
+```python
+# VULNERABLE: No source verification
+docs = await vector_db.similarity_search(embedding)
+return docs[0].content  # Could be poisoned
 ```
 
 **Severity**: MEDIUM
@@ -396,6 +437,12 @@ const response = await llm.complete("What is the capital of...?");
 // VULNERABLE: Critical operations without verification
 const sqlQuery = await llm.generate("Create SQL for...");
 await db.execute(sqlQuery); // No validation
+```
+
+```python
+# VULNERABLE: No disclaimers
+response = llm.complete(user_query)
+return {"answer": response, "is_factual": True}  # Misleading
 ```
 
 **Severity**: MEDIUM to HIGH (depends on use case)
@@ -450,11 +497,12 @@ const response = await llm.complete(userInput, {
 
 // VULNERABLE: No timeout
 const response = await llm.complete(complexPrompt); // Could hang forever
+```
 
-// VULNERABLE: No cost tracking
-while (userConnected) {
-  await llm.streamResponse(userQuery); // Unbounded cost
-}
+```python
+# VULNERABLE: Unbounded streaming
+while user_connected:
+    await llm.stream_response(user_query)  # Unbounded cost
 ```
 
 **Severity**: MEDIUM to HIGH
@@ -497,7 +545,7 @@ Document findings using the format below.
 
 ---
 
-## Output Format
+## Output Format for Security Reports
 
 ### Verification Summary
 ```
@@ -540,7 +588,6 @@ For each finding, document:
 
 ### References
 - OWASP LLM Top 10: [Specific entry]
-- [Additional references]
 ```
 
 ### Risk Matrix
@@ -558,12 +605,6 @@ For each finding, document:
 | LLM09: Misinformation | - | - | - |
 | LLM10: Unbounded Consumption | - | - | - |
 
-### Recommendations Summary
-1. [High priority recommendation]
-2. [High priority recommendation]
-3. [Medium priority recommendation]
-...
-
 ---
 
 ## Severity Definitions
@@ -580,48 +621,83 @@ For each finding, document:
 
 ---
 
-## References
+## Code Review Checklist
 
-1. OWASP Top 10 for LLM Applications 2025: https://genai.owasp.org/llm-top-10/
-2. OWASP GenAI Security Project: https://genai.owasp.org/
-3. OWASP Top 10 for LLM Applications Repository: https://github.com/OWASP/www-project-top-10-for-large-language-model-applications/
+Use this checklist when reviewing LLM-related code:
+
+- [ ] **LLM01**: User input separated from system prompts using structured messages?
+- [ ] **LLM02**: No secrets, API keys, or PII in prompts or logs?
+- [ ] **LLM03**: All LLM dependencies verified, pinned, and scanned for vulnerabilities?
+- [ ] **LLM04**: Training/fine-tuning data validated and from trusted sources?
+- [ ] **LLM05**: LLM outputs validated before use in SQL/HTML/commands/file operations?
+- [ ] **LLM06**: LLM agent has least privilege access with human approval for sensitive ops?
+- [ ] **LLM07**: System prompts protected from leakage in responses and logs?
+- [ ] **LLM08**: Vector DB documents validated with access controls implemented?
+- [ ] **LLM09**: Critical outputs fact-checked or human-reviewed with disclaimers?
+- [ ] **LLM10**: Rate limiting, timeouts, and cost controls implemented?
 
 ---
 
-## Usage Instructions
+## Integration Guidelines
 
-### For Security Verifiers (Agents)
+### For GitHub Copilot
 
-1. **Read this skill document thoroughly** to understand all 10 risks
-2. **Apply the Verification Methodology** systematically
-3. **Use the Output Format** when creating security reports
-4. **Reference specific sections** when documenting findings
-5. **Follow severity definitions** consistently
+Reference this skill in `.github/copilot-instructions.md`:
+```markdown
+## Security Requirements - OWASP LLM Top 10
 
-### For Developers
+Follow the OWASP LLM Top 10 security guidelines from `skills/owasp-llm-top-10-verification.md`:
 
-1. **Review detection patterns** during code reviews
-2. **Check for vulnerable code patterns** in LLM integrations
-3. **Implement recommended mitigations** proactively
-4. **Use this skill as a security checklist** for LLM features
+- NEVER concatenate user input directly with system prompts (LLM01)
+- NEVER include secrets or credentials in prompts (LLM02)
+- ALWAYS validate LLM outputs before use in SQL/HTML/commands (LLM05)
+- ALWAYS implement least privilege for LLM agents (LLM06)
+- ALWAYS add rate limiting to LLM endpoints (LLM10)
+```
 
-### Integration with Other Skills
+### For Claude Code
 
-This skill can be combined with:
-- Code review agents
-- Security testing agents
-- Compliance verification agents
-- CI/CD security pipelines
+Reference this skill in agent configurations:
+```markdown
+## Required Skills
+- `skills/owasp-llm-top-10-verification.md`
+
+## Process
+1. Read the OWASP LLM Top 10 skill
+2. Apply verification methodology
+3. Generate report using skill's output format
+```
+
+### For Cursor
+
+Add to `.cursorrules`:
+```
+# OWASP LLM Security
+- Follow skills/owasp-llm-top-10-verification.md
+- Check all LLM code against the 10 risks
+- Use structured prompts, validate outputs, implement rate limiting
+```
+
+---
+
+## References
+
+1. **OWASP Top 10 for LLM Applications 2025**: https://genai.owasp.org/llm-top-10/
+2. **OWASP GenAI Security Project**: https://genai.owasp.org/
+3. **GitHub Repository**: https://github.com/OWASP/www-project-top-10-for-large-language-model-applications/
+4. **2025 Documentation**: https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/
 
 ---
 
 ## Version History
 
-- **v1.0 (2025-02)**: Initial version based on OWASP LLM Top 10 2025
+- **v1.0 (2025-02-17)**: Initial version based on OWASP LLM Top 10 2025
   - Includes all 10 risks from the 2025 update
   - New entries: System Prompt Leakage, Vector/Embedding Weaknesses
   - Expanded entries: Misinformation, Unbounded Consumption, Excessive Agency
+  - Added code examples in JavaScript and Python
+  - Universal compatibility with Copilot, Claude Code, and Cursor
 
 ---
 
-*This skill is maintained as part of the AI-Assisted Development course homework assignments.*
+*This skill is maintained as part of best practices for secure LLM application development.*

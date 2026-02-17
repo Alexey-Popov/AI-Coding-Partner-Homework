@@ -27,6 +27,12 @@ git clone https://github.com/YOUR_USERNAME/ai-assisted-dev-homework.git
 ```
 ai-assisted-dev-homework/
 ├── 📄 README.md                    # This file
+├── 📂 .github/                     # GitHub configuration
+│   ├── copilot-instructions.md    # AI security guidelines (Copilot)
+│   └── pull_request_template.md   # PR template
+├── 📂 skills/                      # 🔒 Universal AI Skills (Security & Best Practices)
+│   ├── README.md                  # Skills overview
+│   └── owasp-llm-top-10-verification.md  # OWASP LLM security skill
 ├── 📂 homework-1/                  # Homework 1: Simple API with AI Assistance
 │   ├── 📄 README.md               # Your documentation for HW1
 │   ├── 📂 src/                    # Your source code
@@ -39,6 +45,31 @@ ai-assisted-dev-homework/
 ├── 📂 homework-5/                  # Homework 5: MCP Server Configuration
 └── 📂 homework-6/                  # Homework 6: Capstone Project
 ```
+
+---
+
+## 🔒 Security & AI Skills
+
+This repository includes **universal AI skills** that work with GitHub Copilot, Claude Code, Cursor, and other AI coding assistants.
+
+### OWASP LLM Top 10 Security Skill
+
+All LLM-powered code in this repository must follow the **OWASP Top 10 for Large Language Model Applications (2025)**.
+
+**📖 Full Documentation**: [`skills/owasp-llm-top-10-verification.md`](skills/owasp-llm-top-10-verification.md)
+
+**Key Security Rules**:
+- ✅ Use structured prompts (never concatenate user input with system prompts)
+- ✅ Store secrets in environment variables (never in code or prompts)
+- ✅ Validate all LLM outputs before use in SQL/HTML/commands
+- ✅ Implement rate limiting on LLM endpoints
+- ✅ Add human approval for sensitive agent operations
+
+**For GitHub Copilot Users**: Security guidelines are automatically active via [`.github/copilot-instructions.md`](.github/copilot-instructions.md)
+
+**For Claude Code Users**: Reference the skill in your agent configurations
+
+**For All Developers**: Use [`skills/README.md`](skills/README.md) as a security checklist before committing LLM code
 
 ---
 
