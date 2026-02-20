@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickets>
+  <ticket>
+    <customer_name>Alice Johnson</customer_name>
+    <customer_email>alice@example.com</customer_email>
+    <subject>Cannot login to account</subject>
+    <description>I keep getting an error when trying to sign in with my credentials</description>
+    <category>account_access</category>
+    <priority>high</priority>
+    <source>web_form</source>
+    <browser>Chrome 120</browser>
+    <device_type>desktop</device_type>
+    <tags>login;access</tags>
+  </ticket>
+  <ticket>
+    <customer_name>Bob Smith</customer_name>
+    <customer_email>bob@example.com</customer_email>
+    <subject>Page loads slowly</subject>
+    <description>The dashboard page takes over 30 seconds to load</description>
+    <category>technical_issue</category>
+    <priority>medium</priority>
+    <source>email</source>
+    <browser>Firefox 121</browser>
+    <device_type>desktop</device_type>
+    <tags>performance;slow</tags>
+  </ticket>
+  <ticket>
+    <customer_name>Carol White</customer_name>
+    <customer_email>carol@example.com</customer_email>
+    <subject>Wrong charge on invoice</subject>
+    <description>I was charged twice for my monthly subscription</description>
+    <category>billing_question</category>
+    <priority>high</priority>
+    <source>phone</source>
+    <tags>billing;overcharge</tags>
+  </ticket>
+  <ticket>
+    <customer_name>David Lee</customer_name>
+    <customer_email>david@example.com</customer_email>
+    <subject>Add dark mode</subject>
+    <description>It would be great if the application supported a dark theme</description>
+    <category>feature_request</category>
+    <priority>low</priority>
+    <source>chat</source>
+    <browser>Safari 17</browser>
+    <device_type>mobile</device_type>
+    <tags>ui;theme</tags>
+  </ticket>
+  <ticket>
+    <customer_name>Emma Brown</customer_name>
+    <customer_email>emma@example.com</customer_email>
+    <subject>Button not working</subject>
+    <description>The submit button on the contact form does nothing when clicked</description>
+    <category>bug_report</category>
+    <priority>medium</priority>
+    <source>web_form</source>
+    <browser>Chrome 120</browser>
+    <device_type>tablet</device_type>
+    <tags>form;button</tags>
+  </ticket>
+</tickets>

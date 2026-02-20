@@ -1,0 +1,6 @@
+customer_name,customer_email,subject,description,category,priority,source,browser,device_type,tags
+Alice Johnson,alice@example.com,Cannot login to account,I keep getting an error when trying to sign in with my credentials,account_access,high,web_form,Chrome 120,desktop,login;access
+Bob Smith,bob@example.com,Page loads slowly,The dashboard page takes over 30 seconds to load,technical_issue,medium,email,Firefox 121,desktop,performance;slow
+Carol White,carol@example.com,Wrong charge on invoice,I was charged twice for my monthly subscription,billing_question,high,phone,,,billing;overcharge
+David Lee,david@example.com,Add dark mode,It would be great if the application supported a dark theme,feature_request,low,chat,Safari 17,mobile,ui;theme
+Emma Brown,emma@example.com,Button not working,The submit button on the contact form does nothing when clicked,bug_report,medium,web_form,Chrome 120,tablet,form;button

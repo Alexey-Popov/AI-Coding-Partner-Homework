@@ -1,0 +1,5 @@
+customer_name,customer_email,subject,description,category,priority,source,browser,device_type,tags
+,invalid-email,Too short,,account_access,high,web_form,Chrome,desktop,
+Missing Email,,Valid subject,Valid description,technical_issue,medium,email,Firefox,desktop,
+Valid Name,valid@email.com,,Description without subject,billing_question,low,phone,,,
+Valid Name,valid@email.com,Valid subject,,feature_request,medium,chat,Safari,mobile,

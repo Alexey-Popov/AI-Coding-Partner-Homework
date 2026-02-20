@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickets>
+  <ticket>
+    <customer_name>Maria Santos</customer_name>
+    <customer_email>maria.santos@example.com</customer_email>
+    <subject>Cannot log in after password reset</subject>
+    <description>I reset my password yesterday but every time I try to log in with the new credentials I get an "invalid password" error. I have tried clearing cookies and using incognito mode.</description>
+    <category>account_access</category>
+    <priority>urgent</priority>
+    <source>web_form</source>
+    <browser>Chrome 120</browser>
+    <device_type>desktop</device_type>
+    <tags>login;password-reset;authentication</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>James O'Brien</customer_name>
+    <customer_email>jobrien@example.com</customer_email>
+    <subject>Dashboard charts not rendering</subject>
+    <description>The analytics dashboard loads but all charts appear as blank white boxes. Console shows multiple JavaScript errors related to the charting library.</description>
+    <category>bug_report</category>
+    <priority>high</priority>
+    <source>email</source>
+    <browser>Firefox 121</browser>
+    <device_type>desktop</device_type>
+    <tags>dashboard;charts;rendering;javascript</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Priya Patel</customer_name>
+    <customer_email>priya.patel@example.com</customer_email>
+    <subject>Unexpected charge on my invoice</subject>
+    <description>My December invoice includes a $49.99 charge labeled "Premium Add-on" that I never purchased or authorized. Please investigate and issue a refund.</description>
+    <category>billing_question</category>
+    <priority>high</priority>
+    <source>chat</source>
+    <browser>Safari 17</browser>
+    <device_type>mobile</device_type>
+    <tags>billing;refund;unauthorized-charge</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Ahmed Hassan</customer_name>
+    <customer_email>a.hassan@example.com</customer_email>
+    <subject>Request for dark mode support</subject>
+    <description>I spend long hours working in your application and the bright interface causes eye strain. It would be great to have a dark mode toggle in the settings.</description>
+    <category>feature_request</category>
+    <priority>low</priority>
+    <source>web_form</source>
+    <browser>Chrome 120</browser>
+    <device_type>desktop</device_type>
+    <tags>dark-mode;ui;accessibility</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Sofia Andersson</customer_name>
+    <customer_email>sofia.andersson@example.com</customer_email>
+    <subject>File upload fails for PDFs over 5MB</subject>
+    <description>When I try to upload a PDF larger than 5MB the progress bar reaches 100% but then shows a generic "Upload failed" message. Smaller files work fine.</description>
+    <category>bug_report</category>
+    <priority>medium</priority>
+    <source>email</source>
+    <browser>Edge 120</browser>
+    <device_type>desktop</device_type>
+    <tags>upload;pdf;file-size</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Kenji Tanaka</customer_name>
+    <customer_email>kenji.tanaka@example.com</customer_email>
+    <subject>Two-factor authentication not sending SMS</subject>
+    <description>I am not receiving the SMS verification code when trying to log in. I have confirmed my phone number is correct and my carrier is not blocking the messages.</description>
+    <category>account_access</category>
+    <priority>urgent</priority>
+    <source>phone</source>
+    <browser></browser>
+    <device_type>mobile</device_type>
+    <tags>2fa;sms;authentication;login</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Elena Volkov</customer_name>
+    <customer_email>elena.volkov@example.com</customer_email>
+    <subject>API rate limit exceeded unexpectedly</subject>
+    <description>Our integration started receiving 429 errors this morning even though our request volume has not changed. We are well within the documented rate limits for our plan tier.</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
+    <source>api</source>
+    <browser></browser>
+    <device_type></device_type>
+    <tags>api;rate-limit;429;integration</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>David Kim</customer_name>
+    <customer_email>david.kim@example.com</customer_email>
+    <subject>Request to export data in CSV format</subject>
+    <description>Currently the only export option is JSON. For our reporting needs we require CSV export so the data can be opened directly in Excel by our finance team.</description>
+    <category>feature_request</category>
+    <priority>medium</priority>
+    <source>web_form</source>
+    <browser>Chrome 120</browser>
+    <device_type>desktop</device_type>
+    <tags>export;csv;reporting</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Fatima Al-Rashid</customer_name>
+    <customer_email>fatima.alrashid@example.com</customer_email>
+    <subject>Subscription renewal failed</subject>
+    <description>I received an email saying my subscription renewal failed due to a payment issue, but my credit card is valid and has sufficient funds. The card works on other websites.</description>
+    <category>billing_question</category>
+    <priority>high</priority>
+    <source>email</source>
+    <browser></browser>
+    <device_type></device_type>
+    <tags>subscription;renewal;payment-failed</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Carlos Mendoza</customer_name>
+    <customer_email>carlos.mendoza@example.com</customer_email>
+    <subject>App crashes when switching between tabs</subject>
+    <description>The mobile app crashes consistently when I switch between the Projects tab and the Messages tab. This started after the latest update to version 4.2.1.</description>
+    <category>bug_report</category>
+    <priority>high</priority>
+    <source>chat</source>
+    <browser></browser>
+    <device_type>mobile</device_type>
+    <tags>crash;mobile-app;tabs;regression</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Ingrid Larsen</customer_name>
+    <customer_email>ingrid.larsen@example.com</customer_email>
+    <subject>How to add team members to a project</subject>
+    <description>I recently upgraded to the Team plan but I cannot figure out how to invite my colleagues to collaborate on an existing project. The documentation seems outdated.</description>
+    <category>other</category>
+    <priority>low</priority>
+    <source>chat</source>
+    <browser>Chrome 120</browser>
+    <device_type>tablet</device_type>
+    <tags>team;collaboration;onboarding</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Oluwaseun Adeyemi</customer_name>
+    <customer_email>olu.adeyemi@example.com</customer_email>
+    <subject>Webhook delivery failures</subject>
+    <description>Our webhook endpoint has been returning 200 OK but the system still marks deliveries as failed. We have verified this with request logging on our server.</description>
+    <category>technical_issue</category>
+    <priority>medium</priority>
+    <source>api</source>
+    <browser></browser>
+    <device_type></device_type>
+    <tags>webhook;api;delivery;integration</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Rachel Thompson</customer_name>
+    <customer_email>rachel.thompson@example.com</customer_email>
+    <subject>Notification emails going to spam</subject>
+    <description>All notification emails from your platform are landing in my Gmail spam folder. I have marked them as not spam multiple times but the problem persists.</description>
+    <category>technical_issue</category>
+    <priority>medium</priority>
+    <source>web_form</source>
+    <browser>Chrome 120</browser>
+    <device_type>desktop</device_type>
+    <tags>email;notifications;spam</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Wei Zhang</customer_name>
+    <customer_email>wei.zhang@example.com</customer_email>
+    <subject>Incorrect timezone in scheduled reports</subject>
+    <description>My account timezone is set to Asia/Shanghai (UTC+8) but scheduled reports are generated using UTC. This causes the daily summary to include data from the wrong date range.</description>
+    <category>bug_report</category>
+    <priority>medium</priority>
+    <source>email</source>
+    <browser>Chrome 120</browser>
+    <device_type>desktop</device_type>
+    <tags>timezone;reports;scheduling</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Amara Osei</customer_name>
+    <customer_email>amara.osei@example.com</customer_email>
+    <subject>Account locked after too many login attempts</subject>
+    <description>My account has been locked and I am unable to access it. I believe someone may have been trying to access my account because I did not make those login attempts myself.</description>
+    <category>account_access</category>
+    <priority>urgent</priority>
+    <source>phone</source>
+    <browser></browser>
+    <device_type></device_type>
+    <tags>account-locked;security;brute-force</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Luca Rossi</customer_name>
+    <customer_email>luca.rossi@example.com</customer_email>
+    <subject>Bulk import tool throws timeout error</subject>
+    <description>When importing a CSV with more than 500 rows the bulk import tool times out after 60 seconds. We need to import approximately 10,000 records for our migration.</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
+    <source>web_form</source>
+    <browser>Firefox 121</browser>
+    <device_type>desktop</device_type>
+    <tags>import;csv;timeout;bulk-operation</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Maya Johnson</customer_name>
+    <customer_email>maya.johnson@example.com</customer_email>
+    <subject>Request for annual billing option</subject>
+    <description>We would like to switch from monthly to annual billing for a discount. Is there an option to pay annually and if so what savings would we receive?</description>
+    <category>billing_question</category>
+    <priority>low</priority>
+    <source>email</source>
+    <browser></browser>
+    <device_type></device_type>
+    <tags>billing;annual;pricing</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Dmitri Petrov</customer_name>
+    <customer_email>dmitri.petrov@example.com</customer_email>
+    <subject>Search function returns no results</subject>
+    <description>The search bar in the knowledge base returns zero results for any query I enter. Even searching for terms I know exist in articles shows "No results found."</description>
+    <category>bug_report</category>
+    <priority>medium</priority>
+    <source>chat</source>
+    <browser>Safari 17</browser>
+    <device_type>tablet</device_type>
+    <tags>search;knowledge-base;broken</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Aisha Njoku</customer_name>
+    <customer_email>aisha.njoku@example.com</customer_email>
+    <subject>Add support for SAML SSO</subject>
+    <description>Our organization requires SAML-based single sign-on for all third-party applications. Without SSO support we cannot approve this tool for company-wide use.</description>
+    <category>feature_request</category>
+    <priority>high</priority>
+    <source>email</source>
+    <browser></browser>
+    <device_type></device_type>
+    <tags>sso;saml;enterprise;authentication</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Thomas Mueller</customer_name>
+    <customer_email>t.mueller@example.com</customer_email>
+    <subject>Mobile layout broken on Android</subject>
+    <description>On my Samsung Galaxy S24 running Android 14, the navigation menu overlaps with the main content area making it impossible to tap on any buttons below the header.</description>
+    <category>bug_report</category>
+    <priority>high</priority>
+    <source>web_form</source>
+    <browser>Chrome Mobile 120</browser>
+    <device_type>mobile</device_type>
+    <tags>mobile;android;layout;responsive</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Yuki Nakamura</customer_name>
+    <customer_email>yuki.nakamura@example.com</customer_email>
+    <subject>Data discrepancy between dashboard and API</subject>
+    <description>The total count displayed on the web dashboard does not match the count returned by the API endpoint for the same date range. The difference is roughly 15%.</description>
+    <category>bug_report</category>
+    <priority>medium</priority>
+    <source>api</source>
+    <browser></browser>
+    <device_type>desktop</device_type>
+    <tags>data-discrepancy;dashboard;api;reporting</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Isabella Garcia</customer_name>
+    <customer_email>isabella.garcia@example.com</customer_email>
+    <subject>Cannot downgrade subscription plan</subject>
+    <description>I am trying to downgrade from the Enterprise plan to the Pro plan but the "Change Plan" button is grayed out. There is no error message explaining why.</description>
+    <category>billing_question</category>
+    <priority>medium</priority>
+    <source>chat</source>
+    <browser>Edge 120</browser>
+    <device_type>desktop</device_type>
+    <tags>subscription;downgrade;plan-change</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Benjamin Okonkwo</customer_name>
+    <customer_email>ben.okonkwo@example.com</customer_email>
+    <subject>Keyboard shortcuts not working</subject>
+    <description>None of the documented keyboard shortcuts work in the text editor. I have tested on both Chrome and Firefox with all extensions disabled.</description>
+    <category>bug_report</category>
+    <priority>low</priority>
+    <source>web_form</source>
+    <browser>Chrome 120</browser>
+    <device_type>desktop</device_type>
+    <tags>keyboard-shortcuts;editor;usability</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Nadia Kowalski</customer_name>
+    <customer_email>nadia.kowalski@example.com</customer_email>
+    <subject>Need help transferring account ownership</subject>
+    <description>I am leaving the company and need to transfer ownership of our organization account to my colleague. What documentation or verification do you need to process this?</description>
+    <category>account_access</category>
+    <priority>medium</priority>
+    <source>email</source>
+    <browser></browser>
+    <device_type></device_type>
+    <tags>account-transfer;ownership;organization</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Raj Sharma</customer_name>
+    <customer_email>raj.sharma@example.com</customer_email>
+    <subject>Slow page load times</subject>
+    <description>Pages are taking 15 to 20 seconds to load over the past week. My internet connection is fine and other websites load normally. This affects every page in the application.</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
+    <source>phone</source>
+    <browser>Chrome 120</browser>
+    <device_type>desktop</device_type>
+    <tags>performance;slow;page-load</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Chloe Dubois</customer_name>
+    <customer_email>chloe.dubois@example.com</customer_email>
+    <subject>Feature request: multi-language support</subject>
+    <description>Our team is based across France, Germany, and Spain. It would be very helpful if the interface supported French, German, and Spanish in addition to English.</description>
+    <category>feature_request</category>
+    <priority>medium</priority>
+    <source>web_form</source>
+    <browser>Firefox 121</browser>
+    <device_type>desktop</device_type>
+    <tags>localization;i18n;multilingual</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Marcus Williams</customer_name>
+    <customer_email>marcus.williams@example.com</customer_email>
+    <subject>Invoice PDF download returns blank page</subject>
+    <description>When I click "Download PDF" on any invoice from the billing history the downloaded file opens as a completely blank page. The file size is only 1KB which seems too small.</description>
+    <category>billing_question</category>
+    <priority>medium</priority>
+    <source>web_form</source>
+    <browser>Safari 17</browser>
+    <device_type>desktop</device_type>
+    <tags>invoice;pdf;download;billing</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Ling Chen</customer_name>
+    <customer_email>ling.chen@example.com</customer_email>
+    <subject>OAuth token refresh not working</subject>
+    <description>Our OAuth integration stopped refreshing access tokens automatically. The refresh token endpoint returns a 400 error with the message "invalid_grant" even though the refresh token has not expired.</description>
+    <category>technical_issue</category>
+    <priority>urgent</priority>
+    <source>api</source>
+    <browser></browser>
+    <device_type></device_type>
+    <tags>oauth;token;refresh;api;authentication</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Sarah Mitchell</customer_name>
+    <customer_email>sarah.mitchell@example.com</customer_email>
+    <subject>Accessibility issues with screen reader</subject>
+    <description>Several buttons and form fields are missing ARIA labels, making it very difficult to navigate the application using NVDA screen reader on Windows.</description>
+    <category>other</category>
+    <priority>high</priority>
+    <source>email</source>
+    <browser>Chrome 120</browser>
+    <device_type>desktop</device_type>
+    <tags>accessibility;aria;screen-reader;a11y</tags>
+  </ticket>
+
+  <ticket>
+    <customer_name>Jorge Rivera</customer_name>
+    <customer_email>jorge.rivera@example.com</customer_email>
+    <subject>Duplicate email notifications</subject>
+    <description>I am receiving two identical email notifications for every event. I have checked my notification preferences and only one email address is listed with notifications enabled once.</description>
+    <category>bug_report</category>
+    <priority>low</priority>
+    <source>chat</source>
+    <browser>Chrome 120</browser>
+    <device_type>mobile</device_type>
+    <tags>notifications;email;duplicate</tags>
+  </ticket>
+</tickets>
