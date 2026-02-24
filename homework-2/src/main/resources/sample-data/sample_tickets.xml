@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickets>
+    <ticket>
+        <customer_id>CUST201</customer_id>
+        <customer_email>adam.alpha@email.com</customer_email>
+        <customer_name>Adam Alpha</customer_name>
+        <subject>Cannot access my account after password change</subject>
+        <description>After changing my password yesterday, I can no longer log in. The system keeps saying invalid credentials even though I am using the new password.</description>
+        <category>account_access</category>
+        <priority>urgent</priority>
+        <status>new</status>
+        <tags>
+            <tag>password</tag>
+            <tag>login</tag>
+            <tag>access</tag>
+        </tags>
+        <metadata>
+            <source>web_form</source>
+            <browser>Chrome 120</browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST202</customer_id>
+        <customer_email>bella.beta@email.com</customer_email>
+        <customer_name>Bella Beta</customer_name>
+        <subject>Duplicate charge on my credit card</subject>
+        <description>I was charged twice for order #98765. Please refund the duplicate charge as soon as possible. The amount was $149.99 each time.</description>
+        <category>billing_question</category>
+        <priority>high</priority>
+        <status>new</status>
+        <tags>
+            <tag>duplicate</tag>
+            <tag>charge</tag>
+            <tag>refund</tag>
+        </tags>
+        <metadata>
+            <source>phone</source>
+            <browser></browser>
+            <device_type>mobile</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST203</customer_id>
+        <customer_email>carl.gamma@email.com</customer_email>
+        <customer_name>Carl Gamma</customer_name>
+        <subject>Feature request: Bulk upload capability</subject>
+        <description>We need the ability to bulk upload data via CSV files. Currently we have to enter each record manually which is very time consuming for our team.</description>
+        <category>feature_request</category>
+        <priority>medium</priority>
+        <status>new</status>
+        <tags>
+            <tag>bulk</tag>
+            <tag>upload</tag>
+            <tag>csv</tag>
+        </tags>
+        <metadata>
+            <source>email</source>
+            <browser></browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST204</customer_id>
+        <customer_email>diana.delta@email.com</customer_email>
+        <customer_name>Diana Delta</customer_name>
+        <subject>Application freezes randomly</subject>
+        <description>The web application freezes randomly and becomes unresponsive. This happens approximately every 30 minutes and I have to refresh the page.</description>
+        <category>technical_issue</category>
+        <priority>high</priority>
+        <status>new</status>
+        <tags>
+            <tag>freeze</tag>
+            <tag>unresponsive</tag>
+            <tag>performance</tag>
+        </tags>
+        <metadata>
+            <source>web_form</source>
+            <browser>Firefox 121</browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST205</customer_id>
+        <customer_email>edward.epsilon@email.com</customer_email>
+        <customer_name>Edward Epsilon</customer_name>
+        <subject>Bug: Search returns no results</subject>
+        <description>When I search for items using quotes or special characters, the search returns no results even though matching items exist in the database.</description>
+        <category>bug_report</category>
+        <priority>medium</priority>
+        <status>new</status>
+        <tags>
+            <tag>search</tag>
+            <tag>bug</tag>
+            <tag>special-characters</tag>
+        </tags>
+        <metadata>
+            <source>chat</source>
+            <browser>Safari 17</browser>
+            <device_type>tablet</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST206</customer_id>
+        <customer_email>fiona.zeta@email.com</customer_email>
+        <customer_name>Fiona Zeta</customer_name>
+        <subject>Critical production issue - data loss</subject>
+        <description>We just discovered that some customer data has been lost after the latest update. This is a critical issue and needs immediate attention. Production is affected.</description>
+        <category>bug_report</category>
+        <priority>urgent</priority>
+        <status>new</status>
+        <tags>
+            <tag>critical</tag>
+            <tag>data-loss</tag>
+            <tag>production</tag>
+        </tags>
+        <metadata>
+            <source>phone</source>
+            <browser></browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST207</customer_id>
+        <customer_email>george.eta@email.com</customer_email>
+        <customer_name>George Eta</customer_name>
+        <subject>Request for API rate limit increase</subject>
+        <description>Our application is hitting the API rate limits frequently. We would like to request an increase in our rate limit allocation for our enterprise account.</description>
+        <category>feature_request</category>
+        <priority>high</priority>
+        <status>new</status>
+        <tags>
+            <tag>api</tag>
+            <tag>rate-limit</tag>
+            <tag>enterprise</tag>
+        </tags>
+        <metadata>
+            <source>api</source>
+            <browser></browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST208</customer_id>
+        <customer_email>hannah.theta@email.com</customer_email>
+        <customer_name>Hannah Theta</customer_name>
+        <subject>Invoice shows wrong tax amount</subject>
+        <description>My invoice for March shows 20% tax but our region should only be charged 10%. Please correct the invoice and adjust the charge.</description>
+        <category>billing_question</category>
+        <priority>medium</priority>
+        <status>new</status>
+        <tags>
+            <tag>invoice</tag>
+            <tag>tax</tag>
+            <tag>incorrect</tag>
+        </tags>
+        <metadata>
+            <source>email</source>
+            <browser></browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST209</customer_id>
+        <customer_email>ivan.iota@email.com</customer_email>
+        <customer_name>Ivan Iota</customer_name>
+        <subject>Two-factor authentication setup issues</subject>
+        <description>I am trying to set up 2FA on my account but the QR code scanner is not working. The manual entry code also seems invalid.</description>
+        <category>account_access</category>
+        <priority>medium</priority>
+        <status>new</status>
+        <tags>
+            <tag>2fa</tag>
+            <tag>setup</tag>
+            <tag>security</tag>
+        </tags>
+        <metadata>
+            <source>web_form</source>
+            <browser>Edge 120</browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST210</customer_id>
+        <customer_email>julia.kappa@email.com</customer_email>
+        <customer_name>Julia Kappa</customer_name>
+        <subject>Cosmetic issue in mobile app</subject>
+        <description>There is a minor UI alignment issue on the mobile app where buttons overlap with text on smaller screens. Just a cosmetic suggestion.</description>
+        <category>bug_report</category>
+        <priority>low</priority>
+        <status>new</status>
+        <tags>
+            <tag>mobile</tag>
+            <tag>ui</tag>
+            <tag>cosmetic</tag>
+        </tags>
+        <metadata>
+            <source>chat</source>
+            <browser></browser>
+            <device_type>mobile</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST211</customer_id>
+        <customer_email>kevin.lambda@email.com</customer_email>
+        <customer_name>Kevin Lambda</customer_name>
+        <subject>Need help with integration ASAP</subject>
+        <description>We are launching next week and need help integrating your API with our system. This is blocking our go-live date and we need assistance ASAP.</description>
+        <category>technical_issue</category>
+        <priority>high</priority>
+        <status>new</status>
+        <tags>
+            <tag>integration</tag>
+            <tag>asap</tag>
+            <tag>blocking</tag>
+        </tags>
+        <metadata>
+            <source>phone</source>
+            <browser></browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST212</customer_id>
+        <customer_email>lisa.mu@email.com</customer_email>
+        <customer_name>Lisa Mu</customer_name>
+        <subject>Question about data retention policy</subject>
+        <description>Could you please provide information about your data retention policy? We need this for compliance purposes with our legal team.</description>
+        <category>other</category>
+        <priority>low</priority>
+        <status>new</status>
+        <tags>
+            <tag>data</tag>
+            <tag>retention</tag>
+            <tag>compliance</tag>
+        </tags>
+        <metadata>
+            <source>email</source>
+            <browser></browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST213</customer_id>
+        <customer_email>mike.nu@email.com</customer_email>
+        <customer_name>Mike Nu</customer_name>
+        <subject>Security vulnerability report</subject>
+        <description>I have discovered a potential security vulnerability in your authentication system. Please contact me privately to discuss the details.</description>
+        <category>other</category>
+        <priority>urgent</priority>
+        <status>new</status>
+        <tags>
+            <tag>security</tag>
+            <tag>vulnerability</tag>
+            <tag>critical</tag>
+        </tags>
+        <metadata>
+            <source>api</source>
+            <browser></browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST214</customer_id>
+        <customer_email>nancy.xi@email.com</customer_email>
+        <customer_name>Nancy Xi</customer_name>
+        <subject>Subscription upgrade not reflected</subject>
+        <description>I upgraded my subscription to Premium yesterday but my account still shows Basic features. The payment was processed successfully.</description>
+        <category>billing_question</category>
+        <priority>medium</priority>
+        <status>new</status>
+        <tags>
+            <tag>subscription</tag>
+            <tag>upgrade</tag>
+            <tag>billing</tag>
+        </tags>
+        <metadata>
+            <source>web_form</source>
+            <browser>Chrome 120</browser>
+            <device_type>tablet</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST215</customer_id>
+        <customer_email>oscar.omicron@email.com</customer_email>
+        <customer_name>Oscar Omicron</customer_name>
+        <subject>Mobile app login with SSO failing</subject>
+        <description>Single sign-on works fine on the web but fails on the mobile app. I get an error saying authentication provider not found.</description>
+        <category>account_access</category>
+        <priority>high</priority>
+        <status>new</status>
+        <tags>
+            <tag>mobile</tag>
+            <tag>sso</tag>
+            <tag>login</tag>
+        </tags>
+        <metadata>
+            <source>chat</source>
+            <browser></browser>
+            <device_type>mobile</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST216</customer_id>
+        <customer_email>patricia.pi@email.com</customer_email>
+        <customer_name>Patricia Pi</customer_name>
+        <subject>Feature suggestion for keyboard shortcuts</subject>
+        <description>It would be helpful to have keyboard shortcuts for common actions like save, delete, and navigate. This is just a minor suggestion.</description>
+        <category>feature_request</category>
+        <priority>low</priority>
+        <status>new</status>
+        <tags>
+            <tag>keyboard</tag>
+            <tag>shortcuts</tag>
+            <tag>suggestion</tag>
+        </tags>
+        <metadata>
+            <source>web_form</source>
+            <browser>Safari 17</browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST217</customer_id>
+        <customer_email>quincy.rho@email.com</customer_email>
+        <customer_name>Quincy Rho</customer_name>
+        <subject>PDF export showing blank pages</subject>
+        <description>When I export reports to PDF, some pages appear blank even though the preview shows content. This happens consistently with larger reports.</description>
+        <category>bug_report</category>
+        <priority>medium</priority>
+        <status>new</status>
+        <tags>
+            <tag>pdf</tag>
+            <tag>export</tag>
+            <tag>blank</tag>
+        </tags>
+        <metadata>
+            <source>email</source>
+            <browser></browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST218</customer_id>
+        <customer_email>rachel.sigma@email.com</customer_email>
+        <customer_name>Rachel Sigma</customer_name>
+        <subject>Database connection errors</subject>
+        <description>We are seeing intermittent database connection errors in our application logs. This is causing some requests to fail randomly.</description>
+        <category>technical_issue</category>
+        <priority>high</priority>
+        <status>new</status>
+        <tags>
+            <tag>database</tag>
+            <tag>connection</tag>
+            <tag>error</tag>
+        </tags>
+        <metadata>
+            <source>api</source>
+            <browser></browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST219</customer_id>
+        <customer_email>steve.tau@email.com</customer_email>
+        <customer_name>Steve Tau</customer_name>
+        <subject>Account email change request</subject>
+        <description>I need to change the email address associated with my account. My old email is no longer accessible and I cannot receive verification codes.</description>
+        <category>account_access</category>
+        <priority>medium</priority>
+        <status>new</status>
+        <tags>
+            <tag>email</tag>
+            <tag>change</tag>
+            <tag>account</tag>
+        </tags>
+        <metadata>
+            <source>phone</source>
+            <browser></browser>
+            <device_type>mobile</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST220</customer_id>
+        <customer_email>tina.upsilon@email.com</customer_email>
+        <customer_name>Tina Upsilon</customer_name>
+        <subject>Important feedback about new design</subject>
+        <description>The new UI design is harder to navigate compared to the old one. Many users in our organization are finding it confusing. This is important feedback.</description>
+        <category>feature_request</category>
+        <priority>medium</priority>
+        <status>new</status>
+        <tags>
+            <tag>ui</tag>
+            <tag>design</tag>
+            <tag>important</tag>
+        </tags>
+        <metadata>
+            <source>email</source>
+            <browser></browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST221</customer_id>
+        <customer_email>uma.phi@email.com</customer_email>
+        <customer_name>Uma Phi</customer_name>
+        <subject>Webhook notifications not working</subject>
+        <description>Our webhook endpoint is not receiving notifications anymore. We have verified our server is up and accepting requests from other sources.</description>
+        <category>technical_issue</category>
+        <priority>high</priority>
+        <status>new</status>
+        <tags>
+            <tag>webhook</tag>
+            <tag>notifications</tag>
+            <tag>integration</tag>
+        </tags>
+        <metadata>
+            <source>api</source>
+            <browser></browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST222</customer_id>
+        <customer_email>victor.chi@email.com</customer_email>
+        <customer_name>Victor Chi</customer_name>
+        <subject>Payment method declined unexpectedly</subject>
+        <description>My credit card was declined when trying to renew my subscription even though it has worked before and has sufficient funds.</description>
+        <category>billing_question</category>
+        <priority>medium</priority>
+        <status>new</status>
+        <tags>
+            <tag>payment</tag>
+            <tag>declined</tag>
+            <tag>subscription</tag>
+        </tags>
+        <metadata>
+            <source>web_form</source>
+            <browser>Chrome 120</browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST223</customer_id>
+        <customer_email>wendy.psi@email.com</customer_email>
+        <customer_name>Wendy Psi</customer_name>
+        <subject>Suggestion for auto-save feature</subject>
+        <description>An auto-save feature for forms would prevent data loss when the browser crashes or connection is lost. Minor enhancement suggestion.</description>
+        <category>feature_request</category>
+        <priority>low</priority>
+        <status>new</status>
+        <tags>
+            <tag>auto-save</tag>
+            <tag>forms</tag>
+            <tag>minor</tag>
+        </tags>
+        <metadata>
+            <source>chat</source>
+            <browser>Firefox 121</browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST224</customer_id>
+        <customer_email>xavier.omega@email.com</customer_email>
+        <customer_name>Xavier Omega</customer_name>
+        <subject>System showing wrong user permissions</subject>
+        <description>My user account shows admin permissions in the profile but I cannot access admin features. There seems to be a mismatch somewhere.</description>
+        <category>account_access</category>
+        <priority>medium</priority>
+        <status>new</status>
+        <tags>
+            <tag>permissions</tag>
+            <tag>admin</tag>
+            <tag>access</tag>
+        </tags>
+        <metadata>
+            <source>web_form</source>
+            <browser>Edge 120</browser>
+            <device_type>tablet</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST225</customer_id>
+        <customer_email>yolanda.alpha2@email.com</customer_email>
+        <customer_name>Yolanda Alpha</customer_name>
+        <subject>Images not loading on product pages</subject>
+        <description>Product images are showing as broken on many pages. This started happening after the recent update. Other images on the site work fine.</description>
+        <category>technical_issue</category>
+        <priority>medium</priority>
+        <status>new</status>
+        <tags>
+            <tag>images</tag>
+            <tag>broken</tag>
+            <tag>display</tag>
+        </tags>
+        <metadata>
+            <source>email</source>
+            <browser></browser>
+            <device_type>mobile</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST226</customer_id>
+        <customer_email>zack.beta2@email.com</customer_email>
+        <customer_name>Zack Beta</customer_name>
+        <subject>Calendar sync not updating</subject>
+        <description>Events I add to the calendar are not syncing with my Google Calendar. The initial sync worked but updates are not coming through.</description>
+        <category>bug_report</category>
+        <priority>medium</priority>
+        <status>new</status>
+        <tags>
+            <tag>calendar</tag>
+            <tag>sync</tag>
+            <tag>google</tag>
+        </tags>
+        <metadata>
+            <source>chat</source>
+            <browser>Chrome 120</browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST227</customer_id>
+        <customer_email>amy.gamma2@email.com</customer_email>
+        <customer_name>Amy Gamma</customer_name>
+        <subject>Urgent: Cannot complete critical transaction</subject>
+        <description>I cannot complete a time-sensitive transaction due to an error. This needs to be resolved urgently as there is a deadline today.</description>
+        <category>technical_issue</category>
+        <priority>urgent</priority>
+        <status>new</status>
+        <tags>
+            <tag>urgent</tag>
+            <tag>transaction</tag>
+            <tag>critical</tag>
+        </tags>
+        <metadata>
+            <source>phone</source>
+            <browser></browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST228</customer_id>
+        <customer_email>brian.delta2@email.com</customer_email>
+        <customer_name>Brian Delta</customer_name>
+        <subject>Report showing incorrect totals</subject>
+        <description>The monthly summary report is showing incorrect totals. The individual line items add up correctly but the total displayed is wrong.</description>
+        <category>bug_report</category>
+        <priority>high</priority>
+        <status>new</status>
+        <tags>
+            <tag>report</tag>
+            <tag>totals</tag>
+            <tag>calculation</tag>
+        </tags>
+        <metadata>
+            <source>web_form</source>
+            <browser>Safari 17</browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST229</customer_id>
+        <customer_email>carol.epsilon2@email.com</customer_email>
+        <customer_name>Carol Epsilon</customer_name>
+        <subject>Feedback on documentation</subject>
+        <description>The API documentation could use more examples and better organization. Just some constructive feedback to help improve the developer experience.</description>
+        <category>other</category>
+        <priority>low</priority>
+        <status>new</status>
+        <tags>
+            <tag>documentation</tag>
+            <tag>feedback</tag>
+            <tag>api</tag>
+        </tags>
+        <metadata>
+            <source>email</source>
+            <browser></browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+    <ticket>
+        <customer_id>CUST230</customer_id>
+        <customer_email>david.zeta2@email.com</customer_email>
+        <customer_name>David Zeta</customer_name>
+        <subject>Need invoice copies for tax filing</subject>
+        <description>I need copies of all invoices from last year for my tax filing. The download feature only shows current year invoices.</description>
+        <category>billing_question</category>
+        <priority>medium</priority>
+        <status>new</status>
+        <tags>
+            <tag>invoice</tag>
+            <tag>tax</tag>
+            <tag>download</tag>
+        </tags>
+        <metadata>
+            <source>web_form</source>
+            <browser>Chrome 120</browser>
+            <device_type>desktop</device_type>
+        </metadata>
+    </ticket>
+</tickets>
+

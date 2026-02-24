@@ -1,0 +1,343 @@
+[
+  {
+    "customer_id": "CUST101",
+    "customer_email": "alice.wonder@email.com",
+    "customer_name": "Alice Wonder",
+    "subject": "Cannot reset my password",
+    "description": "I clicked on forgot password but never received the reset email. I have checked my spam folder as well.",
+    "category": "account_access",
+    "priority": "high",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["password", "reset", "email"],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Chrome 120",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUST102",
+    "customer_email": "bob.builder@email.com",
+    "customer_name": "Bob Builder",
+    "subject": "Payment failed multiple times",
+    "description": "I tried to make a payment three times but each time it fails with a generic error message. My card works fine elsewhere.",
+    "category": "billing_question",
+    "priority": "high",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["payment", "failed", "card"],
+    "metadata": {
+      "source": "phone",
+      "browser": null,
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "CUST103",
+    "customer_email": "charlie.chocolate@email.com",
+    "customer_name": "Charlie Chocolate",
+    "subject": "Feature request: Export to Excel",
+    "description": "Please add the ability to export data to Excel format. CSV is not enough for our reporting needs.",
+    "category": "feature_request",
+    "priority": "medium",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["feature", "export", "excel"],
+    "metadata": {
+      "source": "email",
+      "browser": null,
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUST104",
+    "customer_email": "diana.dream@email.com",
+    "customer_name": "Diana Dream",
+    "subject": "App crashes when uploading files",
+    "description": "Every time I try to upload a file larger than 2MB the application crashes. This is blocking my work completely.",
+    "category": "bug_report",
+    "priority": "urgent",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["crash", "upload", "blocking"],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Firefox 121",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUST105",
+    "customer_email": "edward.eagle@email.com",
+    "customer_name": "Edward Eagle",
+    "subject": "Invoice amount incorrect",
+    "description": "My latest invoice shows charges for services I did not use. Please review and correct the billing.",
+    "category": "billing_question",
+    "priority": "medium",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["invoice", "incorrect", "billing"],
+    "metadata": {
+      "source": "email",
+      "browser": null,
+      "device_type": "tablet"
+    }
+  },
+  {
+    "customer_id": "CUST106",
+    "customer_email": "fiona.flower@email.com",
+    "customer_name": "Fiona Flower",
+    "subject": "Critical security issue found",
+    "description": "I discovered a potential XSS vulnerability on your website. Please contact me urgently to discuss the details.",
+    "category": "bug_report",
+    "priority": "urgent",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["security", "critical", "xss"],
+    "metadata": {
+      "source": "api",
+      "browser": null,
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUST107",
+    "customer_email": "george.giant@email.com",
+    "customer_name": "George Giant",
+    "subject": "Slow performance on dashboard",
+    "description": "The dashboard takes over 30 seconds to load all the widgets. This was not an issue before last week's update.",
+    "category": "technical_issue",
+    "priority": "medium",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["performance", "slow", "dashboard"],
+    "metadata": {
+      "source": "chat",
+      "browser": "Safari 17",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUST108",
+    "customer_email": "hannah.horizon@email.com",
+    "customer_name": "Hannah Horizon",
+    "subject": "Account locked without reason",
+    "description": "My account was suddenly locked and I cannot access any of my data. I did not receive any notification about why this happened.",
+    "category": "account_access",
+    "priority": "urgent",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["locked", "account", "access"],
+    "metadata": {
+      "source": "phone",
+      "browser": null,
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "CUST109",
+    "customer_email": "ivan.ice@email.com",
+    "customer_name": "Ivan Ice",
+    "subject": "Add dark mode theme",
+    "description": "A dark mode option would be really helpful for those of us who work late hours. It is a minor cosmetic suggestion.",
+    "category": "feature_request",
+    "priority": "low",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["dark-mode", "theme", "cosmetic"],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Chrome 120",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUST110",
+    "customer_email": "julia.jump@email.com",
+    "customer_name": "Julia Jump",
+    "subject": "Production down - urgent help needed",
+    "description": "Our entire production environment is down and customers cannot access the service. This is a critical emergency.",
+    "category": "technical_issue",
+    "priority": "urgent",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["production", "down", "critical"],
+    "metadata": {
+      "source": "phone",
+      "browser": null,
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUST111",
+    "customer_email": "kevin.kite@email.com",
+    "customer_name": "Kevin Kite",
+    "subject": "Refund for cancelled subscription",
+    "description": "I cancelled my subscription last month but I was still charged. Please process the refund immediately.",
+    "category": "billing_question",
+    "priority": "high",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["refund", "subscription", "cancelled"],
+    "metadata": {
+      "source": "email",
+      "browser": null,
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "CUST112",
+    "customer_email": "lisa.light@email.com",
+    "customer_name": "Lisa Light",
+    "subject": "Two-factor auth codes not arriving",
+    "description": "I am not receiving 2FA codes via SMS anymore. My phone number has not changed and other services work fine.",
+    "category": "account_access",
+    "priority": "high",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["2fa", "sms", "authentication"],
+    "metadata": {
+      "source": "chat",
+      "browser": "Edge 120",
+      "device_type": "tablet"
+    }
+  },
+  {
+    "customer_id": "CUST113",
+    "customer_email": "mike.mountain@email.com",
+    "customer_name": "Mike Mountain",
+    "subject": "Data not syncing between devices",
+    "description": "Changes I make on my phone are not showing up on my desktop and vice versa. The sync feature seems broken.",
+    "category": "technical_issue",
+    "priority": "medium",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["sync", "data", "devices"],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Chrome 120",
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "CUST114",
+    "customer_email": "nancy.night@email.com",
+    "customer_name": "Nancy Night",
+    "subject": "Bug in date picker component",
+    "description": "The date picker shows wrong dates when selecting dates in February. It seems to not account for leap years.",
+    "category": "bug_report",
+    "priority": "low",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["bug", "date-picker", "ui"],
+    "metadata": {
+      "source": "api",
+      "browser": null,
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUST115",
+    "customer_email": "oscar.ocean@email.com",
+    "customer_name": "Oscar Ocean",
+    "subject": "General inquiry about pricing",
+    "description": "I would like to know more about your enterprise pricing options for a team of 50+ users.",
+    "category": "other",
+    "priority": "low",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["pricing", "enterprise", "inquiry"],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Safari 17",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUST116",
+    "customer_email": "patricia.peak@email.com",
+    "customer_name": "Patricia Peak",
+    "subject": "Important update regarding our contract",
+    "description": "We need to discuss some important changes to our enterprise contract before the renewal date.",
+    "category": "other",
+    "priority": "high",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["contract", "enterprise", "important"],
+    "metadata": {
+      "source": "email",
+      "browser": null,
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUST117",
+    "customer_email": "quincy.quest@email.com",
+    "customer_name": "Quincy Quest",
+    "subject": "API integration blocking our launch",
+    "description": "We cannot launch our product because the API integration keeps failing. This is blocking our entire team.",
+    "category": "technical_issue",
+    "priority": "urgent",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["api", "blocking", "integration"],
+    "metadata": {
+      "source": "phone",
+      "browser": null,
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUST118",
+    "customer_email": "rachel.rain@email.com",
+    "customer_name": "Rachel Rain",
+    "subject": "Suggestion for mobile app improvement",
+    "description": "The mobile app could really benefit from gesture-based navigation. Just a minor suggestion for UX improvement.",
+    "category": "feature_request",
+    "priority": "low",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["mobile", "suggestion", "ux"],
+    "metadata": {
+      "source": "chat",
+      "browser": null,
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "CUST119",
+    "customer_email": "steve.storm@email.com",
+    "customer_name": "Steve Storm",
+    "subject": "Error when generating reports",
+    "description": "I keep getting timeout errors when trying to generate monthly reports. The process never completes.",
+    "category": "bug_report",
+    "priority": "medium",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["reports", "timeout", "error"],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Firefox 121",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUST120",
+    "customer_email": "tina.thunder@email.com",
+    "customer_name": "Tina Thunder",
+    "subject": "ASAP need access to archived data",
+    "description": "I urgently need access to data that was archived last year for a compliance audit. Please help ASAP.",
+    "category": "other",
+    "priority": "high",
+    "status": "new",
+    "assigned_to": null,
+    "tags": ["archived", "data", "asap"],
+    "metadata": {
+      "source": "email",
+      "browser": null,
+      "device_type": "desktop"
+    }
+  }
+]
+
