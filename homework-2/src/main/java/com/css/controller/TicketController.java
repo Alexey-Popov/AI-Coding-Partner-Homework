@@ -23,10 +23,13 @@ public class TicketController {
 
     private final TicketService ticketService;
     private final TicketImportService importService;
+    private final com.css.service.TicketClassificationService classificationService;
 
-    public TicketController(TicketService ticketService, TicketImportService importService) {
+    public TicketController(TicketService ticketService, TicketImportService importService,
+                            com.css.service.TicketClassificationService classificationService) {
         this.ticketService = ticketService;
         this.importService = importService;
+        this.classificationService = classificationService;
     }
 
     /**
@@ -101,6 +104,26 @@ public class TicketController {
     public ResponseEntity<Void> deleteTicket(@PathVariable UUID id) {
         ticketService.deleteTicket(id);
         return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * Auto-classify a ticket
+     * POST /tickets/:id/auto-classify
+     */
+    @PostMapping("/{id}/auto-classify")
+    public ResponseEntity<?> autoClassifyTicket(@PathVariable UUID id) {
+        Ticket ticket = ticketService.getTicketById(id);
+        var result = classificationService.classify(ticket);
+
+        ticket.setCategory(result.getCategory());
+        ticket.setPriority(result.getPriority());
+        ticket.setClassificationConfidence(result.getConfidence());
+        ticket.setClassificationReasoning(result.getReasoning());
+        ticket.setClassificationKeywords(result.getKeywords());
+
+        ticketService.saveTicket(ticket);
+
+        return ResponseEntity.ok(result);
     }
 }
 

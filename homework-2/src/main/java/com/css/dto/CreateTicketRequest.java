@@ -17,6 +17,7 @@ public class CreateTicketRequest {
     private TicketPriority priority;
     private List<String> tags;
     private MetadataRequest metadata;
+    private Boolean autoClassify;
 
     public static class MetadataRequest {
         private TicketSource source;
@@ -118,6 +119,14 @@ public class CreateTicketRequest {
 
     public void setMetadata(MetadataRequest metadata) {
         this.metadata = metadata;
+    }
+
+    public Boolean getAutoClassify() {
+        return autoClassify;
+    }
+
+    public void setAutoClassify(Boolean autoClassify) {
+        this.autoClassify = autoClassify;
     }
 }
 

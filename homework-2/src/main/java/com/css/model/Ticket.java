@@ -21,6 +21,10 @@ public class Ticket {
     private String assignedTo;
     private List<String> tags;
     private TicketMetadata metadata;
+    // Auto-classification fields
+    private Double classificationConfidence;
+    private String classificationReasoning;
+    private List<String> classificationKeywords;
 
     public Ticket() {
         this.id = UUID.randomUUID();
@@ -28,6 +32,7 @@ public class Ticket {
         this.updatedAt = LocalDateTime.now();
         this.status = TicketStatus.NEW;
         this.tags = new ArrayList<>();
+        this.classificationKeywords = new ArrayList<>();
     }
 
     public UUID getId() {
@@ -148,6 +153,30 @@ public class Ticket {
 
     public void setMetadata(TicketMetadata metadata) {
         this.metadata = metadata;
+    }
+
+    public Double getClassificationConfidence() {
+        return classificationConfidence;
+    }
+
+    public void setClassificationConfidence(Double classificationConfidence) {
+        this.classificationConfidence = classificationConfidence;
+    }
+
+    public String getClassificationReasoning() {
+        return classificationReasoning;
+    }
+
+    public void setClassificationReasoning(String classificationReasoning) {
+        this.classificationReasoning = classificationReasoning;
+    }
+
+    public List<String> getClassificationKeywords() {
+        return classificationKeywords;
+    }
+
+    public void setClassificationKeywords(List<String> classificationKeywords) {
+        this.classificationKeywords = classificationKeywords;
     }
 }
 

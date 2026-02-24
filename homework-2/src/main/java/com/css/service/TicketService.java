@@ -20,10 +20,13 @@ public class TicketService {
 
     private final TicketRepository ticketRepository;
     private final TicketValidationService validationService;
+    private final TicketClassificationService classificationService;
 
-    public TicketService(TicketRepository ticketRepository, TicketValidationService validationService) {
+    public TicketService(TicketRepository ticketRepository, TicketValidationService validationService,
+                         TicketClassificationService classificationService) {
         this.ticketRepository = ticketRepository;
         this.validationService = validationService;
+        this.classificationService = classificationService;
     }
 
     public Ticket createTicket(CreateTicketRequest request) {
@@ -49,6 +52,20 @@ public class TicketService {
             metadata.setBrowser(request.getMetadata().getBrowser());
             metadata.setDeviceType(request.getMetadata().getDeviceType());
             ticket.setMetadata(metadata);
+        }
+
+        // Optionally run auto-classification on creation
+        if (request.getAutoClassify() != null && request.getAutoClassify()) {
+            try {
+                var res = classificationService.classify(ticket);
+                ticket.setCategory(res.getCategory());
+                ticket.setPriority(res.getPriority());
+                ticket.setClassificationConfidence(res.getConfidence());
+                ticket.setClassificationReasoning(res.getReasoning());
+                ticket.setClassificationKeywords(res.getKeywords());
+            } catch (Exception ex) {
+                // classification should not fail creation
+            }
         }
 
         return ticketRepository.save(ticket);
