@@ -17,54 +17,9 @@ Technical architecture overview of the Customer Support System (CSS) for technic
 
 The system follows a classic **layered architecture** with clear separation of concerns across Controller, Service, and Repository layers. All components are managed by Spring's IoC container.
 
-```mermaid
-graph TB
-    subgraph Presentation Layer
-        TC[TicketController<br/><i>@RestController</i>]
-    end
+![High-Level Architecture](docs/screenshots/high-level-architecture.png)
 
-    subgraph Service Layer
-        TS[TicketService]
-        TVS[TicketValidationService]
-        TCS[TicketClassificationService]
-        TIS[TicketImportService]
-    end
-
-    subgraph Import Subsystem
-        CSV[CsvImportService]
-        JSON[JsonImportService]
-        XML[XmlImportService]
-    end
-
-    subgraph Data Layer
-        TR[TicketRepository]
-        STORE[(ConcurrentHashMap<br/>In-Memory Store)]
-    end
-
-    subgraph Cross-Cutting
-        GEH[GlobalExceptionHandler<br/><i>@ControllerAdvice</i>]
-        JC[JacksonConfig<br/><i>snake_case + JSR-310</i>]
-    end
-
-    TC --> TS
-    TC --> TIS
-    TC --> TCS
-    TS --> TVS
-    TS --> TCS
-    TS --> TR
-    TIS --> CSV
-    TIS --> JSON
-    TIS --> XML
-    CSV --> TVS
-    JSON --> TVS
-    XML --> TVS
-    CSV --> TR
-    JSON --> TR
-    XML --> TR
-    TR --> STORE
-    GEH -.->|intercepts| TC
-    JC -.->|configures| TC
-```
+<sup>**Note:** If you update the architecture, re-export the diagram as an image and replace this file.</sup>
 
 ---
 
@@ -125,79 +80,15 @@ graph TB
 
 ### Ticket Creation Flow
 
-```mermaid
-sequenceDiagram
-    participant C as Client
-    participant TC as TicketController
-    participant TS as TicketService
-    participant TVS as TicketValidationService
-    participant TCS as TicketClassificationService
-    participant TR as TicketRepository
+![Ticket Creation Flow](docs/screenshots/ticket-creation-flow.png)
 
-    C->>TC: POST /tickets (JSON body)
-    TC->>TS: createTicket(request)
-    TS->>TVS: validateCreateRequest(request)
-    
-    alt Validation fails
-        TVS-->>TS: throw ValidationException
-        TS-->>TC: propagates exception
-        TC-->>C: 400 Bad Request + field errors
-    end
-
-    TS->>TS: Map DTO → Ticket entity
-    TS->>TS: Set defaults (status=NEW, timestamps)
-    
-    alt auto_classify = true
-        TS->>TCS: classify(ticket)
-        TCS->>TCS: Scan subject + description for keywords
-        TCS-->>TS: ClassificationResult
-        TS->>TS: Apply category, priority, confidence
-    end
-    
-    TS->>TR: save(ticket)
-    TR-->>TS: saved ticket
-    TS-->>TC: ticket
-    TC-->>C: 201 Created + ticket JSON
-```
+<sup>**Note:** If you update the flow, re-export the diagram as an image and replace this file.</sup>
 
 ### Bulk Import Flow
 
-```mermaid
-sequenceDiagram
-    participant C as Client
-    participant TC as TicketController
-    participant TIS as TicketImportService
-    participant IMP as Format-Specific Importer
-    participant TVS as TicketValidationService
-    participant TR as TicketRepository
+![Bulk Import Flow](docs/screenshots/bulk-import-flow.png)
 
-    C->>TC: POST /tickets/import (multipart file)
-    TC->>TIS: importTickets(file)
-    TIS->>TIS: Detect format from file extension
-    
-    alt Unsupported format
-        TIS-->>TC: throw ImportException
-        TC-->>C: 400 Bad Request
-    end
-    
-    TIS->>IMP: importFromFile(inputStream)
-    
-    loop For each record
-        IMP->>IMP: Parse record from file
-        IMP->>TVS: validateTicketData(dataMap)
-        
-        alt Valid
-            IMP->>TR: save(ticket)
-            IMP->>IMP: Add to importedTicketIds
-        else Invalid
-            IMP->>IMP: Add to errors list
-        end
-    end
-    
-    IMP-->>TIS: ImportResult
-    TIS-->>TC: ImportResult
-    TC-->>C: 200 OK + ImportResult JSON
-```
+<sup>**Note:** If you update the flow, re-export the diagram as an image and replace this file.</sup>
 
 ---
 

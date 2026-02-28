@@ -17,46 +17,11 @@ An intelligent customer support ticket management system built with **Java 17** 
 
 ## Architecture Overview
 
-```mermaid
-graph TD
-    Client([HTTP Client]) -->|REST| Controller[TicketController]
+![Architecture Overview](docs/screenshots/architecture-overview.png)
 
-    Controller --> TicketService
-    Controller --> ImportService[TicketImportService]
-    Controller --> ClassificationService[TicketClassificationService]
+![Test Pyramid](docs/screenshots/test-pyramid.png)
 
-    TicketService --> ValidationService[TicketValidationService]
-    TicketService --> ClassificationService
-    TicketService --> Repository[TicketRepository]
-
-    ImportService --> CsvImporter[CsvImportService]
-    ImportService --> JsonImporter[JsonImportService]
-    ImportService --> XmlImporter[XmlImportService]
-
-    CsvImporter --> ValidationService
-    JsonImporter --> ValidationService
-    XmlImporter --> ValidationService
-
-    CsvImporter --> Repository
-    JsonImporter --> Repository
-    XmlImporter --> Repository
-
-    Repository --> Store[(In-Memory Store<br/>ConcurrentHashMap)]
-```
-
----
-
-## Tech Stack
-
-| Component        | Technology                          |
-|------------------|-------------------------------------|
-| Language         | Java 17                             |
-| Framework        | Spring Boot 4.0.3                   |
-| Build Tool       | Gradle                              |
-| JSON Processing  | Jackson (snake_case + JSR-310)      |
-| Testing          | JUnit 5, MockMvc, Mockito, AssertJ  |
-| Code Coverage    | JaCoCo                              |
-| Storage          | In-memory (`ConcurrentHashMap`)     |
+<sup>**Note:** If you update the test strategy, re-export the diagram as an image and replace this file.</sup>
 
 ---
 
