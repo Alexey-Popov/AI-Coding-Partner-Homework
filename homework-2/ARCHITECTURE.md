@@ -17,9 +17,57 @@ Technical architecture overview of the Customer Support System (CSS) for technic
 
 The system follows a classic **layered architecture** with clear separation of concerns across Controller, Service, and Repository layers. All components are managed by Spring's IoC container.
 
-![High-Level Architecture](docs/screenshots/high-level-architecture.png)
+```mermaid
+graph TD
+    Client["Client<br/>(cURL / Browser / Postman)"]
 
-<sup>**Note:** If you update the architecture, re-export the diagram as an image and replace this file.</sup>
+    subgraph Presentation Layer
+        Controller["TicketController<br/>7 REST endpoints"]
+        ExHandler["GlobalExceptionHandler<br/>@ControllerAdvice"]
+        JacksonCfg["JacksonConfig<br/>snake_case + JavaTimeModule"]
+    end
+
+    subgraph Service Layer
+        TicketSvc["TicketService<br/>CRUD + orchestration"]
+        ValidationSvc["TicketValidationService<br/>email, lengths, enums"]
+        ClassifySvc["TicketClassificationService<br/>keyword-based classifier"]
+        ImportRouter["TicketImportService<br/>format router"]
+    end
+
+    subgraph Import Subsystem
+        CsvSvc["CsvImportService"]
+        JsonSvc["JsonImportService"]
+        XmlSvc["XmlImportService<br/>(XXE-protected)"]
+    end
+
+    subgraph Data Layer
+        Repo["TicketRepository<br/>ConcurrentHashMap"]
+    end
+
+    Client -->|HTTP| Controller
+    Controller --> ExHandler
+    Controller --> TicketSvc
+    TicketSvc --> ValidationSvc
+    TicketSvc --> ClassifySvc
+    TicketSvc --> ImportRouter
+    ImportRouter --> CsvSvc
+    ImportRouter --> JsonSvc
+    ImportRouter --> XmlSvc
+    TicketSvc --> Repo
+    CsvSvc --> Repo
+    JsonSvc --> Repo
+    XmlSvc --> Repo
+
+    style Client fill:#e1bee7,stroke:#333
+    style Controller fill:#bbdefb,stroke:#333
+    style ExHandler fill:#ffcdd2,stroke:#333
+    style JacksonCfg fill:#b3e5fc,stroke:#333
+    style TicketSvc fill:#c8e6c9,stroke:#333
+    style ValidationSvc fill:#dcedc8,stroke:#333
+    style ClassifySvc fill:#f0f4c3,stroke:#333
+    style ImportRouter fill:#fff9c4,stroke:#333
+    style Repo fill:#ffe0b2,stroke:#333
+```
 
 ---
 
@@ -80,15 +128,70 @@ The system follows a classic **layered architecture** with clear separation of c
 
 ### Ticket Creation Flow
 
-![Ticket Creation Flow](docs/screenshots/ticket-creation-flow.png)
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant TC as TicketController
+    participant TS as TicketService
+    participant VS as ValidationService
+    participant CS as ClassificationService
+    participant R as TicketRepository
 
-<sup>**Note:** If you update the flow, re-export the diagram as an image and replace this file.</sup>
+    C->>TC: POST /tickets (JSON body)
+    TC->>TS: createTicket(request)
+    TS->>VS: validateCreateRequest(request)
+    alt Validation fails
+        VS-->>TS: throw ValidationException
+        TS-->>TC: propagate exception
+        TC-->>C: 400 Bad Request + field errors
+    end
+    VS-->>TS: valid
+    TS->>TS: Build Ticket entity (defaults: status=NEW, id=UUID)
+    opt auto_classify = true
+        TS->>CS: classify(ticket)
+        CS->>CS: Scan subject + description for keywords
+        CS-->>TS: ClassificationResult (category, priority, confidence)
+        TS->>TS: Apply classification to ticket
+    end
+    TS->>R: save(ticket)
+    R-->>TS: saved ticket
+    TS-->>TC: Ticket
+    TC-->>C: 201 Created + Ticket JSON
+```
 
 ### Bulk Import Flow
 
-![Bulk Import Flow](docs/screenshots/bulk-import-flow.png)
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant TC as TicketController
+    participant IS as TicketImportService
+    participant FI as Format-Specific Importer
+    participant VS as ValidationService
+    participant R as TicketRepository
 
-<sup>**Note:** If you update the flow, re-export the diagram as an image and replace this file.</sup>
+    C->>TC: POST /tickets/import (multipart file)
+    TC->>IS: importTickets(file)
+    IS->>IS: Detect format from extension (.csv/.json/.xml)
+    alt Unsupported format
+        IS-->>TC: throw ImportException
+        TC-->>C: 400 Bad Request
+    end
+    IS->>FI: importFromFile(inputStream)
+    loop For each record in file
+        FI->>FI: Parse record
+        FI->>VS: validateRawData(fields)
+        alt Valid
+            FI->>R: save(ticket)
+            FI->>FI: Add ID to successList
+        else Invalid
+            FI->>FI: Add error to failList
+        end
+    end
+    FI-->>IS: ImportResult (total, success, failed, errors, ids)
+    IS-->>TC: ImportResult
+    TC-->>C: 200 OK + ImportResult JSON
+```
 
 ---
 

@@ -17,11 +17,58 @@ An intelligent customer support ticket management system built with **Java 17** 
 
 ## Architecture Overview
 
-![Architecture Overview](docs/screenshots/architecture-overview.png)
+```mermaid
+graph TD
+    Client["Client (cURL / Browser)"]
+    Controller["TicketController<br/><i>REST Endpoints</i>"]
+    ExHandler["GlobalExceptionHandler<br/><i>@ControllerAdvice</i>"]
+    TicketService["TicketService<br/><i>Business Logic</i>"]
+    ValidationService["TicketValidationService<br/><i>Field Validation</i>"]
+    ClassificationService["TicketClassificationService<br/><i>Keyword Classifier</i>"]
+    ImportService["TicketImportService<br/><i>Format Router</i>"]
+    CsvImporter["CsvImportService"]
+    JsonImporter["JsonImportService"]
+    XmlImporter["XmlImportService"]
+    Repo["TicketRepository<br/><i>ConcurrentHashMap</i>"]
 
-![Test Pyramid](docs/screenshots/test-pyramid.png)
+    Client -->|HTTP| Controller
+    Controller --> ExHandler
+    Controller --> TicketService
+    TicketService --> ValidationService
+    TicketService --> ClassificationService
+    TicketService --> ImportService
+    ImportService --> CsvImporter
+    ImportService --> JsonImporter
+    ImportService --> XmlImporter
+    TicketService --> Repo
+    CsvImporter --> Repo
+    JsonImporter --> Repo
+    XmlImporter --> Repo
 
-<sup>**Note:** If you update the test strategy, re-export the diagram as an image and replace this file.</sup>
+    style Client fill:#f9f,stroke:#333
+    style Controller fill:#bbf,stroke:#333
+    style ExHandler fill:#fbb,stroke:#333
+    style TicketService fill:#bfb,stroke:#333
+    style Repo fill:#ff9,stroke:#333
+```
+
+### Test Pyramid
+
+```mermaid
+graph TB
+    subgraph Test Pyramid
+        E2E["Integration / E2E Tests — 12 tests"]
+        COMP["Component Tests — ~70 tests"]
+        UNIT["Unit Tests — ~160+ tests"]
+    end
+
+    E2E --- COMP
+    COMP --- UNIT
+
+    style E2E fill:#ff6b6b,stroke:#333,color:#fff
+    style COMP fill:#4ecdc4,stroke:#333,color:#fff
+    style UNIT fill:#45b7d1,stroke:#333,color:#fff
+```
 
 ---
 

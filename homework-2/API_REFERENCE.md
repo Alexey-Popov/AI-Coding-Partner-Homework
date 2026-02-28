@@ -8,6 +8,40 @@ Complete REST API documentation for the Customer Support System (CSS).
 
 ---
 
+## Endpoint Overview
+
+```mermaid
+graph LR
+    subgraph "POST"
+        P1["POST /tickets<br/>Create ticket"]
+        P2["POST /tickets/import<br/>Bulk import"]
+        P3["POST /tickets/{id}/auto-classify<br/>Auto-classify"]
+    end
+
+    subgraph "GET"
+        G1["GET /tickets<br/>List (+ filters)"]
+        G2["GET /tickets/{id}<br/>Get by ID"]
+    end
+
+    subgraph "PUT"
+        U1["PUT /tickets/{id}<br/>Partial update"]
+    end
+
+    subgraph "DELETE"
+        D1["DELETE /tickets/{id}<br/>Remove"]
+    end
+
+    style P1 fill:#c8e6c9,stroke:#333
+    style P2 fill:#c8e6c9,stroke:#333
+    style P3 fill:#c8e6c9,stroke:#333
+    style G1 fill:#bbdefb,stroke:#333
+    style G2 fill:#bbdefb,stroke:#333
+    style U1 fill:#fff9c4,stroke:#333
+    style D1 fill:#ffcdd2,stroke:#333
+```
+
+---
+
 ## Table of Contents
 
 - [Data Models](#data-models)
