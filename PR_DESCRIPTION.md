@@ -120,7 +120,20 @@ Time: 0.287 s
 
 ---
 
-## 🛠️ AI Tools Used
+## � Screenshots
+
+### Agent Pipeline Execution
+![Agent Pipeline Execution](homework-4/docs/screenshots/1.png)
+
+### Test Results
+![Test Results](homework-4/docs/screenshots/2.png)
+
+### Bug Fix Verification
+![Bug Fix Verification](homework-4/docs/screenshots/3.png)
+
+---
+
+## �🛠️ AI Tools Used
 
 - **GitHub Copilot** (Claude Sonnet 4.5) - Agent definitions, skills, tests, documentation
 - **Claude Code CLI** - Installed via `npm install -g @anthropic-ai/claude-code`
