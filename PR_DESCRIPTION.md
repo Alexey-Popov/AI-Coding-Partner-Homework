@@ -1,201 +1,175 @@
-# 📝 Homework Submission - Homework 3
+# 📝 Homework Submission - Homework 4
 
 > **Student Name**: Mykhailo Bestiuk  
-> **Date Submitted**: February 10, 2026  
-> **Assignment**: Homework 3: Specification-Driven Design
+> **Date Submitted**: March 1, 2026  
+> **Assignment**: Homework 4: 4-Agent Pipeline for Bug Fixing
 
 ---
 
-## ✅ Summary of Submission
+## ✅ Summary
 
-This PR submits a **specification package** (no code) for a **Virtual Card Lifecycle Management** microservice in a regulated FinTech environment. The package provides complete guidance for AI-driven implementation of a PCI-DSS compliant system.
+This PR submits a **4-agent pipeline** for autonomous bug fixing applied to a real Node.js/Express API bug (API-404: type mismatch in user lookup endpoint).
 
-**Deliverable Type**: Documentation only (no implementation)  
-**Files Created**: 4 specification and configuration documents  
-**Folder**: `homework-3/`
+**Folder**: `homework-4/`
 
-### 📦 Deliverables (per TASKS.md requirements)
+### 📦 Deliverables
 
-| # | Required Deliverable | File | Purpose |
-|---|---------------------|------|--------|
-| 1 | specification.md | `homework-3/specification.md` | High/mid/low-level objectives + 18 implementation tasks |
-| 2 | agents.md | `homework-3/agents.md` | AI coding partner guidelines for FinTech domain |
-| 3 | Editor / AI rules | `homework-3/.github/copilot-instructions.md` | ALWAYS/NEVER rules for Copilot |
-| 4 | README.md | `homework-3/README.md` | Rationale and industry best practices mapping |
+| # | Deliverable | Status |
+|---|------------|--------|
+| 1-4 | 4 Agents (Research Verifier, Bug Implementer, Security Verifier, Unit Test Generator) | ✅ Complete |
+| 5-6 | 2 Skills (Research Quality Measurement, FIRST Testing) | ✅ Complete |
+| 7 | Working Application (bug fixed, 8/8 tests pass) | ✅ Complete |
+| 8 | Pipeline Artifacts (6 documents in `context/bugs/API-404/`) | ✅ Complete |
+| 9 | Documentation (README, HOWTORUN, STUDENT) | ✅ Complete |
+| 10 | Screenshots (3 files) | ✅ Complete |
 
-### 🎯 Domain: Virtual Card Lifecycle Management
+---
 
-**Why this domain?** Maximizes demonstration of FinTech best practices:
-- State machine complexity (4 states, 5 transitions, strict invariants)
-- Compliance frameworks (PCI-DSS, PSD2, GDPR)
-- Security requirements (tokenization, encryption, masking, audit)
-- Real-world production patterns (Stripe, Privacy.com, Revolut)
+## 🐛 Bug Fixed: API-404
 
-### 🏗️ System Design Overview
+**Issue**: `GET /api/users/:id` returns 404 for all valid user IDs
 
-**High-Level Objective**: Build a microservice enabling virtual card creation, lifecycle management (activate/freeze/unfreeze/close), spending limits, transaction visibility, immutable audit trails, and GDPR compliance.
+**Root Cause**: JavaScript type mismatch - Express params are strings (`"123"`), users array has numeric IDs (`123`), strict equality (`===`) never matches.
 
-**Mid-Level Objectives (7)**:
-1. PCI-DSS Compliant Data Storage (tokenized PANs, AES-256 encryption, masking)
-2. Immutable Audit Trail (append-only events, complete actor tracking)
-3. Card Lifecycle State Machine (CREATED → ACTIVE ↔ FROZEN → CLOSED)
-4. Spending Limits & Controls (per-transaction/daily/monthly, Decimal precision)
-5. Transaction Visibility (filterable logs, pagination, masked responses)
-6. Role-Based Access Control (cardholder vs ops_compliance, JWT auth)
-7. GDPR Compliance (right to erasure, data portability, retention policies)
+**Fix**: Added `parseInt(req.params.id, 10)` on line 19 of `userController.js`
 
-**Low-Level Tasks (18)**: Each with prompt template, target files, functions, and detailed acceptance criteria.
+**Result**: 8/8 tests pass, endpoint now works correctly
 
-### 🛠️ Technology Stack Specified
+---
 
-```yaml
-Language: Python 3.11+
-Framework: FastAPI 0.110+
-ORM: SQLAlchemy 2.0 (async)
-Database: PostgreSQL 16
-Cache: Redis 7
-Testing: pytest + httpx (72 tests specified)
-Linting: Ruff + mypy (strict)
+## 🤖 The 4-Agent Pipeline
+
+```
+Bug Research → Research Verifier (EXCELLENT 4.7/5.0) → Bug Planner
+    → Bug Implementer (SUCCESS, 8/8 tests) → Security Verifier (0 CRITICAL)
+    → Unit Test Generator (8 tests, FIRST ✓)
+```
+
+### Agent Results Summary
+
+| Agent | Output | Key Metrics |
+|-------|--------|-------------|
+| **Research Verifier** | `verified-research.md` | EXCELLENT (4.7/5.0), all file:line refs verified |
+| **Bug Implementer** | `fix-summary.md` | SUCCESS, 1 line changed, 8/8 tests pass |
+| **Security Verifier** | `security-report.md` | 0 CRITICAL, 0 HIGH, 1 MEDIUM, 1 LOW |
+| **Unit Test Generator** | `test-report.md` + `tests/` | 8 tests generated, FIRST compliant, 8/8 pass |
+
+---
+
+## 🎯 Skills Created
+
+### 1. Research Quality Measurement
+Weighted scoring framework (5 criteria):
+- File/Line Reference Accuracy (30%)
+- Code Snippet Completeness (25%)
+- Root Cause Depth (25%)
+- Reproduction Steps Clarity (10%)
+- Evidence Quality (10%)
+
+**Quality Levels**: EXCELLENT (4.0-5.0), GOOD (3.0-3.9), ACCEPTABLE (2.0-2.9), POOR (1.0-1.9), INSUFFICIENT (0.0-0.9)
+
+### 2. Unit Tests FIRST
+Testing principles applied:
+- **F**ast - Run in <300ms
+- **I**ndependent - No test dependencies
+- **R**epeatable - Same result every time
+- **S**elf-validating - Pass/fail via assertions
+- **T**imely - Written with implementation
+
+---
+
+## 🧪 Test Results
+
+**Status**: ✅ 8/8 tests pass
+
+```
+PASS  tests/users.test.js
+  getUserById
+    ✓ returns user for valid ID 123
+    ✓ returns user for valid ID 456
+    ✓ returns user for valid ID 789
+    ✓ returns 404 for non-existent ID 999
+    ✓ returns 404 for non-numeric ID "abc"
+    ✓ [REGRESSION] string "123" resolves to user (API-404 fix)
+  getAllUsers
+    ✓ returns all 3 users
+    ✓ each user has id, name, and email
+
+Tests: 8 passed, 8 total
+Time: 0.287 s
 ```
 
 ---
 
-### 🤖 AI Agent Configuration Highlights
+## 🔍 Code Changes
 
-**agents.md** — Comprehensive guidelines covering:
-- Domain rules (Decimal for money, PAN tokenization, state machine validation)
-- Code style (naming conventions, structure patterns, error handling)
-- Testing expectations (72 tests across 10 suites, compliance tests)
-- Security/compliance constraints (PCI-DSS, GDPR, audit requirements)
+**File**: `homework-4/demo-bug-fix/src/controllers/userController.js`
 
-**copilot-instructions.md** — Editor-level rules:
-- **ALWAYS Do**: Use Decimal, UUID, async def, mask PANs, emit audit events, type hints
-- **NEVER Do**: Use float for money, store raw PANs, log sensitive data, skip validation
+```diff
+- const userId = req.params.id;
++ const userId = parseInt(req.params.id, 10);
+```
 
-### 📊 Testing Strategy (72 Tests Specified)
-
-| Test Suite | Tests | Focus |
-|------------|-------|-------|
-| Models & Services | 34 | PAN masking, state transitions, limit validation |
-| RBAC & GDPR | 14 | JWT auth, role enforcement, erasure, export |
-| Integration | 10 | Full lifecycle workflows, concurrent operations |
-| Compliance | 8 | PAN leak detection, security headers, immutability |
-| Performance | 6 | Latency benchmarks (p95 thresholds) |
+**Files Created:**
+- `.claude/agents/` - 4 agent definitions
+- `homework-4/skills/` - 2 skill documents
+- `homework-4/demo-bug-fix/tests/` - 8 unit tests
+- `homework-4/context/bugs/API-404/` - 6 pipeline artifacts
+- `homework-4/docs/screenshots/` - 3 screenshots
+- Documentation: README, HOWTORUN, STUDENT
 
 ---
 
 ## 🛠️ AI Tools Used
 
-### Primary AI Tools
-- [x] **Claude Code** (Primary specification architect)
-- [x] **GitHub Copilot** (Markdown formatting assistance)
-
-### How AI Tools Were Used
-
-**Claude Code:**
-- Structuring specification from high-level to low-level tasks
-- Defining compliance requirements (PCI-DSS, GDPR, PSD2)
-- Creating comprehensive agent guidelines with domain rules
-- Designing 18 implementation tasks with detailed acceptance criteria
-
-**GitHub Copilot:**
-- Auto-completing Markdown tables and formatting
-- Suggesting consistent terminology
-- Code block syntax for examples
-
-**Effectiveness**: Claude Code excelled at domain-specific specification design; Copilot useful for formatting consistency.
+- **GitHub Copilot** (Claude Sonnet 4.5) - Agent definitions, skills, tests, documentation
+- **Claude Code CLI** - Installed via `npm install -g @anthropic-ai/claude-code`
 
 ---
 
-## 💡 Key Insights & Best Practices
+## 💡 Key Insights
 
-### Specification Quality
-- **Granularity**: Each of 18 tasks includes prompt template, target files, functions, and acceptance criteria
-- **Compliance-first**: Security/audit requirements embedded throughout (not bolted on)
-- **AI-ready**: Structured format enables autonomous AI implementation
+**Agent Pipeline Design:**
+- Separation of concerns - each agent has one responsibility
+- Skills as contracts - reproducible quality standards
+- Chained verification - research → implementation → security → tests
 
-### FinTech Best Practices Demonstrated
-
-| Practice | Location in Spec | Industry Standard |
-|----------|-----------------|-------------------|
-| PAN tokenization | Task 3, MO-1 | PCI-DSS Req 3.4 |
-| Immutable audit trail | Task 4, MO-2 | SOX, PSD2 |
-| State machine validation | Task 9, MO-3 | Domain-driven design |
-| Decimal precision for money | agents.md Domain Rules | FinTech standard |
-| Right to erasure | Task 12, MO-7 | GDPR Art 17 |
-| Security headers | Task 15 | OWASP best practice |
-| Rate limiting | Task 10 | API security standard |
-
-### Design Decisions Rationale
-
-**Why Python 3.11+?** Type hints, performance, async/await support, mature FinTech ecosystem.
-
-**Why PostgreSQL over MySQL?** Better JSONB support for metadata, row-level security, stronger ACID guarantees.
-
-**Why append-only audit?** Regulatory compliance (SOX, PCI-DSS), forensic integrity, simpler reasoning about system state.
-
-**Why 72 tests?** Comprehensive coverage across functional, security, compliance, and performance dimensions.
+**Results:**
+- Research Quality: EXCELLENT (4.7/5.0) with all file:line refs verified
+- Security: 0 critical/high findings, 2 minor findings documented
+- Tests: 8/8 pass, all FIRST principles satisfied
+- Fix: Single-line change resolved type mismatch bug
 
 ---
 
-## 📋 Submission Checklist (per TASKS.md)
+## 📊 Before vs After
 
-### Deliverable 1: specification.md
-- [x] High-level objective
-- [x] Mid-level objectives (7)
-- [x] Implementation notes (tech stack, coding standards, context)
-- [x] Low-level tasks (18) with prompt templates and acceptance criteria
-
-### Deliverable 2: agents.md
-- [x] Tech stack definition
-- [x] Domain rules (banking/FinTech)
-- [x] Code style conventions
-- [x] Testing expectations
-- [x] Security and compliance constraints
-
-### Deliverable 3: Editor / AI rules
-- [x] `.github/copilot-instructions.md` with ALWAYS/NEVER rules
-- [x] Naming conventions, architecture patterns, testing rules
-
-### Deliverable 4: README.md
-- [x] Student name and task summary
-- [x] Rationale for specification design choices
-- [x] Industry best practices with locations in the spec
+| Aspect | Before | After |
+|--------|--------|-------|
+| Bug Status | 404 for all IDs | 200 with correct user data |
+| Tests | None | 8 tests, 100% pass |
+| Security | Not reviewed | Reviewed, 0 critical issues |
+| Documentation | Bug report only | Full pipeline artifacts |
 
 ---
 
-## 🎓 Reflection
+## 🚀 How to Run
 
-### What Went Well
-- **Specification depth**: 18 tasks with line-by-line implementation guidance
-- **Compliance integration**: Security/audit requirements woven throughout design
-- **AI-readiness**: Structured format with explicit prompts for each task
-- **Real-world relevance**: Virtual cards are used by millions in production systems
+```bash
+cd homework-4/demo-bug-fix
+npm install
+npm test          # 8/8 tests pass
+npm start         # Start server
+curl http://localhost:3000/api/users/123  # Test endpoint
+```
 
-### Learning About Specification-Driven Design
-- **Granularity matters**: Detailed acceptance criteria reduce AI interpretation errors
-- **Compliance upfront**: Easier to design-in than retrofit security requirements
-- **Agent guidelines critical**: Domain-specific rules (Decimal, PAN masking) prevent common FinTech bugs
-- **Testing as specification**: 72 specified tests clarify expected system behavior
-
-### Time Spent (Specification Creation Only)
-- **Research**: ~2 hours (PCI-DSS requirements, state machine patterns, FinTech best practices)
-- **Specification writing**: ~3 hours (specification.md with 18 detailed tasks)
-- **Agent configuration**: ~1 hour (agents.md, copilot-instructions.md)
-- **Documentation**: ~1 hour (README.md rationale and best practices)
-
-**Total**: ~7 hours for specification package (no code implementation)
-
----
-
-## 📚 References
-
-- **PCI-DSS v4.0**: Requirements 3.3, 3.4, 10.2
-- **GDPR**: Articles 17 (erasure), 20 (portability)
-- **PSD2**: Strong Customer Authentication (SCA)
-- **OWASP**: Security Headers Best Practices
-- **Real-world systems**: Stripe, Privacy.com, Revolut virtual card implementations
+See [homework-4/HOWTORUN.md](homework-4/HOWTORUN.md) for detailed instructions.
 
 ---
 
 **Ready for review!** 🚀
+
+---
+
+**Ready for review!** 🚀
+

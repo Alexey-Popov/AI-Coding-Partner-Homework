@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(claude --teleport:*)"
+      "Bash(claude --teleport:*)",
+      "Bash(python -c \":*)"
     ]
   }
 }
