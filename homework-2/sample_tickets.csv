@@ -1,0 +1,51 @@
+customer_id,customer_email,customer_name,subject,description
+CUST001,user1@example.com,John Smith,Cannot login to my account,I've been trying to login for the past hour but keep getting invalid credentials error
+CUST002,user2@example.com,Sarah Johnson,Application crashes on startup,The app crashes immediately after I open it on my Windows 10 machine
+CUST003,user3@example.com,Michael Brown,Refund request for duplicate charge,I was charged twice for my subscription on January 15th
+CUST004,user4@example.com,Emily Davis,Feature request: Dark mode,Would love to see a dark mode option for the application interface
+CUST005,user5@example.com,David Wilson,Password reset not working,Password reset email never arrives in my inbox or spam folder
+CUST006,user6@example.com,Jennifer Martinez,Slow performance on dashboard,Dashboard takes over 30 seconds to load my recent activity
+CUST007,user7@example.com,Robert Anderson,Invoice missing from last month,I need a copy of my December invoice for accounting purposes
+CUST008,user8@example.com,Lisa Taylor,Bug: Export button does nothing,When I click export data the button doesn't respond at all
+CUST009,user9@example.com,James Thomas,2FA code not receiving,Not getting text messages with authentication codes anymore
+CUST010,user10@example.com,Mary Jackson,Upgrade to premium plan,How do I upgrade my account to the premium tier?
+CUST011,user11@example.com,Christopher White,Error 500 when uploading files,Getting internal server error every time I try to upload documents
+CUST012,user12@example.com,Patricia Harris,Cancel subscription request,Please cancel my subscription effective immediately
+CUST013,user13@example.com,Daniel Martin,Feature idea: Bulk operations,Would be helpful to have bulk delete and bulk edit features
+CUST014,user14@example.com,Barbara Thompson,Account locked after failed logins,My account is locked and I can't access the reset option
+CUST015,user15@example.com,Matthew Garcia,Payment method update issue,Cannot update my credit card information in billing settings
+CUST016,user16@example.com,Elizabeth Martinez,Mobile app not syncing data,Changes I make on mobile don't appear on desktop version
+CUST017,user17@example.com,Joseph Robinson,Question about enterprise pricing,What are the pricing options for teams larger than 50 users?
+CUST018,user18@example.com,Susan Clark,Bug: Calendar view shows wrong dates,Calendar is displaying dates from last month instead of current
+CUST019,user19@example.com,Charles Rodriguez,Cannot access shared documents,Shared files show permission denied error when I click them
+CUST020,user20@example.com,Margaret Lewis,Billing cycle change request,Can I change my billing from monthly to annual subscription?
+CUST021,user21@example.com,Thomas Lee,App freezes when editing profiles,Application becomes unresponsive when updating user profile information
+CUST022,user22@example.com,Nancy Walker,Request for API documentation,Where can I find complete API documentation for developers?
+CUST023,user23@example.com,Christopher Hall,Account verification email expired,My verification link expired and I can't complete registration
+CUST024,user24@example.com,Betty Allen,Feature request: Export to PDF,Would like ability to export reports directly to PDF format
+CUST025,user25@example.com,Donald Young,Charged wrong amount last month,My bill was $49.99 but should have been $39.99 based on my plan
+CUST026,user26@example.com,Sandra Hernandez,Search function not working properly,Search returns no results even for items I know exist in system
+CUST027,user27@example.com,Paul King,How to delete my account permanently,I want to delete my account and all associated data completely
+CUST028,user28@example.com,Karen Wright,Bug: Notifications not appearing,Push notifications stopped working after latest app update yesterday
+CUST029,user29@example.com,Mark Lopez,Integration with Slack requested,Would be great to have Slack integration for team notifications
+CUST030,user30@example.com,Helen Hill,Password requirements too strict,Cannot create password that meets all the complexity requirements
+CUST031,user31@example.com,Steven Scott,Download feature broken on Safari,File downloads don't work when using Safari browser on Mac
+CUST032,user32@example.com,Donna Green,Need receipt for tax purposes,Can you send me receipts for all payments made in 2025?
+CUST033,user33@example.com,Brian Adams,Feature suggestion: Keyboard shortcuts,Please add keyboard shortcuts for common actions to improve workflow
+CUST034,user34@example.com,Carol Baker,Login page not loading at all,When I go to the login page I just see a blank white screen
+CUST035,user35@example.com,Kevin Gonzalez,Promo code not applying discount,Tried using promo code SAVE20 but discount doesn't apply at checkout
+CUST036,user36@example.com,Laura Nelson,Performance issues during peak hours,System becomes very slow between 9am and 11am daily
+CUST037,user37@example.com,George Carter,Request to transfer account ownership,Need to transfer my account to a different email address
+CUST038,user38@example.com,Sharon Mitchell,Bug: Form validation errors incorrect,Form shows errors for fields that are filled in correctly
+CUST039,user39@example.com,Jason Perez,Email notifications too frequent,Getting too many email notifications and can't find settings to reduce
+CUST040,user40@example.com,Deborah Roberts,Question about data export options,What file formats are supported when exporting my data?
+CUST041,user41@example.com,Ryan Turner,Unable to add team members,Get an error message when trying to invite users to my workspace
+CUST042,user42@example.com,Michelle Phillips,Incorrect timezone in timestamps,All my timestamps show wrong timezone despite correct settings
+CUST043,user43@example.com,Gary Campbell,Feature request: Two-way sync,Need two-way sync functionality with Google Calendar integration
+CUST044,user44@example.com,Kimberly Parker,Account shows suspended status,My account suddenly shows suspended but I haven't violated any terms
+CUST045,user45@example.com,Eric Evans,Payment declined but card is valid,Transaction keeps getting declined even though my card works elsewhere
+CUST046,user46@example.com,Stephanie Edwards,Images not loading in messages,All images appear as broken links in the messaging feature
+CUST047,user47@example.com,Jacob Collins,How to enable SSO for organization,Need help setting up single sign-on for our company accounts
+CUST048,user48@example.com,Rebecca Stewart,Bug: Duplicate entries appearing,Seeing duplicate records in my list view that shouldn't be there
+CUST049,user49@example.com,Jeffrey Sanchez,Request for custom domain setup,Want to use custom domain instead of default subdomain for branding
+CUST050,user50@example.com,Rachel Morris,General inquiry about mobile support,Does your service support both iOS and Android mobile platforms?

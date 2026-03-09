@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickets>
+    <ticket>
+        <customerId>CUST071</customerId>
+        <customerEmail>adam.wilson@example.com</customerEmail>
+        <customerName>Adam Wilson</customerName>
+        <subject>Login session expires too quickly</subject>
+        <description>Session timeout after 15 minutes is too short for my workflow and requires constant re-login</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST072</customerId>
+        <customerEmail>brenda.jackson@example.com</customerEmail>
+        <customerName>Brenda Jackson</customerName>
+        <subject>Cannot update credit card on file</subject>
+        <description>Payment page shows error when trying to replace expired card with new card information</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST073</customerId>
+        <customerEmail>carlos.rivera@example.com</customerEmail>
+        <customerName>Carlos Rivera</customerName>
+        <subject>Feature request: Template library for common tasks</subject>
+        <description>Would save time to have pre-built templates for frequently used configurations and workflows</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST074</customerId>
+        <customerEmail>diana.patel@example.com</customerEmail>
+        <customerName>Diana Patel</customerName>
+        <subject>Application error after latest update</subject>
+        <description>Since yesterday's update getting continuous error popup saying 'Component failed to initialize properly'</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST075</customerId>
+        <customerEmail>ethan.barnes@example.com</customerEmail>
+        <customerName>Ethan Barnes</customerName>
+        <subject>Forgot password but security questions not working</subject>
+        <description>Answering security questions correctly but system says answers are incorrect and won't reset password</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST076</customerId>
+        <customerEmail>fiona.graham@example.com</customerEmail>
+        <customerName>Fiona Graham</customerName>
+        <subject>Very slow loading times on reports page</subject>
+        <description>Reports page takes 2-3 minutes to load even with fast internet connection and powerful computer</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST077</customerId>
+        <customerEmail>george.howard@example.com</customerEmail>
+        <customerName>George Howard</customerName>
+        <subject>Invoice shows wrong tax calculation</subject>
+        <description>Latest invoice calculates 10% tax but my location should only be charged 7% sales tax rate</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST078</customerId>
+        <customerEmail>hannah.russell@example.com</customerEmail>
+        <customerName>Hannah Russell</customerName>
+        <subject>Bug: Copy-paste functionality not working</subject>
+        <description>Cannot copy and paste text within application using keyboard shortcuts or right-click menu</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST079</customerId>
+        <customerEmail>isaac.bell@example.com</customerEmail>
+        <customerName>Isaac Bell</customerName>
+        <subject>2FA backup codes not displaying</subject>
+        <description>When I click to view backup codes the page is blank and codes never load on screen</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST080</customerId>
+        <customerEmail>julia.coleman@example.com</customerEmail>
+        <customerName>Julia Coleman</customerName>
+        <subject>How to downgrade subscription plan</subject>
+        <description>Need to switch from premium plan to basic plan to reduce costs starting next billing cycle</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST081</customerId>
+        <customerEmail>kevin.cruz@example.com</customerEmail>
+        <customerName>Kevin Cruz</customerName>
+        <subject>Error 404 when accessing settings page</subject>
+        <description>Clicking on account settings link results in 404 page not found error every single time</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST082</customerId>
+        <customerEmail>linda.simmons@example.com</customerEmail>
+        <customerName>Linda Simmons</customerName>
+        <subject>Need to pause subscription temporarily</subject>
+        <description>Going on vacation for 2 months and want to pause subscription without losing account data</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST083</customerId>
+        <customerEmail>marcus.perry@example.com</customerEmail>
+        <customerName>Marcus Perry</customerName>
+        <subject>Feature suggestion: Multi-language support</subject>
+        <description>Please add support for Spanish and French languages to make app accessible to our international team</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST084</customerId>
+        <customerEmail>natalie.long@example.com</customerEmail>
+        <customerName>Natalie Long</customerName>
+        <subject>Cannot access account - email not recognized</subject>
+        <description>System says my email address doesn't exist in database but I've been customer for 2 years</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST085</customerId>
+        <customerEmail>oscar.hughes@example.com</customerEmail>
+        <customerName>Oscar Hughes</customerName>
+        <subject>Overcharged for premium features not used</subject>
+        <description>Billed for premium tier but never activated or used any premium features this entire month</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST086</customerId>
+        <customerEmail>paula.flores@example.com</customerEmail>
+        <customerName>Paula Flores</customerName>
+        <subject>Video player not working in Chrome browser</subject>
+        <description>Embedded videos show black screen and won't play in Chrome but work fine in Firefox</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST087</customerId>
+        <customerEmail>quincy.washington@example.com</customerEmail>
+        <customerName>Quincy Washington</customerName>
+        <subject>Request for volume discount pricing info</subject>
+        <description>Planning to purchase 100+ licenses and would like information about enterprise volume discounts available</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST088</customerId>
+        <customerEmail>rachel.butler@example.com</customerEmail>
+        <customerName>Rachel Butler</customerName>
+        <subject>Bug: Date picker shows dates in wrong format</subject>
+        <description>Date picker displays MM/DD/YYYY but my regional settings are DD/MM/YYYY causing confusion and errors</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST089</customerId>
+        <customerEmail>sebastian.jenkins@example.com</customerEmail>
+        <customerName>Sebastian Jenkins</customerName>
+        <subject>Account locked due to suspicious activity</subject>
+        <description>Received email about suspicious login attempt and now entire account is locked and inaccessible</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST090</customerId>
+        <customerEmail>theresa.powell@example.com</customerEmail>
+        <customerName>Theresa Powell</customerName>
+        <subject>Discount code from email promotion invalid</subject>
+        <description>Received email with code SPRING25 but checkout page says code is invalid or expired already</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST091</customerId>
+        <customerEmail>ursula.knight@example.com</customerEmail>
+        <customerName>Ursula Knight</customerName>
+        <subject>File attachments not uploading correctly</subject>
+        <description>Attachments upload but then show as corrupted files that cannot be opened or downloaded by anyone</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST092</customerId>
+        <customerEmail>vincent.hayes@example.com</customerEmail>
+        <customerName>Vincent Hayes</customerName>
+        <subject>Feature request: Webhook integrations</subject>
+        <description>Need webhook support to integrate platform with our internal systems for automated data synchronization</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST093</customerId>
+        <customerEmail>wendy.myers@example.com</customerEmail>
+        <customerName>Wendy Myers</customerName>
+        <subject>Two-factor authentication keeps getting disabled</subject>
+        <description>Enable 2FA security but it mysteriously gets disabled after few days requiring me to set up again</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST094</customerId>
+        <customerEmail>xavier.wood@example.com</customerEmail>
+        <customerName>Xavier Wood</customerName>
+        <subject>Interface not responsive on mobile devices</subject>
+        <description>Mobile version has overlapping buttons and text that's cut off making it impossible to navigate properly</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST095</customerId>
+        <customerEmail>yolanda.watson@example.com</customerEmail>
+        <customerName>Yolanda Watson</customerName>
+        <subject>Question about data retention policies</subject>
+        <description>How long do you retain deleted data and what is process for permanent data deletion from servers?</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST096</customerId>
+        <customerEmail>zachary.brooks@example.com</customerEmail>
+        <customerName>Zachary Brooks</customerName>
+        <subject>Print function produces garbled output</subject>
+        <description>Printing reports creates documents with jumbled text and misaligned columns that are completely unreadable</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST097</customerId>
+        <customerEmail>amy.kelly@example.com</customerEmail>
+        <customerName>Amy Kelly</customerName>
+        <subject>Cannot invite collaborators to workspace</subject>
+        <description>Invitation emails are not being sent when I try to add new team members to shared workspace</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST098</customerId>
+        <customerEmail>bradley.sanders@example.com</customerEmail>
+        <customerName>Bradley Sanders</customerName>
+        <subject>Feature idea: Activity audit log access</subject>
+        <description>Need ability to view complete audit log of all account activities for compliance and security monitoring</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST099</customerId>
+        <customerEmail>christine.price@example.com</customerEmail>
+        <customerName>Christine Price</customerName>
+        <subject>Automatic logout happening too frequently</subject>
+        <description>Getting logged out automatically every few hours even when actively using application which disrupts my work</description>
+    </ticket>
+    <ticket>
+        <customerId>CUST100</customerId>
+        <customerEmail>daniel.bennett@example.com</customerEmail>
+        <customerName>Daniel Bennett</customerName>
+        <subject>General inquiry about GDPR compliance</subject>
+        <description>Is your service GDPR compliant and where can I find documentation about data privacy practices?</description>
+    </ticket>
+</tickets>

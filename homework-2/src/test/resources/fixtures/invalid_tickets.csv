@@ -1,0 +1,4 @@
+customer_id,customer_email,customer_name,subject,description
+CUST001,invalid-email,John Smith,Test Subject,This is a valid description for testing purposes
+CUST002,jane@example.com,,Missing Name,This is a valid description for testing purposes
+,bob@example.com,Bob Wilson,Missing ID,This is a valid description for testing purposes
