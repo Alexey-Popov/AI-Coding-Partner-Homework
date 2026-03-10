@@ -1,0 +1,45 @@
+{
+  "tickets": [
+    {
+      "customer_email": "invalid-email",
+      "customer_name": "Missing Customer ID",
+      "subject": "Test subject",
+      "description": "This ticket is missing customer_id and has invalid email"
+    },
+    {
+      "customer_id": "CUST-001",
+      "customer_email": "valid@email.com",
+      "subject": "Missing name",
+      "description": "This ticket is missing customer_name field"
+    },
+    {
+      "customer_id": "CUST-002",
+      "customer_email": "valid@email.com",
+      "customer_name": "Test User",
+      "description": "This ticket is missing subject field"
+    },
+    {
+      "customer_id": "CUST-003",
+      "customer_email": "valid@email.com",
+      "customer_name": "Test User",
+      "subject": "Valid subject",
+      "description": "Short"
+    },
+    {
+      "customer_id": "CUST-004",
+      "customer_email": "valid@email.com",
+      "customer_name": "Test User",
+      "subject": "Valid subject",
+      "description": "Valid description for testing purposes",
+      "category": "not_a_valid_category"
+    },
+    {
+      "customer_id": "CUST-005",
+      "customer_email": "valid@email.com",
+      "customer_name": "Test User",
+      "subject": "Valid subject",
+      "description": "Valid description for testing purposes",
+      "priority": "super_urgent"
+    }
+  ]
+}

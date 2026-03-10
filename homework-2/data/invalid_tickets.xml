@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickets>
+  <ticket>
+    <customer_email>invalid-email-format</customer_email>
+    <customer_name>Missing Customer ID</customer_name>
+    <subject>Test subject</subject>
+    <description>This ticket is missing customer_id and has invalid email</description>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-001</customer_id>
+    <customer_email>valid@email.com</customer_email>
+    <subject>Missing name</subject>
+    <description>This ticket is missing customer_name field</description>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-002</customer_id>
+    <customer_email>valid@email.com</customer_email>
+    <customer_name>Test User</customer_name>
+    <description>This ticket is missing subject field completely</description>
+  </ticket>
+  <ticket>
+    <customer_id>CUST-003</customer_id>
+    <customer_email>valid@email.com</customer_email>
+    <customer_name>Test User</customer_name>
+    <subject>Valid subject</subject>
+    <description>Short</description>
+  </ticket>
+</tickets>

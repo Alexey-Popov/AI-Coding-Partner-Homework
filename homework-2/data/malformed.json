@@ -1,0 +1,4 @@
+{
+  "tickets": [
+    { "customer_id": "CUST-001", "customer_email": "test@email.com"
+  ]

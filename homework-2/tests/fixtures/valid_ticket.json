@@ -1,0 +1,15 @@
+{
+  "customer_id": "CUST-001",
+  "customer_email": "test@example.com",
+  "customer_name": "Test User",
+  "subject": "Test Subject",
+  "description": "This is a valid test ticket description for testing purposes.",
+  "category": "technical_issue",
+  "priority": "medium",
+  "tags": ["test", "fixture"],
+  "metadata": {
+    "source": "api",
+    "browser": "Chrome",
+    "device_type": "desktop"
+  }
+}
