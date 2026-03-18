@@ -1,0 +1,35 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/levik/Documents/spd/AI-Coding-Partner-Homework"
+      ]
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "<YOUR_GITHUB_TOKEN>"
+      }
+    },
+    "jira": {
+      "command": "npx",
+      "args": ["-y", "@sooperset/mcp-atlassian"],
+      "env": {
+        "JIRA_URL": "<JIRA_INSTANCE_URL>",
+        "JIRA_USERNAME": "<YOUR_JIRA_EMAIL>",
+        "JIRA_API_TOKEN": "<YOUR_JIRA_API_TOKEN>"
+      }
+    },
+    "lorem-ipsum": {
+      "command": "custom-mcp-server/.venv/bin/python",
+      "args": ["custom-mcp-server/server.py"]
+    }
+  }
+}
