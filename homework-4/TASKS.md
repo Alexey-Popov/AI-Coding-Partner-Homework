@@ -89,7 +89,7 @@ flowchart LR
 ## 📁 Expected Project Structure
 
 ```
-homework-5/
+homework-4/
 ├── README.md
 ├── HOWTORUN.md
 ├── STUDENT.md

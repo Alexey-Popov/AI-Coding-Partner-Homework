@@ -1,0 +1,27 @@
+{
+  "mcpServers": {
+    "custom-mcp": {
+      "command": "python3",
+      "args": [
+        "/Users/o.stadnyk/homework/AI-Coding-Partner-Homework/homework-5/custom-mcp-server/server.py"
+      ]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/o.stadnyk/homework/AI-Coding-Partner-Homework/homework-5"
+      ]
+    },
+    "jira": {
+      "command": "uvx",
+      "args": ["mcp-atlassian"],
+      "env": {
+        "JIRA_URL": "https://stadnykaleksandr.atlassian.net",
+        "JIRA_USERNAME": "stadnyk.aleksandr@gmail.com",
+        "JIRA_API_TOKEN": "JIRA_API_TOKEN"
+      }
+    }
+  }
+}

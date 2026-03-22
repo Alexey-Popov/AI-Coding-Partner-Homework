@@ -1,0 +1,142 @@
+[
+  {
+    "customerId": "CUST051",
+    "customerEmail": "alice.wong@example.com",
+    "customerName": "Alice Wong",
+    "subject": "Cannot reset password via mobile app",
+    "description": "Password reset link works on desktop but clicking it on mobile app does nothing at all"
+  },
+  {
+    "customerId": "CUST052",
+    "customerEmail": "benjamin.cooper@example.com",
+    "customerName": "Benjamin Cooper",
+    "subject": "Missing transaction in payment history",
+    "description": "My payment from February 1st doesn't appear in transaction history but I was charged"
+  },
+  {
+    "customerId": "CUST053",
+    "customerEmail": "carmen.rodriguez@example.com",
+    "customerName": "Carmen Rodriguez",
+    "subject": "Feature request: Customizable dashboard widgets",
+    "description": "Would be amazing to rearrange and customize dashboard widgets to match my workflow needs"
+  },
+  {
+    "customerId": "CUST054",
+    "customerEmail": "derek.nguyen@example.com",
+    "customerName": "Derek Nguyen",
+    "subject": "Error when saving profile changes",
+    "description": "Get error message 'Failed to update profile' every time I try to save any changes"
+  },
+  {
+    "customerId": "CUST055",
+    "customerEmail": "elena.petrov@example.com",
+    "customerName": "Elena Petrov",
+    "subject": "Account email address change needed",
+    "description": "Need to update my account email from old work address to personal email address"
+  },
+  {
+    "customerId": "CUST056",
+    "customerEmail": "franklin.james@example.com",
+    "customerName": "Franklin James",
+    "subject": "Application timeout during file upload",
+    "description": "App times out when uploading files larger than 10MB and shows connection error"
+  },
+  {
+    "customerId": "CUST057",
+    "customerEmail": "grace.kim@example.com",
+    "customerName": "Grace Kim",
+    "subject": "Refund for unused subscription months",
+    "description": "Cancelled early and would like refund for remaining 3 months of annual subscription"
+  },
+  {
+    "customerId": "CUST058",
+    "customerEmail": "henry.mueller@example.com",
+    "customerName": "Henry Mueller",
+    "subject": "Bug: Unable to delete old messages",
+    "description": "Delete button on messages older than 30 days is greyed out and non-functional"
+  },
+  {
+    "customerId": "CUST059",
+    "customerEmail": "iris.chen@example.com",
+    "customerName": "Iris Chen",
+    "subject": "2FA authentication app not syncing",
+    "description": "Authentication codes from my Google Authenticator app are being rejected as invalid"
+  },
+  {
+    "customerId": "CUST060",
+    "customerEmail": "jack.turner@example.com",
+    "customerName": "Jack Turner",
+    "subject": "Dashboard widgets showing incorrect data",
+    "description": "Analytics widget displays data from last week instead of current real-time information"
+  },
+  {
+    "customerId": "CUST061",
+    "customerEmail": "katie.brooks@example.com",
+    "customerName": "Katie Brooks",
+    "subject": "Feature idea: Schedule reports delivery",
+    "description": "Would love to schedule automated report delivery via email on weekly or monthly basis"
+  },
+  {
+    "customerId": "CUST062",
+    "customerEmail": "logan.price@example.com",
+    "customerName": "Logan Price",
+    "subject": "Cannot access account from new device",
+    "description": "Verification email for new device login never arrives and can't complete security check"
+  },
+  {
+    "customerId": "CUST063",
+    "customerEmail": "maria.santos@example.com",
+    "customerName": "Maria Santos",
+    "subject": "Question about multi-user pricing",
+    "description": "What's the cost per additional user if I need to add 5 more seats to current plan?"
+  },
+  {
+    "customerId": "CUST064",
+    "customerEmail": "nathan.foster@example.com",
+    "customerName": "Nathan Foster",
+    "subject": "Browser extension crashes frequently",
+    "description": "Chrome extension crashes multiple times per day requiring restart of entire browser"
+  },
+  {
+    "customerId": "CUST065",
+    "customerEmail": "olivia.ward@example.com",
+    "customerName": "Olivia Ward",
+    "subject": "Billing address update not saving",
+    "description": "Updated billing address three times but changes don't persist and revert to old address"
+  },
+  {
+    "customerId": "CUST066",
+    "customerEmail": "patrick.murphy@example.com",
+    "customerName": "Patrick Murphy",
+    "subject": "Feature request: Offline mode support",
+    "description": "Please add offline mode so I can work without internet and sync changes when back online"
+  },
+  {
+    "customerId": "CUST067",
+    "customerEmail": "quinn.rogers@example.com",
+    "customerName": "Quinn Rogers",
+    "subject": "Account migration from old platform",
+    "description": "Need assistance migrating my data and settings from legacy platform to new system"
+  },
+  {
+    "customerId": "CUST068",
+    "customerEmail": "rosa.martinez@example.com",
+    "customerName": "Rosa Martinez",
+    "subject": "Bug: Dropdown menus not working on iPad",
+    "description": "All dropdown menus are unresponsive when using iPad Safari browser version 17.2"
+  },
+  {
+    "customerId": "CUST069",
+    "customerEmail": "samuel.henderson@example.com",
+    "customerName": "Samuel Henderson",
+    "subject": "Unable to download annual report",
+    "description": "Annual usage report download button shows loading spinner but never completes download"
+  },
+  {
+    "customerId": "CUST070",
+    "customerEmail": "tina.lee@example.com",
+    "customerName": "Tina Lee",
+    "subject": "General question about security features",
+    "description": "What security certifications and compliance standards does your platform maintain?"
+  }
+]
